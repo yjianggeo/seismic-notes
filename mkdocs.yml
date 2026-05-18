@@ -1,0 +1,66 @@
+site_name: Seismic Notes
+site_description: 地震学与DAS学习笔记
+site_author: Jiang Yi
+
+theme:
+  name: material
+
+  language: zh
+
+  palette:
+
+    # 浅色模式
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: 切换深色模式
+
+    # 深色模式
+    - scheme: slate
+      primary: black
+      accent: light blue
+      toggle:
+        icon: material/weather-sunny
+        name: 切换浅色模式
+
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+
+markdown_extensions:
+
+  # 数学公式
+  - pymdownx.arithmatex:
+      generic: true
+
+  # 代码高亮
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+
+  - pymdownx.inlinehilite
+  
+  # 嵌入文件内容
+  - pymdownx.snippets
+
+  # 代码块
+  - pymdownx.superfences
+
+  # 自动目录
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - 首页: index.md
+  - Brune模型: brune.md
