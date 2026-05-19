@@ -18,7 +18,12 @@
       "PowerShell($env:GITHUB_TOKEN)",
       "PowerShell($env:GH_TOKEN)",
       "mcp__Claude_Preview__preview_start",
-      "Bash(git remote *)"
+      "Bash(git remote *)",
+      "Bash(git fetch *)",
+      "Bash(git credential *)",
+      "Bash(python -c \"import sys,json; *)",
+      "Bash(curl -s *)",
+      "Bash(git stash *)"
     ]
   }
 }
