@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(python -m mkdocs build --verbose)",
+      "Bash(python -c \"import pymdownx.superfences as sf; import inspect; print\\(inspect.getfile\\(sf\\)\\)\")",
+      "Bash(grep -n \"register\\\\|preprocessor\\\\|blockprocessor\\\\|fenced_code_block\\\\|priority\" \"C:\\\\Users\\\\JiangYi\\\\AppData\\\\Roaming\\\\Python\\\\Python311\\\\site-packages\\\\pymdownx\\\\superfences.py\" | head -40)",
+      "Bash(python -c \"import markdown.extensions.fenced_code as fc; import inspect; src = inspect.getsource\\(fc\\); print\\(src\\)\")",
+      "Bash(python -m mkdocs build)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(gh pr create --title 'Add GitHub Actions deploy workflow and clean up site/' --body ' *)",
+      "PowerShell(Get-Command gh -ErrorAction SilentlyContinue; \\(Get-Command git\\).Source)",
+      "PowerShell(Get-ChildItem \"C:\\\\Program Files\\\\GitHub CLI\\\\\" -ErrorAction SilentlyContinue; Get-ChildItem \"$env:LOCALAPPDATA\\\\Programs\\\\GitHub CLI\\\\\" -ErrorAction SilentlyContinue; where.exe gh 2>$null)",
+      "PowerShell(git config --global credential.helper)",
+      "PowerShell($env:GITHUB_TOKEN)",
+      "PowerShell($env:GH_TOKEN)",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}
