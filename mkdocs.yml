@@ -1,0 +1,180 @@
+site_name: Seismic Notes
+site_description: 地震学与 DAS 学习笔记
+site_author: Jiang Yi
+site_url: https://yjianggeo.github.io/source-spectrum-site/
+
+theme:
+  name: material
+  language: zh
+
+  features:
+
+    # 导航
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
+
+    # 搜索
+    - search.highlight
+    - search.share
+    - search.suggest
+
+    # 内容
+    - content.tabs.link
+    - content.code.copy
+    - content.code.annotate
+
+    # 编辑按钮
+    - content.action.edit
+    - content.action.view
+
+    # 自动隐藏头部
+    - header.autohide
+
+  palette:
+
+    # 浅色
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+
+      toggle:
+        icon: material/brightness-7
+        name: 切换深色模式
+
+    # 深色
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+
+      toggle:
+        icon: material/brightness-4
+        name: 切换浅色模式
+
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+
+repo_url: https://github.com/yjianggeo/source-spectrum-site
+repo_name: yjianggeo/source-spectrum-site
+edit_uri: edit/main/docs/
+
+markdown_extensions:
+
+  # 基础
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+
+  # 自动目录
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+  # 数学公式
+  - pymdownx.arithmatex:
+      generic: true
+
+  # 强调
+  - pymdownx.betterem:
+      smart_enable: all
+
+  # 下划线/插入
+  - pymdownx.caret
+
+  # 折叠块
+  - pymdownx.details
+
+  # Emoji
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+  - pymdownx.highlight:    # 代码高亮
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true  
+
+  # 行内高亮
+  - pymdownx.inlinehilite
+
+  # 键盘键
+  - pymdownx.keys
+
+  # 高亮标记
+  - pymdownx.mark
+
+  # 智能符号
+  - pymdownx.smartsymbols
+
+  # 代码片段
+  - pymdownx.snippets
+
+  # 高级代码块
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  # 标签页
+  - pymdownx.tabbed:
+      alternate_style: true
+
+  # 任务列表
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+  # 删除线
+  - pymdownx.tilde
+
+plugins:
+
+  # 搜索
+  - search:
+      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+
+  # Git 时间
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: datetime
+      locale: zh
+
+extra:
+
+  generator: false
+
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/yjianggeo
+
+extra_css:
+  - assets/stylesheets/extra.css
+
+extra_javascript:
+
+  # MathJax配置
+  - assets/javascripts/mathjax.js
+
+  # ES6兼容
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+
+  # MathJax
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - 首页: index.md
+
+  - 震源理论:
+      - Brune模型: brune.md
