@@ -102,9 +102,9 @@ markdown_extensions:
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
   - pymdownx.highlight:    # 代码高亮
-      anchor_linenums: true
+      anchor_linenums: false
       line_spans: __span
-      pygments_lang_class: true  
+      pygments_lang_class: true
 
   # 行内高亮
   - pymdownx.inlinehilite
