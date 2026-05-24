@@ -1591,12 +1591,12 @@
 
 <h1 id="brune">Brune 震源谱模型<a class="headerlink" href="#brune" title="Permanent link">&para;</a></h1>
 <h2 id="_1">引言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Brune 模型（Brune source model）由 Brune（1970, 1971）提出，是地震学中最广泛使用的震源谱模型。它将断层破裂简化为**圆形裂纹的瞬时应力降**，从而用少量参数——地震矩 <span class="arithmatex">\(M_0\)</span>、拐角频率 <span class="arithmatex">\(f_c\)</span>、应力降 <span class="arithmatex">\(\Delta\sigma\)</span>——描述地震辐射的远场位移谱。</p>
+<p>Brune 模型（Brune source model）由 Brune（1970, 1971）提出，是地震学中最广泛使用的震源谱模型。它将断层破裂简化为<strong>圆形裂纹的瞬时应力降</strong>，从而用少量参数——地震矩 <span class="arithmatex">\(M_0\)</span>、拐角频率 <span class="arithmatex">\(f_c\)</span>、应力降 <span class="arithmatex">\(\Delta\sigma\)</span>——描述地震辐射的远场位移谱。</p>
 <p>模型的核心预测是远场 S 波位移振幅谱满足：</p>
 <div class="arithmatex">\[
 \boxed{|\Omega(f)| = \frac{\Omega_0}{1 + (f/f_c)^2}}
 \]</div>
-<p>低频平坦、高频按 <span class="arithmatex">\(f^{-2}\)</span> 衰减，因此又称 <strong><span class="arithmatex">\(\omega^{-2}\)</span> 模型**或 **omega-square 模型</strong>。</p>
+<p>低频平坦、高频按 <span class="arithmatex">\(f^{-2}\)</span> 衰减，因此又称 <strong><span class="arithmatex">\(\omega^{-2}\)</span> 模型</strong>或 <strong>omega-square 模型</strong>。</p>
 <hr />
 <h2 id="_2">物理模型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h3 id="_3">基本假设<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
@@ -1652,7 +1652,7 @@ u^S(\mathbf{x}, t) = \frac{\mathcal{R}_{\theta\phi}}{4\pi\rho\beta^3 R}\, \dot{M
 </ul>
 <div class="admonition note">
 <p class="admonition-title">物理含义</p>
-<p>远场位移正比于矩率 <span class="arithmatex">\(\dot{M}_0(t)\)</span>，而非矩 <span class="arithmatex">\(M_0(t)\)</span> 本身。矩率反映了断层滑动的**速度**，即震源辐射能量的快慢。</p>
+<p>远场位移正比于矩率 <span class="arithmatex">\(\dot{M}_0(t)\)</span>，而非矩 <span class="arithmatex">\(M_0(t)\)</span> 本身。矩率反映了断层滑动的<strong>速度</strong>，即震源辐射能量的快慢。</p>
 </div>
 <h3 id="_7">频域表达式<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>对上式两边做傅里叶变换（忽略传播延迟相位因子 <span class="arithmatex">\(e^{-i\omega R/\beta}\)</span> 的影响，只关注振幅谱）：</p>
@@ -1673,7 +1673,7 @@ M_0(t) = M_0 \left[1 - (1 + \omega_c t)\,e^{-\omega_c t}\right] H(t)
 <li>当 <span class="arithmatex">\(t = 0\)</span> 时：<span class="arithmatex">\(M_0(0) = M_0[1 - 1 \cdot 1] = 0\)</span> ✓（破裂前无滑动）</li>
 <li>当 <span class="arithmatex">\(t \to \infty\)</span> 时：<span class="arithmatex">\(e^{-\omega_c t} \to 0\)</span>，<span class="arithmatex">\(M_0(\infty) = M_0\)</span> ✓（最终达到完整地震矩）</li>
 </ul>
-<p>**矩率函数**为矩函数对时间的导数：</p>
+<p><strong>矩率函数</strong>为矩函数对时间的导数：</p>
 <div class="arithmatex">\[
 \dot{M}_0(t) = \frac{d M_0(t)}{dt} = M_0\, \omega_c^2\, t\, e^{-\omega_c t}\, H(t)
 \]</div>
@@ -1717,7 +1717,7 @@ M_0(t) = M_0 \left[1 - (1 + \omega_c t)\,e^{-\omega_c t}\right] H(t)
 <div class="arithmatex">\[
 |\Omega(\omega)| = \frac{\mathcal{R}_{\theta\phi}}{4\pi\rho\beta^3 R} \cdot \frac{M_0}{1 + (\omega/\omega_c)^2}
 \]</div>
-<p>定义**低频平台**：</p>
+<p>定义<strong>低频平台</strong>：</p>
 <div class="arithmatex">\[
 \Omega_0 \equiv \frac{\mathcal{R}_{\theta\phi}\, M_0}{4\pi\rho\beta^3 R}
 \]</div>
@@ -1877,7 +1877,7 @@ M_0 = \mu\,\bar{D}\,\pi r^2 = \mu \cdot \frac{16}{7\pi}\frac{\Delta\sigma\, r}{\
 <div class="arithmatex">\[
 \Delta\sigma \sim 0.1 \text{--} 50\,\text{MPa}
 \]</div>
-<p>大多数构造地震集中在 <span class="arithmatex">\(1\text{--}10\,\text{MPa}\)</span> 量级，且与地震矩的相关性较弱——这体现了**地震的自相似性**（self-similarity）：不同大小的地震具有相似的应力降。</p>
+<p>大多数构造地震集中在 <span class="arithmatex">\(1\text{--}10\,\text{MPa}\)</span> 量级，且与地震矩的相关性较弱——这体现了<strong>地震的自相似性</strong>（self-similarity）：不同大小的地震具有相似的应力降。</p>
 <hr />
 <h2 id="_24">参数之间的关系网络<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h2>
 <p>三个核心参数 <span class="arithmatex">\(M_0\)</span>、<span class="arithmatex">\(f_c\)</span>、<span class="arithmatex">\(\Delta\sigma\)</span> 通过以下关系相互约束：</p>
@@ -2032,7 +2032,7 @@ M_0 = \mu\,\bar{D}\,\pi r^2 = \mu \cdot \frac{16}{7\pi}\frac{\Delta\sigma\, r}{\
 <div class="arithmatex">\[
 |\Omega_{\text{obs}}(f)| = |\Omega_{\text{src}}(f)| \cdot e^{-\pi f t^*}
 \]</div>
-<p>其中 <span class="arithmatex">\(t^* = R/(\beta Q)\)</span> 称为**衰减算子**（attenuation operator）。</p>
+<p>其中 <span class="arithmatex">\(t^* = R/(\beta Q)\)</span> 称为<strong>衰减算子</strong>（attenuation operator）。</p>
 <h3 id="kappa">高频截止（<span class="arithmatex">\(\kappa\)</span> 衰减）<a class="headerlink" href="#kappa" title="Permanent link">&para;</a></h3>
 <p>实际地震谱在高于某一频率 <span class="arithmatex">\(f_{\max}\)</span> 时观测到比 <span class="arithmatex">\(f^{-2}\)</span> 更陡的截止，用参数 <span class="arithmatex">\(\kappa\)</span>（kappa）描述：</p>
 <div class="arithmatex">\[
