@@ -330,7 +330,7 @@ $$
 \bar{D} = \frac{2}{r^2} \cdot \frac{24}{7\pi} \cdot \frac{\Delta\sigma}{\mu} \cdot \frac{r^3}{3} = \frac{16}{7\pi} \cdot \frac{\Delta\sigma\, r}{\mu}
 $$
 
-### 从 $M_0$ 推导应力降公式
+### 从地震矩推导应力降公式
 
 $$
 M_0 = \mu\,\bar{D}\,\pi r^2 = \mu \cdot \frac{16}{7\pi}\frac{\Delta\sigma\, r}{\mu} \cdot \pi r^2 = \frac{16}{7}\,\Delta\sigma\, r^3
@@ -553,7 +553,7 @@ $$
 
 其中 $t^* = R/(\beta Q)$ 称为**衰减算子**（attenuation operator）。
 
-### 高频截止（$\kappa$ 衰减）
+### 高频截止（κ 衰减）
 
 实际地震谱在高于某一频率 $f_{\max}$ 时观测到比 $f^{-2}$ 更陡的截止，用参数 $\kappa$（kappa）描述：
 
