@@ -114,6 +114,10 @@ $$
 \dot{M}_0(t^*) = M_0\, \omega_c^2 \cdot \frac{1}{\omega_c} \cdot e^{-1} = \frac{M_0 \omega_c}{e}
 $$
 
+下图展示了 $f_c = 5\,\text{Hz}$ 时，矩率函数与矩函数的时程：
+
+![Brune 震源时间函数](../assets/images/brune_source_time.png)
+
 ### 矩率函数的傅里叶变换
 
 对 $\dot{M}_0(t) = M_0\,\omega_c^2\, t\, e^{-\omega_c t}\, H(t)$ 做傅里叶变换：
@@ -440,6 +444,8 @@ plt.tight_layout()
 plt.show()
 ```
 
+![Brune 震源谱](../assets/images/brune_spectrum.png)
+
 ### 多个拐角频率对比
 
 ```python
@@ -466,6 +472,8 @@ ax.grid(True, which='both', ls=':', alpha=0.4)
 plt.tight_layout()
 plt.show()
 ```
+
+![不同拐角频率的 Brune 谱](../assets/images/brune_multi_fc.png)
 
 ### 从谱参数计算震源参数
 
