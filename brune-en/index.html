@@ -1,0 +1,1623 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="地震学与 DAS 学习笔记">
+      
+      
+        <meta name="author" content="Jiang Yi">
+      
+      
+        <link rel="canonical" href="https://yjianggeo.github.io/source-spectrum-site/brune-en/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Brune Source Spectrum Model - Seismic Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#brune-source-spectrum-model" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Seismic Notes" class="md-header__button md-logo" aria-label="Seismic Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Seismic Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Brune Source Spectrum Model
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/yjianggeo/source-spectrum-site" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yjianggeo/source-spectrum-site
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../brune/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  震源理论
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Seismic Notes" class="md-nav__button md-logo" aria-label="Seismic Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Seismic Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/yjianggeo/source-spectrum-site" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yjianggeo/source-spectrum-site
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    震源理论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    震源理论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brune模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#physical-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physical Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Physical Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#basic-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Geometry
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#far-field-displacement-and-seismic-moment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Far-field Displacement and Seismic Moment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Far-field Displacement and Seismic Moment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#far-field-displacement-of-a-point-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Far-field Displacement of a Point Source
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frequency-domain-expression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frequency-Domain Expression
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#derivation-of-the-source-time-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derivation of the Source Time Function
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Derivation of the Source Time Function">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#moment-function-and-moment-rate-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Moment Function and Moment Rate Function
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fourier-transform-of-the-moment-rate-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fourier Transform of the Moment Rate Function
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brune-displacement-spectrum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Brune Displacement Spectrum
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Brune Displacement Spectrum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amplitude-spectrum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amplitude Spectrum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asymptotic-behavior" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Asymptotic Behavior
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-log-spectral-slope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Log-log Spectral Slope
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#low-frequency-plateau-and-seismic-moment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Low-frequency Plateau and Seismic Moment
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Low-frequency Plateau and Seismic Moment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inversion-formula" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inversion Formula
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radiation-pattern-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Radiation Pattern Correction
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#corner-frequency-and-source-dimension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corner Frequency and Source Dimension
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Corner Frequency and Source Dimension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#physical-derivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Physical Derivation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-radius-and-moment-magnitude" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Radius and Moment Magnitude
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#stress-drop" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stress Drop
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Stress Drop">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#circular-crack-theory-eshelby-1957" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Circular Crack Theory (Eshelby 1957)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#calculation-of-mean-slip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calculation of Mean Slip
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derivation-of-stress-drop-from-seismic-moment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derivation of Stress Drop from Seismic Moment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expression-in-terms-of-observables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expression in Terms of Observables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#typical-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Values
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-of-parameter-relationships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network of Parameter Relationships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-examples" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Examples
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Python Examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plotting-the-brune-displacement-spectrum" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plotting the Brune Displacement Spectrum
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparing-multiple-corner-frequencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparing Multiple Corner Frequencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#computing-source-parameters-from-spectral-measurements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Computing Source Parameters from Spectral Measurements
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#corrections-in-practice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Corrections in Practice
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Corrections in Practice">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#path-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Path Effects
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-frequency-cutoff-attenuation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        High-frequency Cutoff (κ Attenuation)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-observed-spectrum-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Observed Spectrum Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#site-effects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Site Effects
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extended-and-alternative-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extended and Alternative Models
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Extended and Alternative Models">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#boatwright-1980-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boatwright (1980) Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#madariaga-1976-dynamic-rupture-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Madariaga (1976) Dynamic Rupture Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#double-corner-frequency-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Double Corner Frequency Model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-comparison" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Model Comparison
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/yjianggeo/source-spectrum-site/edit/main/docs/brune-en.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/yjianggeo/source-spectrum-site/raw/main/docs/brune-en.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+    </a>
+  
+
+
+<h1 id="brune-source-spectrum-model">Brune Source Spectrum Model<a class="headerlink" href="#brune-source-spectrum-model" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>The Brune model, proposed by Brune (1970, 1971), is the most widely used source spectrum model in seismology. It simplifies fault rupture as an <strong>instantaneous stress drop on a circular crack</strong>, describing far-field radiated displacement with just a few parameters — seismic moment <span class="arithmatex">\(M_0\)</span>, corner frequency <span class="arithmatex">\(f_c\)</span>, and stress drop <span class="arithmatex">\(\Delta\sigma\)</span>.</p>
+<p>The model's core prediction is that the far-field S-wave displacement amplitude spectrum follows:</p>
+<div class="arithmatex">\[
+\boxed{|\Omega(f)| = \frac{\Omega_0}{1 + (f/f_c)^2}}
+\]</div>
+<p>Flat at low frequencies, decaying as <span class="arithmatex">\(f^{-2}\)</span> at high frequencies — hence the name <strong><span class="arithmatex">\(\omega^{-2}\)</span> model</strong> or <strong>omega-square model</strong>.</p>
+<hr />
+<h2 id="physical-model">Physical Model<a class="headerlink" href="#physical-model" title="Permanent link">&para;</a></h2>
+<h3 id="basic-assumptions">Basic Assumptions<a class="headerlink" href="#basic-assumptions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Assumption</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Circular fault</td>
+<td>Fault plane is a circular crack of radius <span class="arithmatex">\(r\)</span></td>
+</tr>
+<tr>
+<td>Instantaneous uniform stress drop</td>
+<td>Full fault plane unloads simultaneously at <span class="arithmatex">\(t=0\)</span>; stress drop <span class="arithmatex">\(\Delta\sigma\)</span> is constant</td>
+</tr>
+<tr>
+<td>Infinite homogeneous medium</td>
+<td>Velocity gradients and heterogeneity are neglected</td>
+</tr>
+<tr>
+<td>Far-field approximation</td>
+<td>Observation distance <span class="arithmatex">\(R \gg r\)</span>; only the radiation field is considered</td>
+</tr>
+<tr>
+<td>S-wave dominant</td>
+<td>Displacement spectrum is dominated by S-waves; P-waves have a similar form with different constants</td>
+</tr>
+</tbody>
+</table>
+<h3 id="source-geometry">Source Geometry<a class="headerlink" href="#source-geometry" title="Permanent link">&para;</a></h3>
+<p>The fault plane is a disk of radius <span class="arithmatex">\(r\)</span> with area <span class="arithmatex">\(S = \pi r^2\)</span>. The seismic moment is determined by slip <span class="arithmatex">\(D\)</span> and shear modulus <span class="arithmatex">\(\mu = \rho\beta^2\)</span>:</p>
+<div class="arithmatex">\[
+M_0 = \mu \bar{D} S = \rho\beta^2 \bar{D} \pi r^2
+\]</div>
+<p>where <span class="arithmatex">\(\bar{D}\)</span> is the average slip over the fault plane, <span class="arithmatex">\(\rho\)</span> is medium density, and <span class="arithmatex">\(\beta\)</span> is S-wave velocity.</p>
+<hr />
+<h2 id="far-field-displacement-and-seismic-moment">Far-field Displacement and Seismic Moment<a class="headerlink" href="#far-field-displacement-and-seismic-moment" title="Permanent link">&para;</a></h2>
+<h3 id="far-field-displacement-of-a-point-source">Far-field Displacement of a Point Source<a class="headerlink" href="#far-field-displacement-of-a-point-source" title="Permanent link">&para;</a></h3>
+<p>For a point source, the far-field S-wave displacement is (Aki &amp; Richards, 2002):</p>
+<div class="arithmatex">\[
+u^S(\mathbf{x}, t) = \frac{\mathcal{R}_{\theta\phi}}{4\pi\rho\beta^3 R}\, \dot{M}_0\!\left(t - \frac{R}{\beta}\right)
+\]</div>
+<p>where:</p>
+<ul>
+<li><span class="arithmatex">\(\mathcal{R}_{\theta\phi}\)</span>: S-wave radiation pattern coefficient</li>
+<li><span class="arithmatex">\(R\)</span>: hypocentral distance</li>
+<li><span class="arithmatex">\(\dot{M}_0(t)\)</span>: seismic moment rate (time derivative of seismic moment)</li>
+<li><span class="arithmatex">\(t - R/\beta\)</span>: travel-time delay for S-wave propagation</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Physical Meaning</p>
+<p>Far-field displacement is proportional to the moment rate <span class="arithmatex">\(\dot{M}_0(t)\)</span>, not the moment <span class="arithmatex">\(M_0(t)\)</span> itself. The moment rate reflects the <strong>velocity</strong> of fault slip — how fast the source radiates energy.</p>
+</div>
+<h3 id="frequency-domain-expression">Frequency-Domain Expression<a class="headerlink" href="#frequency-domain-expression" title="Permanent link">&para;</a></h3>
+<p>Taking the Fourier transform of both sides (the phase factor <span class="arithmatex">\(e^{-i\omega R/\beta}\)</span> affects only phase, not amplitude):</p>
+<div class="arithmatex">\[
+|\Omega^S(\omega)| = \frac{\mathcal{R}_{\theta\phi}}{4\pi\rho\beta^3 R}\, |\dot{M}_0(\omega)|
+\]</div>
+<p>Therefore, <strong>the shape of the amplitude spectrum is entirely determined by the Fourier transform of the moment rate</strong> <span class="arithmatex">\(|\dot{M}_0(\omega)|\)</span>.</p>
+<hr />
+<h2 id="derivation-of-the-source-time-function">Derivation of the Source Time Function<a class="headerlink" href="#derivation-of-the-source-time-function" title="Permanent link">&para;</a></h2>
+<h3 id="moment-function-and-moment-rate-function">Moment Function and Moment Rate Function<a class="headerlink" href="#moment-function-and-moment-rate-function" title="Permanent link">&para;</a></h3>
+<p>Brune's physical picture: at <span class="arithmatex">\(t=0\)</span>, stress on the fault plane drops instantaneously and the fault slips freely. He argued that the moment function satisfies a critically damped oscillator response:</p>
+<div class="arithmatex">\[
+M_0(t) = M_0 \left[1 - (1 + \omega_c t)\,e^{-\omega_c t}\right] H(t)
+\]</div>
+<p>where <span class="arithmatex">\(H(t)\)</span> is the Heaviside step function and <span class="arithmatex">\(\omega_c = 2\pi f_c\)</span> is the corner angular frequency.</p>
+<p><strong>Verification of boundary conditions:</strong></p>
+<ul>
+<li>At <span class="arithmatex">\(t = 0\)</span>: <span class="arithmatex">\(M_0(0) = M_0[1 - 1 \cdot 1] = 0\)</span> ✓ (no slip before rupture)</li>
+<li>As <span class="arithmatex">\(t \to \infty\)</span>: <span class="arithmatex">\(e^{-\omega_c t} \to 0\)</span>, so <span class="arithmatex">\(M_0(\infty) = M_0\)</span> ✓ (full seismic moment achieved)</li>
+</ul>
+<p>The <strong>moment rate function</strong> is the time derivative of the moment function:</p>
+<div class="arithmatex">\[
+\dot{M}_0(t) = \frac{d M_0(t)}{dt} = M_0\, \omega_c^2\, t\, e^{-\omega_c t}\, H(t)
+\]</div>
+<p><strong>Derivation:</strong></p>
+<div class="arithmatex">\[
+\frac{d}{dt}\left[(1 + \omega_c t) e^{-\omega_c t}\right]
+= \omega_c e^{-\omega_c t} + (1 + \omega_c t)(-\omega_c)e^{-\omega_c t}
+= -\omega_c^2 t\, e^{-\omega_c t}
+\]</div>
+<p>Therefore:</p>
+<div class="arithmatex">\[
+\dot{M}_0(t) = M_0 \cdot \omega_c^2 t\, e^{-\omega_c t}\, H(t)
+\]</div>
+<p>The moment rate starts at zero, peaks at <span class="arithmatex">\(t^* = 1/\omega_c\)</span>, then decays exponentially:</p>
+<div class="arithmatex">\[
+\dot{M}_0(t^*) = M_0\, \omega_c^2 \cdot \frac{1}{\omega_c} \cdot e^{-1} = \frac{M_0 \omega_c}{e}
+\]</div>
+<p>The figure below shows the time histories of moment rate and moment function for <span class="arithmatex">\(f_c = 5\,\text{Hz}\)</span>:</p>
+<p><img alt="Brune Source Time Function" src="../assets/images/brune_source_time.png" /></p>
+<h3 id="fourier-transform-of-the-moment-rate-function">Fourier Transform of the Moment Rate Function<a class="headerlink" href="#fourier-transform-of-the-moment-rate-function" title="Permanent link">&para;</a></h3>
+<p>Taking the Fourier transform of <span class="arithmatex">\(\dot{M}_0(t) = M_0\,\omega_c^2\, t\, e^{-\omega_c t}\, H(t)\)</span>:</p>
+<div class="arithmatex">\[
+\dot{M}_0(\omega) = M_0\,\omega_c^2 \int_0^{+\infty} t\, e^{-\omega_c t}\, e^{-i\omega t}\, dt
+= M_0\,\omega_c^2 \int_0^{+\infty} t\, e^{-(\omega_c + i\omega)\, t}\, dt
+\]</div>
+<p>Using the Laplace integral <span class="arithmatex">\(\displaystyle\int_0^{+\infty} t\, e^{-at}\, dt = \frac{1}{a^2}\)</span> with <span class="arithmatex">\(a = \omega_c + i\omega\)</span>:</p>
+<div class="arithmatex">\[
+\dot{M}_0(\omega) = M_0\,\omega_c^2 \cdot \frac{1}{(\omega_c + i\omega)^2}
+\]</div>
+<p>Amplitude spectrum:</p>
+<div class="arithmatex">\[
+|\dot{M}_0(\omega)| = \frac{M_0\,\omega_c^2}{|\omega_c + i\omega|^2} = \frac{M_0\,\omega_c^2}{\omega_c^2 + \omega^2}
+\]</div>
+<p>Dividing numerator and denominator by <span class="arithmatex">\(\omega_c^2\)</span>:</p>
+<div class="arithmatex">\[
+|\dot{M}_0(\omega)| = \frac{M_0}{1 + (\omega/\omega_c)^2}
+\]</div>
+<hr />
+<h2 id="brune-displacement-spectrum">Brune Displacement Spectrum<a class="headerlink" href="#brune-displacement-spectrum" title="Permanent link">&para;</a></h2>
+<h3 id="amplitude-spectrum">Amplitude Spectrum<a class="headerlink" href="#amplitude-spectrum" title="Permanent link">&para;</a></h3>
+<p>Substituting the moment rate spectrum into the far-field displacement spectrum:</p>
+<div class="arithmatex">\[
+|\Omega(\omega)| = \frac{\mathcal{R}_{\theta\phi}}{4\pi\rho\beta^3 R} \cdot \frac{M_0}{1 + (\omega/\omega_c)^2}
+\]</div>
+<p>Define the <strong>low-frequency plateau</strong>:</p>
+<div class="arithmatex">\[
+\Omega_0 \equiv \frac{\mathcal{R}_{\theta\phi}\, M_0}{4\pi\rho\beta^3 R}
+\]</div>
+<p>Then the displacement amplitude spectrum is:</p>
+<div class="arithmatex">\[
+\boxed{|\Omega(\omega)| = \frac{\Omega_0}{1 + (\omega/\omega_c)^2}}
+\]</div>
+<p>or equivalently, in terms of frequency <span class="arithmatex">\(f\)</span> (<span class="arithmatex">\(\omega = 2\pi f\)</span>, <span class="arithmatex">\(\omega_c = 2\pi f_c\)</span>):</p>
+<div class="arithmatex">\[
+|\Omega(f)| = \frac{\Omega_0}{1 + (f/f_c)^2}
+\]</div>
+<h3 id="asymptotic-behavior">Asymptotic Behavior<a class="headerlink" href="#asymptotic-behavior" title="Permanent link">&para;</a></h3>
+<p><strong>Low frequencies</strong> (<span class="arithmatex">\(f \ll f_c\)</span>):</p>
+<div class="arithmatex">\[
+|\Omega(f)| \approx \Omega_0 = \text{const.}
+\]</div>
+<p>The spectrum is flat; the plateau <span class="arithmatex">\(\Omega_0\)</span> directly reflects <span class="arithmatex">\(M_0\)</span>.</p>
+<p><strong>High frequencies</strong> (<span class="arithmatex">\(f \gg f_c\)</span>):</p>
+<div class="arithmatex">\[
+|\Omega(f)| \approx \Omega_0 \cdot \frac{f_c^2}{f^2} \propto f^{-2}
+\]</div>
+<p>The spectrum decays as <span class="arithmatex">\(f^{-2}\)</span> — the origin of the name "<span class="arithmatex">\(\omega^{-2}\)</span> model".</p>
+<p><strong>At the corner</strong> (<span class="arithmatex">\(f = f_c\)</span>):</p>
+<div class="arithmatex">\[
+|\Omega(f_c)| = \frac{\Omega_0}{2}
+\]</div>
+<p>Amplitude drops to half the plateau, corresponding to the <span class="arithmatex">\(-3\,\text{dB}\)</span> point.</p>
+<h3 id="log-log-spectral-slope">Log-log Spectral Slope<a class="headerlink" href="#log-log-spectral-slope" title="Permanent link">&para;</a></h3>
+<p>On a log-log plot:</p>
+<div class="arithmatex">\[
+\log|\Omega(f)| = \log\Omega_0 - \log\left[1 + (f/f_c)^2\right]
+\]</div>
+<ul>
+<li><span class="arithmatex">\(f \ll f_c\)</span>: slope <span class="arithmatex">\(\approx 0\)</span> (horizontal)</li>
+<li><span class="arithmatex">\(f \gg f_c\)</span>: slope <span class="arithmatex">\(\approx -2\)</span> (drops 2 decades per decade of frequency)</li>
+<li>Inflection point at <span class="arithmatex">\(f_c\)</span></li>
+</ul>
+<hr />
+<h2 id="low-frequency-plateau-and-seismic-moment">Low-frequency Plateau and Seismic Moment<a class="headerlink" href="#low-frequency-plateau-and-seismic-moment" title="Permanent link">&para;</a></h2>
+<h3 id="inversion-formula">Inversion Formula<a class="headerlink" href="#inversion-formula" title="Permanent link">&para;</a></h3>
+<p>Starting from the definition of the low-frequency plateau:</p>
+<div class="arithmatex">\[
+\Omega_0 = \frac{\mathcal{R}_{\theta\phi}\, M_0}{4\pi\rho\beta^3 R}
+\]</div>
+<p>Solving for seismic moment:</p>
+<div class="arithmatex">\[
+M_0 = \frac{4\pi\rho\beta^3 R\, \Omega_0}{\mathcal{R}_{\theta\phi}}
+\]</div>
+<h3 id="radiation-pattern-correction">Radiation Pattern Correction<a class="headerlink" href="#radiation-pattern-correction" title="Permanent link">&para;</a></h3>
+<p>In practice, the radiation pattern <span class="arithmatex">\(\mathcal{R}_{\theta\phi}\)</span> varies with station azimuth. It is typically averaged over multiple stations or azimuths, and a free-surface amplification factor <span class="arithmatex">\(S_{\text{fs}}\)</span> (usually 2) is applied:</p>
+<div class="arithmatex">\[
+\boxed{M_0 = \frac{4\pi\rho\beta^3 R\, \Omega_0}{F \cdot S_{\text{fs}}}}
+\]</div>
+<p>where <span class="arithmatex">\(F\)</span> is the azimuthally averaged radiation pattern value (≈ 0.63 for S-waves).</p>
+<div class="admonition tip">
+<p class="admonition-title">Practical Significance</p>
+<p>Reading the low-frequency plateau <span class="arithmatex">\(\Omega_0\)</span> (in m·s) from a spectrum, together with medium parameters and hypocentral distance, directly yields the seismic moment, and hence moment magnitude: <span class="arithmatex">\(M_w = \frac{2}{3}\log_{10}M_0 - 6.07\)</span>.</p>
+</div>
+<hr />
+<h2 id="corner-frequency-and-source-dimension">Corner Frequency and Source Dimension<a class="headerlink" href="#corner-frequency-and-source-dimension" title="Permanent link">&para;</a></h2>
+<h3 id="physical-derivation">Physical Derivation<a class="headerlink" href="#physical-derivation" title="Permanent link">&para;</a></h3>
+<p>Brune (1970) argued that the time for S-waves to traverse the fault (the rupture rise time) determines the corner frequency:</p>
+<p>For a circular fault of radius <span class="arithmatex">\(r\)</span>, the S-wave travel time across the fault is approximately:</p>
+<div class="arithmatex">\[
+t_r \sim \frac{r}{\beta}
+\]</div>
+<p>Therefore the corner frequency scales as:</p>
+<div class="arithmatex">\[
+f_c \sim \frac{\beta}{r}
+\]</div>
+<p>Through a more rigorous radiation field calculation, Brune (1970) obtained the precise coefficient:</p>
+<div class="arithmatex">\[
+f_c = \frac{0.37\,\beta}{r}
+\]</div>
+<p>or equivalently:</p>
+<div class="arithmatex">\[
+r = \frac{k\,\beta}{f_c}, \quad k = 0.37
+\]</div>
+<p>The constant <span class="arithmatex">\(k\)</span> differs slightly across studies:</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Wave type</th>
+<th><span class="arithmatex">\(k\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Brune (1970)</td>
+<td>S-wave</td>
+<td>0.37</td>
+</tr>
+<tr>
+<td>Madariaga (1976)</td>
+<td>S-wave</td>
+<td>0.21</td>
+</tr>
+<tr>
+<td>Madariaga (1976)</td>
+<td>P-wave</td>
+<td>0.32</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>Different references use different <span class="arithmatex">\(k\)</span> values. When computing stress drop, the <span class="arithmatex">\(k\)</span> value must be consistent throughout; they cannot be mixed.</p>
+</div>
+<h3 id="source-radius-and-moment-magnitude">Source Radius and Moment Magnitude<a class="headerlink" href="#source-radius-and-moment-magnitude" title="Permanent link">&para;</a></h3>
+<p>When stress drop is approximately constant (<span class="arithmatex">\(\Delta\sigma \sim 1\text{--}10\,\text{MPa}\)</span>), a larger seismic moment implies a larger source radius and lower corner frequency:</p>
+<div class="arithmatex">\[
+M_0 \uparrow \implies r \uparrow \implies f_c \downarrow
+\]</div>
+<hr />
+<h2 id="stress-drop">Stress Drop<a class="headerlink" href="#stress-drop" title="Permanent link">&para;</a></h2>
+<h3 id="circular-crack-theory-eshelby-1957">Circular Crack Theory (Eshelby 1957)<a class="headerlink" href="#circular-crack-theory-eshelby-1957" title="Permanent link">&para;</a></h3>
+<p>For a circular crack in a homogeneous elastic medium, Eshelby (1957) gives the slip distribution under uniform stress drop <span class="arithmatex">\(\Delta\sigma\)</span>:</p>
+<div class="arithmatex">\[
+D(\xi) = \frac{24}{7\pi} \frac{\Delta\sigma}{\mu} \sqrt{r^2 - \xi^2}, \quad \xi \leq r
+\]</div>
+<p>where <span class="arithmatex">\(\xi\)</span> is the radial distance from the fault center.</p>
+<h3 id="calculation-of-mean-slip">Calculation of Mean Slip<a class="headerlink" href="#calculation-of-mean-slip" title="Permanent link">&para;</a></h3>
+<p>Integrating over the fault area to find the mean slip:</p>
+<div class="arithmatex">\[
+\bar{D} = \frac{1}{\pi r^2}\int_0^r D(\xi) \cdot 2\pi\xi\, d\xi
+= \frac{2}{r^2} \cdot \frac{24}{7\pi} \frac{\Delta\sigma}{\mu} \int_0^r \xi\sqrt{r^2 - \xi^2}\, d\xi
+\]</div>
+<p>Evaluating the inner integral with substitution <span class="arithmatex">\(u = r^2 - \xi^2\)</span>, <span class="arithmatex">\(du = -2\xi\,d\xi\)</span>:</p>
+<div class="arithmatex">\[
+\int_0^r \xi\sqrt{r^2 - \xi^2}\, d\xi = \frac{1}{2}\int_0^{r^2} u^{1/2}\, du = \frac{r^3}{3}
+\]</div>
+<p>Substituting back:</p>
+<div class="arithmatex">\[
+\bar{D} = \frac{2}{r^2} \cdot \frac{24}{7\pi} \cdot \frac{\Delta\sigma}{\mu} \cdot \frac{r^3}{3} = \frac{16}{7\pi} \cdot \frac{\Delta\sigma\, r}{\mu}
+\]</div>
+<h3 id="derivation-of-stress-drop-from-seismic-moment">Derivation of Stress Drop from Seismic Moment<a class="headerlink" href="#derivation-of-stress-drop-from-seismic-moment" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+M_0 = \mu\,\bar{D}\,\pi r^2 = \mu \cdot \frac{16}{7\pi}\frac{\Delta\sigma\, r}{\mu} \cdot \pi r^2 = \frac{16}{7}\,\Delta\sigma\, r^3
+\]</div>
+<p>Solving for stress drop:</p>
+<div class="arithmatex">\[
+\boxed{\Delta\sigma = \frac{7}{16}\frac{M_0}{r^3}}
+\]</div>
+<h3 id="expression-in-terms-of-observables">Expression in Terms of Observables<a class="headerlink" href="#expression-in-terms-of-observables" title="Permanent link">&para;</a></h3>
+<p>Substituting <span class="arithmatex">\(r = k\beta/f_c\)</span>:</p>
+<div class="arithmatex">\[
+\Delta\sigma = \frac{7}{16}\,\frac{M_0}{(k\beta/f_c)^3} = \frac{7}{16k^3}\,\frac{M_0\,f_c^3}{\beta^3}
+\]</div>
+<p>With Brune (1970)'s <span class="arithmatex">\(k = 0.37\)</span>, <span class="arithmatex">\(k^3 = 0.0507\)</span>:</p>
+<div class="arithmatex">\[
+\Delta\sigma \approx 8.6\,\frac{M_0\,f_c^3}{\beta^3}
+\]</div>
+<p>This is the practical formula: given seismic moment <span class="arithmatex">\(M_0\)</span>, corner frequency <span class="arithmatex">\(f_c\)</span>, and S-wave velocity <span class="arithmatex">\(\beta\)</span>, stress drop can be estimated directly.</p>
+<h3 id="typical-values">Typical Values<a class="headerlink" href="#typical-values" title="Permanent link">&para;</a></h3>
+<p>Crustal earthquake stress drops typically fall in the range:</p>
+<div class="arithmatex">\[
+\Delta\sigma \sim 0.1 \text{--} 50\,\text{MPa}
+\]</div>
+<p>Most tectonic earthquakes cluster around <span class="arithmatex">\(1\text{--}10\,\text{MPa}\)</span>, with a weak dependence on seismic moment — evidence of <strong>earthquake self-similarity</strong>: earthquakes of different sizes share similar stress drops.</p>
+<hr />
+<h2 id="network-of-parameter-relationships">Network of Parameter Relationships<a class="headerlink" href="#network-of-parameter-relationships" title="Permanent link">&para;</a></h2>
+<p>The three core parameters <span class="arithmatex">\(M_0\)</span>, <span class="arithmatex">\(f_c\)</span>, <span class="arithmatex">\(\Delta\sigma\)</span> are mutually constrained:</p>
+<div class="arithmatex">\[
+\underbrace{M_0 = \frac{16}{7}\Delta\sigma\,r^3}_{\text{moment–stress–size}} \qquad
+\underbrace{r = \frac{k\beta}{f_c}}_{\text{size–corner frequency}} \qquad
+\underbrace{\Omega_0 = \frac{\mathcal{R}M_0}{4\pi\rho\beta^3 R}}_{\text{moment–plateau}}
+\]</div>
+<p>Given any two, the third can be derived — the basis of source parameter inversion.</p>
+<hr />
+<h2 id="python-examples">Python Examples<a class="headerlink" href="#python-examples" title="Permanent link">&para;</a></h2>
+<h3 id="plotting-the-brune-displacement-spectrum">Plotting the Brune Displacement Spectrum<a class="headerlink" href="#plotting-the-brune-displacement-spectrum" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">brune_spectrum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">omega0</span><span class="p">,</span> <span class="n">fc</span><span class="p">):</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">    Brune (1970) displacement amplitude spectrum</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="sd">    Parameters</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="sd">    ----------</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="sd">    f      : frequency array (Hz)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="sd">    omega0 : low-frequency plateau (m·s)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="sd">    fc     : corner frequency (Hz)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="sd">    Returns</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="sd">    -------</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="sd">    amplitude spectrum array</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="k">return</span> <span class="n">omega0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">f</span> <span class="o">/</span> <span class="n">fc</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="c1"># Parameters</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>   <span class="c1"># 0.1 ~ 100 Hz</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">omega0</span> <span class="o">=</span> <span class="mf">1.0</span>                    <span class="c1"># low-frequency plateau (normalized)</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="n">fc</span> <span class="o">=</span> <span class="mf">5.0</span>                        <span class="c1"># corner frequency 5 Hz</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">spec</span> <span class="o">=</span> <span class="n">brune_spectrum</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">omega0</span><span class="p">,</span> <span class="n">fc</span><span class="p">)</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="c1"># Asymptotes</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="n">low_freq_asymptote</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">omega0</span><span class="p">)</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="n">high_freq_asymptote</span> <span class="o">=</span> <span class="n">omega0</span> <span class="o">*</span> <span class="p">(</span><span class="n">fc</span> <span class="o">/</span> <span class="n">f</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="c1"># Plot</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span>                <span class="n">lw</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Brune spectrum&#39;</span><span class="p">)</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">low_freq_asymptote</span><span class="p">,</span>  <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>   <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Low-freq asymptote (slope 0)&#39;</span><span class="p">)</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">high_freq_asymptote</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>   <span class="n">color</span><span class="o">=</span><span class="s1">&#39;tomato&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;High-freq asymptote (slope $-2$)&#39;</span><span class="p">)</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">fc</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">omega0</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;$f_c = </span><span class="si">{</span><span class="n">fc</span><span class="si">}</span><span class="s1">$ Hz&#39;</span><span class="p">,</span> <span class="n">xy</span><span class="o">=</span><span class="p">(</span><span class="n">fc</span><span class="p">,</span> <span class="n">omega0</span><span class="o">/</span><span class="mi">10</span><span class="p">),</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>            <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="n">fc</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">omega0</span><span class="o">/</span><span class="mi">6</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>            <span class="n">arrowprops</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">arrowstyle</span><span class="o">=</span><span class="s1">&#39;-&gt;&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">))</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency $f$ (Hz)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;Displacement spectrum $|\Omega(f)|$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Brune (1970) Source Spectrum&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<p><img alt="Brune source spectrum" src="../assets/images/brune_spectrum.png" /></p>
+<h3 id="comparing-multiple-corner-frequencies">Comparing Multiple Corner Frequencies<a class="headerlink" href="#comparing-multiple-corner-frequencies" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3000</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">fc_list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>    <span class="c1"># Hz</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;royalblue&#39;</span><span class="p">,</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="s1">&#39;crimson&#39;</span><span class="p">]</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="k">for</span> <span class="n">fc</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fc_list</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">spec</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">f</span> <span class="o">/</span> <span class="n">fc</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;$f_c = </span><span class="si">{</span><span class="n">fc</span><span class="si">}</span><span class="s1">$ Hz&#39;</span><span class="p">)</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">fc</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Frequency $f$ (Hz)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$|\Omega(f)| / \Omega_0$ (normalized)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Brune spectra for different corner frequencies (same $M_0$)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<p><img alt="Brune spectra — multiple corner frequencies" src="../assets/images/brune_multi_fc.png" /></p>
+<h3 id="computing-source-parameters-from-spectral-measurements">Computing Source Parameters from Spectral Measurements<a class="headerlink" href="#computing-source-parameters-from-spectral-measurements" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">compute_source_params</span><span class="p">(</span><span class="n">omega0</span><span class="p">,</span> <span class="n">fc</span><span class="p">,</span> <span class="n">R</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>                          <span class="n">rho</span><span class="o">=</span><span class="mi">2700</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mi">3500</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>                          <span class="n">F</span><span class="o">=</span><span class="mf">0.63</span><span class="p">,</span> <span class="n">S_fs</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="mf">0.37</span><span class="p">):</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="sd">    Compute source parameters from Brune spectral measurements.</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="sd">    Parameters</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="sd">    ----------</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="sd">    omega0 : low-frequency plateau (m·s)</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="sd">    fc     : corner frequency (Hz)</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="sd">    R      : hypocentral distance (m)</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="sd">    rho    : density (kg/m^3), default 2700</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="sd">    beta   : S-wave velocity (m/s), default 3500</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="sd">    F      : mean radiation pattern, default 0.63</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="sd">    S_fs   : free-surface amplification, default 2.0</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="sd">    k      : Brune constant, default 0.37</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="sd">    Returns</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="sd">    -------</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="sd">    dict: M0 (N·m), Mw, r (m), delta_sigma (Pa)</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>    <span class="n">M0</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">rho</span> <span class="o">*</span> <span class="n">beta</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">R</span> <span class="o">*</span> <span class="n">omega0</span> <span class="o">/</span> <span class="p">(</span><span class="n">F</span> <span class="o">*</span> <span class="n">S_fs</span><span class="p">)</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>    <span class="n">Mw</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">M0</span><span class="p">)</span> <span class="o">-</span> <span class="mf">6.07</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>    <span class="n">r</span>  <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">beta</span> <span class="o">/</span> <span class="n">fc</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>    <span class="n">delta_sigma</span> <span class="o">=</span> <span class="p">(</span><span class="mi">7</span><span class="o">/</span><span class="mi">16</span><span class="p">)</span> <span class="o">*</span> <span class="n">M0</span> <span class="o">/</span> <span class="n">r</span><span class="o">**</span><span class="mi">3</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;M0&quot;</span><span class="p">:</span> <span class="n">M0</span><span class="p">,</span> <span class="s2">&quot;Mw&quot;</span><span class="p">:</span> <span class="n">Mw</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="n">r</span><span class="p">,</span> <span class="s2">&quot;delta_sigma&quot;</span><span class="p">:</span> <span class="n">delta_sigma</span><span class="p">}</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="c1"># Example</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="n">result</span> <span class="o">=</span> <span class="n">compute_source_params</span><span class="p">(</span>
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>    <span class="n">omega0</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>   <span class="c1"># m·s</span>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>    <span class="n">fc</span><span class="o">=</span><span class="mf">5.0</span><span class="p">,</span>        <span class="c1"># Hz</span>
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>    <span class="n">R</span><span class="o">=</span><span class="mf">100e3</span><span class="p">,</span>       <span class="c1"># 100 km</span>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="p">)</span>
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Seismic moment  M0 = </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;M0&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.3e</span><span class="si">}</span><span class="s2"> N·m&quot;</span><span class="p">)</span>
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Moment magnitude Mw = </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;Mw&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Source radius    r  = </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;r&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stress drop     Δσ  = </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;delta_sigma&#39;</span><span class="p">]</span><span class="o">/</span><span class="mf">1e6</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> MPa&quot;</span><span class="p">)</span>
+</span></code></pre></div>
+<hr />
+<h2 id="corrections-in-practice">Corrections in Practice<a class="headerlink" href="#corrections-in-practice" title="Permanent link">&para;</a></h2>
+<p>The ideal Brune spectrum must be corrected for several effects before it can be compared with recorded seismograms.</p>
+<h3 id="path-effects">Path Effects<a class="headerlink" href="#path-effects" title="Permanent link">&para;</a></h3>
+<p><strong>Geometric Spreading:</strong> Body wave amplitude decays as <span class="arithmatex">\(1/R\)</span>, already included in the formula.</p>
+<p><strong>Anelastic Attenuation:</strong> The medium quality factor <span class="arithmatex">\(Q\)</span> causes exponential amplitude decay with propagation distance:</p>
+<div class="arithmatex">\[
+|\Omega_{\text{obs}}(f)| = |\Omega_{\text{src}}(f)| \cdot \exp\!\left(-\frac{\pi f R}{\beta Q}\right)
+= |\Omega_{\text{src}}(f)| \cdot e^{-\pi f t^*}
+\]</div>
+<p>where <span class="arithmatex">\(t^* = R/(\beta Q)\)</span> is the <strong>attenuation operator</strong>.</p>
+<h3 id="high-frequency-cutoff-attenuation">High-frequency Cutoff (κ Attenuation)<a class="headerlink" href="#high-frequency-cutoff-attenuation" title="Permanent link">&para;</a></h3>
+<p>Observed spectra often show a steeper rolloff above some frequency <span class="arithmatex">\(f_{\max}\)</span>, described by the parameter <span class="arithmatex">\(\kappa\)</span> (kappa):</p>
+<div class="arithmatex">\[
+|\Omega_{\text{obs}}(f)| \propto e^{-\pi \kappa f}
+\]</div>
+<p><span class="arithmatex">\(\kappa\)</span> mainly reflects attenuation in the shallow low-<span class="arithmatex">\(Q\)</span> layer and is a station property (<span class="arithmatex">\(\approx 10\text{--}100\,\text{ms}\)</span>).</p>
+<h3 id="complete-observed-spectrum-model">Complete Observed Spectrum Model<a class="headerlink" href="#complete-observed-spectrum-model" title="Permanent link">&para;</a></h3>
+<p>Combining all corrections, the observed amplitude spectrum is:</p>
+<div class="arithmatex">\[
+|\Omega_{\text{obs}}(f)| = \frac{\mathcal{R}_{\theta\phi}\,M_0}{4\pi\rho\beta^3 R}
+\cdot \frac{1}{1+(f/f_c)^2}
+\cdot e^{-\pi f t^*}
+\cdot e^{-\pi \kappa f}
+\cdot I(f)
+\]</div>
+<p>where <span class="arithmatex">\(I(f)\)</span> is the inverse instrument response (instrument correction term).</p>
+<h3 id="site-effects">Site Effects<a class="headerlink" href="#site-effects" title="Permanent link">&para;</a></h3>
+<p>Near-surface soft sediments amplify ground motion and must be corrected empirically. Common methods include the horizontal-to-vertical spectral ratio (HVSR) or reference-site approaches.</p>
+<hr />
+<h2 id="extended-and-alternative-models">Extended and Alternative Models<a class="headerlink" href="#extended-and-alternative-models" title="Permanent link">&para;</a></h2>
+<h3 id="boatwright-1980-model">Boatwright (1980) Model<a class="headerlink" href="#boatwright-1980-model" title="Permanent link">&para;</a></h3>
+<p>Changes the high-frequency decay to a steeper <span class="arithmatex">\(f^{-4}\)</span>:</p>
+<div class="arithmatex">\[
+|\Omega(f)| = \frac{\Omega_0}{\left[1 + (f/f_c)^4\right]^{1/2}}
+\]</div>
+<ul>
+<li>High-frequency decay <span class="arithmatex">\(\propto f^{-2}\)</span> (same as Brune)</li>
+<li>Sharper spectral corner</li>
+<li>Better suited to some short-period radiation characteristics</li>
+</ul>
+<h3 id="madariaga-1976-dynamic-rupture-model">Madariaga (1976) Dynamic Rupture Model<a class="headerlink" href="#madariaga-1976-dynamic-rupture-model" title="Permanent link">&para;</a></h3>
+<p>Based on numerical simulations of fault dynamics, gives separate corner frequencies for P and S waves:</p>
+<div class="arithmatex">\[
+f_c^P = \frac{0.32\,\alpha}{r}, \qquad f_c^S = \frac{0.21\,\beta}{r}
+\]</div>
+<p>where <span class="arithmatex">\(\alpha\)</span> is the P-wave velocity. P and S corner frequencies differ; their ratio is approximately 1.5.</p>
+<h3 id="double-corner-frequency-model">Double Corner Frequency Model<a class="headerlink" href="#double-corner-frequency-model" title="Permanent link">&para;</a></h3>
+<p>For complex rupture processes, two corner frequencies <span class="arithmatex">\(f_1 &lt; f_2\)</span> are introduced:</p>
+<div class="arithmatex">\[
+|\Omega(f)| = \frac{\Omega_0}{\left[1+(f/f_1)^2\right]^{1/2}\left[1+(f/f_2)^2\right]^{1/2}}
+\]</div>
+<p>Applicable to: multi-segment rupture, slow-slip events, secondary stress-drop processes.</p>
+<h3 id="model-comparison">Model Comparison<a class="headerlink" href="#model-comparison" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>High-freq slope</th>
+<th>Key feature</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Brune (1970)</td>
+<td><span class="arithmatex">\(-2\)</span></td>
+<td>Simplest; most widely used</td>
+</tr>
+<tr>
+<td>Boatwright (1980)</td>
+<td><span class="arithmatex">\(-2\)</span></td>
+<td>Sharper corner</td>
+</tr>
+<tr>
+<td>Madariaga (1976)</td>
+<td><span class="arithmatex">\(-2\)</span></td>
+<td>Separate P/S corner frequencies</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\omega^{-3}\)</span> model</td>
+<td><span class="arithmatex">\(-3\)</span></td>
+<td>Suited to some deep earthquakes</td>
+</tr>
+<tr>
+<td>Double corner frequency</td>
+<td><span class="arithmatex">\(-2\)</span></td>
+<td>Multi-segment rupture</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<p>Brune, J. N. (1970). Tectonic stress and the spectra of seismic shear waves from earthquakes. <em>Journal of Geophysical Research</em>, 75(26), 4997–5009.</p>
+<p>Brune, J. N. (1971). Correction. <em>Journal of Geophysical Research</em>, 76, 5002.</p>
+<p>Aki, K. (1967). Scaling law of seismic spectrum. <em>Journal of Geophysical Research</em>, 72(4), 1217–1231.</p>
+<p>Eshelby, J. D. (1957). The determination of the elastic field of an ellipsoidal inclusion, and related problems. <em>Proceedings of the Royal Society of London</em>, 241(1226), 376–396.</p>
+<p>Madariaga, R. (1976). Dynamics of an expanding circular fault. <em>Bulletin of the Seismological Society of America</em>, 66(3), 639–666.</p>
+<p>Boatwright, J. (1980). A spectral theory for circular seismic sources: simple estimates of source dimension, dynamic stress drop, and radiated seismic energy. <em>Bulletin of the Seismological Society of America</em>, 70(1), 1–27.</p>
+<p>Aki, K., &amp; Richards, P. G. (2002). <em>Quantitative Seismology</em> (2<sup>nd</sup> ed.). University Science Books.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/yjianggeo" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.indexes", "search.highlight", "search.share", "search.suggest", "content.tabs.link", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "header.autohide"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../assets/javascripts/lang-toggle.js"></script>
+      
+    
+  </body>
+</html>
