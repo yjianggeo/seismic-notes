@@ -1,0 +1,1561 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="地震学与 DAS 学习笔记">
+      
+      
+        <meta name="author" content="Jiang Yi">
+      
+      
+        <link rel="canonical" href="https://yjianggeo.github.io/source-spectrum-site/q-spectral-ratio/">
+      
+      
+        <link rel="prev" href="../brune/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>谱比法 Q 值反演 - Seismic Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#q" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Seismic Notes" class="md-header__button md-logo" aria-label="Seismic Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Seismic Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              谱比法 Q 值反演
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/yjianggeo/source-spectrum-site" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yjianggeo/source-spectrum-site
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../brune/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  震源理论
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  地震波衰减
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Seismic Notes" class="md-nav__button md-logo" aria-label="Seismic Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Seismic Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/yjianggeo/source-spectrum-site" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yjianggeo/source-spectrum-site
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    震源理论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    震源理论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brune模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地震波衰减
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    地震波衰减
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    谱比法 Q 值反演
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    谱比法 Q 值反演
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        引言
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        地震波衰减与 Q 的定义
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="地震波衰减与 Q 的定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        品质因子的物理定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        单程衰减振幅谱
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        t* 参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见 Q 模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        谱比法推导
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="谱比法推导">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整位移振幅谱模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        双台站谱比推导
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        线性化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提取 Q 值
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实际操作步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实际操作步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据预处理流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有效频段的选取
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        κ 衰减（近地表高频衰减）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python 示例
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        频率依赖 Q 的推广
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法变体
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考文献
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        引言
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        地震波衰减与 Q 的定义
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="地震波衰减与 Q 的定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        品质因子的物理定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        单程衰减振幅谱
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#t" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        t* 参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        常见 Q 模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        谱比法推导
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="谱比法推导">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        完整位移振幅谱模型
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        双台站谱比推导
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        线性化
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        提取 Q 值
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实际操作步骤
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实际操作步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        数据预处理流程
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        有效频段的选取
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        κ 衰减（近地表高频衰减）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python 示例
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        频率依赖 Q 的推广
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        方法变体
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        参考文献
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/yjianggeo/source-spectrum-site/edit/main/docs/q-spectral-ratio.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/yjianggeo/source-spectrum-site/raw/main/docs/q-spectral-ratio.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+    </a>
+  
+
+
+<h1 id="q">谱比法 Q 值反演<a class="headerlink" href="#q" title="Permanent link">&para;</a></h1>
+<h2 id="_1">引言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>地震波在传播过程中因介质的非弹性（粘弹性）特性而发生幅度衰减，这种衰减由<strong>品质因子</strong> <span class="arithmatex">\(Q\)</span>（quality factor）定量描述。<span class="arithmatex">\(Q\)</span> 值越小，介质越"耗能"，波幅衰减越快；<span class="arithmatex">\(Q \to \infty\)</span> 对应纯弹性介质，无能量损失。</p>
+<p><strong>谱比法</strong>（spectral ratio method）是估计 <span class="arithmatex">\(Q\)</span> 值最经典的方法之一。其核心思想是：对同一震源在两个台站记录到的位移谱取<strong>比值</strong>，使震源谱在相除时完全抵消，从而把纯粹的衰减信息提取出来。</p>
+<p>对于沿同一射线路径到达两台站的 S 波，对数谱比满足：</p>
+<div class="arithmatex">\[
+\boxed{
+\ln\!\left[\frac{A(f,r_2)}{A(f,r_1)}\right] = \underbrace{\ln\!\left(\frac{r_1}{r_2}\right)}_{\text{截距}} - \underbrace{\pi\,\Delta t^*}_{\text{斜率}} \cdot f
+}
+\]</div>
+<p>这是关于频率 <span class="arithmatex">\(f\)</span> 的<strong>线性方程</strong>，从拟合斜率 <span class="arithmatex">\(m = -\pi\Delta t^*\)</span> 直接得到有效 Q 值：</p>
+<div class="arithmatex">\[Q_{\mathrm{eff}} = -\dfrac{\pi\,\Delta t}{m}\]</div>
+<hr />
+<h2 id="q_1">地震波衰减与 Q 的定义<a class="headerlink" href="#q_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">品质因子的物理定义<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>品质因子 <span class="arithmatex">\(Q\)</span> 是描述介质弹性能量耗散速率的无量纲参数，最基本的定义基于<strong>能量损耗比</strong>：</p>
+<div class="arithmatex">\[
+\frac{1}{Q} \equiv \frac{1}{2\pi} \cdot \frac{-\Delta E}{E}
+\]</div>
+<p>其中 <span class="arithmatex">\(\Delta E &lt; 0\)</span> 是一个振动周期内介质耗散的弹性能，<span class="arithmatex">\(E\)</span> 是弹性势能峰值。</p>
+<ul>
+<li><span class="arithmatex">\(Q \gg 1\)</span>：每周期损耗极少，接近弹性；上地壳花岗岩典型值 <span class="arithmatex">\(Q \sim 200\)</span>–<span class="arithmatex">\(1000\)</span></li>
+<li><span class="arithmatex">\(Q \sim 10\)</span>–<span class="arithmatex">\(50\)</span>：强衰减，如富水沉积层、断层破碎带</li>
+</ul>
+<h3 id="_3">单程衰减振幅谱<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>对于以速度 <span class="arithmatex">\(\beta\)</span> 传播的单色平面 S 波，振幅随路径距离 <span class="arithmatex">\(r\)</span> 按指数衰减：</p>
+<div class="arithmatex">\[
+A(r, f) = A_0 \exp\!\left(-\frac{\pi f\, r}{\beta\, Q}\right) = A_0 \exp(-\alpha r)
+\]</div>
+<p>衰减系数 <span class="arithmatex">\(\alpha = \pi f / (\beta Q)\)</span> 与频率成正比，因此高频成分比低频成分衰减更快。</p>
+<h3 id="t">t* 参数<a class="headerlink" href="#t" title="Permanent link">&para;</a></h3>
+<p>在非均匀介质中，沿射线路径积分的累计衰减用 <span class="arithmatex">\(t^*\)</span>（"t-star"）表示：</p>
+<div class="arithmatex">\[
+t^* = \int_{\mathrm{path}} \frac{\mathrm{d}s}{\beta(s)\, Q(s)}
+\]</div>
+<p>对均匀介质（<span class="arithmatex">\(\beta\)</span>、<span class="arithmatex">\(Q\)</span> 为常数），传播时间 <span class="arithmatex">\(t = r/\beta\)</span>，因此：</p>
+<div class="arithmatex">\[
+t^* = \frac{t}{Q} = \frac{r}{\beta\, Q}
+\]</div>
+<p><span class="arithmatex">\(t^*\)</span> 的量纲为时间（秒），综合反映了路径长度与介质 Q 值，是衰减研究中最常用的单一参数。</p>
+<h3 id="q_2">常见 Q 模型<a class="headerlink" href="#q_2" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>表达式</th>
+<th>特征</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>常数 Q</td>
+<td><span class="arithmatex">\(Q = \mathrm{const}\)</span></td>
+<td>最简，对数谱比与 <span class="arithmatex">\(f\)</span> 线性</td>
+</tr>
+<tr>
+<td>幂律 Q</td>
+<td><span class="arithmatex">\(Q(f) = Q_0\, f^{\eta}\)</span></td>
+<td><span class="arithmatex">\(\eta \in [0,1]\)</span>，浅层沉积常见</td>
+</tr>
+<tr>
+<td>Futterman 模型</td>
+<td>满足 Kramers–Kronig 因果关系</td>
+<td>弱频率依赖</td>
+</tr>
+</tbody>
+</table>
+<p>谱比法默认使用<strong>常数 Q</strong> 模型，此时对数谱比是 <span class="arithmatex">\(f\)</span> 的严格线性函数。</p>
+<hr />
+<h2 id="_4">谱比法推导<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">完整位移振幅谱模型<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>远场位移振幅谱可以分解为若干独立因子的乘积（Aki &amp; Richards 2002）：</p>
+<div class="arithmatex">\[
+A(f, r) = S(f) \cdot I(f) \cdot G(r) \cdot \exp\!\left(-\pi f\, t^*\right)
+\]</div>
+<p>各因子含义：</p>
+<ul>
+<li><span class="arithmatex">\(S(f)\)</span>：<strong>震源谱</strong>（source spectrum），如 Brune <span class="arithmatex">\(\omega^{-2}\)</span> 谱；包含辐射花样 <span class="arithmatex">\(\mathcal{R}_{\theta\phi}\)</span></li>
+<li><span class="arithmatex">\(I(f)\)</span>：<strong>仪器响应</strong>（instrument response），将地动转为电压输出</li>
+<li><span class="arithmatex">\(G(r)\)</span>：<strong>几何扩散因子</strong>，体波远场 <span class="arithmatex">\(G(r) = 1/r\)</span></li>
+<li><span class="arithmatex">\(\exp(-\pi f\, t^*)\)</span>：<strong>非弹性衰减</strong>因子</li>
+</ul>
+<h3 id="_6">双台站谱比推导<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>设同一震源的 S 波到达<strong>近台</strong>（台站 1，距离 <span class="arithmatex">\(r_1\)</span>）和<strong>远台</strong>（台站 2，距离 <span class="arithmatex">\(r_2 &gt; r_1\)</span>），且两台站处于同一射线路径上。</p>
+<p><strong>近台</strong>振幅谱：</p>
+<div class="arithmatex">\[
+A(f, r_1) = S(f) \cdot I(f) \cdot \frac{1}{r_1} \cdot \exp(-\pi f\, t_1^*)
+\]</div>
+<p><strong>远台</strong>振幅谱：</p>
+<div class="arithmatex">\[
+A(f, r_2) = S(f) \cdot I(f) \cdot \frac{1}{r_2} \cdot \exp(-\pi f\, t_2^*)
+\]</div>
+<p>两式相除，<span class="arithmatex">\(S(f)\)</span> 和 <span class="arithmatex">\(I(f)\)</span> <strong>完全抵消</strong>（假设已做去仪器响应处理，或两台仪器响应相同）：</p>
+<div class="arithmatex">\[
+\frac{A(f, r_2)}{A(f, r_1)} = \frac{r_1}{r_2} \cdot \exp\!\left[-\pi f (t_2^* - t_1^*)\right]
+\]</div>
+<p>定义<strong>差分 t-star</strong>：</p>
+<div class="arithmatex">\[
+\Delta t^* = t_2^* - t_1^* = \frac{t_2 - t_1}{Q_{\mathrm{eff}}} = \frac{\Delta t}{Q_{\mathrm{eff}}}
+\]</div>
+<p>其中 <span class="arithmatex">\(\Delta t = (r_2 - r_1)/\beta\)</span> 是 S 波在两台之间的传播时间差。</p>
+<h3 id="_7">线性化<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>对谱比两边取自然对数：</p>
+<div class="arithmatex">\[
+\ln\!\left[\frac{A(f, r_2)}{A(f, r_1)}\right] = \ln\!\left(\frac{r_1}{r_2}\right) - \pi\,\Delta t^*\cdot f
+\]</div>
+<p>令 <span class="arithmatex">\(L(f) = \ln[A_2(f)/A_1(f)]\)</span>，这是关于 <span class="arithmatex">\(f\)</span> 的线性函数：</p>
+<div class="arithmatex">\[
+L(f) = b + m \cdot f
+\]</div>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>表达式</th>
+<th>物理含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>截距 <span class="arithmatex">\(b\)</span></td>
+<td><span class="arithmatex">\(\ln(r_1/r_2)\)</span></td>
+<td>几何扩散比（已知量，可做约束）</td>
+</tr>
+<tr>
+<td>斜率 <span class="arithmatex">\(m\)</span></td>
+<td><span class="arithmatex">\(-\pi\,\Delta t^*\)</span></td>
+<td>含全部衰减信息，<span class="arithmatex">\(m &lt; 0\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="q_3">提取 Q 值<a class="headerlink" href="#q_3" title="Permanent link">&para;</a></h3>
+<p>由斜率 <span class="arithmatex">\(m = -\pi\,\Delta t^* = -\pi\,\Delta t / Q_{\mathrm{eff}}\)</span>，解出：</p>
+<div class="arithmatex">\[
+\boxed{Q_{\mathrm{eff}} = -\frac{\pi\,\Delta t}{m}}
+\]</div>
+<p><span class="arithmatex">\(\Delta t\)</span> 可由 S 波到时差直接读取，也可由距离差和平均速度计算：</p>
+<div class="arithmatex">\[
+\Delta t = t_2^{\mathrm{arr}} - t_1^{\mathrm{arr}} \quad \text{或} \quad \Delta t = \frac{r_2 - r_1}{\bar{\beta}}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">消去震源谱的条件</p>
+<p>谱比法成立的关键前提是<strong>两台站接收到的是同一地震的同一相位</strong>（如均为直达 S 波），从而震源谱 <span class="arithmatex">\(S(f)\)</span> 在相除时精确抵消。若使用不同地震，须先对震源谱做归一化校正。</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">实用提示：Δt 的选取</p>
+<p>优先从波形中直接拾取 S 波到时差，而非由距离/速度推算，因为实际介质速度结构的非均匀性会使理论 <span class="arithmatex">\(\Delta t\)</span> 产生偏差。</p>
+</div>
+<hr />
+<h2 id="_8">实际操作步骤<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">数据预处理流程<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>操作</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>去均值、去线性趋势</td>
+<td>消除直流分量和长周期漂移</td>
+</tr>
+<tr>
+<td>2</td>
+<td>截取 S 波时窗</td>
+<td>隔离目标相位，避免其他相位干扰</td>
+</tr>
+<tr>
+<td>3</td>
+<td>加锥形窗（Hanning / Tukey）</td>
+<td>减小谱泄漏</td>
+</tr>
+<tr>
+<td>4</td>
+<td>去仪器响应 → 位移谱</td>
+<td>将记录转换为真实地动位移</td>
+</tr>
+<tr>
+<td>5</td>
+<td>计算 FFT 振幅谱</td>
+<td>得到 <span class="arithmatex">\(A_1(f)\)</span>、<span class="arithmatex">\(A_2(f)\)</span></td>
+</tr>
+<tr>
+<td>6</td>
+<td>平滑振幅谱（可选）</td>
+<td>减少谱方差，稳定拟合</td>
+</tr>
+<tr>
+<td>7</td>
+<td>计算对数谱比 <span class="arithmatex">\(L(f)\)</span></td>
+<td>进入拟合阶段</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">有效频段的选取<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>谱比法的有效频段受以下因素限制：</p>
+<ul>
+<li><strong>低频截断</strong>：信噪比不足，背景微震噪声（0.1–0.3 Hz）主导</li>
+<li><strong>高频截断</strong>：Brune 谱在 <span class="arithmatex">\(f &gt; f_c\)</span> 已按 <span class="arithmatex">\(f^{-2}\)</span> 衰减（不满足平坦假设）；κ 效应在极高频段掩盖 Q 信息</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">频段选取不当的后果</p>
+<p>若拟合频段包含了 <span class="arithmatex">\(f &gt; f_c\)</span> 的部分，Brune 谱的 <span class="arithmatex">\(f^{-2}\)</span> 斜率会叠加到谱比的斜率上，导致 <strong>Q 值系统性偏低</strong>。建议先估算震源拐角频率 <span class="arithmatex">\(f_c\)</span>，将上限设为 <span class="arithmatex">\(0.8\, f_c\)</span>。</p>
+</div>
+<h3 id="_11">κ 衰减（近地表高频衰减）<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>Anderson &amp; Hough（1984）发现高频段存在额外的指数衰减，称为 <strong>κ（kappa）效应</strong>：</p>
+<div class="arithmatex">\[
+A(f) \propto \exp(-\pi \kappa f), \quad f \gtrsim f_E
+\]</div>
+<p><span class="arithmatex">\(\kappa\)</span> 主要反映近地表低 Q 沉积层的累积衰减，与台站场地条件密切相关。若两台站的 <span class="arithmatex">\(\kappa\)</span> 值不同（<span class="arithmatex">\(\Delta\kappa = \kappa_2 - \kappa_1 \neq 0\)</span>），拟合斜率会包含额外贡献：</p>
+<div class="arithmatex">\[
+m_{\mathrm{obs}} = -\pi\,\Delta t^* - \pi\,\Delta\kappa = -\frac{\pi\,\Delta t}{Q} - \pi\,\Delta\kappa
+\]</div>
+<p>忽略 <span class="arithmatex">\(\Delta\kappa\)</span> 会使 Q 值估计<strong>偏低</strong>。缓解方法：选择场地条件相似的台站对，或将 <span class="arithmatex">\(\Delta\kappa\)</span> 与 Q 一起反演。</p>
+<hr />
+<h2 id="python">Python 示例<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
+<p>下面的代码模拟真实 Q = 150 的双台站场景，加入高斯随机噪声后用线性回归估计 Q 值。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-2"><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</span><span id="__span-0-3"><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">linregress</span>
+</span><span id="__span-0-4">
+</span><span id="__span-0-5"><span class="c1"># ── 参数设置 ──────────────────────────────────────────────</span>
+</span><span id="__span-0-6"><span class="n">Q_true</span>      <span class="o">=</span> <span class="mi">150</span>          <span class="c1"># 真实 Q 值</span>
+</span><span id="__span-0-7"><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span>      <span class="o">=</span> <span class="mf">10e3</span><span class="p">,</span> <span class="mf">60e3</span>   <span class="c1"># 近台、远台至震源距离 (m)</span>
+</span><span id="__span-0-8"><span class="n">beta</span>        <span class="o">=</span> <span class="mf">3500.0</span>        <span class="c1"># 平均 S 波速度 (m/s)</span>
+</span><span id="__span-0-9"><span class="n">dt_travel</span>   <span class="o">=</span> <span class="p">(</span><span class="n">r2</span> <span class="o">-</span> <span class="n">r1</span><span class="p">)</span> <span class="o">/</span> <span class="n">beta</span>   <span class="c1"># S 波时间差 Δt (s)</span>
+</span><span id="__span-0-10">
+</span><span id="__span-0-11"><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>  <span class="c1"># 频率轴 1–20 Hz</span>
+</span><span id="__span-0-12">
+</span><span id="__span-0-13"><span class="c1"># ── 理论对数谱比 ──────────────────────────────────────────</span>
+</span><span id="__span-0-14"><span class="c1"># L(f) = ln(r1/r2) - π·f·Δt/Q</span>
+</span><span id="__span-0-15"><span class="n">log_ratio_theory</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">r1</span> <span class="o">/</span> <span class="n">r2</span><span class="p">)</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">dt_travel</span> <span class="o">/</span> <span class="n">Q_true</span>
+</span><span id="__span-0-16">
+</span><span id="__span-0-17"><span class="c1"># ── 加高斯噪声（模拟观测散度）────────────────────────────</span>
+</span><span id="__span-0-18"><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</span><span id="__span-0-19"><span class="n">log_ratio_obs</span> <span class="o">=</span> <span class="n">log_ratio_theory</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+</span><span id="__span-0-20">
+</span><span id="__span-0-21"><span class="c1"># ── 线性回归：L(f) = b + m·f ──────────────────────────────</span>
+</span><span id="__span-0-22"><span class="n">slope</span><span class="p">,</span> <span class="n">intercept</span><span class="p">,</span> <span class="n">r_val</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">linregress</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">log_ratio_obs</span><span class="p">)</span>
+</span><span id="__span-0-23"><span class="n">Q_est</span>          <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">dt_travel</span> <span class="o">/</span> <span class="n">slope</span>
+</span><span id="__span-0-24"><span class="n">log_ratio_fit</span>  <span class="o">=</span> <span class="n">slope</span> <span class="o">*</span> <span class="n">f</span> <span class="o">+</span> <span class="n">intercept</span>
+</span><span id="__span-0-25">
+</span><span id="__span-0-26"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;真实 Q     = </span><span class="si">{</span><span class="n">Q_true</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-0-27"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;估计 Q     = </span><span class="si">{</span><span class="n">Q_est</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-0-28"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;拟合斜率 m = </span><span class="si">{</span><span class="n">slope</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">  (理论: </span><span class="si">{</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">dt_travel</span><span class="o">/</span><span class="n">Q_true</span><span class="si">:</span><span class="s2">.5f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</span><span id="__span-0-29"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;R²         = </span><span class="si">{</span><span class="n">r_val</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-0-30">
+</span><span id="__span-0-31"><span class="c1"># ── 绘图 ─────────────────────────────────────────────────</span>
+</span><span id="__span-0-32"><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span><span id="__span-0-33">
+</span><span id="__span-0-34"><span class="c1"># 左图：不同 Q 值下的衰减量（dB）随频率变化</span>
+</span><span id="__span-0-35"><span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-0-36"><span class="n">palette</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#e74c3c&#39;</span><span class="p">,</span> <span class="s1">&#39;#e67e22&#39;</span><span class="p">,</span> <span class="s1">&#39;#3498db&#39;</span><span class="p">,</span> <span class="s1">&#39;#2ecc71&#39;</span><span class="p">]</span>
+</span><span id="__span-0-37"><span class="k">for</span> <span class="n">Q_val</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">500</span><span class="p">],</span> <span class="n">palette</span><span class="p">):</span>
+</span><span id="__span-0-38">    <span class="n">tstar</span>   <span class="o">=</span> <span class="n">dt_travel</span> <span class="o">/</span> <span class="n">Q_val</span>
+</span><span id="__span-0-39">    <span class="n">attn_db</span> <span class="o">=</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">tstar</span><span class="p">))</span>
+</span><span id="__span-0-40">    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">attn_db</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Q = </span><span class="si">{</span><span class="n">Q_val</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-0-41"><span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Attenuation (dB)&#39;</span><span class="p">,</span>
+</span><span id="__span-0-42">       <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Attenuation vs. Frequency for Different Q&#39;</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">])</span>
+</span><span id="__span-0-43"><span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</span><span id="__span-0-44"><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+</span><span id="__span-0-45"><span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</span><span id="__span-0-46">
+</span><span id="__span-0-47"><span class="c1"># 右图：对数谱比、理论值与线性拟合</span>
+</span><span id="__span-0-48"><span class="n">ax</span> <span class="o">=</span> <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-0-49"><span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">log_ratio_obs</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.45</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;#3498db&#39;</span><span class="p">,</span>
+</span><span id="__span-0-50">           <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Observed (noisy)&#39;</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-51"><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">log_ratio_theory</span><span class="p">,</span> <span class="s1">&#39;k--&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+</span><span id="__span-0-52">        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Theory  (Q = </span><span class="si">{</span><span class="n">Q_true</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</span><span id="__span-0-53"><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">log_ratio_fit</span><span class="p">,</span>   <span class="s1">&#39;r-&#39;</span><span class="p">,</span>  <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-0-54">        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Linear fit  (Q ≈ </span><span class="si">{</span><span class="n">Q_est</span><span class="si">:</span><span class="s1">.0f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
+</span><span id="__span-0-55"><span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.97</span><span class="p">,</span> <span class="mf">0.97</span><span class="p">,</span>
+</span><span id="__span-0-56">        <span class="sa">f</span><span class="s1">&#39;slope = </span><span class="si">{</span><span class="n">slope</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="se">\n</span><span class="s1">Q est = </span><span class="si">{</span><span class="n">Q_est</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="se">\n</span><span class="s1">R² = </span><span class="si">{</span><span class="n">r_val</span><span class="o">**</span><span class="mi">2</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+</span><span id="__span-0-57">        <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">va</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+</span><span id="__span-0-58">        <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">fc</span><span class="o">=</span><span class="s1">&#39;wheat&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">))</span>
+</span><span id="__span-0-59"><span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;ln [ A₂(f) / A₁(f) ]&#39;</span><span class="p">,</span>
+</span><span id="__span-0-60">       <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Spectral Ratio Method&#39;</span><span class="p">)</span>
+</span><span id="__span-0-61"><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+</span><span id="__span-0-62"><span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</span><span id="__span-0-63">
+</span><span id="__span-0-64"><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</span><span id="__span-0-65"><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;docs/assets/images/q_spectral_ratio.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</span><span id="__span-0-66"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<p>运行输出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1">真实 Q     = 150
+</span><span id="__span-1-2">估计 Q     = 149.8
+</span><span id="__span-1-3">拟合斜率 m = -0.29958  (理论: -0.29920)
+</span><span id="__span-1-4">R²         = 0.9806
+</span></code></pre></div>
+<p><img alt="谱比法示例图" src="../assets/images/q_spectral_ratio.png" />
+<em>图 1：左图为不同 Q 值下衰减量（dB）随频率的变化，Q 越小衰减越剧烈；右图为含噪声的对数谱比数据（蓝色散点）、理论曲线（黑虚线）与线性拟合结果（红线）。</em></p>
+<hr />
+<h2 id="q_4">频率依赖 Q 的推广<a class="headerlink" href="#q_4" title="Permanent link">&para;</a></h2>
+<p>当 Q 随频率变化时，常用<strong>幂律模型</strong>：</p>
+<div class="arithmatex">\[
+Q(f) = Q_0\, f^{\eta}, \quad \eta \in [0, 1]
+\]</div>
+<p>此时衰减因子变为：</p>
+<div class="arithmatex">\[
+\exp\!\left(-\pi f\, t^*\right) = \exp\!\left(-\frac{\pi f\, t}{Q(f)}\right) = \exp\!\left(-\frac{\pi\, t}{Q_0} f^{1-\eta}\right)
+\]</div>
+<p>对数谱比为：</p>
+<div class="arithmatex">\[
+L(f) = \ln\!\left(\frac{r_1}{r_2}\right) - \frac{\pi\,\Delta t}{Q_0}\, f^{1-\eta}
+\]</div>
+<p>令 <span class="arithmatex">\(u = f^{1-\eta}\)</span>，则 <span class="arithmatex">\(L\)</span> 关于 <span class="arithmatex">\(u\)</span> 仍是线性的。实际操作中，对不同的 <span class="arithmatex">\(\eta\)</span> 值尝试线性化，选择 <span class="arithmatex">\(R^2\)</span> 最大的 <span class="arithmatex">\(\eta\)</span> 即为最佳频率指数。</p>
+<div class="admonition note">
+<p class="admonition-title">η 的典型值</p>
+<p>上地壳结晶岩：<span class="arithmatex">\(\eta \approx 0\)</span>（常数 Q 近似成立）；浅层松散沉积：<span class="arithmatex">\(\eta \approx 0.5\)</span>–<span class="arithmatex">\(0.8\)</span>；全球地幔：<span class="arithmatex">\(\eta \approx 0.1\)</span>–<span class="arithmatex">\(0.3\)</span>。</p>
+</div>
+<hr />
+<h2 id="_12">方法变体<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>变体</th>
+<th>设置</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>双台站法</strong>（本文）</td>
+<td>同一震源，两台沿同一射线</td>
+<td>消去震源谱；<span class="arithmatex">\(\Delta t\)</span> 精确</td>
+<td>需台站几何严格对齐</td>
+</tr>
+<tr>
+<td><strong>单台双事件法</strong></td>
+<td>同一台站，两个不同距离的震源</td>
+<td>台站固定，场地效应相同</td>
+<td>需假设两事件震源谱形状相同</td>
+</tr>
+<tr>
+<td><strong>VSP 谱比法</strong></td>
+<td>地表与井下检波器</td>
+<td>路径简单，避免场地效应</td>
+<td>需要钻孔</td>
+</tr>
+<tr>
+<td><strong>尾波谱比法</strong></td>
+<td>利用 S 波尾波</td>
+<td>样本量大，统计稳健</td>
+<td>分离固有衰减与散射衰减较复杂</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_13">参考文献<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Aki, K., &amp; Richards, P. G. (2002). <em>Quantitative Seismology</em> (2<sup>nd</sup> ed.). University Science Books.</li>
+<li>Anderson, J. G., &amp; Hough, S. E. (1984). A model for the shape of the Fourier amplitude spectrum of acceleration at high frequencies. <em>Bulletin of the Seismological Society of America</em>, 74(5), 1969–1993.</li>
+<li>Tonn, R. (1991). The determination of the seismic quality factor Q from VSP data: A comparison of different computational methods. <em>Geophysical Prospecting</em>, 39(1), 1–27.</li>
+<li>Toverud, T., &amp; Ursin, B. (2005). Comparison of seismic attenuation models using zero-offset vertical seismic profiling (VSP) data. <em>Geophysics</em>, 70(2), F17–F25.</li>
+<li>Xie, J. (2002). Seismic attenuation: Measurement and uncertainty. <em>Pure and Applied Geophysics</em>, 159(7–8), 1823–1849.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/yjianggeo" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.indexes", "search.highlight", "search.share", "search.suggest", "content.tabs.link", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "header.autohide"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../assets/javascripts/lang-toggle.js"></script>
+      
+    
+  </body>
+</html>
