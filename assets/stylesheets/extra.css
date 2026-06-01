@@ -1,5 +1,52 @@
 /* 自定义样式 */
 
+/* ============================================================
+   标题层级视觉区分
+   ============================================================ */
+
+/* h2：节级标题 — 上方加分隔线 + 左侧色条 */
+.md-typeset h2 {
+  margin-top: 2.4rem;
+  padding-top: 1rem;
+  padding-left: 0.7rem;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  border-left: 4px solid var(--md-primary-fg-color);
+  font-size: 1.4em;
+  letter-spacing: 0.01em;
+}
+
+/* h3：子节标题 — 左侧细线 + 轻微缩进 */
+.md-typeset h3 {
+  margin-top: 1.6rem;
+  padding-left: 0.55rem;
+  border-left: 3px solid var(--md-accent-fg-color);
+  font-size: 1.15em;
+  opacity: 0.95;
+}
+
+/* h4：小标题 — 下划线样式 */
+.md-typeset h4 {
+  margin-top: 1.2rem;
+  font-size: 1em;
+  font-weight: 700;
+  padding-bottom: 0.15rem;
+  border-bottom: 1px dashed var(--md-default-fg-color--light);
+  display: inline-block;
+}
+
+/* 正文段落：行高和段间距优化，增强可读性 */
+.md-typeset p {
+  line-height: 1.8;
+  margin-bottom: 0.75em;
+}
+
+/* hr 分隔线：更细腻 */
+.md-typeset hr {
+  margin: 2rem 0;
+  border-color: var(--md-default-fg-color--lightest);
+  opacity: 0.6;
+}
+
 /* 改善代码块样式 */
 .highlight pre {
   border-radius: 6px;
