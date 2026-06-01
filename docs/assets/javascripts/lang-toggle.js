@@ -14,6 +14,7 @@
   // Map: Chinese slug → English slug (and the reverse is auto-derived)
   var PAIRS = {
     "brune": "brune-en",
+    "q-spectral-ratio": "q-spectral-ratio-en",
   };
 
   // Build reverse map: English → Chinese
