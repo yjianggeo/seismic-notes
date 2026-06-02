@@ -1,0 +1,1468 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="地震学与 DAS 学习笔记">
+      
+      
+        <meta name="author" content="Jiang Yi">
+      
+      
+        <link rel="canonical" href="https://yjianggeo.github.io/source-spectrum-site/das-en/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>DAS – Distributed Acoustic Sensing - Seismic Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#das-distributed-acoustic-sensing" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Seismic Notes" class="md-header__button md-logo" aria-label="Seismic Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Seismic Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DAS – Distributed Acoustic Sensing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/yjianggeo/source-spectrum-site" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yjianggeo/source-spectrum-site
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../brune/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  震源理论
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../q-spectral-ratio/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  地震波衰减
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../das/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  DAS 分布式声学传感
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Seismic Notes" class="md-nav__button md-logo" aria-label="Seismic Notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Seismic Notes
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/yjianggeo/source-spectrum-site" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    yjianggeo/source-spectrum-site
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    震源理论
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    震源理论
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../brune/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Brune模型
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    地震波衰减
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    地震波衰减
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../q-spectral-ratio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    谱比法 Q 值反演
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DAS 分布式声学传感
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    DAS 分布式声学传感
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../das/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本原理与应用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Basic Principle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Principle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rayleigh-scattering-and-phase-sensitive-otdr" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rayleigh Scattering and Phase-Sensitive OTDR
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-system-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key System Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#typical-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Typical Applications
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Typical Applications">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vertical-seismic-profiling-vsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vertical Seismic Profiling (VSP)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#urban-shallow-subsurface-imaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Urban Shallow Subsurface Imaging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#submarine-seismic-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Submarine Seismic Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#microseismic-and-induced-seismicity-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Microseismic and Induced Seismicity Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sensitivity-to-incident-angles" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitivity to Incident Angles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sensitivity to Incident Angles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Geometry
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#p-wave-directional-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        P-Wave Directional Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sv-wave-directional-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SV-Wave Directional Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#directional-sensitivity-polar-diagram" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directional Sensitivity Polar Diagram
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flat-frequency-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Flat Frequency Response
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Flat Frequency Response">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#strain-to-particle-velocity-conversion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Strain-to-Particle-Velocity Conversion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-it-is-called-flat-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why It Is Called "Flat Response"
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gauge-length-effect" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gauge Length Effect
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gauge Length Effect">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spatial-integration-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Spatial Integration Filter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfer-function-derivation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Transfer Function Derivation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#notch-frequencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Notch Frequencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gauge-length-trade-offs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gauge Length Trade-offs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python Example
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/yjianggeo/source-spectrum-site/edit/main/docs/das-en.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/yjianggeo/source-spectrum-site/raw/main/docs/das-en.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+    </a>
+  
+
+
+<h1 id="das-distributed-acoustic-sensing">DAS – Distributed Acoustic Sensing<a class="headerlink" href="#das-distributed-acoustic-sensing" title="Permanent link">&para;</a></h1>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p><strong>Distributed Acoustic Sensing (DAS)</strong> is a fiber-optic seismic sensing technology that converts an ordinary optical fiber cable into a continuous, dense seismic array. A single fiber tens of kilometers long can simultaneously provide tens of thousands of virtual sensors with channel spacings as small as 1 m and sampling rates of several kHz.</p>
+<p>Compared with conventional seismometers, DAS offers three core advantages:</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Conventional geophone</th>
+<th>DAS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment cost</td>
+<td>Each sensor installed separately</td>
+<td>Cable laid in one pass</td>
+</tr>
+<tr>
+<td>Spatial density</td>
+<td>Limited stations (tens–hundreds)</td>
+<td>Thousands to tens of thousands of channels</td>
+</tr>
+<tr>
+<td>Low-frequency limit</td>
+<td>Constrained by natural frequency (e.g., 4.5 Hz)</td>
+<td>Responds from DC to high frequency (flat response)</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>Requires power, waterproofing</td>
+<td>All-optical passive; can use submarine cables</td>
+</tr>
+</tbody>
+</table>
+<p>DAS measures the <strong>dynamic axial strain</strong> (or strain rate) along the fiber, not particle velocity. This fundamental difference gives rise to its distinctive directional response pattern and gauge length effect.</p>
+<hr />
+<h2 id="basic-principle">Basic Principle<a class="headerlink" href="#basic-principle" title="Permanent link">&para;</a></h2>
+<h3 id="rayleigh-scattering-and-phase-sensitive-otdr">Rayleigh Scattering and Phase-Sensitive OTDR<a class="headerlink" href="#rayleigh-scattering-and-phase-sensitive-otdr" title="Permanent link">&para;</a></h3>
+<p>DAS operates by combining <strong>Rayleigh backscattering</strong> in optical fiber with <strong>phase-sensitive Optical Time Domain Reflectometry (φ-OTDR)</strong>:</p>
+<ol>
+<li><strong>Pulse injection</strong>: A coherent laser pulse is sent into the fiber (pulse width sets spatial resolution).</li>
+<li><strong>Rayleigh backscattering</strong>: Along the fiber, light scatters from random refractive-index inhomogeneities; a fraction returns to the interrogator.</li>
+<li><strong>Phase detection</strong>: The interrogator coherently demodulates the returned light to measure the <strong>phase</strong> of backscattered light at each depth.</li>
+<li><strong>Phase → strain</strong>: Phase shifts are proportional to changes in optical path length, i.e., to axial strain.</li>
+</ol>
+<div class="arithmatex">\[
+\Delta\phi = \frac{4\pi n}{\lambda} \cdot \Delta L
+\]</div>
+<p>where <span class="arithmatex">\(n\)</span> is the fiber refractive index, <span class="arithmatex">\(\lambda\)</span> is the laser wavelength, and <span class="arithmatex">\(\Delta L\)</span> is the change in physical path length caused by strain.</p>
+<div class="admonition note">
+<p class="admonition-title">What DAS Measures</p>
+<p>DAS measures the <strong>axial dynamic strain</strong> <span class="arithmatex">\(\varepsilon_{xx}\)</span> (or strain rate <span class="arithmatex">\(\dot{\varepsilon}_{xx}\)</span>) along the fiber—that is, relative elongation/compression along the fiber axis. The response to seismic waves depends strongly on the angle between the wave propagation direction and the fiber axis.</p>
+</div>
+<h3 id="key-system-parameters">Key System Parameters<a class="headerlink" href="#key-system-parameters" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Typical values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Channel spacing</td>
+<td>1–10 m</td>
+<td>Distance between adjacent virtual sensors</td>
+</tr>
+<tr>
+<td>Gauge length (GL)</td>
+<td>5–50 m</td>
+<td>Strain integration length; governs spatial resolution and SNR</td>
+</tr>
+<tr>
+<td>Sampling rate</td>
+<td>1–10 kHz</td>
+<td>Temporal resolution</td>
+</tr>
+<tr>
+<td>Maximum cable length</td>
+<td>10–100 km</td>
+<td>Limited by laser power and fiber attenuation</td>
+</tr>
+<tr>
+<td>Dynamic range</td>
+<td>~80–100 dB</td>
+<td>Related to laser coherence</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="typical-applications">Typical Applications<a class="headerlink" href="#typical-applications" title="Permanent link">&para;</a></h2>
+<h3 id="vertical-seismic-profiling-vsp">Vertical Seismic Profiling (VSP)<a class="headerlink" href="#vertical-seismic-profiling-vsp" title="Permanent link">&para;</a></h3>
+<p>The first large-scale application of DAS in oil and gas exploration was <strong>Vertical Seismic Profiling (VSP)</strong>. Fiber cables cemented behind well casing record seismic wavefields over hundreds of meters depth simultaneously.</p>
+<ul>
+<li><strong>Advantages</strong>: No repeated tripping; covers the entire well at high resolution.</li>
+<li><strong>Typical gauge length</strong>: 5–10 m.</li>
+<li><strong>Signal types</strong>: Direct P/S waves, reflections, converted waves.</li>
+</ul>
+<h3 id="urban-shallow-subsurface-imaging">Urban Shallow Subsurface Imaging<a class="headerlink" href="#urban-shallow-subsurface-imaging" title="Permanent link">&para;</a></h3>
+<p>Fiber cables in urban telecommunications conduits (existing infrastructure) use <strong>ambient noise</strong> from traffic and machinery as passive seismic sources to invert for shallow S-wave velocity structure.</p>
+<ul>
+<li>Representative work: Lindsey et al. (2017) imaged subsurface structure under the Stanford campus using telecom fiber.</li>
+<li>No active source required; near-zero marginal cost.</li>
+</ul>
+<h3 id="submarine-seismic-monitoring">Submarine Seismic Monitoring<a class="headerlink" href="#submarine-seismic-monitoring" title="Permanent link">&para;</a></h3>
+<p><strong>Existing submarine communication cables</strong> serve as seismic sensors, filling the large gaps in ocean-bottom seismic networks.</p>
+<ul>
+<li>Detects microearthquakes, submarine landslides, and tsunami precursors.</li>
+<li>Representative work: Marra et al. (2018, <em>Science</em>) used a transatlantic cable to detect earthquakes.</li>
+</ul>
+<h3 id="microseismic-and-induced-seismicity-monitoring">Microseismic and Induced Seismicity Monitoring<a class="headerlink" href="#microseismic-and-induced-seismicity-monitoring" title="Permanent link">&para;</a></h3>
+<p>In geothermal energy, hydraulic fracturing, and CO₂ storage, DAS provides real-time monitoring of <strong>microseismic activity</strong> to track fracture propagation and induced seismicity.</p>
+<hr />
+<h2 id="sensitivity-to-incident-angles">Sensitivity to Incident Angles<a class="headerlink" href="#sensitivity-to-incident-angles" title="Permanent link">&para;</a></h2>
+<h3 id="geometry">Geometry<a class="headerlink" href="#geometry" title="Permanent link">&para;</a></h3>
+<p>Let the fiber lie along the <span class="arithmatex">\(x\)</span>-axis. A seismic plane wave propagates in the <span class="arithmatex">\(x\)</span>–<span class="arithmatex">\(z\)</span> plane, with its propagation direction making angle <span class="arithmatex">\(\theta\)</span> to the fiber axis.</p>
+<p>Wave vector:</p>
+<div class="arithmatex">\[
+\mathbf{k} = k(\cos\theta\,\hat{x} + \sin\theta\,\hat{z}), \quad k = \frac{2\pi f}{c}
+\]</div>
+<p>Component along the fiber: <span class="arithmatex">\(k_x = k\cos\theta\)</span>.</p>
+<p>DAS measures axial strain <span class="arithmatex">\(\varepsilon_{xx} = \partial u_x / \partial x\)</span>.</p>
+<h3 id="p-wave-directional-response">P-Wave Directional Response<a class="headerlink" href="#p-wave-directional-response" title="Permanent link">&para;</a></h3>
+<p>P-wave particle displacement is parallel to the propagation direction:</p>
+<div class="arithmatex">\[
+\mathbf{u} = A\hat{k}\,e^{i(\mathbf{k}\cdot\mathbf{x} - \omega t)}
+= A(\cos\theta\,\hat{x} + \sin\theta\,\hat{z})\,e^{i(k_x x + k_z z - \omega t)}
+\]</div>
+<p>The <span class="arithmatex">\(x\)</span>-component: <span class="arithmatex">\(u_x = A\cos\theta \cdot e^{i(\cdots)}\)</span></p>
+<p>Axial strain:</p>
+<div class="arithmatex">\[
+\varepsilon_{xx}^{P} = \frac{\partial u_x}{\partial x} = ik_x A\cos\theta \cdot e^{i(\cdots)} = ik\cos\theta \cdot A\cos\theta \cdot e^{i(\cdots)}
+\]</div>
+<p>Therefore:</p>
+<div class="arithmatex">\[
+\boxed{|\varepsilon_{xx}^{P}| \propto \cos^2\theta}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\theta = 0°\)</span> (wave propagates along fiber): <strong>maximum response</strong></li>
+<li><span class="arithmatex">\(\theta = 90°\)</span> (wave propagates perpendicular to fiber): <span class="arithmatex">\(\varepsilon_{xx} = 0\)</span>, <strong>no response</strong></li>
+</ul>
+<h3 id="sv-wave-directional-response">SV-Wave Directional Response<a class="headerlink" href="#sv-wave-directional-response" title="Permanent link">&para;</a></h3>
+<p>SV-wave particle displacement is perpendicular to the propagation direction, within the <span class="arithmatex">\(x\)</span>–<span class="arithmatex">\(z\)</span> plane:</p>
+<div class="arithmatex">\[
+\mathbf{u} = A(-\sin\theta\,\hat{x} + \cos\theta\,\hat{z})\,e^{i(k_x x + k_z z - \omega t)}
+\]</div>
+<p>The <span class="arithmatex">\(x\)</span>-component: <span class="arithmatex">\(u_x = -A\sin\theta \cdot e^{i(\cdots)}\)</span></p>
+<p>Axial strain:</p>
+<div class="arithmatex">\[
+\varepsilon_{xx}^{SV} = \frac{\partial u_x}{\partial x} = ik_x(-A\sin\theta) = -ik\cos\theta \cdot A\sin\theta
+\]</div>
+<p>Therefore:</p>
+<div class="arithmatex">\[
+\boxed{|\varepsilon_{xx}^{SV}| \propto |\sin\theta\cos\theta| = \frac{1}{2}|\sin 2\theta|}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\theta = 0°\)</span> or <span class="arithmatex">\(\theta = 90°\)</span>: zero response</li>
+<li><span class="arithmatex">\(\theta = 45°\)</span>: <strong>maximum response</strong></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">SH-Wave Blind Spot</p>
+<p>SH-wave particle displacement is perpendicular to the <span class="arithmatex">\(x\)</span>–<span class="arithmatex">\(z\)</span> plane (along <span class="arithmatex">\(y\)</span>), producing no <span class="arithmatex">\(x\)</span>-direction displacement component. DAS is therefore <strong>completely insensitive</strong> to SH waves when the fiber lies in the <span class="arithmatex">\(x\)</span>–<span class="arithmatex">\(z\)</span> plane. This is an inherent limitation.</p>
+</div>
+<h3 id="directional-sensitivity-polar-diagram">Directional Sensitivity Polar Diagram<a class="headerlink" href="#directional-sensitivity-polar-diagram" title="Permanent link">&para;</a></h3>
+<p>Taking <span class="arithmatex">\(\theta\)</span> as the polar angle and <span class="arithmatex">\(|\varepsilon_{xx}|\)</span> as the radius, the polar diagrams for P-wave (<span class="arithmatex">\(\cos^2\theta\)</span>) and SV-wave (<span class="arithmatex">\(|\sin 2\theta|/2\)</span>) responses are shown in Figure 1.</p>
+<p><img alt="DAS directional sensitivity" src="../assets/images/das_angle_response.png" />
+<em>Figure 1: Polar diagrams of DAS directional sensitivity for P-waves (blue) and SV-waves (orange). Shaded area represents relative response amplitude. The fiber axis lies along the horizontal (0°–180°).</em></p>
+<hr />
+<h2 id="flat-frequency-response">Flat Frequency Response<a class="headerlink" href="#flat-frequency-response" title="Permanent link">&para;</a></h2>
+<h3 id="strain-to-particle-velocity-conversion">Strain-to-Particle-Velocity Conversion<a class="headerlink" href="#strain-to-particle-velocity-conversion" title="Permanent link">&para;</a></h3>
+<p>DAS measures axial strain, while seismology conventionally works with particle velocity. Their relationship determines DAS's frequency characteristics.</p>
+<p>For a plane P-wave propagating along <span class="arithmatex">\(x\)</span> with displacement <span class="arithmatex">\(u_x = A e^{i(kx - \omega t)}\)</span>:</p>
+<div class="arithmatex">\[
+v_x = \frac{\partial u_x}{\partial t} = -i\omega A e^{i(\cdots)}
+\]</div>
+<div class="arithmatex">\[
+\varepsilon_{xx} = \frac{\partial u_x}{\partial x} = ikA e^{i(\cdots)} = \frac{ik}{-i\omega} \cdot v_x = -\frac{k}{\omega} v_x = -\frac{v_x}{c_P}
+\]</div>
+<p>Including the directional factor <span class="arithmatex">\(\cos^2\theta\)</span> for a general incident angle <span class="arithmatex">\(\theta\)</span>:</p>
+<div class="arithmatex">\[
+\varepsilon_{xx} = -\frac{\cos^2\theta}{c_P} \cdot v_P
+\]</div>
+<p>Solving for particle velocity:</p>
+<div class="arithmatex">\[
+\boxed{v_P = -\frac{c_P}{\cos^2\theta} \cdot \varepsilon_{xx}}
+\]</div>
+<p><strong>Key property: the conversion factor <span class="arithmatex">\(c_P / \cos^2\theta\)</span> is frequency-independent.</strong></p>
+<h3 id="why-it-is-called-flat-response">Why It Is Called "Flat Response"<a class="headerlink" href="#why-it-is-called-flat-response" title="Permanent link">&para;</a></h3>
+<p>This frequency independence gives DAS a <strong>flat frequency response</strong> — unlike traditional geophones:</p>
+<table>
+<thead>
+<tr>
+<th>Instrument</th>
+<th>Measures</th>
+<th>Frequency response</th>
+<th>Low-frequency behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Short-period geophone</td>
+<td>Particle velocity</td>
+<td>Flat above <span class="arithmatex">\(f_0\)</span>, rolls off below</td>
+<td>12 dB/octave roll-off below natural frequency</td>
+</tr>
+<tr>
+<td>Accelerometer</td>
+<td>Particle acceleration</td>
+<td>Flat below resonance</td>
+<td>Requires integration for velocity</td>
+</tr>
+<tr>
+<td><strong>DAS (strain)</strong></td>
+<td><strong>Axial strain</strong></td>
+<td><strong>Flat from DC to <span class="arithmatex">\(f_{\rm notch}\)</span></strong></td>
+<td><strong>No low-frequency cutoff</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Practical Significance</p>
+<p>DAS strain records can be converted to particle velocity with a single <strong>frequency-independent</strong> constant (<span class="arithmatex">\(c_P/\cos^2\theta\)</span>) across the full band from 0 Hz to the gauge-length notch frequency. No frequency correction is needed. This makes DAS naturally suited for recording low-frequency seismic signals — surface waves, slow earthquakes, tidal deformation — that fall below the natural frequency of short-period geophones.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Strain vs. Strain Rate</p>
+<p>Many DAS systems output <strong>strain rate</strong> <span class="arithmatex">\(\dot{\varepsilon}\)</span> (time derivative of strain) rather than strain. Strain rate relates to particle velocity as <span class="arithmatex">\(\dot{\varepsilon} = -(\cos^2\theta / c_P) \cdot \dot{v}_P\)</span>, i.e., proportional to <strong>acceleration</strong> — not flat in velocity. To recover the flat velocity response, integrate in time (divide by <span class="arithmatex">\(i\omega\)</span> in the frequency domain) to obtain strain first.</p>
+</div>
+<hr />
+<h2 id="gauge-length-effect">Gauge Length Effect<a class="headerlink" href="#gauge-length-effect" title="Permanent link">&para;</a></h2>
+<h3 id="spatial-integration-filter">Spatial Integration Filter<a class="headerlink" href="#spatial-integration-filter" title="Permanent link">&para;</a></h3>
+<p>DAS does not measure strain at a true point. Instead, it measures the phase difference between the two ends of a gauge-length segment of length <span class="arithmatex">\(L\)</span>, equivalent to <strong>spatial averaging</strong> of the strain over that segment:</p>
+<div class="arithmatex">\[
+\varepsilon_\mathrm{GL}(x_0, t) = \frac{u_x(x_0 + L/2,\, t) - u_x(x_0 - L/2,\, t)}{L}
+\]</div>
+<h3 id="transfer-function-derivation">Transfer Function Derivation<a class="headerlink" href="#transfer-function-derivation" title="Permanent link">&para;</a></h3>
+<p>For a plane wave <span class="arithmatex">\(u_x = A e^{i(k_x x - \omega t)}\)</span>:</p>
+<div class="arithmatex">\[
+\varepsilon_\mathrm{GL} = \frac{Ae^{ik_x(x_0+L/2)} - Ae^{ik_x(x_0-L/2)}}{L} \cdot e^{-i\omega t}
+= \frac{2i\sin(k_x L/2)}{L} \cdot Ae^{ik_x x_0} e^{-i\omega t}
+\]</div>
+<p>Since the point strain is <span class="arithmatex">\(\varepsilon_\mathrm{point} = ik_x Ae^{ik_x x_0}e^{-i\omega t}\)</span>, the gauge-length transfer function is:</p>
+<div class="arithmatex">\[
+H(k_x) = \frac{\varepsilon_\mathrm{GL}}{\varepsilon_\mathrm{point}} = \frac{\sin(k_x L/2)}{k_x L/2} = \mathrm{sinc}\!\left(\frac{k_x L}{2\pi}\right)
+\]</div>
+<p>In terms of frequency (substituting <span class="arithmatex">\(k_x = 2\pi f \cos\theta / c\)</span>):</p>
+<div class="arithmatex">\[
+\boxed{H(f, \theta) = \mathrm{sinc}\!\left(\frac{f L \cos\theta}{c}\right)}
+\]</div>
+<h3 id="notch-frequencies">Notch Frequencies<a class="headerlink" href="#notch-frequencies" title="Permanent link">&para;</a></h3>
+<p>The sinc function is zero at <span class="arithmatex">\(k_x L/2 = n\pi\)</span> (<span class="arithmatex">\(n = 1, 2, 3, \ldots\)</span>), giving <strong>notch frequencies</strong>:</p>
+<div class="arithmatex">\[
+f_n = \frac{n \cdot c}{L\cos\theta} = \frac{n \cdot c_\mathrm{app}}{L}
+\]</div>
+<p>where <span class="arithmatex">\(c_\mathrm{app} = c/\cos\theta\)</span> is the <strong>apparent velocity</strong> along the fiber.</p>
+<div class="admonition note">
+<p class="admonition-title">Physical Interpretation</p>
+<p>When the apparent wavelength along the fiber <span class="arithmatex">\(\lambda_\mathrm{app} = c_\mathrm{app}/f\)</span> equals the gauge length <span class="arithmatex">\(L\)</span> (i.e., <span class="arithmatex">\(f = c_\mathrm{app}/L\)</span>), displacements at the two gauge endpoints are <strong>equal in magnitude but opposite in sign</strong>, so their difference is exactly zero — producing the first notch.</p>
+</div>
+<h3 id="gauge-length-trade-offs">Gauge Length Trade-offs<a class="headerlink" href="#gauge-length-trade-offs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Gauge length <span class="arithmatex">\(L\)</span></th>
+<th>First notch <span class="arithmatex">\(f_1\)</span> (<span class="arithmatex">\(c\)</span> = 3000 m/s, <span class="arithmatex">\(\theta\)</span> = 0°)</th>
+<th>SNR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5 m</td>
+<td>600 Hz</td>
+<td>Low (short integration)</td>
+</tr>
+<tr>
+<td>10 m</td>
+<td>300 Hz</td>
+<td>Medium</td>
+</tr>
+<tr>
+<td>20 m</td>
+<td>150 Hz</td>
+<td>Higher</td>
+</tr>
+<tr>
+<td>50 m</td>
+<td>60 Hz</td>
+<td>High, but significant high-frequency loss</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Gauge Length Selection Is Critical</p>
+<p>A gauge length that is too large lowers the notch frequency, causing high-frequency signal loss. Too small a gauge length reduces the per-channel SNR. In practice, <span class="arithmatex">\(L = 5\)</span>–<span class="arithmatex">\(20\)</span> m is typical, chosen based on the target signal band and deployment geometry.</p>
+</div>
+<p>The angular dependence: larger <span class="arithmatex">\(\theta\)</span> (wave more perpendicular to fiber) → smaller <span class="arithmatex">\(k_x\)</span> → higher notch frequency (better high-frequency preservation), but weaker amplitude (smaller <span class="arithmatex">\(\cos^2\theta\)</span> factor).</p>
+<p><img alt="Gauge length effect" src="../assets/images/das_gauge_length.png" />
+<em>Figure 2: DAS transfer function <span class="arithmatex">\(|H(f)|\)</span> for different gauge lengths (<span class="arithmatex">\(\theta = 0°\)</span>, <span class="arithmatex">\(c = 3000\)</span> m/s). Larger gauge lengths shift the first notch to lower frequencies.</em></p>
+<hr />
+<h2 id="python-example">Python Example<a class="headerlink" href="#python-example" title="Permanent link">&para;</a></h2>
+<p>The code below reproduces both figures: the directional sensitivity polar plot and the gauge-length transfer function.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span id="__span-0-2"><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</span><span id="__span-0-3">
+</span><span id="__span-0-4"><span class="c1"># ── Figure 1: Directional sensitivity polar plots ─────────</span>
+</span><span id="__span-0-5"><span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">720</span><span class="p">)</span>
+</span><span id="__span-0-6"><span class="n">resp_P</span>  <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+</span><span id="__span-0-7"><span class="n">resp_SV</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">theta</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span id="__span-0-8">
+</span><span id="__span-0-9"><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+</span><span id="__span-0-10">                          <span class="n">subplot_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;polar&#39;</span><span class="p">))</span>
+</span><span id="__span-0-11">
+</span><span id="__span-0-12"><span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">resp</span><span class="p">,</span> <span class="n">color</span><span class="p">,</span> <span class="n">desc</span> <span class="ow">in</span> <span class="p">[</span>
+</span><span id="__span-0-13">    <span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">resp_P</span><span class="p">,</span>  <span class="s1">&#39;#3498db&#39;</span><span class="p">,</span>
+</span><span id="__span-0-14">     <span class="s1">&#39;P-wave</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;$|\varepsilon_</span><span class="si">{xx}</span><span class="s1">| \propto \cos^2\theta$&#39;</span><span class="p">),</span>
+</span><span id="__span-0-15">    <span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">resp_SV</span><span class="p">,</span> <span class="s1">&#39;#e67e22&#39;</span><span class="p">,</span>
+</span><span id="__span-0-16">     <span class="s1">&#39;SV-wave</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="sa">r</span><span class="s1">&#39;$|\varepsilon_</span><span class="si">{xx}</span><span class="s1">| \propto |\sin 2\theta|/2$&#39;</span><span class="p">),</span>
+</span><span id="__span-0-17"><span class="p">]:</span>
+</span><span id="__span-0-18">    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">resp</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-19">    <span class="n">ax</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">resp</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+</span><span id="__span-0-20">    <span class="n">ax</span><span class="o">.</span><span class="n">set_theta_zero_location</span><span class="p">(</span><span class="s1">&#39;E&#39;</span><span class="p">)</span>
+</span><span id="__span-0-21">    <span class="n">ax</span><span class="o">.</span><span class="n">set_theta_direction</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-22">    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">315</span><span class="p">]))</span>
+</span><span id="__span-0-23">    <span class="n">ax</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">([</span><span class="s1">&#39;0° (fiber)&#39;</span><span class="p">,</span> <span class="s1">&#39;45°&#39;</span><span class="p">,</span> <span class="s1">&#39;90°&#39;</span><span class="p">,</span> <span class="s1">&#39;135°&#39;</span><span class="p">,</span>
+</span><span id="__span-0-24">                         <span class="s1">&#39;180°&#39;</span><span class="p">,</span> <span class="s1">&#39;225°&#39;</span><span class="p">,</span> <span class="s1">&#39;270°&#39;</span><span class="p">,</span> <span class="s1">&#39;315°&#39;</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+</span><span id="__span-0-25">    <span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+</span><span id="__span-0-26">    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">desc</span><span class="p">,</span> <span class="n">pad</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-0-27">
+</span><span id="__span-0-28"><span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s1">&#39;DAS Directional Sensitivity  (fiber along 0°–180° axis)&#39;</span><span class="p">,</span>
+</span><span id="__span-0-29">             <span class="n">y</span><span class="o">=</span><span class="mf">1.02</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+</span><span id="__span-0-30"><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</span><span id="__span-0-31"><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;docs/assets/images/das_angle_response.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</span><span id="__span-0-32">
+</span><span id="__span-0-33"><span class="c1"># ── Figure 2: Gauge length transfer function ──────────────</span>
+</span><span id="__span-0-34"><span class="n">c</span>   <span class="o">=</span> <span class="mf">3000.0</span>
+</span><span id="__span-0-35"><span class="n">GLs</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">]</span>
+</span><span id="__span-0-36"><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#2ecc71&#39;</span><span class="p">,</span> <span class="s1">&#39;#3498db&#39;</span><span class="p">,</span> <span class="s1">&#39;#e67e22&#39;</span><span class="p">,</span> <span class="s1">&#39;#e74c3c&#39;</span><span class="p">]</span>
+</span><span id="__span-0-37"><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="mi">3000</span><span class="p">)</span>
+</span><span id="__span-0-38">
+</span><span id="__span-0-39"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span><span id="__span-0-40"><span class="k">for</span> <span class="n">L</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">GLs</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+</span><span id="__span-0-41">    <span class="n">kxL_half</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">f</span> <span class="o">*</span> <span class="n">L</span> <span class="o">/</span> <span class="n">c</span>
+</span><span id="__span-0-42">    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sinc</span><span class="p">(</span><span class="n">kxL_half</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+</span><span id="__span-0-43">    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">20</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">H</span><span class="p">,</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="kc">None</span><span class="p">)),</span>
+</span><span id="__span-0-44">            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;GL = </span><span class="si">{</span><span class="n">L</span><span class="si">}</span><span class="s1"> m   (1st notch: </span><span class="si">{</span><span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="o">/</span><span class="n">L</span><span class="p">)</span><span class="si">}</span><span class="s1"> Hz)&#39;</span><span class="p">)</span>
+</span><span id="__span-0-45">
+</span><span id="__span-0-46"><span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;k&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">ls</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;$-3$ dB&#39;</span><span class="p">)</span>
+</span><span id="__span-0-47"><span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Frequency (Hz)&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;DAS / Point-sensor (dB)&#39;</span><span class="p">,</span>
+</span><span id="__span-0-48">       <span class="n">title</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;Gauge Length Effect: $|H(f)|$  ($\theta=0°$, $c_{\rm app}=3000$ m/s)&#39;</span><span class="p">,</span>
+</span><span id="__span-0-49">       <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">650</span><span class="p">],</span> <span class="n">ylim</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</span><span id="__span-0-50"><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">9</span><span class="p">)</span>
+</span><span id="__span-0-51"><span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+</span><span id="__span-0-52"><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</span><span id="__span-0-53"><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;docs/assets/images/das_gauge_length.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">150</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">&#39;tight&#39;</span><span class="p">)</span>
+</span><span id="__span-0-54"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<hr />
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Lindsey, N. J., Martin, E. R., Dreger, D. S., Freifeld, B., White, S., Monga, S. K., … &amp; Ajo-Franklin, J. B. (2017). Fiber-optic network observations of earthquake wavefields. <em>Geophysical Research Letters</em>, 44(23), 11–792.</li>
+<li>Mateeva, A., Lopez, J., Potters, H., Mestayer, J., Cox, B., Kiyashchenko, D., … &amp; Berlang, W. (2014). Distributed acoustic sensing for reservoir monitoring with vertical seismic profiling. <em>Geophysical Prospecting</em>, 62(4), 679–692.</li>
+<li>Marra, G., Clivati, C., Luckett, R., Tampellini, A., Kronjäger, J., Wright, L., … &amp; Margolis, H. S. (2018). Ultrastable laser interferometry for earthquake detection with terrestrial and submarine cables. <em>Science</em>, 361(6401), 486–490.</li>
+<li>Wang, H. F., Zeng, X., Miller, D. E., Fratta, D., Feigl, K. L., Thurber, C. H., &amp; Mellors, R. J. (2018). Ground motion response to an ML 4.3 earthquake using co-located distributed acoustic sensing and seismometers. <em>Geophysical Journal International</em>, 213(3), 2020–2036.</li>
+<li>Daley, T. M., Miller, D. E., Dodds, K., Cook, P., &amp; Freifeld, B. M. (2016). Field testing of modular borehole monitoring with simultaneous distributed acoustic sensing and geophone vertical seismic profiles at Citronelle, Alabama. <em>Geophysical Prospecting</em>, 64(5), 1318–1334.</li>
+<li>Zhan, Z. (2020). Distributed acoustic sensing turns fiber-optic cables into seismic stations. <em>Bulletin of the Seismological Society of America</em>, 110(3), 975–985.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/yjianggeo" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.indexes", "search.highlight", "search.share", "search.suggest", "content.tabs.link", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "header.autohide"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../assets/javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../assets/javascripts/lang-toggle.js"></script>
+      
+    
+  </body>
+</html>
