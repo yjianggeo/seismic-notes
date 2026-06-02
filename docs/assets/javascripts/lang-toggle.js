@@ -15,6 +15,7 @@
   var PAIRS = {
     "brune": "brune-en",
     "q-spectral-ratio": "q-spectral-ratio-en",
+    "das": "das-en",
   };
 
   // Build reverse map: English → Chinese
