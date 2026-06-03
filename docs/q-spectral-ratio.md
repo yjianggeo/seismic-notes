@@ -325,6 +325,94 @@ $$
 | **单台双事件法** | 同一台站，两个不同距离的震源 | 台站固定，场地效应相同 | 需假设两事件震源谱形状相同 |
 | **VSP 谱比法** | 地表与井下检波器 | 路径简单，避免场地效应 | 需要钻孔 |
 | **尾波谱比法** | 利用 S 波尾波 | 样本量大，统计稳健 | 分离固有衰减与散射衰减较复杂 |
+| **DAS 逐道谱比法** | 垂直井 DAS，同一事件相邻道 | 极高空间分辨率；自然消去震源谱 | 需校正 DAS 仪器响应（角度、标距）；入射角限制 |
+
+---
+
+## 使用井下 DAS 进行逐道谱比 Q 反演
+
+### 原理
+
+将垂直井中 DAS 的**相邻台道**视为"双台站对"：同一地震事件的 P 波沿井轴（光纤方向）向上传播，相邻道之间的振幅谱比直接反映该深度段的衰减，从而得到**深度分辨率与道间距相当**的高分辨率 Q 剖面。
+
+这本质上是 VSP 谱比法的极端密集化版本——传统 VSP 台站间距为数十米，而 DAS 道间距可低至 1 m。
+
+### DAS 谱比的修正
+
+与传统检波器不同，DAS 对振幅谱有额外的频率和角度依赖性。两台道（深度 $z_1$、$z_2$，$z_2 > z_1$）的位移谱比为：
+
+$$
+\frac{A_\text{DAS}(f, z_2)}{A_\text{DAS}(f, z_1)}
+= \underbrace{\frac{v(z_2)\cos^2\theta(z_2)}{v(z_1)\cos^2\theta(z_1)}}_{\text{平坦响应比}}
+\cdot \underbrace{\frac{\mathrm{sinc}(\pi fL/v(z_2)\cos\theta(z_2))}{\mathrm{sinc}(\pi fL/v(z_1)\cos\theta(z_1))}}_{\text{标距滤波比}}
+\cdot e^{-\pi f \Delta t^*}
+$$
+
+对数线性化后，斜率项与传统谱比法相同：
+
+$$
+\ln\!\left[\frac{A_\text{DAS}(f,z_2)}{A_\text{DAS}(f,z_1)}\right]_{\text{校正后}} = \mathrm{const} - \pi\,\Delta t^* \cdot f
+$$
+
+**校正步骤**：
+
+| 步骤 | 操作 | 涉及的 DAS 特性 |
+|------|------|----------------|
+| 1 | 去仪器响应 → 位移谱（除以 $(2\pi f)^m$） | 积分阶次 $m$ |
+| 2 | 平坦响应校正：除以 $v\cos^2\theta$ | 角度响应 |
+| 3 | 标距校正：除以 sinc$(πfL/v\cos\theta)$ | 标距效应 |
+| 4 | κ 校正：除以 $e^{-\pi f\kappa}$（若已知场地 κ） | 近地表衰减 |
+| 5 | 计算逐对台道对数谱比，线性回归得 $\Delta t^*$ | — |
+
+### 入射角的要求
+
+使用垂直井 DAS 进行 Q 反演时，**入射角 $\theta$**（射线与光纤轴/井轴的夹角）对结果的影响至关重要。
+
+**为什么入射角不能太大？**
+
+1. **平坦响应校正放大噪声**：校正因子为 $1/\cos^2\theta$，在 $\theta \to 90°$ 时趋于无穷大，将噪声无限放大。
+
+2. **有效频带收窄**：标距陷波频率为 $f_1 = v\cos\theta/L$，入射角增大时陷波向低频移动，可用频段随之收窄，削减了谱比法的可靠拟合范围。
+
+3. **灵敏度下降**：信号幅度本身已按 $\cos^2\theta$ 衰减，信噪比降低。
+
+**实践阈值**（Chang et al. 2026）：
+
+$$
+\boxed{\theta < 45°}
+$$
+
+!!! note "几何解释"
+    对于垂直井中深度为 $z_\text{ch}$ 的台道，以及水平距离 $r_H$、深度 $z_\text{src}$（$z_\text{src} > z_\text{ch}$）处的微地震：
+    $$\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)$$
+    $\theta < 45°$ 等价于 $r_H < z_\text{src} - z_\text{ch}$，即**事件的水平偏移小于事件到该台道的深度差**。
+
+    因此，Q 反演最适合使用**位于井底正下方**的事件：这类事件对所有台道的入射角均较小，平坦响应校正稳定，有效频带宽。
+
+!!! warning "大角度事件的处理"
+    若研究区内事件的水平距离较大（$r_H \gg \Delta z$），则 $\theta > 45°$ 的台道应在谱拟合中**剔除**，只使用浅层台道（$z_\text{src} - z_\text{ch}$ 大的台道）中满足角度要求的那些。
+
+### 高分辨率 Q 剖面
+
+利用 DAS 的极高道密度，可在全井范围内按每个相邻台道对独立估计 $\Delta t^*$，然后通过反演得到**深度分辨率 ~ 道间距**的 $Q(z)$ 剖面。
+
+Chang et al.（2026）在犹他州 Cape Modern 增强型地热系统（EGS）的 2.5 km 深垂直井中获得了迄今最高分辨率的地震观测 Q 剖面，主要发现：
+
+- **浅层沉积层**：速度低、密度低、Q 低（强衰减）
+- **花岗岩基底**：速度急剧增大，Q 随深度较缓慢增大
+- **累积 κ 值**（从 2500 m 深到地表）与其他地区的独立研究一致
+
+### 与震源参数反演的联系
+
+在获得 Q 剖面之后，可将 Q（即 t\*）代入**单谱法**，对逐道逐事件的位移谱拟合 Brune 模型，估计震源参数：
+
+$$
+\Omega(f) = \Omega_0 \cdot e^{-\pi f t^*} \cdot e^{-\pi f \kappa}
+\cdot \underbrace{v\cos^2\theta \cdot \mathrm{sinc}(\pi fL/v\cos\theta)}_{\text{DAS 仪器响应}}
+\cdot \frac{1}{1 + (f/f_c)^2}
+$$
+
+拟合得到 $\Omega_0$（对应地震矩）和 $f_c$（拐角频率），进而计算应力降 $\Delta\sigma = \frac{7}{16} M_0 / a^3$。
 
 ---
 
@@ -335,3 +423,5 @@ $$
 - Tonn, R. (1991). The determination of the seismic quality factor Q from VSP data: A comparison of different computational methods. *Geophysical Prospecting*, 39(1), 1–27.
 - Toverud, T., & Ursin, B. (2005). Comparison of seismic attenuation models using zero-offset vertical seismic profiling (VSP) data. *Geophysics*, 70(2), F17–F25.
 - Xie, J. (2002). Seismic attenuation: Measurement and uncertainty. *Pure and Applied Geophysics*, 159(7–8), 1823–1849.
+- Bakku, S. K. (2015). *Fracture characterization from seismic measurements in a borehole* (Doctoral dissertation, Massachusetts Institute of Technology).
+- Chang, H., Nakata, N., Abercrombie, R. E., Dadi, S., & Titov, A. (2026, in review). Using borehole Distributed Acoustic Sensing to investigate microearthquake source parameter variability in an enhanced geothermal system. *ESSOAr preprint*. https://doi.org/10.22541/essoar.15002292/v1

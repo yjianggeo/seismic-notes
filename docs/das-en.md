@@ -326,6 +326,60 @@ $$
 
 ---
 
+## Combined Instrument-Response Model
+
+In practice, the DAS-recorded displacement spectrum is the product of **source spectrum, path attenuation, site response, and instrument response**. Combining all effects — directional sensitivity ($\cos^2\theta$), gauge-length sinc filter, κ operator, and t\* path attenuation — the complete forward model for a P-wave DAS displacement spectrum is (Bakku 2015; Chang et al. 2026):
+
+$$
+\boxed{
+d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
+\cdot \underbrace{v\cos^2\theta}_{\text{flat response}}
+\cdot \underbrace{\mathrm{sinc}\!\left(\frac{\pi f L}{v\cos\theta}\right)}_{\text{gauge length}}
+\cdot e^{-\pi f t^*}
+}
+$$
+
+| Factor | Formula | Physical meaning |
+|--------|---------|-----------------|
+| $(2\pi f)^m$ | $m = 0, 1, 2$ for displacement, velocity, acceleration | DAS output integration order |
+| $\Omega_0$ | Low-frequency plateau | Source spectrum (seismic moment) |
+| $e^{-\pi f\kappa}$ | $\kappa = \int_\text{path} dt/Q_s$ | Near-surface integrated kappa |
+| $v\cos^2\theta$ | Directional factor | P-wave angular sensitivity along fiber |
+| sinc$(\pi fL/v\cos\theta)$ | Gauge-length transfer function | Spatial averaging low-pass filter |
+| $e^{-\pi f t^*}$ | $t^* = \int_\text{path} dt/Q$ | Anelastic path attenuation |
+
+For S-waves: replace $v\cos^2\theta$ with $v\cos\theta\sin\theta$; the sinc argument is unchanged.
+
+!!! note "Depth Differential in Borehole DAS"
+    In channel-wise borehole analysis, the differential travel time between two channels separated by depth $\mathrm{d}z$ is:
+    $$\mathrm{d}t_m = \frac{\mathrm{d}z}{v\cos\theta}$$
+    This relates depth increment to travel-time increment and depends on the incident angle.
+
+### Incident Angle Constraint on Response Corrections
+
+Before using DAS for Q inversion or source parameter estimation, the instrument response ($v\cos^2\theta \cdot \mathrm{sinc}(\cdots)$) must be removed. This correction becomes unreliable at large incident angles:
+
+| Factor | Small angle $\theta \ll 45°$ | Large angle $\theta \to 90°$ |
+|--------|------------------------------|------------------------------|
+| Flat-response divisor $1/\cos^2\theta$ | Near 1, stable | Diverges, amplifies noise |
+| Gauge-length notch $v\cos\theta/L$ | Near $v/L$, high band preserved | Moves to low frequencies, narrows usable band |
+| Signal sensitivity $v\cos^2\theta$ | Near $v$, good SNR | Near 0, very poor SNR |
+
+**Practical threshold** (Chang et al. 2026):
+
+$$
+\boxed{\theta < 45°}
+$$
+
+Channels violating this criterion are excluded from spectral fitting.
+
+!!! tip "Geometry for Vertical Wells"
+    For a DAS channel at depth $z_\text{ch}$ and an event at horizontal offset $r_H$, depth $z_\text{src}$ ($z_\text{src} > z_\text{ch}$):
+    $$\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)$$
+    The condition $\theta < 45°$ requires $r_H < z_\text{src} - z_\text{ch}$: **horizontal offset less than the vertical separation**. Q inversion therefore works best with events located nearly below the well bottom.
+
+---
+
 ## Python Example
 
 The code below reproduces both figures: the directional sensitivity polar plot and the gauge-length transfer function.
@@ -398,3 +452,5 @@ plt.show()
 - Daley, T. M., Miller, D. E., Dodds, K., Cook, P., & Freifeld, B. M. (2016). Field testing of modular borehole monitoring with simultaneous distributed acoustic sensing and geophone vertical seismic profiles at Citronelle, Alabama. *Geophysical Prospecting*, 64(5), 1318–1334.
 - Zhan, Z. (2020). Distributed acoustic sensing turns fiber-optic cables into seismic stations. *Bulletin of the Seismological Society of America*, 110(3), 975–985.
 - Dean, T., Cuny, T., & Hartog, A. H. (2017). The effect of gauge length on axially incident P-waves measured using fibre optic distributed vibration sensing. *Geophysical Prospecting*, 65(1), 184–193. https://doi.org/10.1111/1365-2478.12419
+- Bakku, S. K. (2015). *Fracture characterization from seismic measurements in a borehole* (Doctoral dissertation, Massachusetts Institute of Technology).
+- Chang, H., Nakata, N., Abercrombie, R. E., Dadi, S., & Titov, A. (2026, in review). Using borehole Distributed Acoustic Sensing to investigate microearthquake source parameter variability in an enhanced geothermal system. *ESSOAr preprint*. https://doi.org/10.22541/essoar.15002292/v1

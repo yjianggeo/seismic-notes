@@ -341,6 +341,60 @@ $$
 
 ---
 
+## 综合仪器响应模型
+
+实际地震学应用中，DAS 记录到的位移谱是**震源谱、路径衰减、场地响应、仪器响应**四者的乘积。将前文各效应（方向性 $\cos^2\theta$、标距 sinc 滤波、κ 衰减、t\* 路径衰减）整合后，P 波 DAS 位移谱的完整前向模型为（Bakku 2015；Chang et al. 2026）：
+
+$$
+\boxed{
+d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
+\cdot \underbrace{v\cos^2\theta}_{\text{平坦响应}}
+\cdot \underbrace{\mathrm{sinc}\!\left(\frac{\pi f L}{v\cos\theta}\right)}_{\text{标距效应}}
+\cdot e^{-\pi f t^*}
+}
+$$
+
+| 因子 | 公式 | 物理含义 |
+|------|------|----------|
+| $(2\pi f)^m$ | $m=0,1,2$ 分别对应位移、速度、加速度（应变率） | DAS 输出的积分阶次 |
+| $\Omega_0$ | 低频平台 | 震源谱（地震矩） |
+| $e^{-\pi f\kappa}$ | $\kappa = \int_\text{path} dt/Q_s$ | 近地表积分 kappa 衰减 |
+| $v\cos^2\theta$ | 角度响应 | P 波对光纤轴的方向性灵敏度 |
+| $\mathrm{sinc}(\pi fL / v\cos\theta)$ | 标距传递函数 | 空间积分低通滤波 |
+| $e^{-\pi f t^*}$ | $t^* = \int_\text{path} dt/Q$ | 路径非弹性衰减 |
+
+S 波对应：用 $v\cos\theta\sin\theta$ 替换 $v\cos^2\theta$，sinc 参数中 $\cos\theta$ 保持不变。
+
+!!! note "深度微分项"
+    在井中 DAS 的逐道分析中，两相邻道之间的时间差（用于谱比法）为：
+    $$\mathrm{d}t_m = \frac{\mathrm{d}z}{v\cos\theta}$$
+    其中 $\mathrm{d}z$ 是道间深度差。这一项将**深度差转化为传播时间差**，也是入射角的函数。
+
+### 入射角对仪器响应校正的影响
+
+使用 DAS 进行震源参数反演或 Q 值反演时，需要先**从观测谱中去除仪器响应**，即除以 $v\cos^2\theta \cdot \mathrm{sinc}(\cdots)$。这一校正在入射角较大时会引入严重误差：
+
+| 影响因素 | 小角度 $\theta \ll 45°$ | 大角度 $\theta \to 90°$ |
+|----------|------------------------|------------------------|
+| 平坦响应校正系数 $1/\cos^2\theta$ | 接近 1，稳定 | 趋于 $\infty$，放大噪声 |
+| sinc 陷波频率 $v\cos\theta/L$ | 接近 $v/L$，高频段保留好 | 向低频移动，有效带宽收窄 |
+| 灵敏度 $v\cos^2\theta$ | 接近 $v$，信噪比高 | 趋于 0，信噪比极低 |
+
+**实践中的入射角阈值**：Chang et al.（2026）在使用垂直井 DAS 反演浅层 Q 和微地震源参数时，将入射角限制为：
+
+$$
+\boxed{\theta < 45°}
+$$
+
+超过此阈值的台道（channel）在谱拟合时被排除，以防止响应校正误差主导结果。
+
+!!! tip "垂直井的几何约束"
+    对于深度为 $z_\text{ch}$ 的台道和位于震源 $(r_H,\, z_\text{src})$ 的事件（$r_H$ 为水平距离，$z_\text{src} > z_\text{ch}$ 即事件在台道下方），入射角为：
+    $$\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)$$
+    $\theta < 45°$ 要求 $r_H < z_\text{src} - z_\text{ch}$，即**事件的水平距离小于事件与台道的垂直距离差**。因此谱比法 Q 反演优先使用**井底正下方的事件**。
+
+---
+
 ## Python 示例
 
 下面的代码生成上文中的两幅图：方向性响应极坐标图与标距效应传递函数图。
@@ -477,3 +531,5 @@ plt.show()
 - Daley, T. M., Miller, D. E., Dodds, K., Cook, P., & Freifeld, B. M. (2016). Field testing of modular borehole monitoring with simultaneous distributed acoustic sensing and geophone vertical seismic profiles at Citronelle, Alabama. *Geophysical Prospecting*, 64(5), 1318–1334.
 - Zhan, Z. (2020). Distributed acoustic sensing turns fiber-optic cables into seismic stations. *Bulletin of the Seismological Society of America*, 110(3), 975–985.
 - Dean, T., Cuny, T., & Hartog, A. H. (2017). The effect of gauge length on axially incident P-waves measured using fibre optic distributed vibration sensing. *Geophysical Prospecting*, 65(1), 184–193. https://doi.org/10.1111/1365-2478.12419
+- Bakku, S. K. (2015). *Fracture characterization from seismic measurements in a borehole* (Doctoral dissertation, Massachusetts Institute of Technology).
+- Chang, H., Nakata, N., Abercrombie, R. E., Dadi, S., & Titov, A. (2026, in review). Using borehole Distributed Acoustic Sensing to investigate microearthquake source parameter variability in an enhanced geothermal system. *ESSOAr preprint*. https://doi.org/10.22541/essoar.15002292/v1

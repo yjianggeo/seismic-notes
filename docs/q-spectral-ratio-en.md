@@ -326,6 +326,90 @@ Setting $u = f^{1-\eta}$ restores linearity: $L$ is linear in $u$. In practice, 
 | **Single-station, two-event** | Same station, two sources at different distances | Identical site response for both paths | Requires assumption that source spectral shapes are equal |
 | **VSP spectral ratio** | Surface + downhole receivers | Simple path geometry; avoids site effects | Requires a borehole |
 | **Coda wave spectral ratio** | S-wave coda from single station | Large sample size; statistically robust | Intrinsic vs. scattering attenuation harder to separate |
+| **DAS channel-wise spectral ratio** | Adjacent DAS channels in a vertical borehole | Extremely high spatial resolution; source spectrum cancels naturally | Requires DAS instrument response correction (angle, gauge length); incident angle constraint |
+
+---
+
+## Q Inversion Using Borehole DAS Channel-Wise Spectral Ratios
+
+### Principle
+
+In a vertical borehole DAS array, **adjacent channel pairs** serve as two-station pairs: upgoing P-waves from the same earthquake pass through each channel sequentially. The amplitude spectral ratio between two channels directly encodes the attenuation of the segment between them, yielding a **Q profile with depth resolution equal to the channel spacing**.
+
+This is essentially an ultra-dense VSP spectral ratio method — traditional VSP receiver spacing is tens of meters, whereas DAS channel spacing can be as small as 1 m.
+
+### Required DAS Instrument-Response Corrections
+
+Unlike a conventional geophone, DAS introduces frequency- and angle-dependent modifications to the recorded spectrum. The displacement spectral ratio between channel depths $z_1$ and $z_2$ ($z_2 > z_1$) is:
+
+$$
+\frac{A_\text{DAS}(f, z_2)}{A_\text{DAS}(f, z_1)}
+= \underbrace{\frac{v(z_2)\cos^2\theta(z_2)}{v(z_1)\cos^2\theta(z_1)}}_{\text{flat-response ratio}}
+\cdot \underbrace{\frac{\mathrm{sinc}(\pi fL/v(z_2)\cos\theta(z_2))}{\mathrm{sinc}(\pi fL/v(z_1)\cos\theta(z_1))}}_{\text{gauge-length ratio}}
+\cdot e^{-\pi f \Delta t^*}
+$$
+
+After correcting for these factors, the log spectral ratio is again linear in $f$ with slope $-\pi\Delta t^*$.
+
+**Correction workflow:**
+
+| Step | Operation | DAS-specific factor |
+|------|-----------|-------------------|
+| 1 | Convert to displacement (divide by $(2\pi f)^m$) | Integration order $m$ |
+| 2 | Flat-response correction: divide by $v\cos^2\theta$ | Directional sensitivity |
+| 3 | Gauge-length correction: divide by sinc$(πfL/v\cosθ)$ | Spatial averaging filter |
+| 4 | κ correction: divide by $e^{-\pi f\kappa}$ (if known) | Near-surface attenuation |
+| 5 | Compute log spectral ratio per channel pair, linear regression → $\Delta t^*$ | — |
+
+### Incident Angle Requirement
+
+The incident angle $\theta$ (angle between the seismic ray and the borehole/fiber axis) plays a critical role in the reliability of the DAS instrument-response correction.
+
+**Why large incident angles cause problems:**
+
+1. **Flat-response correction amplifies noise**: The correction factor is $1/\cos^2\theta$; as $\theta \to 90°$ this diverges, amplifying both signal and noise without bound.
+
+2. **Usable frequency band narrows**: The gauge-length notch frequency is $f_1 = v\cos\theta/L$, which moves to lower frequencies as $\theta$ increases, shrinking the reliable fitting band.
+
+3. **SNR degrades**: The DAS sensitivity itself is $v\cos^2\theta$, which approaches zero as $\theta \to 90°$.
+
+**Practical threshold** (Chang et al. 2026):
+
+$$
+\boxed{\theta < 45°}
+$$
+
+Channels violating this criterion are excluded from spectral fitting to prevent correction-induced biases.
+
+!!! note "Geometric Interpretation"
+    For a DAS channel at depth $z_\text{ch}$ and an earthquake at horizontal distance $r_H$ and depth $z_\text{src}$ ($z_\text{src} > z_\text{ch}$):
+    $$\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)$$
+    The criterion $\theta < 45°$ requires $r_H < z_\text{src} - z_\text{ch}$: the **horizontal offset must be less than the vertical separation between channel and event**. Q inversion therefore preferentially uses **events located nearly below the well bottom**, which naturally satisfy the angle criterion for all channels along the cable.
+
+!!! warning "Events with Large Lateral Offsets"
+    When earthquakes have large horizontal distances ($r_H \gg \Delta z$), many channels will exceed the 45° threshold. In practice, only the deepest channels (where $z_\text{src} - z_\text{ch}$ is largest) may remain usable. This must be checked channel by channel.
+
+### High-Resolution Q Profile
+
+By treating every adjacent channel pair as an independent two-station measurement, DAS provides a **continuous Q(z) profile** at centimeter-to-meter vertical resolution — orders of magnitude finer than what is achievable with conventional VSP arrays.
+
+Key findings from Chang et al. (2026) at the Cape Modern EGS (Utah, 2.5 km deep vertical well):
+
+- **Shallow sediments**: low velocity, low density, low Q (strong attenuation)
+- **Granite basement**: abrupt velocity increase; Q increases more gradually with depth
+- **Integrated κ** (from 2500 m depth to surface) consistent with independent estimates from other regions
+
+### Connection to Source Parameter Inversion
+
+The Q(z) model obtained via DAS channel-wise spectral ratios is then used to constrain **single-spectrum source parameter fitting** (Brune model) for each event:
+
+$$
+\Omega(f) = \Omega_0 \cdot e^{-\pi f t^*} \cdot e^{-\pi f \kappa}
+\cdot \underbrace{v\cos^2\theta \cdot \mathrm{sinc}(\pi fL/v\cos\theta)}_{\text{DAS instrument response}}
+\cdot \frac{1}{1 + (f/f_c)^2}
+$$
+
+Fitting $\Omega_0$ and $f_c$ yields seismic moment and corner frequency, from which source radius $a = k\beta/f_c$ and stress drop $\Delta\sigma = \frac{7}{16}M_0/a^3$ follow.
 
 ---
 
@@ -336,3 +420,5 @@ Setting $u = f^{1-\eta}$ restores linearity: $L$ is linear in $u$. In practice, 
 - Tonn, R. (1991). The determination of the seismic quality factor Q from VSP data: A comparison of different computational methods. *Geophysical Prospecting*, 39(1), 1–27.
 - Toverud, T., & Ursin, B. (2005). Comparison of seismic attenuation models using zero-offset vertical seismic profiling (VSP) data. *Geophysics*, 70(2), F17–F25.
 - Xie, J. (2002). Seismic attenuation: Measurement and uncertainty. *Pure and Applied Geophysics*, 159(7–8), 1823–1849.
+- Bakku, S. K. (2015). *Fracture characterization from seismic measurements in a borehole* (Doctoral dissertation, Massachusetts Institute of Technology).
+- Chang, H., Nakata, N., Abercrombie, R. E., Dadi, S., & Titov, A. (2026, in review). Using borehole Distributed Acoustic Sensing to investigate microearthquake source parameter variability in an enhanced geothermal system. *ESSOAr preprint*. https://doi.org/10.22541/essoar.15002292/v1
