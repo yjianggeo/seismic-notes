@@ -422,7 +422,7 @@ t        = np.arange(-T_half, T_half + dt, dt)
 eps      = (1 - 2*(np.pi*fp*t)**2) * np.exp(-(np.pi*fp*t)**2)
 
 GL_ratios = np.linspace(0.01, 2.6, 1000)
-DL        = GL_ratios * lambda_s * np.exp(-(np.pi*k_r * GL_ratios*lambda_s/2)**2)
+DL        = GL_ratios * lambda_s * np.exp(-(k_r * GL_ratios*lambda_s/2)**2)  # 无额外 π
 DL_norm   = DL / DL.max()
 
 fig, axes = plt.subplots(1, 2, figsize=(13, 5))
