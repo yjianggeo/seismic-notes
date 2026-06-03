@@ -972,6 +972,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#combined-instrument-response-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Combined Instrument-Response Model
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Combined Instrument-Response Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incident-angle-constraint-on-response-corrections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Incident Angle Constraint on Response Corrections
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python-example" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1397,6 +1425,104 @@ If apparent velocities range from 2900 to 5900 m/s over the full well, <strong>a
 <p><img alt="Optimum gauge length" src="../assets/images/das_gauge_opt.png" />
 <em>Figure 3: Left — normalised <span class="arithmatex">\(\Delta L\)</span> (SNR proxy) vs <span class="arithmatex">\(GL/\lambda_s\)</span>; the green region marks SNR &gt; 90 % of the maximum, and the red region marks the wavelet-distortion zone. Right — normalised DAS wavelet output for five GL/<span class="arithmatex">\(\lambda_s\)</span> ratios (<span class="arithmatex">\(f_p\)</span> = 40 Hz, <span class="arithmatex">\(v\)</span> = 1000 m/s, <span class="arithmatex">\(\lambda_s \approx\)</span> 19.5 m). After Dean et al. (2017).</em></p>
 <hr />
+<h2 id="combined-instrument-response-model">Combined Instrument-Response Model<a class="headerlink" href="#combined-instrument-response-model" title="Permanent link">&para;</a></h2>
+<p>In practice, the DAS-recorded displacement spectrum is the product of <strong>source spectrum, path attenuation, site response, and instrument response</strong>. Combining all effects — directional sensitivity (<span class="arithmatex">\(\cos^2\theta\)</span>), gauge-length sinc filter, κ operator, and t* path attenuation — the complete forward model for a P-wave DAS displacement spectrum is (Bakku 2015; Chang et al. 2026):</p>
+<div class="arithmatex">\[
+\boxed{
+d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
+\cdot \underbrace{v\cos^2\theta}_{\text{flat response}}
+\cdot \underbrace{\mathrm{sinc}\!\left(\frac{\pi f L}{v\cos\theta}\right)}_{\text{gauge length}}
+\cdot e^{-\pi f t^*}
+}
+\]</div>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Formula</th>
+<th>Physical meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\((2\pi f)^m\)</span></td>
+<td><span class="arithmatex">\(m = 0, 1, 2\)</span> for displacement, velocity, acceleration</td>
+<td>DAS output integration order</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Omega_0\)</span></td>
+<td>Low-frequency plateau</td>
+<td>Source spectrum (seismic moment)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(e^{-\pi f\kappa}\)</span></td>
+<td><span class="arithmatex">\(\kappa = \int_\text{path} dt/Q_s\)</span></td>
+<td>Near-surface integrated kappa</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(v\cos^2\theta\)</span></td>
+<td>Directional factor</td>
+<td>P-wave angular sensitivity along fiber</td>
+</tr>
+<tr>
+<td>sinc<span class="arithmatex">\((\pi fL/v\cos\theta)\)</span></td>
+<td>Gauge-length transfer function</td>
+<td>Spatial averaging low-pass filter</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(e^{-\pi f t^*}\)</span></td>
+<td><span class="arithmatex">\(t^* = \int_\text{path} dt/Q\)</span></td>
+<td>Anelastic path attenuation</td>
+</tr>
+</tbody>
+</table>
+<p>For S-waves: replace <span class="arithmatex">\(v\cos^2\theta\)</span> with <span class="arithmatex">\(v\cos\theta\sin\theta\)</span>; the sinc argument is unchanged.</p>
+<div class="admonition note">
+<p class="admonition-title">Depth Differential in Borehole DAS</p>
+<p>In channel-wise borehole analysis, the differential travel time between two channels separated by depth <span class="arithmatex">\(\mathrm{d}z\)</span> is:
+$<span class="arithmatex">\(\mathrm{d}t_m = \frac{\mathrm{d}z}{v\cos\theta}\)</span>$
+This relates depth increment to travel-time increment and depends on the incident angle.</p>
+</div>
+<h3 id="incident-angle-constraint-on-response-corrections">Incident Angle Constraint on Response Corrections<a class="headerlink" href="#incident-angle-constraint-on-response-corrections" title="Permanent link">&para;</a></h3>
+<p>Before using DAS for Q inversion or source parameter estimation, the instrument response (<span class="arithmatex">\(v\cos^2\theta \cdot \mathrm{sinc}(\cdots)\)</span>) must be removed. This correction becomes unreliable at large incident angles:</p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Small angle <span class="arithmatex">\(\theta \ll 45°\)</span></th>
+<th>Large angle <span class="arithmatex">\(\theta \to 90°\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flat-response divisor <span class="arithmatex">\(1/\cos^2\theta\)</span></td>
+<td>Near 1, stable</td>
+<td>Diverges, amplifies noise</td>
+</tr>
+<tr>
+<td>Gauge-length notch <span class="arithmatex">\(v\cos\theta/L\)</span></td>
+<td>Near <span class="arithmatex">\(v/L\)</span>, high band preserved</td>
+<td>Moves to low frequencies, narrows usable band</td>
+</tr>
+<tr>
+<td>Signal sensitivity <span class="arithmatex">\(v\cos^2\theta\)</span></td>
+<td>Near <span class="arithmatex">\(v\)</span>, good SNR</td>
+<td>Near 0, very poor SNR</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Practical threshold</strong> (Chang et al. 2026):</p>
+<div class="arithmatex">\[
+\boxed{\theta &lt; 45°}
+\]</div>
+<p>Channels violating this criterion are excluded from spectral fitting.</p>
+<div class="admonition tip">
+<p class="admonition-title">Geometry for Vertical Wells</p>
+<p>For a DAS channel at depth <span class="arithmatex">\(z_\text{ch}\)</span> and an event at horizontal offset <span class="arithmatex">\(r_H\)</span>, depth <span class="arithmatex">\(z_\text{src}\)</span> (<span class="arithmatex">\(z_\text{src} &gt; z_\text{ch}\)</span>):
+$<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)\)</span>$
+The condition <span class="arithmatex">\(\theta &lt; 45°\)</span> requires <span class="arithmatex">\(r_H &lt; z_\text{src} - z_\text{ch}\)</span>: <strong>horizontal offset less than the vertical separation</strong>. Q inversion therefore works best with events located nearly below the well bottom.</p>
+</div>
+<hr />
 <h2 id="python-example">Python Example<a class="headerlink" href="#python-example" title="Permanent link">&para;</a></h2>
 <p>The code below reproduces both figures: the directional sensitivity polar plot and the gauge-length transfer function.</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1464,6 +1590,8 @@ If apparent velocities range from 2900 to 5900 m/s over the full well, <strong>a
 <li>Daley, T. M., Miller, D. E., Dodds, K., Cook, P., &amp; Freifeld, B. M. (2016). Field testing of modular borehole monitoring with simultaneous distributed acoustic sensing and geophone vertical seismic profiles at Citronelle, Alabama. <em>Geophysical Prospecting</em>, 64(5), 1318–1334.</li>
 <li>Zhan, Z. (2020). Distributed acoustic sensing turns fiber-optic cables into seismic stations. <em>Bulletin of the Seismological Society of America</em>, 110(3), 975–985.</li>
 <li>Dean, T., Cuny, T., &amp; Hartog, A. H. (2017). The effect of gauge length on axially incident P-waves measured using fibre optic distributed vibration sensing. <em>Geophysical Prospecting</em>, 65(1), 184–193. https://doi.org/10.1111/1365-2478.12419</li>
+<li>Bakku, S. K. (2015). <em>Fracture characterization from seismic measurements in a borehole</em> (Doctoral dissertation, Massachusetts Institute of Technology).</li>
+<li>Chang, H., Nakata, N., Abercrombie, R. E., Dadi, S., &amp; Titov, A. (2026, in review). Using borehole Distributed Acoustic Sensing to investigate microearthquake source parameter variability in an enhanced geothermal system. <em>ESSOAr preprint</em>. https://doi.org/10.22541/essoar.15002292/v1</li>
 </ul>
 
 

@@ -984,6 +984,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        综合仪器响应模型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="综合仪器响应模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        入射角对仪器响应校正的影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -995,7 +1023,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
+  <a href="#_22" class="md-nav__link">
     <span class="md-ellipsis">
       
         参考文献
@@ -1331,6 +1359,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        综合仪器响应模型
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="综合仪器响应模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        入射角对仪器响应校正的影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1342,7 +1398,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
+  <a href="#_22" class="md-nav__link">
     <span class="md-ellipsis">
       
         参考文献
@@ -1767,6 +1823,104 @@ $<span class="arithmatex">\(L_\mathrm{opt} \approx \frac{0.5 \times 3000}{50} = 
 <p><img alt="最优标距分析" src="../assets/images/das_gauge_opt.png" />
 <em>图 3：左图——归一化 <span class="arithmatex">\(\Delta L\)</span>（SNR 代理）随 <span class="arithmatex">\(GL/\lambda_s\)</span> 的变化，绿色区域为 SNR &gt; 90% 最大值的区间，红色阴影区为波形畸变区；右图——不同 <span class="arithmatex">\(GL/\lambda_s\)</span> 比值下 DAS 输出的归一化子波形状（<span class="arithmatex">\(f_p\)</span> = 40 Hz，<span class="arithmatex">\(v\)</span> = 1000 m/s，<span class="arithmatex">\(\lambda_s \approx 19.5\)</span> m）。（基于 Dean et al. 2016）</em></p>
 <hr />
+<h2 id="_20">综合仪器响应模型<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<p>实际地震学应用中，DAS 记录到的位移谱是<strong>震源谱、路径衰减、场地响应、仪器响应</strong>四者的乘积。将前文各效应（方向性 <span class="arithmatex">\(\cos^2\theta\)</span>、标距 sinc 滤波、κ 衰减、t* 路径衰减）整合后，P 波 DAS 位移谱的完整前向模型为（Bakku 2015；Chang et al. 2026）：</p>
+<div class="arithmatex">\[
+\boxed{
+d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
+\cdot \underbrace{v\cos^2\theta}_{\text{平坦响应}}
+\cdot \underbrace{\mathrm{sinc}\!\left(\frac{\pi f L}{v\cos\theta}\right)}_{\text{标距效应}}
+\cdot e^{-\pi f t^*}
+}
+\]</div>
+<table>
+<thead>
+<tr>
+<th>因子</th>
+<th>公式</th>
+<th>物理含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\((2\pi f)^m\)</span></td>
+<td><span class="arithmatex">\(m=0,1,2\)</span> 分别对应位移、速度、加速度（应变率）</td>
+<td>DAS 输出的积分阶次</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\Omega_0\)</span></td>
+<td>低频平台</td>
+<td>震源谱（地震矩）</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(e^{-\pi f\kappa}\)</span></td>
+<td><span class="arithmatex">\(\kappa = \int_\text{path} dt/Q_s\)</span></td>
+<td>近地表积分 kappa 衰减</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(v\cos^2\theta\)</span></td>
+<td>角度响应</td>
+<td>P 波对光纤轴的方向性灵敏度</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathrm{sinc}(\pi fL / v\cos\theta)\)</span></td>
+<td>标距传递函数</td>
+<td>空间积分低通滤波</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(e^{-\pi f t^*}\)</span></td>
+<td><span class="arithmatex">\(t^* = \int_\text{path} dt/Q\)</span></td>
+<td>路径非弹性衰减</td>
+</tr>
+</tbody>
+</table>
+<p>S 波对应：用 <span class="arithmatex">\(v\cos\theta\sin\theta\)</span> 替换 <span class="arithmatex">\(v\cos^2\theta\)</span>，sinc 参数中 <span class="arithmatex">\(\cos\theta\)</span> 保持不变。</p>
+<div class="admonition note">
+<p class="admonition-title">深度微分项</p>
+<p>在井中 DAS 的逐道分析中，两相邻道之间的时间差（用于谱比法）为：
+$<span class="arithmatex">\(\mathrm{d}t_m = \frac{\mathrm{d}z}{v\cos\theta}\)</span>$
+其中 <span class="arithmatex">\(\mathrm{d}z\)</span> 是道间深度差。这一项将<strong>深度差转化为传播时间差</strong>，也是入射角的函数。</p>
+</div>
+<h3 id="_21">入射角对仪器响应校正的影响<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<p>使用 DAS 进行震源参数反演或 Q 值反演时，需要先<strong>从观测谱中去除仪器响应</strong>，即除以 <span class="arithmatex">\(v\cos^2\theta \cdot \mathrm{sinc}(\cdots)\)</span>。这一校正在入射角较大时会引入严重误差：</p>
+<table>
+<thead>
+<tr>
+<th>影响因素</th>
+<th>小角度 <span class="arithmatex">\(\theta \ll 45°\)</span></th>
+<th>大角度 <span class="arithmatex">\(\theta \to 90°\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平坦响应校正系数 <span class="arithmatex">\(1/\cos^2\theta\)</span></td>
+<td>接近 1，稳定</td>
+<td>趋于 <span class="arithmatex">\(\infty\)</span>，放大噪声</td>
+</tr>
+<tr>
+<td>sinc 陷波频率 <span class="arithmatex">\(v\cos\theta/L\)</span></td>
+<td>接近 <span class="arithmatex">\(v/L\)</span>，高频段保留好</td>
+<td>向低频移动，有效带宽收窄</td>
+</tr>
+<tr>
+<td>灵敏度 <span class="arithmatex">\(v\cos^2\theta\)</span></td>
+<td>接近 <span class="arithmatex">\(v\)</span>，信噪比高</td>
+<td>趋于 0，信噪比极低</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实践中的入射角阈值</strong>：Chang et al.（2026）在使用垂直井 DAS 反演浅层 Q 和微地震源参数时，将入射角限制为：</p>
+<div class="arithmatex">\[
+\boxed{\theta &lt; 45°}
+\]</div>
+<p>超过此阈值的台道（channel）在谱拟合时被排除，以防止响应校正误差主导结果。</p>
+<div class="admonition tip">
+<p class="admonition-title">垂直井的几何约束</p>
+<p>对于深度为 <span class="arithmatex">\(z_\text{ch}\)</span> 的台道和位于震源 <span class="arithmatex">\((r_H,\, z_\text{src})\)</span> 的事件（<span class="arithmatex">\(r_H\)</span> 为水平距离，<span class="arithmatex">\(z_\text{src} &gt; z_\text{ch}\)</span> 即事件在台道下方），入射角为：
+$<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)\)</span>$
+<span class="arithmatex">\(\theta &lt; 45°\)</span> 要求 <span class="arithmatex">\(r_H &lt; z_\text{src} - z_\text{ch}\)</span>，即<strong>事件的水平距离小于事件与台道的垂直距离差</strong>。因此谱比法 Q 反演优先使用<strong>井底正下方的事件</strong>。</p>
+</div>
+<hr />
 <h2 id="python">Python 示例<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
 <p>下面的代码生成上文中的两幅图：方向性响应极坐标图与标距效应传递函数图。</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1889,7 +2043,7 @@ $<span class="arithmatex">\(L_\mathrm{opt} \approx \frac{0.5 \times 3000}{50} = 
 </span><span id="__span-0-118"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
-<h2 id="_20">参考文献<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h2>
+<h2 id="_22">参考文献<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Lindsey, N. J., Martin, E. R., Dreger, D. S., Freifeld, B., White, S., Monga, S. K., … &amp; Ajo-Franklin, J. B. (2017). Fiber-optic network observations of earthquake wavefields. <em>Geophysical Research Letters</em>, 44(23), 11–792.</li>
 <li>Mateeva, A., Lopez, J., Potters, H., Mestayer, J., Cox, B., Kiyashchenko, D., … &amp; Berlang, W. (2014). Distributed acoustic sensing for reservoir monitoring with vertical seismic profiling. <em>Geophysical Prospecting</em>, 62(4), 679–692.</li>
@@ -1898,6 +2052,8 @@ $<span class="arithmatex">\(L_\mathrm{opt} \approx \frac{0.5 \times 3000}{50} = 
 <li>Daley, T. M., Miller, D. E., Dodds, K., Cook, P., &amp; Freifeld, B. M. (2016). Field testing of modular borehole monitoring with simultaneous distributed acoustic sensing and geophone vertical seismic profiles at Citronelle, Alabama. <em>Geophysical Prospecting</em>, 64(5), 1318–1334.</li>
 <li>Zhan, Z. (2020). Distributed acoustic sensing turns fiber-optic cables into seismic stations. <em>Bulletin of the Seismological Society of America</em>, 110(3), 975–985.</li>
 <li>Dean, T., Cuny, T., &amp; Hartog, A. H. (2017). The effect of gauge length on axially incident P-waves measured using fibre optic distributed vibration sensing. <em>Geophysical Prospecting</em>, 65(1), 184–193. https://doi.org/10.1111/1365-2478.12419</li>
+<li>Bakku, S. K. (2015). <em>Fracture characterization from seismic measurements in a borehole</em> (Doctoral dissertation, Massachusetts Institute of Technology).</li>
+<li>Chang, H., Nakata, N., Abercrombie, R. E., Dadi, S., &amp; Titov, A. (2026, in review). Using borehole Distributed Acoustic Sensing to investigate microearthquake source parameter variability in an enhanced geothermal system. <em>ESSOAr preprint</em>. https://doi.org/10.22541/essoar.15002292/v1</li>
 </ul>
 
 

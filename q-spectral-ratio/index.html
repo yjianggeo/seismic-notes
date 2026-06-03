@@ -826,7 +826,79 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#das-q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用井下 DAS 进行逐道谱比 Q 反演
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用井下 DAS 进行逐道谱比 Q 反演">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#das" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAS 谱比的修正
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        入射角的要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        高分辨率 Q 剖面
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与震源参数反演的联系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       
         参考文献
@@ -1188,7 +1260,79 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#das-q" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        使用井下 DAS 进行逐道谱比 Q 反演
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="使用井下 DAS 进行逐道谱比 Q 反演">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        原理
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#das" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        DAS 谱比的修正
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        入射角的要求
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#q_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        高分辨率 Q 剖面
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与震源参数反演的联系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
       
         参考文献
@@ -1581,16 +1725,123 @@ L(f) = \ln\!\left(\frac{r_1}{r_2}\right) - \frac{\pi\,\Delta t}{Q_0}\, f^{1-\eta
 <td>样本量大，统计稳健</td>
 <td>分离固有衰减与散射衰减较复杂</td>
 </tr>
+<tr>
+<td><strong>DAS 逐道谱比法</strong></td>
+<td>垂直井 DAS，同一事件相邻道</td>
+<td>极高空间分辨率；自然消去震源谱</td>
+<td>需校正 DAS 仪器响应（角度、标距）；入射角限制</td>
+</tr>
 </tbody>
 </table>
 <hr />
-<h2 id="_13">参考文献<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<h2 id="das-q">使用井下 DAS 进行逐道谱比 Q 反演<a class="headerlink" href="#das-q" title="Permanent link">&para;</a></h2>
+<h3 id="_13">原理<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>将垂直井中 DAS 的<strong>相邻台道</strong>视为"双台站对"：同一地震事件的 P 波沿井轴（光纤方向）向上传播，相邻道之间的振幅谱比直接反映该深度段的衰减，从而得到<strong>深度分辨率与道间距相当</strong>的高分辨率 Q 剖面。</p>
+<p>这本质上是 VSP 谱比法的极端密集化版本——传统 VSP 台站间距为数十米，而 DAS 道间距可低至 1 m。</p>
+<h3 id="das">DAS 谱比的修正<a class="headerlink" href="#das" title="Permanent link">&para;</a></h3>
+<p>与传统检波器不同，DAS 对振幅谱有额外的频率和角度依赖性。两台道（深度 <span class="arithmatex">\(z_1\)</span>、<span class="arithmatex">\(z_2\)</span>，<span class="arithmatex">\(z_2 &gt; z_1\)</span>）的位移谱比为：</p>
+<div class="arithmatex">\[
+\frac{A_\text{DAS}(f, z_2)}{A_\text{DAS}(f, z_1)}
+= \underbrace{\frac{v(z_2)\cos^2\theta(z_2)}{v(z_1)\cos^2\theta(z_1)}}_{\text{平坦响应比}}
+\cdot \underbrace{\frac{\mathrm{sinc}(\pi fL/v(z_2)\cos\theta(z_2))}{\mathrm{sinc}(\pi fL/v(z_1)\cos\theta(z_1))}}_{\text{标距滤波比}}
+\cdot e^{-\pi f \Delta t^*}
+\]</div>
+<p>对数线性化后，斜率项与传统谱比法相同：</p>
+<div class="arithmatex">\[
+\ln\!\left[\frac{A_\text{DAS}(f,z_2)}{A_\text{DAS}(f,z_1)}\right]_{\text{校正后}} = \mathrm{const} - \pi\,\Delta t^* \cdot f
+\]</div>
+<p><strong>校正步骤</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>操作</th>
+<th>涉及的 DAS 特性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>去仪器响应 → 位移谱（除以 <span class="arithmatex">\((2\pi f)^m\)</span>）</td>
+<td>积分阶次 <span class="arithmatex">\(m\)</span></td>
+</tr>
+<tr>
+<td>2</td>
+<td>平坦响应校正：除以 <span class="arithmatex">\(v\cos^2\theta\)</span></td>
+<td>角度响应</td>
+</tr>
+<tr>
+<td>3</td>
+<td>标距校正：除以 sinc<span class="arithmatex">\((πfL/v\cos\theta)\)</span></td>
+<td>标距效应</td>
+</tr>
+<tr>
+<td>4</td>
+<td>κ 校正：除以 <span class="arithmatex">\(e^{-\pi f\kappa}\)</span>（若已知场地 κ）</td>
+<td>近地表衰减</td>
+</tr>
+<tr>
+<td>5</td>
+<td>计算逐对台道对数谱比，线性回归得 <span class="arithmatex">\(\Delta t^*\)</span></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_14">入射角的要求<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>使用垂直井 DAS 进行 Q 反演时，<strong>入射角 <span class="arithmatex">\(\theta\)</span></strong>（射线与光纤轴/井轴的夹角）对结果的影响至关重要。</p>
+<p><strong>为什么入射角不能太大？</strong></p>
+<ol>
+<li>
+<p><strong>平坦响应校正放大噪声</strong>：校正因子为 <span class="arithmatex">\(1/\cos^2\theta\)</span>，在 <span class="arithmatex">\(\theta \to 90°\)</span> 时趋于无穷大，将噪声无限放大。</p>
+</li>
+<li>
+<p><strong>有效频带收窄</strong>：标距陷波频率为 <span class="arithmatex">\(f_1 = v\cos\theta/L\)</span>，入射角增大时陷波向低频移动，可用频段随之收窄，削减了谱比法的可靠拟合范围。</p>
+</li>
+<li>
+<p><strong>灵敏度下降</strong>：信号幅度本身已按 <span class="arithmatex">\(\cos^2\theta\)</span> 衰减，信噪比降低。</p>
+</li>
+</ol>
+<p><strong>实践阈值</strong>（Chang et al. 2026）：</p>
+<div class="arithmatex">\[
+\boxed{\theta &lt; 45°}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">几何解释</p>
+<p>对于垂直井中深度为 <span class="arithmatex">\(z_\text{ch}\)</span> 的台道，以及水平距离 <span class="arithmatex">\(r_H\)</span>、深度 <span class="arithmatex">\(z_\text{src}\)</span>（<span class="arithmatex">\(z_\text{src} &gt; z_\text{ch}\)</span>）处的微地震：
+$<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)\)</span>$
+<span class="arithmatex">\(\theta &lt; 45°\)</span> 等价于 <span class="arithmatex">\(r_H &lt; z_\text{src} - z_\text{ch}\)</span>，即<strong>事件的水平偏移小于事件到该台道的深度差</strong>。</p>
+<p>因此，Q 反演最适合使用<strong>位于井底正下方</strong>的事件：这类事件对所有台道的入射角均较小，平坦响应校正稳定，有效频带宽。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">大角度事件的处理</p>
+<p>若研究区内事件的水平距离较大（<span class="arithmatex">\(r_H \gg \Delta z\)</span>），则 <span class="arithmatex">\(\theta &gt; 45°\)</span> 的台道应在谱拟合中<strong>剔除</strong>，只使用浅层台道（<span class="arithmatex">\(z_\text{src} - z_\text{ch}\)</span> 大的台道）中满足角度要求的那些。</p>
+</div>
+<h3 id="q_5">高分辨率 Q 剖面<a class="headerlink" href="#q_5" title="Permanent link">&para;</a></h3>
+<p>利用 DAS 的极高道密度，可在全井范围内按每个相邻台道对独立估计 <span class="arithmatex">\(\Delta t^*\)</span>，然后通过反演得到<strong>深度分辨率 ~ 道间距</strong>的 <span class="arithmatex">\(Q(z)\)</span> 剖面。</p>
+<p>Chang et al.（2026）在犹他州 Cape Modern 增强型地热系统（EGS）的 2.5 km 深垂直井中获得了迄今最高分辨率的地震观测 Q 剖面，主要发现：</p>
+<ul>
+<li><strong>浅层沉积层</strong>：速度低、密度低、Q 低（强衰减）</li>
+<li><strong>花岗岩基底</strong>：速度急剧增大，Q 随深度较缓慢增大</li>
+<li><strong>累积 κ 值</strong>（从 2500 m 深到地表）与其他地区的独立研究一致</li>
+</ul>
+<h3 id="_15">与震源参数反演的联系<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<p>在获得 Q 剖面之后，可将 Q（即 t*）代入<strong>单谱法</strong>，对逐道逐事件的位移谱拟合 Brune 模型，估计震源参数：</p>
+<div class="arithmatex">\[
+\Omega(f) = \Omega_0 \cdot e^{-\pi f t^*} \cdot e^{-\pi f \kappa}
+\cdot \underbrace{v\cos^2\theta \cdot \mathrm{sinc}(\pi fL/v\cos\theta)}_{\text{DAS 仪器响应}}
+\cdot \frac{1}{1 + (f/f_c)^2}
+\]</div>
+<p>拟合得到 <span class="arithmatex">\(\Omega_0\)</span>（对应地震矩）和 <span class="arithmatex">\(f_c\)</span>（拐角频率），进而计算应力降 <span class="arithmatex">\(\Delta\sigma = \frac{7}{16} M_0 / a^3\)</span>。</p>
+<hr />
+<h2 id="_16">参考文献<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Aki, K., &amp; Richards, P. G. (2002). <em>Quantitative Seismology</em> (2<sup>nd</sup> ed.). University Science Books.</li>
 <li>Anderson, J. G., &amp; Hough, S. E. (1984). A model for the shape of the Fourier amplitude spectrum of acceleration at high frequencies. <em>Bulletin of the Seismological Society of America</em>, 74(5), 1969–1993.</li>
 <li>Tonn, R. (1991). The determination of the seismic quality factor Q from VSP data: A comparison of different computational methods. <em>Geophysical Prospecting</em>, 39(1), 1–27.</li>
 <li>Toverud, T., &amp; Ursin, B. (2005). Comparison of seismic attenuation models using zero-offset vertical seismic profiling (VSP) data. <em>Geophysics</em>, 70(2), F17–F25.</li>
 <li>Xie, J. (2002). Seismic attenuation: Measurement and uncertainty. <em>Pure and Applied Geophysics</em>, 159(7–8), 1823–1849.</li>
+<li>Bakku, S. K. (2015). <em>Fracture characterization from seismic measurements in a borehole</em> (Doctoral dissertation, Massachusetts Institute of Technology).</li>
+<li>Chang, H., Nakata, N., Abercrombie, R. E., Dadi, S., &amp; Titov, A. (2026, in review). Using borehole Distributed Acoustic Sensing to investigate microearthquake source parameter variability in an enhanced geothermal system. <em>ESSOAr preprint</em>. https://doi.org/10.22541/essoar.15002292/v1</li>
 </ul>
 
 
