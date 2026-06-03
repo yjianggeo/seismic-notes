@@ -955,6 +955,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#optimum-gauge-length-snrresolution-trade-off" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Optimum Gauge Length: SNR–Resolution Trade-off
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1314,6 +1325,77 @@ f_n = \frac{n \cdot c}{L\cos\theta} = \frac{n \cdot c_\mathrm{app}}{L}
 <p>The angular dependence: larger <span class="arithmatex">\(\theta\)</span> (wave more perpendicular to fiber) → smaller <span class="arithmatex">\(k_x\)</span> → higher notch frequency (better high-frequency preservation), but weaker amplitude (smaller <span class="arithmatex">\(\cos^2\theta\)</span> factor).</p>
 <p><img alt="Gauge length effect" src="../assets/images/das_gauge_length.png" />
 <em>Figure 2: DAS transfer function <span class="arithmatex">\(|H(f)|\)</span> for different gauge lengths (<span class="arithmatex">\(\theta = 0°\)</span>, <span class="arithmatex">\(c = 3000\)</span> m/s). Larger gauge lengths shift the first notch to lower frequencies.</em></p>
+<h3 id="optimum-gauge-length-snrresolution-trade-off">Optimum Gauge Length: SNR–Resolution Trade-off<a class="headerlink" href="#optimum-gauge-length-snrresolution-trade-off" title="Permanent link">&para;</a></h3>
+<p>The analysis above reveals two opposing effects: <strong>too short a gauge length → poor SNR; too long a gauge length → reduced resolution and wavelet distortion</strong>. Dean, Cuny &amp; Hartog (2017) provide a quantitative treatment for axially incident P-waves (<span class="arithmatex">\(\theta = 0°\)</span>, the VSP geometry).</p>
+<h4 id="snr-analysis">SNR Analysis<a class="headerlink" href="#snr-analysis" title="Permanent link">&para;</a></h4>
+<p>For a P-wave propagating along the fiber axis, the strain waveform is a spatial <strong>Ricker wavelet</strong>:</p>
+<div class="arithmatex">\[
+\varepsilon(x) = \left(1 - 2\pi^2 k^2 x^2\right) e^{-\pi^2 k^2 x^2}, \quad k = \frac{\pi f_p}{v}
+\]</div>
+<p>The total fiber length change <span class="arithmatex">\(\Delta L\)</span> measured by DAS is the integral of strain over the gauge length:</p>
+<div class="arithmatex">\[
+\Delta L = \int_{-L/2}^{L/2} \varepsilon(x)\,\mathrm{d}x = L\, e^{-\pi^2 k^2 (L/2)^2}
+\]</div>
+<p>The phase measurement error <span class="arithmatex">\(E(\Delta L)\)</span> is independent of gauge length (determined by laser coherence), so <strong>SNR ∝ <span class="arithmatex">\(\Delta L\)</span></strong>. Maximizing <span class="arithmatex">\(\Delta L\)</span> with respect to <span class="arithmatex">\(L\)</span>:</p>
+<div class="arithmatex">\[
+\boxed{L_\mathrm{SNR} = \frac{\lambda_s}{\sqrt{3}} \approx 0.577\,\lambda_s}
+\]</div>
+<p>where the spatial wavelength is <span class="arithmatex">\(\lambda_s = v\lambda_t = v\sqrt{6}/(\pi f_p)\)</span>.</p>
+<h4 id="resolution-analysis-wavelet-distortion-modes">Resolution Analysis — Wavelet Distortion Modes<a class="headerlink" href="#resolution-analysis-wavelet-distortion-modes" title="Permanent link">&para;</a></h4>
+<p>The gauge-length integration acts as a <strong>box-car (moving-average) filter</strong>, whose frequency response is the sinc function. As <span class="arithmatex">\(L\)</span> increases, the notch frequency moves into the signal band:</p>
+<table>
+<thead>
+<tr>
+<th>GL/<span class="arithmatex">\(\lambda_s\)</span> ratio</th>
+<th>Wavelet state</th>
+<th>SNR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(&lt; 0.40\)</span></td>
+<td>Normal, high resolution</td>
+<td>Low (weak signal)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(0.40\)</span>–<span class="arithmatex">\(0.54\)</span></td>
+<td><strong>Optimal zone</strong>: high SNR + good resolution</td>
+<td>&gt; 90 % of maximum</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\approx 0.577\)</span></td>
+<td>Peak SNR; slight wavelet broadening</td>
+<td>Maximum</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\approx 1.0\)</span></td>
+<td>Notch enters main bandwidth; <strong>flat-topped</strong> wavelet</td>
+<td>High but poor resolution</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(&gt; 1.0\)</span></td>
+<td><strong>Double-lobed</strong> (two peaks) wavelet; severe distortion</td>
+<td>Avoid</td>
+</tr>
+</tbody>
+</table>
+<h4 id="optimum-gauge-length-formula">Optimum Gauge Length Formula<a class="headerlink" href="#optimum-gauge-length-formula" title="Permanent link">&para;</a></h4>
+<p>Combining SNR &gt; 90% of maximum and wavelength error &lt; 15%, the optimal ratio is <span class="arithmatex">\(GL/\lambda_s \approx 0.40\)</span>–<span class="arithmatex">\(0.54\)</span>; the recommended value is 0.5, giving (Dean et al. 2017, eq. 18):</p>
+<div class="arithmatex">\[
+\boxed{L_\mathrm{opt} = \frac{\mathrm{ratio} \times v}{f_p} \approx \frac{0.5\,v}{f_p} = \frac{\lambda_s}{2}}
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Practical Example</p>
+<p>In a VSP survey, a zone with apparent velocity <span class="arithmatex">\(v = 3000\)</span> m/s and peak frequency <span class="arithmatex">\(f_p = 50\)</span> Hz:
+$<span class="arithmatex">\(L_\mathrm{opt} \approx \frac{0.5 \times 3000}{50} = 30\text{ m}, \quad \lambda_s \approx 46.8\text{ m}\)</span>$
+If apparent velocities range from 2900 to 5900 m/s over the full well, <strong>apply different optimum gauge lengths at different depths</strong> to maintain optimal SNR and resolution throughout.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Hardware Lower Bound</p>
+<p>When <span class="arithmatex">\(L\)</span> approaches the laser pulse width (~8 m), the phase–strain relationship becomes nonlinear and the DAS measurement breaks down. Thus <span class="arithmatex">\(L_\mathrm{min} \approx 8\)</span> m is a hard lower limit regardless of the theoretical optimum.</p>
+</div>
+<p><img alt="Optimum gauge length" src="../assets/images/das_gauge_opt.png" />
+<em>Figure 3: Left — normalised <span class="arithmatex">\(\Delta L\)</span> (SNR proxy) vs <span class="arithmatex">\(GL/\lambda_s\)</span>; the green region marks SNR &gt; 90 % of the maximum, and the red region marks the wavelet-distortion zone. Right — normalised DAS wavelet output for five GL/<span class="arithmatex">\(\lambda_s\)</span> ratios (<span class="arithmatex">\(f_p\)</span> = 40 Hz, <span class="arithmatex">\(v\)</span> = 1000 m/s, <span class="arithmatex">\(\lambda_s \approx\)</span> 19.5 m). After Dean et al. (2017).</em></p>
 <hr />
 <h2 id="python-example">Python Example<a class="headerlink" href="#python-example" title="Permanent link">&para;</a></h2>
 <p>The code below reproduces both figures: the directional sensitivity polar plot and the gauge-length transfer function.</p>
@@ -1381,6 +1463,7 @@ f_n = \frac{n \cdot c}{L\cos\theta} = \frac{n \cdot c_\mathrm{app}}{L}
 <li>Wang, H. F., Zeng, X., Miller, D. E., Fratta, D., Feigl, K. L., Thurber, C. H., &amp; Mellors, R. J. (2018). Ground motion response to an ML 4.3 earthquake using co-located distributed acoustic sensing and seismometers. <em>Geophysical Journal International</em>, 213(3), 2020–2036.</li>
 <li>Daley, T. M., Miller, D. E., Dodds, K., Cook, P., &amp; Freifeld, B. M. (2016). Field testing of modular borehole monitoring with simultaneous distributed acoustic sensing and geophone vertical seismic profiles at Citronelle, Alabama. <em>Geophysical Prospecting</em>, 64(5), 1318–1334.</li>
 <li>Zhan, Z. (2020). Distributed acoustic sensing turns fiber-optic cables into seismic stations. <em>Bulletin of the Seismological Society of America</em>, 110(3), 975–985.</li>
+<li>Dean, T., Cuny, T., &amp; Hartog, A. H. (2017). The effect of gauge length on axially incident P-waves measured using fibre optic distributed vibration sensing. <em>Geophysical Prospecting</em>, 65(1), 184–193. https://doi.org/10.1111/1365-2478.12419</li>
 </ul>
 
 
