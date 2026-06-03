@@ -271,6 +271,74 @@ $$
 ![标距效应](../assets/images/das_gauge_length.png)
 *图 2：不同标距下 DAS 的传递函数（$|H(f)|$）随频率的变化（$\theta = 0°$，$c$ = 3000 m/s）。标距越大，陷波频率越低。*
 
+### 最优标距：信噪比与分辨率的权衡
+
+以上分析表明标距存在两种相互对立的效应：**标距过小 → 信噪比差；标距过大 → 分辨率下降、波形畸变**。Dean, Cuny & Hartog（2016）针对轴向入射 P 波（$\theta = 0°$，VSP 典型场景）给出了定量分析。
+
+#### 信噪比分析
+
+对于沿光纤轴向传播的 P 波，应变波形为**Ricker 子波**（时域）：
+
+$$
+\varepsilon(t) = \left(1 - 2\pi^2 f_p^2 t^2\right) e^{-\pi^2 f_p^2 t^2}
+$$
+
+其空间域形式（波数 $k = \pi f_p / v$）：
+
+$$
+\varepsilon(x) = \left(1 - 2\pi^2 k^2 x^2\right) e^{-\pi^2 k^2 x^2}
+$$
+
+DAS 测量的光纤长度变化 $\Delta L$（即信号强度）为应变在标距上的积分：
+
+$$
+\Delta L = \int_{-L/2}^{L/2} \varepsilon(x)\,\mathrm{d}x = L\, e^{-\pi^2 k^2 (L/2)^2}
+$$
+
+!!! note "公式推导"
+    利用 $\frac{\mathrm{d}}{\mathrm{d}x}\!\left[x\,e^{-\pi^2 k^2 x^2}\right] = \varepsilon(x)$，可解析积分得到上式。
+
+$\Delta L$ 关于 $L$ 的极值：令 $\mathrm{d}(\Delta L)/\mathrm{d}L = 0$，解得：
+
+$$
+\boxed{L_\mathrm{SNR} = \frac{\lambda_s}{\sqrt{3}} \approx 0.577\,\lambda_s}
+$$
+
+其中**空间波长** $\lambda_s = v\lambda_t = v\sqrt{6}/(\pi f_p)$。
+
+DAS 的相位测量误差 $E(\Delta L)$ 与标距无关（由激光相干性决定），因此 **SNR ∝ $\Delta L$**，在 $L = \lambda_s/\sqrt{3}$ 时取得最大值。
+
+#### 分辨率分析（波形畸变）
+
+标距的积分等效于一个**箱型（移动平均）低通滤波器**，其频率响应即为 sinc 函数。随着 $L$ 增大，陷波频率向低频移动，逐步侵入子波的主频带：
+
+| GL/$\lambda_s$ 比值 | 波形状态 | SNR |
+|--------------------|----------|-----|
+| $< 0.40$ | 正常，高分辨率 | 低（信号弱） |
+| $0.40$–$0.54$ | **最优区间**：高 SNR + 良好分辨率 | > 90 % 最大值 |
+| $\approx 0.577$ | SNR 峰值；子波轻微展宽 | 最大 |
+| $\approx 1.0$ | 陷波进入主频带，子波顶部变平（flat-topped） | 较高但分辨率差 |
+| $> 1.0$ | 子波出现**双峰畸变**（double-lobed），严重失真 | 应避免 |
+
+#### 最优标距公式
+
+综合 SNR > 90% 最大值与分辨率误差 < 15% 两个约束，最优比值范围为 $GL/\lambda_s \approx 0.40$–$0.54$，推荐取 0.5，由此得到**最优标距**（Dean et al. 2016，公式 18）：
+
+$$
+\boxed{L_\mathrm{opt} = \frac{\mathrm{ratio} \times v}{f_p} \approx \frac{0.5\,v}{f_p} = \frac{\lambda_s}{2}}
+$$
+
+!!! tip "实际计算示例"
+    VSP 中某深度段视速度 $v = 3000$ m/s，子波主频 $f_p = 50$ Hz：
+    $$L_\mathrm{opt} \approx \frac{0.5 \times 3000}{50} = 30\text{ m}, \quad \lambda_s \approx \frac{3000\sqrt{6}}{\pi \times 50} \approx 46.8\text{ m}$$
+    若视速度在全井范围内从 2900 m/s 变化到 5900 m/s（变化近 2 倍），**建议对不同深度段分别选取最优标距**，以保证 SNR 和分辨率在全深度范围内均处于最优状态。
+
+!!! warning "标距下限的物理约束"
+    当 $L$ 减小到接近激光脉冲宽度时（通常 $L < 8$ m），相位与应变的关系变为非线性，DAS 系统的基本假设失效。因此，尽管理论上更小的 $L$ 给出更好的分辨率，实际中 $L_\mathrm{min} \approx 8$ m 是硬性下限。
+
+![最优标距分析](../assets/images/das_gauge_opt.png)
+*图 3：左图——归一化 $\Delta L$（SNR 代理）随 $GL/\lambda_s$ 的变化，绿色区域为 SNR > 90% 最大值的区间，红色阴影区为波形畸变区；右图——不同 $GL/\lambda_s$ 比值下 DAS 输出的归一化子波形状（$f_p$ = 40 Hz，$v$ = 1000 m/s，$\lambda_s \approx 19.5$ m）。（基于 Dean et al. 2016）*
+
 ---
 
 ## Python 示例
@@ -344,6 +412,57 @@ plt.savefig('docs/assets/images/das_gauge_length.png',
             dpi=150, bbox_inches='tight')
 print('Saved das_gauge_length.png')
 
+# ── 图 3：最优标距——SNR 曲线与子波畸变（Dean et al. 2016）────
+fp, v = 40.0, 1000.0
+k_r      = np.pi * fp / v
+lambda_s = np.sqrt(6) / k_r        # 空间波长 ≈ 19.5 m
+T_half   = 3 * lambda_s / v
+dt       = lambda_s / v / 200
+t        = np.arange(-T_half, T_half + dt, dt)
+eps      = (1 - 2*(np.pi*fp*t)**2) * np.exp(-(np.pi*fp*t)**2)
+
+GL_ratios = np.linspace(0.01, 2.6, 1000)
+DL        = GL_ratios * lambda_s * np.exp(-(np.pi*k_r * GL_ratios*lambda_s/2)**2)
+DL_norm   = DL / DL.max()
+
+fig, axes = plt.subplots(1, 2, figsize=(13, 5))
+
+ax = axes[0]
+ax.plot(GL_ratios, DL_norm, 'b-', lw=2)
+ax.axvline(1/np.sqrt(3), color='r', lw=1.5, ls='--',
+           label=r'$1/\sqrt{3}\approx0.577$ (peak SNR)')
+ax.axvline(0.5, color='g', lw=1.5, ls=':',
+           label='0.5 (recommended)')
+ax.axhline(0.90, color='gray', lw=1, ls=':', alpha=0.6)
+ax.fill_between(GL_ratios, DL_norm, where=(DL_norm >= 0.90),
+                alpha=0.15, color='green', label='SNR > 90 % of max')
+ax.axvspan(1.0, 2.6, alpha=0.08, color='red')
+ax.text(1.55, 0.45, 'Wavelet\ndistortion', color='red', fontsize=8, ha='center')
+ax.set(xlabel=r'$GL\,/\,\lambda_s$', ylabel=r'Norm. $\Delta L$ (SNR proxy)',
+       title='SNR vs GL/Wavelength Ratio  (Dean et al. 2016)',
+       xlim=[0, 2.6], ylim=[0, 1.05])
+ax.legend(fontsize=8)
+ax.grid(True, alpha=0.3)
+
+ax = axes[1]
+palette2 = ['#9b59b6','#2ecc71','#3498db','#e67e22','#e74c3c']
+for r, color in zip([0.25, 0.50, 0.77, 1.03, 1.50], palette2):
+    n_box = max(1, int(round(r * lambda_s / v / dt)))
+    box   = np.ones(n_box) / n_box
+    out   = np.convolve(eps, box, mode='same')
+    out  /= (np.abs(out).max() + 1e-30)
+    ax.plot(t*1e3, out, color=color, lw=1.8, label=f'GL/λ = {r:.2f}')
+ax.axhline(0, color='k', lw=0.6, ls='--', alpha=0.4)
+ax.set(xlabel='Time (ms)', ylabel='Normalised DAS output',
+       title=fr'Wavelet After Gauge-Length Filter  ($f_p$={fp} Hz, $\lambda_s$≈{lambda_s:.1f} m)',
+       xlim=[-60, 60])
+ax.legend(fontsize=8)
+ax.grid(True, alpha=0.3)
+
+plt.tight_layout()
+plt.savefig('docs/assets/images/das_gauge_opt.png', dpi=150, bbox_inches='tight')
+print('Saved das_gauge_opt.png')
+
 plt.show()
 ```
 
@@ -357,3 +476,4 @@ plt.show()
 - Wang, H. F., Zeng, X., Miller, D. E., Fratta, D., Feigl, K. L., Thurber, C. H., & Mellors, R. J. (2018). Ground motion response to an ML 4.3 earthquake using co-located distributed acoustic sensing and seismometers. *Geophysical Journal International*, 213(3), 2020–2036.
 - Daley, T. M., Miller, D. E., Dodds, K., Cook, P., & Freifeld, B. M. (2016). Field testing of modular borehole monitoring with simultaneous distributed acoustic sensing and geophone vertical seismic profiles at Citronelle, Alabama. *Geophysical Prospecting*, 64(5), 1318–1334.
 - Zhan, Z. (2020). Distributed acoustic sensing turns fiber-optic cables into seismic stations. *Bulletin of the Seismological Society of America*, 110(3), 975–985.
+- Dean, T., Cuny, T., & Hartog, A. H. (2017). The effect of gauge length on axially incident P-waves measured using fibre optic distributed vibration sensing. *Geophysical Prospecting*, 65(1), 184–193. https://doi.org/10.1111/1365-2478.12419
