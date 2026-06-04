@@ -905,6 +905,89 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#frequency-shift-methods-for-q-estimation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frequency-Shift Methods for Q Estimation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Frequency-Shift Methods for Q Estimation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#centroid-frequency-shift-cfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centroid Frequency Shift (CFS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#peak-frequency-shift-pfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Peak Frequency Shift (PFS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#local-centroid-frequency-shift-lcfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Local Centroid Frequency Shift (LCFS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multidimensional-nonstationary-lcfs-lu-et-al-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multidimensional Nonstationary LCFS (Lu et al. 2026)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ricker-wavelet-decomposition-method-hao-et-al-2024" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ricker Wavelet Decomposition Method (Hao et al. 2024)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#summary-comparison-of-q-estimation-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary Comparison of Q Estimation Methods
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#q-inversion-using-borehole-das-channel-wise-spectral-ratios" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1380,6 +1463,114 @@ L(f) = \ln\!\left(\frac{r_1}{r_2}\right) - \frac{\pi\,\Delta t}{Q_0}\, f^{1-\eta
 </tbody>
 </table>
 <hr />
+<h2 id="frequency-shift-methods-for-q-estimation">Frequency-Shift Methods for Q Estimation<a class="headerlink" href="#frequency-shift-methods-for-q-estimation" title="Permanent link">&para;</a></h2>
+<p>While spectral ratio methods rely on amplitude ratios, <strong>frequency-shift methods</strong> exploit a different physical signature: because the attenuation coefficient <span class="arithmatex">\(\alpha = \pi f / (\beta Q)\)</span> is proportional to frequency, high-frequency energy is preferentially attenuated. As a result, the centroid (mean) frequency of the amplitude spectrum decreases with increasing travel time. Frequency-shift methods quantify this shift to estimate Q with less dependence on absolute amplitudes.</p>
+<h3 id="centroid-frequency-shift-cfs">Centroid Frequency Shift (CFS)<a class="headerlink" href="#centroid-frequency-shift-cfs" title="Permanent link">&para;</a></h3>
+<p>The <strong>centroid frequency</strong> and <strong>spectral variance</strong> are the first and second central moments of the amplitude spectrum:</p>
+<div class="arithmatex">\[f_c = \frac{\int_0^\infty f\,S(f)\,df}{\int_0^\infty S(f)\,df}, \qquad \sigma_c^2 = \frac{\int_0^\infty (f - f_c)^2 S(f)\,df}{\int_0^\infty S(f)\,df}\]</div>
+<p>Quan &amp; Harris (1997) showed that, under a Gaussian spectrum assumption, the centroid frequency shift is proportional to the integrated attenuation:</p>
+<div class="arithmatex">\[\frac{f_S - f_R}{\sigma_S^2} \propto \int_\text{path} q\,dl\]</div>
+<p>This yields the Q formula:</p>
+<div class="arithmatex">\[\boxed{Q = \frac{\pi\,\Delta t\,\sigma_c^2(t_0)}{f_c(t_0) - f_c(t)}}\]</div>
+<p>where <span class="arithmatex">\(\Delta t = t - t_0\)</span> is the travel-time difference, <span class="arithmatex">\(f_c(t_0)\)</span> and <span class="arithmatex">\(\sigma_c^2(t_0)\)</span> are the centroid frequency and variance at the reference time.</p>
+<div class="admonition note">
+<p class="admonition-title">Gaussian Spectrum Assumption</p>
+<p>The CFS method strictly requires the amplitude spectrum to approximate a Gaussian distribution. Ricker wavelets satisfy this requirement well — a 50 Hz Ricker wavelet gives <span class="arithmatex">\(f_c \approx 56.4\)</span> Hz and <span class="arithmatex">\(\sigma_c^2 \approx 567\)</span> Hz² (Lu et al. 2026), making CFS widely applicable in exploration seismology.</p>
+</div>
+<h3 id="peak-frequency-shift-pfs">Peak Frequency Shift (PFS)<a class="headerlink" href="#peak-frequency-shift-pfs" title="Permanent link">&para;</a></h3>
+<p>Zhang &amp; Ulrych (2002) proposed using the shift in <strong>peak (dominant) frequency</strong> instead of centroid frequency:</p>
+<div class="arithmatex">\[Q = \frac{\pi\,\Delta t\,f_p^2(t_0)}{f_p^2(t_0) - f_p^2(t)}\]</div>
+<p>PFS assumes a Ricker wavelet model and is simpler to compute, but degrades in accuracy when the true wavelet deviates significantly from a Ricker shape.</p>
+<h3 id="local-centroid-frequency-shift-lcfs">Local Centroid Frequency Shift (LCFS)<a class="headerlink" href="#local-centroid-frequency-shift-lcfs" title="Permanent link">&para;</a></h3>
+<p>Wang et al. (2020) extended CFS to the <strong>time–frequency domain</strong>, computing <strong>local</strong> centroid frequency and variance directly from the time–frequency spectrum <span class="arithmatex">\(T(f,t)\)</span>:</p>
+<div class="arithmatex">\[f_c(t) = \frac{\int_0^\infty f\,T(f,t)\,df}{\int_0^\infty T(f,t)\,df}, \qquad \sigma_c^2(t) = \frac{\int_0^\infty (f - f_c(t))^2 T(f,t)\,df}{\int_0^\infty T(f,t)\,df}\]</div>
+<p>The Q formula is unchanged, but now yields a <strong>time-varying Q profile</strong> without manual time-window selection. LCFS can be combined with various time–frequency transforms (LTFT, S-transform, etc.).</p>
+<h3 id="multidimensional-nonstationary-lcfs-lu-et-al-2026">Multidimensional Nonstationary LCFS (Lu et al. 2026)<a class="headerlink" href="#multidimensional-nonstationary-lcfs-lu-et-al-2026" title="Permanent link">&para;</a></h3>
+<p>Fixed smoothing radii in LCFS fail to adapt to the nonstationary character of seismic data under low-SNR conditions. Lu et al. (2026) introduced an <strong>adaptive smoothing radius strategy</strong>:</p>
+<div class="arithmatex">\[R(t,x,y) = \begin{cases} R_s &amp; p_k(t,x,y)/p_\max \geq \tau \quad \text{(signal region — small radius)}\\ R_d &amp; p_k(t,x,y)/p_\max &lt; \tau \quad \text{(noise region — large radius)}\end{cases}, \quad R_d &gt; R_s\]</div>
+<ul>
+<li><strong>Signal regions</strong> (high spectral amplitude): small radius → preserve detail</li>
+<li><strong>Noise regions</strong> (low spectral amplitude): large radius → suppress interference</li>
+<li>The strategy is applied simultaneously across <strong>time, frequency, and spatial</strong> dimensions, exploiting inter-trace coherence in multichannel data.</li>
+</ul>
+<p><strong>Validated performance</strong>: accurate Q recovery even at SNR &lt; 0 dB, where traditional LTFT-LCFS diverges significantly from the true value.</p>
+<h3 id="ricker-wavelet-decomposition-method-hao-et-al-2024">Ricker Wavelet Decomposition Method (Hao et al. 2024)<a class="headerlink" href="#ricker-wavelet-decomposition-method-hao-et-al-2024" title="Permanent link">&para;</a></h3>
+<p>Hao et al. (2024) proposed a two-step strategy: first <strong>decompose the seismic trace</strong> into individual reflected wavelets, then estimate Q from the centroid frequency of each extracted wavelet.</p>
+<p><strong>Step 1 — Fast Inversion-Based Sparse Seismic Decomposition (FISSD)</strong></p>
+<p>Build a dictionary matrix <span class="arithmatex">\(\mathbf{W}\)</span> from Ricker wavelets of varying dominant frequencies at 0° and −90° phase (arbitrary phase rotation can be expressed as a linear combination of these two). Solve the group-sparse constrained objective:</p>
+<div class="arithmatex">\[\min_{\mathbf{r}}\; \frac{1}{2}\|\mathbf{W}\mathbf{r} - \mathbf{s}\|_2^2 + \mu\|\mathbf{r}\|_{2,1}\]</div>
+<p>The <span class="arithmatex">\(\ell_{2,1}\)</span>-norm (group-sparse regularization) forces 0° and −90° coefficients at the same dominant frequency to be jointly sparse, enabling recovery of arbitrary-phase wavelets. Using the Split Bregman method in the <strong>frequency domain</strong>, the computational cost scales <strong>linearly</strong> with trace length — more than <span class="arithmatex">\(10^3\times\)</span> faster than time-domain ISSD.</p>
+<p><strong>Step 2 — Position Indicating Vector (PIV) and Local Stacking</strong></p>
+<p>Define the PIV <span class="arithmatex">\(\boldsymbol{\eta} = \mathrm{sum}(\mathbf{R}^2, \mathrm{row})\)</span>. Find the local maxima of <span class="arithmatex">\(\boldsymbol{\eta}\)</span>, then stack all Ricker wavelets within a local window around each peak to recover a single composite reflected wavelet. This effectively decouples <strong>tuned wavelets</strong> that overlap in time.</p>
+<p><strong>Step 3 — Q Estimation via Futterman Theory</strong></p>
+<p>For a wavelet arriving <span class="arithmatex">\(\tau\)</span> seconds after the reference wavelet, its centroid frequency satisfies (Futterman 1962):</p>
+<div class="arithmatex">\[f_c^\tau = \frac{\int_{-\infty}^{+\infty} f\,S(f)\,e^{-\pi f\tau/Q}\,df}{\int_{-\infty}^{+\infty} S(f)\,e^{-\pi f\tau/Q}\,df}\]</div>
+<p>Since <span class="arithmatex">\(\Xi(Q) = f_c^\tau - f_c^e\)</span> (where <span class="arithmatex">\(f_c^e\)</span> is the centroid frequency of the estimated wavelet) is a <strong>monotone function</strong> of Q (provable via the Schwartz inequality), Newton iteration rapidly finds the root. This yields either:</p>
+<ul>
+<li><strong>Equivalent Q</strong>: path-averaged Q from surface to current depth</li>
+<li><strong>Interval Q</strong>: Q of the formation between the top and bottom reflectors — directly characterizes reservoir attenuation</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Reservoir Evaluation Application</p>
+<p>Pore-fracture zones in carbonate reservoirs cause strong local fluid flow (squirt-flow mechanism), leading to anomalously low interval Q. Hao et al. (2024) used <span class="arithmatex">\(1/Q\)</span> as an attribute to delineate high-porosity carbonate reservoir zones that were indistinguishable by conventional RMS amplitude.</p>
+</div>
+<h3 id="summary-comparison-of-q-estimation-methods">Summary Comparison of Q Estimation Methods<a class="headerlink" href="#summary-comparison-of-q-estimation-methods" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Category</th>
+<th>Key feature</th>
+<th>Advantages</th>
+<th>Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Spectral ratio (SR)</strong></td>
+<td>Amplitude ratio</td>
+<td>Log spectral ratio slope</td>
+<td>No spectral shape assumption</td>
+<td>Frequency band selection; amplitude SNR requirement</td>
+</tr>
+<tr>
+<td><strong>CFS</strong></td>
+<td>Frequency shift</td>
+<td>Centroid frequency drop</td>
+<td>Amplitude-independent</td>
+<td>Gaussian spectrum assumption; global window</td>
+</tr>
+<tr>
+<td><strong>PFS</strong></td>
+<td>Frequency shift</td>
+<td>Peak frequency drop</td>
+<td>Simple to compute</td>
+<td>Ricker assumption; window dependent</td>
+</tr>
+<tr>
+<td><strong>LCFS</strong></td>
+<td>Freq. shift · time-varying</td>
+<td>Time–freq local centroid</td>
+<td>Time-varying Q; no manual window</td>
+<td>Fixed smoothing radius fails at low SNR</td>
+</tr>
+<tr>
+<td><strong>Nonstationary LCFS</strong></td>
+<td>Freq. shift · adaptive</td>
+<td>SNR-driven variable smoothing</td>
+<td>Works at SNR &lt; 0 dB</td>
+<td>Depends on initial TF spectrum quality</td>
+</tr>
+<tr>
+<td><strong>Ricker decomp. (FISSD)</strong></td>
+<td>Decomposition · freq. shift</td>
+<td>Separate wavelets then Futterman</td>
+<td>Handles tuning; accurate interval Q</td>
+<td>Assumes Ricker wavelet shape</td>
+</tr>
+</tbody>
+</table>
+<hr />
 <h2 id="q-inversion-using-borehole-das-channel-wise-spectral-ratios">Q Inversion Using Borehole DAS Channel-Wise Spectral Ratios<a class="headerlink" href="#q-inversion-using-borehole-das-channel-wise-spectral-ratios" title="Permanent link">&para;</a></h2>
 <h3 id="principle">Principle<a class="headerlink" href="#principle" title="Permanent link">&para;</a></h3>
 <p>In a vertical borehole DAS array, <strong>adjacent channel pairs</strong> serve as two-station pairs: upgoing P-waves from the same earthquake pass through each channel sequentially. The amplitude spectral ratio between two channels directly encodes the attenuation of the segment between them, yielding a <strong>Q profile with depth resolution equal to the channel spacing</strong>.</p>
@@ -1485,6 +1676,13 @@ The criterion <span class="arithmatex">\(\theta &lt; 45°\)</span> requires <spa
 <li>Xie, J. (2002). Seismic attenuation: Measurement and uncertainty. <em>Pure and Applied Geophysics</em>, 159(7–8), 1823–1849.</li>
 <li>Bakku, S. K. (2015). <em>Fracture characterization from seismic measurements in a borehole</em> (Doctoral dissertation, Massachusetts Institute of Technology).</li>
 <li>Chang, H., Nakata, N., Abercrombie, R. E., Dadi, S., &amp; Titov, A. (2026, in review). Using borehole Distributed Acoustic Sensing to investigate microearthquake source parameter variability in an enhanced geothermal system. <em>ESSOAr preprint</em>. https://doi.org/10.22541/essoar.15002292/v1</li>
+<li>Quan, Y., &amp; Harris, J. M. (1997). Seismic attenuation tomography using the frequency shift method. <em>Geophysics</em>, 62(3), 895–905.</li>
+<li>Zhang, C., &amp; Ulrych, T. J. (2002). Estimation of quality factors from CMP records. <em>Geophysics</em>, 67(5), 1542–1547.</li>
+<li>Wang, Q. H., Yang, L., Cai, L., &amp; Zheng, Z. S. (2020). Continuous time-varying Q-factor estimation method in the time–frequency domain. <em>Applied Geophysics</em>, 17, 844–856.</li>
+<li>Hu, C., Tu, N., &amp; Lu, W. (2013). Seismic attenuation estimation using an improved frequency shift method. <em>IEEE Geoscience and Remote Sensing Letters</em>, 10(5), 1026–1030.</li>
+<li>Lu, H., Zhu, Z., Pei, X., Zhu, W., &amp; Xia, L. (2026). A local time-varying Q-factor estimation method based on multidimensional nonstationary smoothing. <em>Journal of Geophysics and Engineering</em>, 23(4), 1095–1108. https://doi.org/10.1093/jge/gxag022</li>
+<li>Hao, Y., Yin, D., Zhang, P., &amp; Zhang, H. (2024). Seismic decomposition method using Ricker wavelet dictionary and its applications for Q-value estimation. <em>Acta Geophysica</em>, 72, 2425–2445. https://doi.org/10.1007/s11600-023-01217-y</li>
+<li>Futterman, W. I. (1962). Dispersive body waves. <em>Journal of Geophysical Research</em>, 67(13), 5279–5291.</li>
 </ul>
 
 
