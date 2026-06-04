@@ -329,6 +329,118 @@ $$
 
 ---
 
+## 频移类 Q 值估计方法
+
+谱比法依赖振幅谱的绝对值，而**频移类方法**利用振幅谱"中心"随传播时间向低频偏移这一现象来估计 Q，对振幅的依赖性更低，在某些噪声场景下更稳健。
+
+### 高频选择性衰减的物理基础
+
+衰减系数 $\alpha = \pi f / (\beta Q)$ 正比于频率：高频成分比低频成分衰减更快。随着传播时间增加，地震子波的振幅谱整体向低频偏移——**重心频率下降、谱带变窄**。频移类方法定量利用这一偏移量来反演 Q 值。
+
+### 重心频率漂移法（CFS）
+
+**重心频率**（centroid frequency）和**谱方差**定义为振幅谱的加权矩：
+
+$$f_c = \frac{\int_0^\infty f\,S(f)\,df}{\int_0^\infty S(f)\,df}, \qquad \sigma_c^2 = \frac{\int_0^\infty (f - f_c)^2 S(f)\,df}{\int_0^\infty S(f)\,df}$$
+
+Quan & Harris（1997）证明，当振幅谱近似服从高斯分布时，重心频率偏移量正比于累积衰减：
+
+$$\frac{f_S - f_R}{\sigma_S^2} \propto \int_\text{path} q\,dl$$
+
+由此得到 Q 值估计公式：
+
+$$\boxed{Q = \frac{\pi\,\Delta t\,\sigma_c^2(t_0)}{f_c(t_0) - f_c(t)}}$$
+
+- $\Delta t = t - t_0$：传播时间差
+- $f_c(t_0)$、$\sigma_c^2(t_0)$：参考时刻的重心频率和方差
+- $f_c(t)$：当前时刻的重心频率
+
+!!! note "高斯谱假设"
+    CFS 方法严格依赖振幅谱近似为高斯分布的前提。Ricker 子波的谱与高斯谱拟合良好——50 Hz Ricker 子波的重心频率约为 $f_c \approx 56.4$ Hz，谱方差 $\sigma_c^2 \approx 567$ Hz²（Lu et al. 2026），因此 CFS 在地震勘探中广泛适用。
+
+### 峰值频率漂移法（PFS）
+
+Zhang & Ulrych（2002）利用子波**主频**（peak frequency）的漂移估计 Q，形式更为简洁：
+
+$$Q = \frac{\pi\,\Delta t\,f_p^2(t_0)}{f_p^2(t_0) - f_p^2(t)}$$
+
+其中 $f_p$ 为子波的峰值（主导）频率。PFS 假设 Ricker 子波模型，计算更简便，但在子波形状偏离 Ricker 时精度下降。
+
+### 局部重心频率漂移法（LCFS）
+
+Wang et al.（2020）将 CFS 推广到**时频域**，直接从时频谱 $T(f,t)$ 计算**局部**重心频率和方差，无需手动划定时窗：
+
+$$f_c(t) = \frac{\int_0^\infty f\,T(f,t)\,df}{\int_0^\infty T(f,t)\,df}, \qquad \sigma_c^2(t) = \frac{\int_0^\infty (f - f_c(t))^2 T(f,t)\,df}{\int_0^\infty T(f,t)\,df}$$
+
+Q 值估计公式形式不变，但 $f_c$ 和 $\sigma_c^2$ 均在时频域逐点计算，得到**时变 Q 值**：
+
+$$Q(t) = \frac{\pi\,\Delta t\,\sigma_c^2(t_0)}{f_c(t_0) - f_c(t)}$$
+
+LCFS 优势：① 无需划分时窗 ② 直接输出时变 Q 剖面 ③ 可利用 LTFT 等多种时频变换。
+
+### 多维非稳态 LCFS（Lu et al. 2026）
+
+LCFS 的固定平滑半径在低 SNR 条件下不适应信号的非稳态特性。Lu et al.（2026）引入**自适应平滑半径策略**：
+
+$$R(t,x,y) = \begin{cases} R_s & p_k(t,x,y)/p_\max \geq \tau \quad \text{（信号区，小半径）}\\ R_d & p_k(t,x,y)/p_\max < \tau \quad \text{（噪声区，大半径）}\end{cases}, \quad R_d > R_s$$
+
+其中 $p_k(t,x,y)$ 是当前点的时频谱幅值，$\tau$ 为区分信号/噪声的阈值。
+
+- **信号区**：幅值高，使用**小半径**，保留细节，避免模糊
+- **噪声区**：幅值低，使用**大半径**，充分平滑，抑制干扰
+
+同时将平滑扩展到**频率维度和空间维度**（多道数据），利用地震道之间的空间相干性进一步压制噪声。
+
+**性能**：在 SNR < 0 dB 的强噪声条件下，仍能准确估计 Q（收敛于 $t \approx 0.3$ s），而传统 LTFT-LCFS 在此条件下显著偏离理论值。
+
+### Ricker 小波分解法（Hao et al. 2024）
+
+Hao et al.（2024）提出"先分解子波，再估 Q"的两步策略：
+
+**第一步：快速稀疏分解（FISSD）**
+
+将地震道 $\mathbf{s}$ 分解为一系列加权 Ricker 小波的叠加：
+
+$$\mathbf{s} = \mathbf{W} \cdot \mathbf{r}$$
+
+字典矩阵 $\mathbf{W}$ 由不同主频（$f_1, \ldots, f_m$）的 0° 和 −90° 相位 Ricker 子波构成（因为任意相位旋转的 Ricker 子波均可表示为 0° 与 −90° 子波的线性组合）。加入**群稀疏（group-sparse）约束**（$\ell_{2,1}$ 范数）的目标函数：
+
+$$\min_{\mathbf{r}}\; \frac{1}{2}\|\mathbf{W}\mathbf{r} - \mathbf{s}\|_2^2 + \mu\|\mathbf{r}\|_{2,1}$$
+
+利用 Split Bregman 迭代在**频域**求解，计算量随道长**线性**增长，比时域 ISSD 快 $10^3$ 倍以上。
+
+**第二步：位置指示向量（PIV）与局部叠加**
+
+定义 PIV 为各时刻权重系数的行求和 $\boldsymbol{\eta} = \mathrm{sum}(\mathbf{R}^2, \mathrm{row})$。找到 $\boldsymbol{\eta}$ 的局部极大值位置，将该位置附近的 Ricker 子波叠加还原为单个反射子波，有效分离**调谐效应**（tuning effect）导致的重叠子波。
+
+**第三步：基于 Futterman 理论的 Q 估计**
+
+对传播时间 $\tau$ 后到达的子波，其重心频率满足（Futterman 1962）：
+
+$$f_c^\tau = \frac{\int_{-\infty}^{+\infty} f\,S(f)\,e^{-\pi f\tau/Q}\,df}{\int_{-\infty}^{+\infty} S(f)\,e^{-\pi f\tau/Q}\,df}$$
+
+求解 $\Xi(Q) = f_c^\tau - f_c^e = 0$（$f_c^e$ 为估计子波的重心频率）即可获得 Q 值。由于 $\Xi(Q)$ 是 Q 的单调函数（可通过 Schwartz 不等式证明），Newton 迭代法快速收敛。
+
+可以分别估计：
+- **等效 Q 值**：震源到当前深度的路径平均 Q
+- **层间 Q 值**：顶、底界面反射子波之间的 Q，直接反映特定地层的衰减
+
+!!! tip "储层评价应用"
+    孔隙-裂缝发育区因局部流体流动（squirt flow）产生强衰减，层间 Q 值偏低。Hao et al.（2024）将层间 $1/Q$ 用于识别高孔隙碳酸盐岩储层区域，成功区分出传统 RMS 振幅属性无法分辨的高、低孔隙度区。
+
+### 各方法综合对比
+
+| 方法 | 类别 | 核心特征 | 优势 | 局限 |
+|------|------|----------|------|------|
+| **谱比法（SR）** | 振幅比 | 两道对数谱比线性斜率 | 无需谱形假设 | 需频段选取；振幅信噪比要求高 |
+| **重心频率漂移（CFS）** | 频移 | 全频段重心频率偏移量 | 不依赖振幅绝对值 | 严格要求高斯谱；全局时窗 |
+| **峰值频率漂移（PFS）** | 频移 | 主频偏移量 | 计算简单 | Ricker 假设；时窗依赖 |
+| **局部 CFS（LCFS）** | 频移·时变 | 时频域逐点重心频率 | 时变 Q；无需手动时窗 | 固定平滑半径对强噪声适应差 |
+| **多维非稳态 LCFS** | 频移·时变·自适应 | SNR 驱动的变半径平滑 | SNR < 0 dB 仍有效 | 依赖初始时频谱质量 |
+| **Ricker 分解法（FISSD）** | 分解·频移 | 先分离子波，再用 Futterman 反演 | 可分离调谐；层间 Q 准确 | 计算量较大；Ricker 子波假设 |
+
+---
+
 ## 使用井下 DAS 进行逐道谱比 Q 反演
 
 ### 原理
@@ -425,3 +537,10 @@ $$
 - Xie, J. (2002). Seismic attenuation: Measurement and uncertainty. *Pure and Applied Geophysics*, 159(7–8), 1823–1849.
 - Bakku, S. K. (2015). *Fracture characterization from seismic measurements in a borehole* (Doctoral dissertation, Massachusetts Institute of Technology).
 - Chang, H., Nakata, N., Abercrombie, R. E., Dadi, S., & Titov, A. (2026, in review). Using borehole Distributed Acoustic Sensing to investigate microearthquake source parameter variability in an enhanced geothermal system. *ESSOAr preprint*. https://doi.org/10.22541/essoar.15002292/v1
+- Quan, Y., & Harris, J. M. (1997). Seismic attenuation tomography using the frequency shift method. *Geophysics*, 62(3), 895–905.
+- Zhang, C., & Ulrych, T. J. (2002). Estimation of quality factors from CMP records. *Geophysics*, 67(5), 1542–1547.
+- Wang, Q. H., Yang, L., Cai, L., & Zheng, Z. S. (2020). Continuous time-varying Q-factor estimation method in the time–frequency domain. *Applied Geophysics*, 17, 844–856.
+- Hu, C., Tu, N., & Lu, W. (2013). Seismic attenuation estimation using an improved frequency shift method. *IEEE Geoscience and Remote Sensing Letters*, 10(5), 1026–1030.
+- Lu, H., Zhu, Z., Pei, X., Zhu, W., & Xia, L. (2026). A local time-varying Q-factor estimation method based on multidimensional nonstationary smoothing. *Journal of Geophysics and Engineering*, 23(4), 1095–1108. https://doi.org/10.1093/jge/gxag022
+- Hao, Y., Yin, D., Zhang, P., & Zhang, H. (2024). Seismic decomposition method using Ricker wavelet dictionary and its applications for Q-value estimation. *Acta Geophysica*, 72, 2425–2445. https://doi.org/10.1007/s11600-023-01217-y
+- Futterman, W. I. (1962). Dispersive body waves. *Journal of Geophysical Research*, 67(13), 5279–5291.
