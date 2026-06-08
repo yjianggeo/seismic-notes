@@ -177,6 +177,7 @@ not_in_nav: |
   das-en.md
   vsp-en.md
   surface-coda-en.md
+  fk-radon-en.md
 
 nav:
   - 首页: index.md
@@ -192,6 +193,9 @@ nav:
 
   - 面波与尾波:
       - 波速提取与监测: surface-coda.md
+
+  - 地震数据处理:
+      - F-K 分析与 Radon 变换: fk-radon.md
 
   - DAS 分布式声学传感:
       - 基本原理与应用: das.md
