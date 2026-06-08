@@ -16,6 +16,7 @@
     "brune": "brune-en",
     "q-spectral-ratio": "q-spectral-ratio-en",
     "das": "das-en",
+    "vsp": "vsp-en",
   };
 
   // Build reverse map: English → Chinese
