@@ -17,6 +17,7 @@
     "q-spectral-ratio": "q-spectral-ratio-en",
     "das": "das-en",
     "vsp": "vsp-en",
+    "surface-coda": "surface-coda-en",
   };
 
   // Build reverse map: English → Chinese
