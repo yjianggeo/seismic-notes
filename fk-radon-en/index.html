@@ -12,7 +12,7 @@
         <meta name="author" content="Jiang Yi">
       
       
-        <link rel="canonical" href="https://yjianggeo.github.io/source-spectrum-site/surface-coda-en/">
+        <link rel="canonical" href="https://yjianggeo.github.io/source-spectrum-site/fk-radon-en/">
       
       
       
@@ -25,7 +25,7 @@
     
     
       
-        <title>Surface Waves and Coda Waves: Velocity Extraction and Monitoring - Seismic Notes</title>
+        <title>F-K Analysis and Radon Transform - Seismic Notes</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#surface-waves-and-coda-waves-velocity-extraction-and-monitoring" class="md-skip">
+        <a href="#f-k-analysis-and-radon-transform" class="md-skip">
           跳转至
         </a>
       
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Surface Waves and Coda Waves: Velocity Extraction and Monitoring
+              F-K Analysis and Radon Transform
             
           </span>
         </div>
@@ -1045,22 +1045,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#basic-properties-of-surface-waves" class="md-nav__link">
+  <a href="#f-k-analysis" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Basic Properties of Surface Waves
+        F-K Analysis
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Basic Properties of Surface Waves">
+    <nav class="md-nav" aria-label="F-K Analysis">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#rayleigh-and-love-waves" class="md-nav__link">
+  <a href="#the-2d-fourier-transform" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Rayleigh and Love Waves
+        The 2D Fourier Transform
       
     </span>
   </a>
@@ -1068,10 +1068,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dispersion" class="md-nav__link">
+  <a href="#fan-filter" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dispersion
+        Fan Filter
       
     </span>
   </a>
@@ -1079,10 +1079,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#depth-sensitivity-rule" class="md-nav__link">
+  <a href="#spatial-aliasing" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Depth Sensitivity Rule
+        Spatial Aliasing
       
     </span>
   </a>
@@ -1090,10 +1090,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#relationship-between-rayleigh-velocity-and-s-wave-velocity" class="md-nav__link">
+  <a href="#high-resolution-f-k-capon-adaptive-beamforming" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Relationship Between Rayleigh Velocity and S-Wave Velocity
+        High-Resolution F-K: Capon Adaptive Beamforming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#music-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MUSIC Algorithm
       
     </span>
   </a>
@@ -1106,22 +1117,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#extracting-and-inverting-dispersion-curves" class="md-nav__link">
+  <a href="#radon-transform-slant-stack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Extracting and Inverting Dispersion Curves
+        Radon Transform (Slant Stack)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Extracting and Inverting Dispersion Curves">
+    <nav class="md-nav" aria-label="Radon Transform (Slant Stack)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#extraction-methods" class="md-nav__link">
+  <a href="#linear-radon-p-transform" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Extraction Methods
+        Linear Radon (τ-p Transform)
       
     </span>
   </a>
@@ -1129,10 +1140,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#dispersion-curve-inversion" class="md-nav__link">
+  <a href="#discrete-implementation-phase-shift-summation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Dispersion Curve Inversion
+        Discrete Implementation: Phase-Shift Summation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parabolic-radon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parabolic Radon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-l2-smearing-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The L2 Smearing Problem
       
     </span>
   </a>
@@ -1145,22 +1178,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#coda-waves" class="md-nav__link">
+  <a href="#sparse-high-resolution-radon-current-research" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Coda Waves
+        Sparse / High-Resolution Radon (Current Research)
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Coda Waves">
+    <nav class="md-nav" aria-label="Sparse / High-Resolution Radon (Current Research)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#physical-origin" class="md-nav__link">
+  <a href="#l1-regularisation-sparse-radon" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Physical Origin
+        L1 Regularisation (Sparse Radon)
       
     </span>
   </a>
@@ -1168,10 +1201,32 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#coda-q-estimation" class="md-nav__link">
+  <a href="#iteratively-reweighted-least-squares-irls" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Coda Q Estimation
+        Iteratively Reweighted Least Squares (IRLS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sacchi-ulrych-high-resolution-radon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sacchi-Ulrych High-Resolution Radon
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compressive-sensing-radon" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compressive Sensing Radon
       
     </span>
   </a>
@@ -1184,22 +1239,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#coda-wave-interferometry-cwi" class="md-nav__link">
+  <a href="#practical-requirements-and-guidelines" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Coda Wave Interferometry (CWI)
+        Practical Requirements and Guidelines
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Coda Wave Interferometry (CWI)">
+    <nav class="md-nav" aria-label="Practical Requirements and Guidelines">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#principle" class="md-nav__link">
+  <a href="#f-k-filtering" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Principle
+        F-K Filtering
       
     </span>
   </a>
@@ -1207,10 +1262,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#doublet-method" class="md-nav__link">
+  <a href="#linear-radon" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Doublet Method
+        Linear Radon
       
     </span>
   </a>
@@ -1218,10 +1273,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#stretching-method" class="md-nav__link">
+  <a href="#high-resolution-methods" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Stretching Method
+        High-Resolution Methods
       
     </span>
   </a>
@@ -1234,38 +1289,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#method-selection-guide" class="md-nav__link">
+  <a href="#summary-comparison" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Method Selection Guide
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Method Selection Guide">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#combining-das-with-surface-waves-and-coda" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Combining DAS with Surface Waves and Coda
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#python-example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Python Example
+        Summary Comparison
       
     </span>
   </a>
@@ -1300,7 +1327,7 @@
 
 
   
-    <a href="https://github.com/yjianggeo/source-spectrum-site/edit/main/docs/surface-coda-en.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/yjianggeo/source-spectrum-site/edit/main/docs/fk-radon-en.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
@@ -1309,269 +1336,389 @@
     
       
     
-    <a href="https://github.com/yjianggeo/source-spectrum-site/raw/main/docs/surface-coda-en.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/yjianggeo/source-spectrum-site/raw/main/docs/fk-radon-en.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
     </a>
   
 
 
-<h1 id="surface-waves-and-coda-waves-velocity-extraction-and-monitoring">Surface Waves and Coda Waves: Velocity Extraction and Monitoring<a class="headerlink" href="#surface-waves-and-coda-waves-velocity-extraction-and-monitoring" title="Permanent link">&para;</a></h1>
+<h1 id="f-k-analysis-and-radon-transform">F-K Analysis and Radon Transform<a class="headerlink" href="#f-k-analysis-and-radon-transform" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>Surface waves and coda waves are two fundamentally different components of a seismic record, each carrying rich information about the medium. <strong>Surface waves</strong> propagate along the Earth's surface and are dispersive — different frequency components travel at different velocities because they sample different depths. The frequency dependence of their phase velocity therefore directly encodes the S-wave velocity structure with depth. <strong>Coda waves</strong> are the scattered arrivals following the direct P- and S-waves; their amplitude decay constrains <span class="arithmatex">\(Q_c\)</span> (coda quality factor), while their fine time structure is exquisitely sensitive to small velocity changes — this is the physical basis of <strong>Coda Wave Interferometry (CWI)</strong> for velocity monitoring.</p>
+<p><strong>Transform-domain methods</strong> in seismic data processing map data from the time-space (<span class="arithmatex">\(t\)</span>-<span class="arithmatex">\(x\)</span>) domain into a new domain where different wavefields, or signal and noise, become separable. An overview of the most commonly used transforms:</p>
 <table>
 <thead>
 <tr>
-<th>Wave type</th>
-<th>Velocity extraction method</th>
-<th>Sensitive to</th>
-<th>Typical application</th>
+<th>Transform</th>
+<th>Input → Output</th>
+<th>Separates</th>
+<th>Typical use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Rayleigh wave</td>
-<td>Dispersion curve → <span class="arithmatex">\(V_S(z)\)</span> inversion</td>
-<td>S-wave velocity structure</td>
-<td>Near-surface imaging, engineering</td>
+<td>F-K (2D FFT)</td>
+<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(D(k,f)\)</span></td>
+<td>Frequency + wavenumber (apparent velocity)</td>
+<td>Dip noise removal, wavefield separation</td>
 </tr>
 <tr>
-<td>Love wave</td>
-<td>Dispersion curve → <span class="arithmatex">\(V_S(z)\)</span> inversion</td>
-<td><span class="arithmatex">\(V_S\)</span> (SH component)</td>
-<td>Anisotropy, S-wave splitting</td>
+<td>Linear Radon (τ-p, slant stack)</td>
+<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(m(\tau,p)\)</span></td>
+<td>Intercept time + slowness</td>
+<td>Multiple attenuation, surface-wave extraction</td>
 </tr>
 <tr>
-<td>Coda</td>
-<td>Envelope decay → <span class="arithmatex">\(Q_c\)</span></td>
-<td>Scattering/intrinsic attenuation</td>
-<td>Post-seismic monitoring</td>
+<td>Parabolic Radon</td>
+<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(m(\tau,q)\)</span></td>
+<td>Intercept time + curvature</td>
+<td>Accurate multiple attenuation</td>
 </tr>
 <tr>
-<td>Coda (CWI)</td>
-<td>Cross-correlation time shift → <span class="arithmatex">\(\delta v/v\)</span></td>
-<td>Minute velocity changes (0.01%)</td>
-<td>Volcano, injection, earthquake precursors</td>
+<td>Beamforming</td>
+<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(P(f,k)\)</span></td>
+<td>Azimuth + slowness</td>
+<td>Array steering, source location</td>
 </tr>
 </tbody>
 </table>
-<hr />
-<h2 id="basic-properties-of-surface-waves">Basic Properties of Surface Waves<a class="headerlink" href="#basic-properties-of-surface-waves" title="Permanent link">&para;</a></h2>
-<h3 id="rayleigh-and-love-waves">Rayleigh and Love Waves<a class="headerlink" href="#rayleigh-and-love-waves" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Rayleigh wave</th>
-<th>Love wave</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Particle motion</td>
-<td>Vertical + radial elliptical polarisation</td>
-<td>Horizontal transverse (SH direction)</td>
-</tr>
-<tr>
-<td>Existence</td>
-<td>Any elastic half-space</td>
-<td>Requires a low-velocity surface layer (waveguide)</td>
-</tr>
-<tr>
-<td>Velocity (half-space)</td>
-<td><span class="arithmatex">\(V_R \approx 0.92\,V_S\)</span></td>
-<td>Between <span class="arithmatex">\(V_S\)</span> of top layer and half-space</td>
-</tr>
-<tr>
-<td>DAS sensitivity</td>
-<td><span class="arithmatex">\(\cos^2\theta\)</span> (along-cable Rayleigh)</td>
-<td>Zero for cable parallel to propagation (SH blind)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="dispersion">Dispersion<a class="headerlink" href="#dispersion" title="Permanent link">&para;</a></h3>
-<p>The most important feature of surface waves is <strong>dispersion</strong>: different frequencies travel at different speeds because they penetrate to different depths.</p>
-<p><strong>Phase velocity</strong> <span class="arithmatex">\(c(f)\)</span>: velocity of equal-phase surfaces; governs waveform shape.</p>
-<p><strong>Group velocity</strong> <span class="arithmatex">\(U(f)\)</span>: velocity of the energy envelope, related to phase velocity by:</p>
+<p><strong>Apparent velocity</strong> is the unifying concept across all these transforms:</p>
 <div class="arithmatex">\[
-U(f) = c(f) + f\,\frac{\mathrm{d}c}{\mathrm{d}f}
+v_\text{app} = \left.\frac{\partial t}{\partial x}\right|^{-1} = \frac{f}{k} = \frac{1}{p}
 \]</div>
-<div class="admonition note">
-<p class="admonition-title">Normal vs. Inverse Dispersion</p>
+<p>where <span class="arithmatex">\(p = k/f\)</span> is the <strong>slowness</strong> (units: s/m or s/km).</p>
+<hr />
+<h2 id="f-k-analysis">F-K Analysis<a class="headerlink" href="#f-k-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="the-2d-fourier-transform">The 2D Fourier Transform<a class="headerlink" href="#the-2d-fourier-transform" title="Permanent link">&para;</a></h3>
+<p>The 2D discrete Fourier transform of a multi-channel record <span class="arithmatex">\(d(x_i, t)\)</span> yields the <strong>frequency-wavenumber spectrum</strong>:</p>
+<div class="arithmatex">\[
+D(k, f) = \sum_{i=1}^{N_x}\sum_{j=1}^{N_t} d(x_i, t_j)\, e^{-i 2\pi (k x_i + f t_j)}
+\]</div>
 <ul>
-<li><strong>Normal dispersion</strong> (<span class="arithmatex">\(\mathrm{d}c/\mathrm{d}f &lt; 0\)</span>): low frequencies travel faster; typical of a crust where velocity increases with depth (soft surface layer over hard half-space).</li>
-<li><strong>Inverse dispersion</strong> (<span class="arithmatex">\(\mathrm{d}c/\mathrm{d}f &gt; 0\)</span>): high frequencies travel faster; occurs when a low-velocity layer is present or velocity decreases with depth.</li>
+<li><span class="arithmatex">\(f\)</span> (Hz): temporal frequency — how fast the signal oscillates in time</li>
+<li><span class="arithmatex">\(k\)</span> (1/m): spatial wavenumber — how fast the signal oscillates across the array</li>
+<li>Apparent velocity: <span class="arithmatex">\(v_\text{app} = f/k\)</span>; apparent slowness: <span class="arithmatex">\(p = k/f\)</span></li>
 </ul>
-</div>
-<h3 id="depth-sensitivity-rule">Depth Sensitivity Rule<a class="headerlink" href="#depth-sensitivity-rule" title="Permanent link">&para;</a></h3>
-<p>The sensitivity of Rayleigh-wave phase velocity <span class="arithmatex">\(c(f)\)</span> to <span class="arithmatex">\(V_S\)</span> at depth <span class="arithmatex">\(z\)</span> peaks approximately at:</p>
+<p><strong>Key property</strong>: A plane wave propagating with apparent velocity <span class="arithmatex">\(v\)</span> along <span class="arithmatex">\(x\)</span>, i.e. <span class="arithmatex">\(d(x,t) = w(t - x/v)\)</span>, concentrates all its energy on the line <span class="arithmatex">\(k = f/v\)</span> in the F-K domain. Different wavefields — P-waves, S-waves, surface waves, noise — occupy distinct <strong>wedge-shaped bands</strong> in F-K space, enabling separation by a fan-shaped filter.</p>
+<h3 id="fan-filter">Fan Filter<a class="headerlink" href="#fan-filter" title="Permanent link">&para;</a></h3>
+<p>A fan (velocity) filter passes energy within an apparent velocity range <span class="arithmatex">\([v_\min, v_\max]\)</span>:</p>
 <div class="arithmatex">\[
-\boxed{z_\mathrm{peak} \approx \frac{\lambda}{3} = \frac{c(f)}{3f}}
+H(f, k) = \begin{cases}
+1, &amp; |f/k| \geq v_\min \text{ and } |f/k| \leq v_\max \\
+0, &amp; \text{otherwise (slow/fast noise zone)}
+\end{cases}
 \]</div>
-<p>where <span class="arithmatex">\(\lambda\)</span> is the wavelength. This rule gives a rapid <strong>frequency-to-depth mapping</strong>:
-- Low frequency → long wavelength → deep structure
-- High frequency → short wavelength → shallow structure</p>
-<h3 id="relationship-between-rayleigh-velocity-and-s-wave-velocity">Relationship Between Rayleigh Velocity and S-Wave Velocity<a class="headerlink" href="#relationship-between-rayleigh-velocity-and-s-wave-velocity" title="Permanent link">&para;</a></h3>
-<p>For a homogeneous half-space with Poisson's ratio <span class="arithmatex">\(\nu\)</span>:</p>
-<div class="arithmatex">\[
-V_R \approx \frac{0.862 + 1.14\,\nu}{1 + \nu}\, V_S
-\]</div>
-<p>For the typical value <span class="arithmatex">\(\nu = 0.25\)</span>:</p>
-<div class="arithmatex">\[
-V_R \approx 0.919\, V_S
-\]</div>
-<div class="admonition warning">
-<p class="admonition-title">Layered Media</p>
-<p>This formula applies only to a homogeneous half-space. In layered media, <span class="arithmatex">\(V_R(f)\)</span> is frequency-dependent (the dispersion curve), and <span class="arithmatex">\(V_S(z)\)</span> must be recovered by inverting the observed dispersion curve using a forward model (e.g., Thomson-Haskell matrix method).</p>
-</div>
-<hr />
-<h2 id="extracting-and-inverting-dispersion-curves">Extracting and Inverting Dispersion Curves<a class="headerlink" href="#extracting-and-inverting-dispersion-curves" title="Permanent link">&para;</a></h2>
-<h3 id="extraction-methods">Extraction Methods<a class="headerlink" href="#extraction-methods" title="Permanent link">&para;</a></h3>
-<h4 id="active-source-masw-multichannel-analysis-of-surface-waves">Active-Source MASW (Multichannel Analysis of Surface Waves)<a class="headerlink" href="#active-source-masw-multichannel-analysis-of-surface-waves" title="Permanent link">&para;</a></h4>
-<p>A linear receiver array records surface waves from an active source (hammer or explosive). A <strong>frequency-velocity (f-v) transform</strong> maps the data to the velocity domain:</p>
-<div class="arithmatex">\[
-P(f, c) = \int e^{i 2\pi f x / c}\, \hat{u}(f, x)\, \mathrm{d}x
-\]</div>
-<p>where <span class="arithmatex">\(\hat{u}(f,x)\)</span> is the frequency-domain displacement at offset <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(c\)</span> is the trial phase velocity. Picking the maxima of <span class="arithmatex">\(|P(f,c)|\)</span> yields the fundamental (and higher) mode dispersion curves.</p>
-<h4 id="passive-ambient-noise-cross-correlation">Passive Ambient Noise Cross-Correlation<a class="headerlink" href="#passive-ambient-noise-cross-correlation" title="Permanent link">&para;</a></h4>
-<p>Without an active source, cross-correlate <strong>ambient seismic noise</strong> (traffic, ocean waves) between station pairs:</p>
-<div class="arithmatex">\[
-C_{ij}(\tau) = \int u_i(t)\, u_j(t+\tau)\, \mathrm{d}t
-\]</div>
-<p>The envelope of <span class="arithmatex">\(C_{ij}(\tau)\)</span> approximates the Green's function between the two stations, from which Rayleigh- and Love-wave phase and group velocities can be extracted. DAS arrays are ideal for this approach due to their high channel density and continuous recording.</p>
-<h3 id="dispersion-curve-inversion">Dispersion Curve Inversion<a class="headerlink" href="#dispersion-curve-inversion" title="Permanent link">&para;</a></h3>
-<p>Given observed dispersion curve <span class="arithmatex">\(c^\text{obs}(f_i)\)</span>, estimate the <span class="arithmatex">\(V_S(z)\)</span> model by minimizing:</p>
-<div class="arithmatex">\[
-\min_{\mathbf{m}} \left\| \mathbf{c}^\text{obs} - \mathbf{c}^\text{pred}(\mathbf{m}) \right\|^2 + \varepsilon^2\| \mathbf{D}\mathbf{m} \|^2
-\]</div>
-<p>where <span class="arithmatex">\(\mathbf{m}\)</span> contains the layer <span class="arithmatex">\(V_S\)</span> values and thicknesses, <span class="arithmatex">\(\mathbf{c}^\text{pred}\)</span> is computed via the Thomson-Haskell matrix method, and the regularisation term constrains model smoothness.</p>
-<p><img alt="Surface wave dispersion" src="../assets/images/sw_dispersion.png" />
-<em>Figure 1: Left — Rayleigh wave dispersion for a two-layer model (soft over hard). Blue: phase velocity <span class="arithmatex">\(c(f)\)</span>; red: group velocity <span class="arithmatex">\(U(f)\)</span>. Low frequencies penetrate deeply (high velocity); high frequencies are confined to the shallow soft layer. Right — Depth sensitivity kernels for four frequencies; the peak depth scales as <span class="arithmatex">\(\approx\lambda/3\)</span>.</em></p>
-<hr />
-<h2 id="coda-waves">Coda Waves<a class="headerlink" href="#coda-waves" title="Permanent link">&para;</a></h2>
-<h3 id="physical-origin">Physical Origin<a class="headerlink" href="#physical-origin" title="Permanent link">&para;</a></h3>
-<p>When seismic waves propagate through a heterogeneous medium, they are <strong>multiply scattered</strong> by randomly distributed heterogeneities (faults, pores, mineral boundaries, etc.), producing the <strong>coda</strong> — the long, decaying tail that follows the direct P- and S-wave arrivals.</p>
-<p>Two key properties:</p>
-<ol>
-<li><strong>Amplitude envelope decay</strong>: In the single-backscattering model (Aki &amp; Chouet 1975), the mean-square coda amplitude decays as:</li>
-</ol>
-<div class="arithmatex">\[
-\langle A^2(f, t) \rangle \propto t^{-3}\, \exp\!\left(-\frac{2\pi f\, t}{Q_c}\right)
-\]</div>
-<ol>
-<li><strong>Path averaging</strong>: Because coda energy has traversed many different scattering paths, its statistics are insensitive to source–receiver geometry and reflect only the medium's average scattering and attenuation properties.</li>
-</ol>
-<h3 id="coda-q-estimation">Coda Q Estimation<a class="headerlink" href="#coda-q-estimation" title="Permanent link">&para;</a></h3>
-<p>Taking the logarithm of the envelope equation:</p>
-<div class="arithmatex">\[
-\ln\!\left[\langle A^2(f,t)\rangle \cdot t^3\right] = \mathrm{const} - \frac{2\pi f}{Q_c}\, t
-\]</div>
-<p>For a fixed frequency <span class="arithmatex">\(f\)</span>, a linear fit of <span class="arithmatex">\(\ln[\langle A^2\rangle \cdot t^3]\)</span> versus <span class="arithmatex">\(t\)</span> gives slope <span class="arithmatex">\(m = -2\pi f / Q_c\)</span>, hence:</p>
-<div class="arithmatex">\[
-\boxed{Q_c = -\frac{2\pi f}{m}}
-\]</div>
+<p>In practice, the passband boundaries must be <strong>tapered</strong> (cosine or Hanning taper) to suppress Gibbs-effect ringing in the <span class="arithmatex">\(t\)</span>-<span class="arithmatex">\(x\)</span> domain.</p>
 <div class="admonition note">
-<p class="admonition-title">Physical Interpretation of Qc</p>
-<p><span class="arithmatex">\(Q_c\)</span> reflects both <strong>intrinsic attenuation</strong> (inelastic dissipation) and <strong>scattering attenuation</strong> (energy redistribution). Separating the two requires additional analysis (e.g., multiple lapse-time window analysis, MLTWA), but <span class="arithmatex">\(Q_c\)</span> alone is a useful path-averaged attenuation metric.</p>
+<p class="admonition-title">F-K Filtering in VSP Wavefield Separation</p>
+<p>In VSP processing, downgoing waves (<span class="arithmatex">\(\partial t/\partial z &gt; 0\)</span>) and upgoing waves (<span class="arithmatex">\(\partial t/\partial z &lt; 0\)</span>) have opposite-sign apparent velocities. An F-K filter retaining only <span class="arithmatex">\(k &gt; 0\)</span> or <span class="arithmatex">\(k &lt; 0\)</span> separates them directly. See <a href="../vsp-en/">VSP Principles</a>.</p>
 </div>
-<hr />
-<h2 id="coda-wave-interferometry-cwi">Coda Wave Interferometry (CWI)<a class="headerlink" href="#coda-wave-interferometry-cwi" title="Permanent link">&para;</a></h2>
-<h3 id="principle">Principle<a class="headerlink" href="#principle" title="Permanent link">&para;</a></h3>
-<p>Late coda arrivals have traveled along extremely long scattered paths of total length <span class="arithmatex">\(L \sim vt\)</span> (where <span class="arithmatex">\(t\)</span> is lapse time and <span class="arithmatex">\(v\)</span> is average velocity). A fractional velocity change <span class="arithmatex">\(\delta v\)</span> shifts the travel time of each path by:</p>
+<h3 id="spatial-aliasing">Spatial Aliasing<a class="headerlink" href="#spatial-aliasing" title="Permanent link">&para;</a></h3>
+<p>When the channel spacing <span class="arithmatex">\(\Delta x\)</span> is too large, steeply dipping events alias in the wavenumber domain:</p>
 <div class="arithmatex">\[
-\delta t_i = -\frac{\delta v_i}{v} \cdot \frac{L_i}{v} \approx -\frac{\delta v}{v}\cdot t
+k_\text{Nyquist} = \frac{1}{2\Delta x}, \qquad
+f_\text{alias} = \frac{v_\text{app}}{2\Delta x}
 \]</div>
-<p>Averaging over all coda paths gives the fundamental CWI relation:</p>
+<p>For surface waves (<span class="arithmatex">\(v_\text{app} = 500\)</span> m/s) and <span class="arithmatex">\(\Delta x = 25\)</span> m: <span class="arithmatex">\(f_\text{alias} = 10\)</span> Hz — surface waves alias above 10 Hz, contaminating the filter design. The spatial Nyquist condition is:</p>
 <div class="arithmatex">\[
-\boxed{\frac{\delta v}{v} = -\frac{\delta t}{\bar{t}}}
+\boxed{\Delta x \leq \frac{v_\text{app,min}}{2 f_\text{max}}}
 \]</div>
-<p>where <span class="arithmatex">\(\bar{t}\)</span> is the centre lapse time of the analysis window and <span class="arithmatex">\(\delta t\)</span> is the measured cross-correlation time shift between two recordings.</p>
-<p><strong>Why coda is so sensitive</strong>: The phase shift accumulated over a path of length <span class="arithmatex">\(L \sim vt\)</span> is <span class="arithmatex">\(\delta\phi \propto t\,\delta v/v\)</span>. Longer lapse times magnify the signal, allowing detection of velocity changes as small as <span class="arithmatex">\(\delta v/v \sim 0.01\%\)</span> — impossible with direct waves.</p>
-<h3 id="doublet-method">Doublet Method<a class="headerlink" href="#doublet-method" title="Permanent link">&para;</a></h3>
-<p>For two recordings at the same location — a reference <span class="arithmatex">\(u_1(t)\)</span> and a current <span class="arithmatex">\(u_2(t)\)</span> — compute the cross-correlation within a coda window <span class="arithmatex">\([t_a, t_b]\)</span>:</p>
+<p>DAS channel spacings (1–5 m) largely eliminate this problem, whereas conventional geophone arrays (25–50 m spacing) often violate it for slow coherent noise.</p>
+<h3 id="high-resolution-f-k-capon-adaptive-beamforming">High-Resolution F-K: Capon Adaptive Beamforming<a class="headerlink" href="#high-resolution-f-k-capon-adaptive-beamforming" title="Permanent link">&para;</a></h3>
+<p>Conventional F-K (delay-and-sum beamforming) applies equal weights <span class="arithmatex">\(1/N\)</span> to all channels, equivalent to a rectangular spatial window — leading to high <strong>sidelobes</strong> that contaminate the spectrum.</p>
+<p>Capon (1969) proposed the <strong>Minimum Variance Distortionless Response (MVDR)</strong>: maintain unit gain toward the look direction while minimising total output power, thereby maximally suppressing energy from all other directions.</p>
+<p>Using the <strong>spatial covariance matrix</strong> <span class="arithmatex">\(\hat{\mathbf{R}}(f)\)</span> estimated from multiple data segments, the Capon spectrum is:</p>
 <div class="arithmatex">\[
-C(\tau) = \int_{t_a}^{t_b} u_1(t)\, u_2(t + \tau)\, \mathrm{d}t
+\boxed{P_\text{Capon}(f, k) = \frac{1}{\mathbf{a}^H(k)\,\hat{\mathbf{R}}^{-1}(f)\,\mathbf{a}(k)}}
 \]</div>
-<p>The peak lag <span class="arithmatex">\(\hat{\tau}\)</span> equals <span class="arithmatex">\(\delta t\)</span>, giving:</p>
-<div class="arithmatex">\[
-\frac{\delta v}{v} = -\frac{\hat{\tau}}{\bar{t}}, \qquad \bar{t} = \frac{t_a + t_b}{2}
-\]</div>
-<h3 id="stretching-method">Stretching Method<a class="headerlink" href="#stretching-method" title="Permanent link">&para;</a></h3>
-<p>When velocity change is spatially uniform, <span class="arithmatex">\(u_2(t) \approx u_1\!\left(t\,(1 + \delta v/v)\right)\)</span> (the time axis is uniformly compressed). Find the stretching factor <span class="arithmatex">\(\alpha\)</span> that maximises the correlation coefficient:</p>
-<div class="arithmatex">\[
-\text{CC}(\alpha) = \frac{\int u_1(t)\, u_2(t\,(1+\alpha))\,\mathrm{d}t}{\sqrt{\int u_1^2\,\mathrm{d}t \cdot \int u_2^2\,\mathrm{d}t}}
-\]</div>
-<p>Then <span class="arithmatex">\(\delta v/v = -\hat\alpha\)</span>. The stretching method is more robust at low SNR but assumes spatially homogeneous velocity perturbations.</p>
-<div class="admonition tip">
-<p class="admonition-title">Later Windows → Higher Sensitivity</p>
-<p>The measurement uncertainty scales as <span class="arithmatex">\(\sigma_{\delta v/v} \approx T/(2\pi f \bar{t}\,\text{CC})\)</span>. Using <strong>later coda windows</strong> (larger <span class="arithmatex">\(\bar{t}\)</span>) directly reduces uncertainty, but requires sufficient SNR. Noise correlation methods can circumvent this trade-off by stacking many windows.</p>
+<p>where <span class="arithmatex">\(\mathbf{a}(k) = [1,\, e^{ik\Delta x},\, e^{i2k\Delta x},\, \ldots]^T\)</span> is the <strong>steering vector</strong> and <span class="arithmatex">\(\hat{\mathbf{R}}(f) = \frac{1}{N_\text{seg}}\sum_n \hat{\mathbf{d}}_n\hat{\mathbf{d}}_n^H\)</span> is estimated from <span class="arithmatex">\(N_\text{seg}\)</span> independent snapshots. The sidelobe level is typically 10–20 dB lower than conventional beamforming.</p>
+<div class="admonition warning">
+<p class="admonition-title">Practical Requirements for Capon MVDR</p>
+<p><span class="arithmatex">\(\hat{\mathbf{R}}\)</span> must be well-conditioned: requires <span class="arithmatex">\(N_\text{seg} \gg N_x\)</span> independent snapshots. When this condition is not met, use <strong>diagonal loading</strong>: <span class="arithmatex">\(\hat{\mathbf{R}}_\epsilon = \hat{\mathbf{R}} + \epsilon\mathbf{I}\)</span> with <span class="arithmatex">\(\epsilon \approx 1\)</span>–<span class="arithmatex">\(5\%\)</span> of the largest eigenvalue.</p>
 </div>
-<p><img alt="Coda wave interferometry" src="../assets/images/coda_cwi.png" />
-<em>Figure 2: Left — reference coda (blue) and perturbed coda with +1% velocity increase (red); orange band marks the CWI analysis window; green dashed lines show the theoretical envelope <span class="arithmatex">\(\propto e^{-\pi f_0 t/Q_c}\)</span>. Right — coda cross-correlation function; the peak lag <span class="arithmatex">\(\delta t\)</span> gives <span class="arithmatex">\(\delta v/v \approx +1.1\%\)</span> (true value: +1.0%).</em></p>
+<h3 id="music-algorithm">MUSIC Algorithm<a class="headerlink" href="#music-algorithm" title="Permanent link">&para;</a></h3>
+<p><strong>Multiple Signal Classification (MUSIC)</strong> decomposes the covariance matrix into signal and noise subspaces:</p>
+<div class="arithmatex">\[
+\hat{\mathbf{R}} = \mathbf{E}_s \boldsymbol{\Lambda}_s \mathbf{E}_s^H + \sigma_n^2 \mathbf{E}_n \mathbf{E}_n^H
+\]</div>
+<p>The MUSIC spectrum:</p>
+<div class="arithmatex">\[
+P_\text{MUSIC}(k) = \frac{1}{\|\mathbf{E}_n^H\,\mathbf{a}(k)\|^2}
+\]</div>
+<p>diverges when the steering vector is orthogonal to the noise subspace, giving theoretically unlimited resolution (SNR-limited in practice). The cost is the need to know the source count <span class="arithmatex">\(d\)</span> (number of eigenvectors to assign to the signal subspace).</p>
+<p><img alt="F-K analysis and fan filtering" src="../assets/images/fk_analysis.png" />
+<em>Figure 1: (top-left) Original CMP gather with surface-wave noise; (top-right) F-K spectrum (log amplitude) — white line at 2000 m/s marks P-waves, cyan at 350 m/s marks surface waves; (bottom-left) fan filter mask (white = pass, <span class="arithmatex">\(v_\text{app} &gt; 700\)</span> m/s); (bottom-right) filtered gather with surface-wave energy removed.</em></p>
 <hr />
-<h2 id="method-selection-guide">Method Selection Guide<a class="headerlink" href="#method-selection-guide" title="Permanent link">&para;</a></h2>
+<h2 id="radon-transform-slant-stack">Radon Transform (Slant Stack)<a class="headerlink" href="#radon-transform-slant-stack" title="Permanent link">&para;</a></h2>
+<h3 id="linear-radon-p-transform">Linear Radon (τ-p Transform)<a class="headerlink" href="#linear-radon-p-transform" title="Permanent link">&para;</a></h3>
+<p>The linear Radon transform (also called the <strong>slant stack</strong> or <strong>τ-p transform</strong>) maps <span class="arithmatex">\(x\)</span>-<span class="arithmatex">\(t\)</span> data to intercept-time–slowness (τ-p) space:</p>
+<div class="arithmatex">\[
+m(\tau, p) = \int d(x,\, \tau + p\,x)\, \mathrm{d}x
+\]</div>
+<p><strong>Physical meaning</strong>: integrate <span class="arithmatex">\(d(x,t)\)</span> along a straight line with slope <span class="arithmatex">\(p\)</span> (= apparent slowness). A linear moveout event with apparent velocity <span class="arithmatex">\(v = 1/p\)</span> collapses to a single point at <span class="arithmatex">\((τ, p)\)</span> in the Radon domain.</p>
+<p><strong>Inverse transform</strong>:</p>
+<div class="arithmatex">\[
+d(x, t) = \int m(\tau,\, p)\big|_{\tau = t - px}\, \mathrm{d}p
+\]</div>
+<h3 id="discrete-implementation-phase-shift-summation">Discrete Implementation: Phase-Shift Summation<a class="headerlink" href="#discrete-implementation-phase-shift-summation" title="Permanent link">&para;</a></h3>
+<p>Efficient frequency-domain implementation: for each frequency <span class="arithmatex">\(f\)</span>,</p>
+<div class="arithmatex">\[
+M(p, f) = \sum_{i=1}^{N_x} D(x_i, f)\, e^{-i 2\pi f\, p\, x_i}
+\]</div>
+<p>This is a phase rotation for each slowness <span class="arithmatex">\(p\)</span>, with total cost <span class="arithmatex">\(O(N_p \cdot N_x \cdot N_f)\)</span> — much faster than time-domain interpolation.</p>
+<h3 id="parabolic-radon">Parabolic Radon<a class="headerlink" href="#parabolic-radon" title="Permanent link">&para;</a></h3>
+<p>Real reflection moveout is hyperbolic; the <strong>parabolic approximation</strong> is more accurate after NMO:</p>
+<div class="arithmatex">\[
+m(\tau, q) = \int d(x,\, \tau + q\,x^2)\, \mathrm{d}x
+\]</div>
+<p>where <span class="arithmatex">\(q\)</span> (s/m²) is the curvature parameter. After NMO correction, primary reflections map near <span class="arithmatex">\(q = 0\)</span>, while multiples with residual moveout map to finite <span class="arithmatex">\(q\)</span> — enabling <strong>multiple attenuation by muting</strong> in the Radon domain.</p>
 <table>
 <thead>
 <tr>
-<th>Goal</th>
-<th>Recommended method</th>
-<th>Required data</th>
-<th>Resolution</th>
+<th>Radon type</th>
+<th>Integration path</th>
+<th>Focuses</th>
+<th>Primary application</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Shallow <span class="arithmatex">\(V_S(z)\)</span> (engineering)</td>
-<td>Active-source MASW + inversion</td>
-<td>Active source + linear array</td>
-<td>Lateral tens of metres</td>
+<td>Linear (τ-p)</td>
+<td><span class="arithmatex">\(t = \tau + px\)</span></td>
+<td>Linear events</td>
+<td>Surface-wave extraction, plane-wave decomposition</td>
 </tr>
 <tr>
-<td>Crustal <span class="arithmatex">\(V_S\)</span> structure</td>
-<td>Passive noise + surface wave tomography</td>
-<td>Network ambient noise</td>
-<td>Tens to hundreds of km</td>
+<td>Parabolic</td>
+<td><span class="arithmatex">\(t = \tau + qx^2\)</span></td>
+<td>Post-NMO hyperbolic events</td>
+<td>Multiple attenuation (OBC, towed streamer)</td>
 </tr>
 <tr>
-<td>Path-averaged attenuation</td>
-<td>Coda <span class="arithmatex">\(Q_c\)</span> estimation</td>
-<td>Single station + single event</td>
-<td>Path average</td>
-</tr>
-<tr>
-<td>Time-lapse velocity monitoring</td>
-<td>CWI doublet / stretching</td>
-<td>Repeating events or periodic noise</td>
-<td><span class="arithmatex">\(\delta v/v \sim 0.01\%\)</span></td>
-</tr>
-<tr>
-<td>Dense near-surface monitoring</td>
-<td>DAS noise cross-correlation + CWI</td>
-<td>Continuous DAS record</td>
-<td>Decimetre-level channel spacing</td>
+<td>Hyperbolic</td>
+<td><span class="arithmatex">\(t = \sqrt{\tau^2 + x^2/v^2}\)</span></td>
+<td>Raw hyperbolic events</td>
+<td>Precise velocity analysis</td>
 </tr>
 </tbody>
 </table>
-<h3 id="combining-das-with-surface-waves-and-coda">Combining DAS with Surface Waves and Coda<a class="headerlink" href="#combining-das-with-surface-waves-and-coda" title="Permanent link">&para;</a></h3>
-<p><strong>DAS + noise cross-correlation</strong>: DAS provides thousands of virtual stations with spacing as small as 1 m, sampling Green's functions at unprecedented density. Rayleigh-wave dispersion curves extracted from DAS arrays enable fine-scale <span class="arithmatex">\(V_S(z)\)</span> profiling.</p>
-<p><strong>DAS + CWI</strong>: Continuous DAS records along a linear cable allow monitoring of velocity changes caused by fluid injection, induced seismicity, or volcanic activity, with spatial resolution matching the cable geometry.</p>
-<div class="admonition note">
-<p class="admonition-title">DAS Directional Response for Surface Waves</p>
-<p>DAS measures axial strain; its sensitivity to Rayleigh waves scales as <span class="arithmatex">\(\cos^2\theta\)</span> (cable–ray angle). Love waves (pure SH motion) produce zero strain along a cable oriented parallel to the propagation direction. See <a href="../das-en/">DAS Distributed Acoustic Sensing</a> for details.</p>
-</div>
+<h3 id="the-l2-smearing-problem">The L2 Smearing Problem<a class="headerlink" href="#the-l2-smearing-problem" title="Permanent link">&para;</a></h3>
+<p>In discrete form: <span class="arithmatex">\(\mathbf{d} = \mathbf{L}\mathbf{m}\)</span>. The <strong>minimum-norm L2 solution</strong>:</p>
+<div class="arithmatex">\[
+\hat{\mathbf{m}}_{L2} = (\mathbf{L}^H\mathbf{L} + \varepsilon^2\mathbf{I})^{-1}\mathbf{L}^H\mathbf{d}
+\]</div>
+<p>Because <span class="arithmatex">\(\mathbf{L}^H\mathbf{L}\)</span> is not the identity (the operator is non-orthogonal for finite arrays), the L2 solution <strong>smears</strong> energy across neighbouring slownesses, degrading the contrast between primaries and multiples and reducing the effectiveness of subsequent muting.</p>
 <hr />
-<h2 id="python-example">Python Example<a class="headerlink" href="#python-example" title="Permanent link">&para;</a></h2>
-<p>The code below reproduces both figures in this note. See the full code in <a href="../surface-coda/">the Chinese version</a>.</p>
+<h2 id="sparse-high-resolution-radon-current-research">Sparse / High-Resolution Radon (Current Research)<a class="headerlink" href="#sparse-high-resolution-radon-current-research" title="Permanent link">&para;</a></h2>
+<h3 id="l1-regularisation-sparse-radon">L1 Regularisation (Sparse Radon)<a class="headerlink" href="#l1-regularisation-sparse-radon" title="Permanent link">&para;</a></h3>
+<p>Replacing the L2 penalty with an L1 term forces most Radon coefficients to zero, consistent with the sparse nature of seismic reflectivity:</p>
+<div class="arithmatex">\[
+\boxed{\hat{\mathbf{m}} = \arg\min_{\mathbf{m}} \left\{\|\mathbf{d} - \mathbf{L}\mathbf{m}\|_2^2 + \lambda\|\mathbf{m}\|_1\right\}}
+\]</div>
+<p>Common solvers: ADMM (Alternating Direction Method of Multipliers), ISTA/FISTA (iterative soft thresholding).</p>
+<h3 id="iteratively-reweighted-least-squares-irls">Iteratively Reweighted Least Squares (IRLS)<a class="headerlink" href="#iteratively-reweighted-least-squares-irls" title="Permanent link">&para;</a></h3>
+<p>IRLS solves a series of weighted L2 problems, updating the weight matrix from the previous solution's amplitude:</p>
+<div class="arithmatex">\[
+\hat{\mathbf{m}}^{(k+1)} = \left(\mathbf{L}^H\mathbf{L} + \varepsilon\,[\mathbf{Q}^{(k)}]^{-1}\right)^{-1} \mathbf{L}^H\mathbf{d}
+\]</div>
+<div class="arithmatex">\[
+Q^{(k)}_{ii} = \left|m_i^{(k)}\right| + \delta, \quad \delta \ll 1
+\]</div>
+<p>Even 1–3 iterations produce dramatically sharper Radon panels compared with the L2 solution, at only a modest computational overhead.</p>
+<h3 id="sacchi-ulrych-high-resolution-radon">Sacchi-Ulrych High-Resolution Radon<a class="headerlink" href="#sacchi-ulrych-high-resolution-radon" title="Permanent link">&para;</a></h3>
+<p>Sacchi &amp; Ulrych (1995) perform frequency-by-frequency estimation in the frequency domain using <strong>adaptive weighting</strong> derived from the estimated model power spectrum:</p>
+<div class="arithmatex">\[
+\hat{\mathbf{M}}(\omega) = \left(\mathbf{L}^H\mathbf{L} + \mu\,\mathbf{Q}^{-1}(\omega)\right)^{-1} \mathbf{L}^H\mathbf{D}(\omega), \quad \mathbf{Q}(\omega) = \mathrm{diag}(|\hat{M}_j(\omega)|^2)
+\]</div>
+<p>This <strong>frequency-adaptive regularisation</strong> applies strong constraint only where the model power is low (noise-dominated frequencies), achieving consistent focusing across the full bandwidth.</p>
+<h3 id="compressive-sensing-radon">Compressive Sensing Radon<a class="headerlink" href="#compressive-sensing-radon" title="Permanent link">&para;</a></h3>
+<p>When receiver spacing is non-uniform or traces are missing, the conventional regular-grid Radon assumption breaks down. The compressive sensing formulation directly recovers a sparse Radon panel from irregular observations:</p>
+<div class="arithmatex">\[
+\hat{\mathbf{m}} = \arg\min_{\mathbf{m}} \|\mathbf{m}\|_1 \quad \text{s.t.} \quad \|\mathbf{d} - \mathbf{L}_\text{irr}\mathbf{m}\|_2 \leq \sigma
+\]</div>
+<p>where <span class="arithmatex">\(\mathbf{L}_\text{irr}\)</span> is the irregular-sampling Radon operator. No interpolation pre-processing is required.</p>
+<p><img alt="Radon transform comparison" src="../assets/images/radon_transform.png" />
+<em>Figure 2: (left) CMP gather with hyperbolic moveout events; (centre) conventional L2 Radon — events smear widely in slowness; (right) sparse/IRLS Radon — events focus into sharp stripes in the τ-p domain.</em></p>
+<hr />
+<h2 id="practical-requirements-and-guidelines">Practical Requirements and Guidelines<a class="headerlink" href="#practical-requirements-and-guidelines" title="Permanent link">&para;</a></h2>
+<h3 id="f-k-filtering">F-K Filtering<a class="headerlink" href="#f-k-filtering" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Explanation</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Uniform channel spacing</td>
+<td>Non-uniform spacing distorts the F-K spectrum</td>
+<td>Interpolate to a regular grid, or use NUFFT</td>
+</tr>
+<tr>
+<td>Edge effects</td>
+<td>Finite aperture produces sidelobes</td>
+<td>Apply spatial/temporal tapers (Hanning, Tukey)</td>
+</tr>
+<tr>
+<td>Filter boundary</td>
+<td>Rectangular cut creates ringing</td>
+<td>Cosine-taper the boundary (≥ 5% of band width)</td>
+</tr>
+<tr>
+<td>Signal leakage</td>
+<td>Overly narrow passband clips useful signal</td>
+<td>Widen passband to acceptable residual noise level</td>
+</tr>
+<tr>
+<td>3D data</td>
+<td>2D F-K misses cross-line dips</td>
+<td>Extend to 3D F-K (<span class="arithmatex">\(k_x\)</span>, <span class="arithmatex">\(k_y\)</span>, <span class="arithmatex">\(f\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="linear-radon">Linear Radon<a class="headerlink" href="#linear-radon" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Explanation</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Slowness range</td>
+<td>Too narrow → energy overflow</td>
+<td>Cover all target apparent velocities including surface waves</td>
+</tr>
+<tr>
+<td>Slowness sampling</td>
+<td>Large <span class="arithmatex">\(\Delta p\)</span> → poor slowness resolution</td>
+<td><span class="arithmatex">\(\Delta p \leq 1/(N_x \cdot x_\max \cdot f_\max)\)</span></td>
+</tr>
+<tr>
+<td>NMO residual</td>
+<td>Linear Radon cannot focus hyperbolic events exactly</td>
+<td>Use parabolic Radon, or apply NMO before linear Radon</td>
+</tr>
+<tr>
+<td>Regularisation <span class="arithmatex">\(\varepsilon\)</span></td>
+<td>Too large → smearing; too small → instability</td>
+<td>L-curve or cross-validation for automatic selection</td>
+</tr>
+<tr>
+<td>Computational cost</td>
+<td>Time-domain: <span class="arithmatex">\(O(N_p N_x N_t)\)</span></td>
+<td>Frequency-domain: <span class="arithmatex">\(O(N_p N_x N_f)\)</span> per iteration</td>
+</tr>
+</tbody>
+</table>
+<h3 id="high-resolution-methods">High-Resolution Methods<a class="headerlink" href="#high-resolution-methods" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Key parameter</th>
+<th>Recommended range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Capon MVDR</td>
+<td>Diagonal loading <span class="arithmatex">\(\epsilon\)</span></td>
+<td><span class="arithmatex">\(1\)</span>–<span class="arithmatex">\(5\%\)</span> of largest eigenvalue</td>
+</tr>
+<tr>
+<td>Capon MVDR</td>
+<td>Number of snapshots <span class="arithmatex">\(N_\text{seg}\)</span></td>
+<td><span class="arithmatex">\(N_\text{seg} &gt; 2 N_x\)</span> (otherwise singular)</td>
+</tr>
+<tr>
+<td>IRLS Radon</td>
+<td>Number of iterations</td>
+<td>3–10; more iterations risk over-sparsity and amplitude distortion</td>
+</tr>
+<tr>
+<td>IRLS Radon</td>
+<td>Stabilisation factor <span class="arithmatex">\(\delta\)</span></td>
+<td><span class="arithmatex">\(1\)</span>–<span class="arithmatex">\(5\%\)</span> of maximum amplitude</td>
+</tr>
+<tr>
+<td>Sparse Radon (ADMM)</td>
+<td>Regularisation <span class="arithmatex">\(\lambda\)</span></td>
+<td><span class="arithmatex">\(\lambda = \sigma_n\sqrt{2\ln N}\)</span> (BIC estimate)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="summary-comparison">Summary Comparison<a class="headerlink" href="#summary-comparison" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Separation criterion</th>
+<th>Resolution</th>
+<th>Cost</th>
+<th>Current research</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>F-K fan filter</td>
+<td>Apparent velocity (linear)</td>
+<td>Aperture-limited</td>
+<td>Low (FFT)</td>
+<td>Adaptive weights, DAS non-uniform sampling</td>
+</tr>
+<tr>
+<td>Capon MVDR</td>
+<td>Apparent velocity (adaptive)</td>
+<td>High (SNR-limited)</td>
+<td>Medium (matrix inversion)</td>
+<td>Diagonal loading optimisation, recursive update</td>
+</tr>
+<tr>
+<td>MUSIC</td>
+<td>Apparent velocity (subspace)</td>
+<td>Super-resolution</td>
+<td>High (eigendecomposition)</td>
+<td>Source-count estimation, non-stationary covariance</td>
+</tr>
+<tr>
+<td>Linear Radon (L2)</td>
+<td>Apparent velocity (linear)</td>
+<td>Low (smeared)</td>
+<td>Medium</td>
+<td>Baseline reference; largely superseded</td>
+</tr>
+<tr>
+<td>High-res Radon (IRLS)</td>
+<td>Apparent velocity (linear)</td>
+<td>High</td>
+<td>Medium-high</td>
+<td>Compressive sensing, irregular sampling</td>
+</tr>
+<tr>
+<td>Parabolic Radon (L1)</td>
+<td>Curvature + velocity</td>
+<td>High</td>
+<td>High</td>
+<td>Deep-water multiple suppression</td>
+</tr>
+</tbody>
+</table>
 <hr />
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Aki, K., &amp; Chouet, B. (1975). Origin of coda waves: Source, attenuation and scattering effects. <em>Journal of Geophysical Research</em>, 80(23), 3322–3342.</li>
-<li>Park, C. B., Miller, R. D., &amp; Xia, J. (1999). Multichannel analysis of surface waves. <em>Geophysics</em>, 64(3), 800–808.</li>
-<li>Bensen, G. D., Ritzwoller, M. H., Barmin, M. P., Levshin, A. L., Lin, F., Moschetti, M. P., … &amp; Yang, Y. (2007). Processing seismic ambient noise data to obtain reliable broad-band surface wave dispersion measurements. <em>Geophysical Journal International</em>, 169(3), 1239–1260.</li>
-<li>Snieder, R. (2006). The theory of coda wave interferometry. <em>Pure and Applied Geophysics</em>, 163(2–3), 455–473.</li>
-<li>Sens-Schönfelder, C., &amp; Wegler, U. (2006). Passive image interferometry and seasonal variations of seismic velocities at Merapi Volcano, Indonesia. <em>Geophysical Research Letters</em>, 33(21), L21302.</li>
-<li>Shapiro, N. M., &amp; Campillo, M. (2004). Emergence of broadband Rayleigh waves from correlations of the ambient seismic noise. <em>Geophysical Research Letters</em>, 31(7), L07614.</li>
-<li>Lindsey, N. J., Martin, E. R., Dreger, D. S., Freifeld, B., White, S., Monga, S. K., … &amp; Ajo-Franklin, J. B. (2017). Fiber-optic network observations of earthquake wavefields. <em>Geophysical Research Letters</em>, 44(23), 11–792.</li>
+<li>Capon, J. (1969). High-resolution frequency-wavenumber spectrum analysis. <em>Proceedings of the IEEE</em>, 57(8), 1408–1418.</li>
+<li>Schmidt, R. O. (1986). Multiple emitter location and signal parameter estimation. <em>IEEE Transactions on Antennas and Propagation</em>, 34(3), 276–280.</li>
+<li>Hampson, D. (1986). Inverse velocity stacking for multiple elimination. <em>SEG Technical Program Expanded Abstracts</em>, 422–424.</li>
+<li>Sacchi, M. D., &amp; Ulrych, T. J. (1995). High-resolution velocity gathers and offset space reconstruction. <em>Geophysics</em>, 60(4), 1169–1177.</li>
+<li>Trad, D., Ulrych, T., &amp; Sacchi, M. (2003). Latest views of the sparse Radon transform. <em>Geophysics</em>, 68(1), 386–399.</li>
+<li>Herrmann, F. J., &amp; Hennenfent, G. (2008). Non-parametric seismic data recovery with curvelet frames. <em>Geophysical Journal International</em>, 173(1), 233–248.</li>
+<li>Naghizadeh, M., &amp; Sacchi, M. D. (2010). Beyond alias hierarchical scale curvelet interpolation of regularly and irregularly sampled seismic data. <em>Geophysics</em>, 75(6), WB189–WB202.</li>
 </ul>
 
 
