@@ -176,6 +176,7 @@ not_in_nav: |
   q-spectral-ratio-en.md
   das-en.md
   vsp-en.md
+  surface-coda-en.md
 
 nav:
   - 首页: index.md
@@ -188,6 +189,9 @@ nav:
 
   - 垂直地震剖面:
       - VSP 原理与应用: vsp.md
+
+  - 面波与尾波:
+      - 波速提取与监测: surface-coda.md
 
   - DAS 分布式声学传感:
       - 基本原理与应用: das.md
