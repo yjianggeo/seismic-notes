@@ -277,42 +277,53 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.ndimage import gaussian_filter
 
-dt = 0.004; dx = 25.0
-nt = 128;   nx = 48
-t = np.arange(nt)*dt
-x = np.arange(nx)*dx
+# dx=10 m 保证 350 m/s 面波在 17.5 Hz 以下不出现空间假频
+dt = 0.004; dx = 10.0
+nt = 256;   nx = 72
+t = np.arange(nt)*dt     # 0…1.02 s
+x = np.arange(nx)*dx     # 0…710 m
 
-def ricker(f, dt, nt):
-    tc = np.arange(nt)*dt - nt*dt/4
-    return (1 - 2*(np.pi*f*tc)**2) * np.exp(-(np.pi*f*tc)**2)
+wav_len = 48  # 短子波（0.192 s），远小于 nt，确保事件可写入
+
+def ricker(f0, dt, n):
+    tc = np.arange(n)*dt - n*dt/2
+    return (1 - 2*(np.pi*f0*tc)**2) * np.exp(-(np.pi*f0*tc)**2)
+
+wav_P  = ricker(30.0, dt, wav_len)
+wav_SW = ricker(7.0,  dt, wav_len)
 
 # 构建含噪道集
 data = np.zeros((nx, nt))
-wav_P  = ricker(40.0, dt, nt)
-wav_SW = ricker(8.0,  dt, nt)
-for t0 in [0.08, 0.22, 0.36]:
+for t0, v_int in [(0.25, 2000.), (0.55, 2100.), (0.80, 2200.)]:
     for ix, xi in enumerate(x):
-        it = int((t0 + xi/2000.0) / dt)
-        if 0 < it < nt - len(wav_P):
-            data[ix, it:it+len(wav_P)] += wav_P
+        it = int(round(np.sqrt(t0**2 + (xi/v_int)**2) / dt))
+        if 0 <= it <= nt - wav_len:
+            data[ix, it:it+wav_len] += wav_P * np.exp(-it*dt*0.4)
 for ix, xi in enumerate(x):
-    it = int((0.02 + xi/350.0) / dt)
-    if 0 < it < nt - len(wav_SW):
-        data[ix, it:it+len(wav_SW)] += 2.8 * wav_SW
+    it = int(round((0.02 + xi/350.) / dt))
+    if 0 <= it <= nt - wav_len:
+        data[ix, it:it+wav_len] += 3.0 * wav_SW
+data += 0.06 * np.abs(data).max() * np.random.default_rng(42).standard_normal(data.shape)
 
-# 2D FFT
+# 2D FFT：FK 形状 (nx, nt) = (k 轴, f 轴)
 FK   = np.fft.fftshift(np.fft.fft2(data))
 f_ax = np.fft.fftshift(np.fft.fftfreq(nt, dt))
-k_ax = np.fft.fftshift(np.fft.fftfreq(nx, dx))
-KK, FF = np.meshgrid(k_ax, f_ax, indexing='ij')
+k_ax = np.fft.fftshift(np.fft.fftfreq(nx, dx))      # 1/m
+KK, FF = np.meshgrid(k_ax, f_ax, indexing='ij')     # 均为 (nx, nt)
 
 # 扇形滤波器（|v_app| > 700 m/s）
-eps = 1e-9
+eps   = 1e-9
 v_app = np.abs(FF / (KK + eps))
-mask  = np.where((np.abs(KK) < eps) | (v_app >= 700.0), 1.0, 0.0)
+mask  = np.where((np.abs(KK) < eps) | (v_app >= 700.), 1.0, 0.0)
 mask  = gaussian_filter(mask.astype(float), sigma=1.5)   # 平滑边界
 
 data_filt = np.real(np.fft.ifft2(np.fft.ifftshift(FK * mask)))
+
+# 绘制 F-K 谱（注意：FK 形状 (nx,nt)，直接 imshow 不需转置）
+fk_amp = np.log10(np.abs(FK) + 1)
+plt.imshow(fk_amp, aspect='auto', cmap='hot_r', origin='lower',
+           extent=[f_ax[0], f_ax[-1], k_ax[0]*1e3, k_ax[-1]*1e3])
+plt.xlabel('Frequency (Hz)'); plt.ylabel('Wavenumber (1/km)')
 ```
 
 ### 高分辨率 Radon（IRLS，频域）

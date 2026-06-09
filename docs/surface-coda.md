@@ -240,19 +240,24 @@ from scipy.signal import correlate, correlation_lags
 # ── 图 1：面波频散曲线与深度灵敏度核 ─────────────────────
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
 
-f = np.linspace(1, 50, 300)
+f = np.linspace(0.5, 50, 600)
 Vs1, Vs2 = 200.0, 600.0
 VR1, VR2 = Vs1 * 0.919, Vs2 * 0.919
 h = 20.0  # 第一层厚度 (m)
 f_trans = (VR1 + VR2) / 2 / (2 * h)
-c_ph = VR1 + (VR2 - VR1) * 0.5 * (1 - np.tanh(np.log(np.maximum(f / f_trans, 1e-6)) * 1.4))
-U    = c_ph + f * np.gradient(c_ph, f)
+# Lorentzian 过渡：U(f) = VR1 + (VR2-VR1)*(1-x²)/(1+x²)²，恒正
+x    = f / f_trans
+c_ph = VR1 + (VR2 - VR1) / (1 + x**2)
+U    = VR1 + (VR2 - VR1) * (1 - x**2) / (1 + x**2)**2
 
 ax = axes[0]
+ax.fill_between(f, U, c_ph, where=(c_ph >= U), alpha=0.15, color='#3498db',
+                label='c − U (dispersion zone)')
 ax.plot(f, c_ph, color='#3498db', lw=2.5, label='Phase velocity $c(f)$')
 ax.plot(f, U,    color='#e74c3c', lw=2.5, ls='--', label='Group velocity $U(f)$')
 ax.set(xlabel='Frequency (Hz)', ylabel='Velocity (m/s)',
-       title='Rayleigh Wave Dispersion Curve\n(2-layer: soft over hard)', xlim=[1, 50])
+       title='Rayleigh Wave Dispersion Curve\n(2-layer: soft over hard)',
+       xlim=[0.5, 50], ylim=[0, VR2 * 1.12])
 ax.legend(fontsize=9); ax.grid(True, alpha=0.3)
 
 z = np.linspace(0, 120, 400)
@@ -260,9 +265,9 @@ ax = axes[1]
 for fi, col in zip([5, 15, 30, 50], ['#2ecc71', '#3498db', '#e67e22', '#e74c3c']):
     idx = np.argmin(np.abs(f - fi))
     z_pk = c_ph[idx] / (3 * fi)
-    K = np.exp(-(z - z_pk)**2 / (2 * (z_pk * 0.55)**2))
+    K = np.exp(-(z - z_pk)**2 / (2 * (max(z_pk * 0.55, 1.0))**2))
     ax.plot(K / K.max(), z, color=col, lw=2.2, label=f'{fi} Hz (peak ≈ {z_pk:.0f} m)')
-ax.set(xlabel='Normalised sensitivity', ylabel='Depth (m)',
+ax.set(xlabel='Normalised sensitivity $\\partial c/\\partial V_S(z)$', ylabel='Depth (m)',
        title='Depth Sensitivity Kernels\n(Rayleigh, fundamental mode)',
        ylim=[120, 0])
 ax.legend(fontsize=9, loc='lower right'); ax.grid(True, alpha=0.3)
