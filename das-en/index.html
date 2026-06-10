@@ -1460,6 +1460,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#cable-coupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cable Coupling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Cable Coupling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#jacket-to-fiber-coupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jacket-to-Fiber Coupling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cable-to-medium-coupling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cable-to-Medium Coupling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#updated-combined-instrument-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Updated Combined Instrument Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-situ-coupling-assessment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In-Situ Coupling Assessment
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python-example" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1982,6 +2043,216 @@ This relates depth increment to travel-time increment and depends on the inciden
 $<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)\)</span>$
 The condition <span class="arithmatex">\(\theta &lt; 45°\)</span> requires <span class="arithmatex">\(r_H &lt; z_\text{src} - z_\text{ch}\)</span>: <strong>horizontal offset less than the vertical separation</strong>. Q inversion therefore works best with events located nearly below the well bottom.</p>
 </div>
+<hr />
+<h2 id="cable-coupling">Cable Coupling<a class="headerlink" href="#cable-coupling" title="Permanent link">&para;</a></h2>
+<p>Before a seismic ground-strain signal reaches the DAS interrogator, it must pass through two mechanical interfaces in series:</p>
+<div class="arithmatex">\[
+\underbrace{\varepsilon_\text{formation}}_{\text{free-field strain}}
+\xrightarrow{C_\text{med}(f)}
+\underbrace{\varepsilon_\text{jacket}}_{\text{cable-jacket strain}}
+\xrightarrow{\eta_\text{fiber}}
+\underbrace{\varepsilon_\text{fiber}}_{\text{DAS measurement}}
+\]</div>
+<p>Both factors are ≤ 1 and have independent frequency responses and engineering controls.</p>
+<hr />
+<h3 id="jacket-to-fiber-coupling">Jacket-to-Fiber Coupling<a class="headerlink" href="#jacket-to-fiber-coupling" title="Permanent link">&para;</a></h3>
+<h4 id="cable-structure-and-strain-transfer-efficiency">Cable Structure and Strain Transfer Efficiency<a class="headerlink" href="#cable-structure-and-strain-transfer-efficiency" title="Permanent link">&para;</a></h4>
+<p>The mechanical structure of the fiber-optic cable determines whether jacket strain is transferred to the fiber — the most fundamental hardware constraint on DAS sensing.</p>
+<p><strong>Loose-tube cable</strong></p>
+<p>The fiber(s) float inside a hollow tube filled with <strong>filling compound (thixotropic gel)</strong>. The fiber has a slight excess length (0.1–0.5%) so it experiences no axial tension from tube elongation.</p>
+<ul>
+<li>No radial or axial mechanical constraint on the fiber → <strong>dynamic strain transfer efficiency <span class="arithmatex">\(\eta_\text{fiber} \approx 0\)</span></strong></li>
+<li>Designed for telecommunications: prevents thermal stress from straining the fiber, protecting transmission performance</li>
+<li><strong>Unsuitable for DAS seismic sensing</strong> — when a loose-tube cable is interrogated by DAS, every channel records near-zero seismic signal</li>
+</ul>
+<p><strong>Tight-buffered cable</strong></p>
+<p>A polymer buffer layer (typically 0.9 mm thick) is heat-extruded directly onto the fiber cladding, forming a rigid bond.</p>
+<div class="arithmatex">\[\varepsilon_\text{fiber} = \eta_\text{fiber} \cdot \varepsilon_\text{jacket}, \qquad \eta_\text{fiber} \approx 0.7\text{–}0.9\]</div>
+<p>Under quasi-static loading <span class="arithmatex">\(\eta \to 1\)</span>; at higher frequencies, viscoelastic lag of the buffer slightly reduces <span class="arithmatex">\(\eta\)</span>.</p>
+<p><strong>Strain-sensing cables</strong></p>
+<p>Optimized for DAS / distributed strain sensing (DSS) through one or more structural features:
+- <strong>Reinforced tight-buffer</strong>: higher-stiffness polymer, <span class="arithmatex">\(\eta \approx 0.9\)</span>–<span class="arithmatex">\(1.0\)</span>
+- <strong>Helically wound steel wires</strong>: distribute strain uniformly to the fiber while providing mechanical protection
+- <strong>Direct bonding</strong>: fiber epoxy-bonded to the inner wall of a metallic sheath for maximum strain coupling</p>
+<table>
+<thead>
+<tr>
+<th>Cable type</th>
+<th>Typical <span class="arithmatex">\(\eta_\text{fiber}\)</span></th>
+<th>DAS suitability</th>
+<th>Common use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loose-tube</td>
+<td>≈ 0</td>
+<td>❌ Unsuitable</td>
+<td>Long-haul telecom, submarine</td>
+</tr>
+<tr>
+<td>Tight-buffered</td>
+<td>0.7–0.9</td>
+<td>✓ Suitable</td>
+<td>Premises, short-range sensing</td>
+</tr>
+<tr>
+<td>Strain-sensing</td>
+<td>0.9–1.0</td>
+<td>✓ Optimal</td>
+<td>DAS / DSS dedicated</td>
+</tr>
+<tr>
+<td>Armored†</td>
+<td>0.5–0.8</td>
+<td>△ Depends on core</td>
+<td>Downhole / harsh environments</td>
+</tr>
+</tbody>
+</table>
+<p>†If armored over a loose-tube core, the steel armour senses strain but the fiber inside does not.</p>
+<div class="admonition warning">
+<p class="admonition-title">The telecom cable reuse trap</p>
+<p>Many urban DAS studies repurpose existing telecom infrastructure. Most urban telecom cables are <strong>loose-tube</strong> designs: although the DAS interrogator operates normally, all channels carry essentially zero seismic signal. Only cables that include a <strong>tight-buffered core</strong> are suitable. Always obtain the cable datasheet from the network operator before deploying DAS on third-party infrastructure.</p>
+</div>
+<h4 id="frequency-domain-jacket-to-fiber-coupling-model">Frequency-Domain Jacket-to-Fiber Coupling Model<a class="headerlink" href="#frequency-domain-jacket-to-fiber-coupling-model" title="Permanent link">&para;</a></h4>
+<p>For a tight-buffered cable, the viscoelastic shear stiffness of the buffer layer governs the frequency-dependent strain transfer (Kuvshinov 2016):</p>
+<div class="arithmatex">\[
+\eta_\text{fiber}(f) = \frac{k_b}{k_b + k_f \cdot (i 2\pi f \tau_b)}
+\]</div>
+<p>where <span class="arithmatex">\(k_b = G_b / \ln(r_b/r_f)\)</span> is the buffer shear stiffness (<span class="arithmatex">\(G_b\)</span> = buffer shear modulus, <span class="arithmatex">\(r_f\)</span> and <span class="arithmatex">\(r_b\)</span> = fiber and buffer radii), <span class="arithmatex">\(\tau_b\)</span> is the viscoelastic relaxation time of the buffer material (~<span class="arithmatex">\(10^{-4}\)</span>–<span class="arithmatex">\(10^{-3}\)</span> s), and <span class="arithmatex">\(k_f = E_f \pi r_f^2\)</span> is the fiber axial stiffness.</p>
+<p>For typical tight-buffer materials (polyimide / ETFE, <span class="arithmatex">\(G_b \sim 0.5\)</span>–<span class="arithmatex">\(2\)</span> GPa), the high-frequency roll-off of <span class="arithmatex">\(\eta_\text{fiber}\)</span> occurs at several kHz, well above the seismic band. In practice, <span class="arithmatex">\(\eta_\text{fiber}\)</span> can be treated as a frequency-independent constant within the seismic band.</p>
+<hr />
+<h3 id="cable-to-medium-coupling">Cable-to-Medium Coupling<a class="headerlink" href="#cable-to-medium-coupling" title="Permanent link">&para;</a></h3>
+<h4 id="physical-mechanism">Physical Mechanism<a class="headerlink" href="#physical-mechanism" title="Permanent link">&para;</a></h4>
+<p>The <strong>interface shear stiffness</strong> <span class="arithmatex">\(k_s\)</span> (per unit cable length, N/m²) between the cable jacket and the surrounding medium determines how efficiently the free-field strain <span class="arithmatex">\(\varepsilon_g\)</span> enters the cable:</p>
+<ul>
+<li><span class="arithmatex">\(k_s \to \infty\)</span> (fully bonded): <span class="arithmatex">\(C_\text{med}(f) = 1\)</span> — perfect coupling at all frequencies</li>
+<li><span class="arithmatex">\(k_s = 0\)</span> (frictionless): <span class="arithmatex">\(C_\text{med}(f) = 0\)</span> — zero coupling</li>
+</ul>
+<p>For finite <span class="arithmatex">\(k_s\)</span>, the coupled cable–medium system is equivalent to a distributed spring-mass model, giving an approximately first-order low-pass transfer function (Martin et al. 2021):</p>
+<div class="arithmatex">\[
+\boxed{C_\text{med}(f) = \frac{1}{\sqrt{1 + \left(\dfrac{f}{f_c}\right)^2}}}
+\]</div>
+<p>with cut-off frequency:</p>
+<div class="arithmatex">\[
+\boxed{f_c = \frac{1}{2\pi}\sqrt{\frac{k_s}{m_c}}}
+\]</div>
+<p>where <span class="arithmatex">\(m_c\)</span> is the cable mass per unit length (kg/m). <strong>For <span class="arithmatex">\(f \gg f_c\)</span>, cable inertia prevents it from following ground motion and coupling rolls off at −20 dB/decade.</strong></p>
+<h4 id="four-deployment-scenarios">Four Deployment Scenarios<a class="headerlink" href="#four-deployment-scenarios" title="Permanent link">&para;</a></h4>
+<p><strong>Cemented borehole</strong></p>
+<p>The cable is placed in the annulus between casing and formation and fixed with cement or fast-set epoxy. Shear stiffness (Kuvshinov 2016):</p>
+<div class="arithmatex">\[k_s \approx \frac{2\pi G_g}{\ln(r_\text{bh}/r_c)}\]</div>
+<p>where <span class="arithmatex">\(G_g \sim 5\)</span>–<span class="arithmatex">\(20\)</span> GPa for cement grout, <span class="arithmatex">\(r_\text{bh}\)</span> = borehole radius, <span class="arithmatex">\(r_c\)</span> = cable radius. Typically <span class="arithmatex">\(f_c \gg 1000\)</span> Hz → <strong>effectively perfect coupling across the entire seismic band</strong>.</p>
+<p><strong>Frozen into ice or permafrost</strong></p>
+<p>Cable inserted into a hot-water-drilled hole and allowed to freeze in place. Ice shear modulus <span class="arithmatex">\(G_\text{ice} \approx 3.5\)</span> GPa → <span class="arithmatex">\(f_c \sim 1000\)</span>–<span class="arithmatex">\(3000\)</span> Hz, comparable to cemented borehole. Effective coupling is essentially complete across the seismic band. Freeze–thaw cycles can degrade the bond and should be monitored.</p>
+<p><strong>Buried in soil</strong></p>
+<p>Interface shear stiffness scales with soil shear modulus <span class="arithmatex">\(G_s\)</span> and burial depth:</p>
+<div class="arithmatex">\[k_s \approx \frac{2\pi G_s}{\ln(D_\infty / r_c)}, \qquad D_\infty \approx 10\, r_c\]</div>
+<table>
+<thead>
+<tr>
+<th>Soil type</th>
+<th><span class="arithmatex">\(G_s\)</span></th>
+<th>Burial 0.1 m</th>
+<th>Burial 0.3 m</th>
+<th>Burial 1.0 m</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Soft clay</td>
+<td>5 MPa</td>
+<td>~30 Hz</td>
+<td>~80 Hz</td>
+<td>~200 Hz</td>
+</tr>
+<tr>
+<td>Sand</td>
+<td>50 MPa</td>
+<td>~120 Hz</td>
+<td>~300 Hz</td>
+<td>~800 Hz</td>
+</tr>
+<tr>
+<td>Hard soil / weathered rock</td>
+<td>200 MPa</td>
+<td>~400 Hz</td>
+<td>~1000 Hz</td>
+<td>&gt;2000 Hz</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Practical rule</strong>: burial depth ≥ 0.3 m ensures <span class="arithmatex">\(C &gt; -1\)</span> dB below 100 Hz in most soil conditions.</p>
+<p><strong>Surface-laid cable</strong></p>
+<p>Coupling relies only on <strong>self-weight friction</strong> with the ground surface. Effective <span class="arithmatex">\(k_s\)</span> is set by cable weight and surface roughness, typically very low. <span class="arithmatex">\(f_c\)</span> may be as low as 20–100 Hz, severely attenuating signals above ~100 Hz.</p>
+<div class="admonition warning">
+<p class="admonition-title">Submarine telecom cables for DAS</p>
+<p>Submarine cables are usually <strong>laid on the seafloor</strong> with no burial. Coupled with a loose-tube internal structure, they suffer two simultaneous penalties: <span class="arithmatex">\(\eta_\text{fiber} \approx 0\)</span> and <span class="arithmatex">\(f_c \sim 50\)</span> Hz. The usable band is typically &lt; 20 Hz and amplitudes are far below standard seismometers. Yet over thousands of kilometres of cable and exploiting ultra-low-frequency surface waves, submarine cable DAS has still produced important global seismology results (Marra et al. 2018).</p>
+</div>
+<p><img alt="DAS cable coupling: cross-sections and transfer functions" src="../assets/images/das_coupling.png" />
+<em>Figure 4: (Left) Loose-tube vs tight-buffered cable cross-sections — in the loose-tube design the fiber floats freely in gel (<span class="arithmatex">\(\eta_\text{fiber} \approx 0\)</span>); in the tight-buffered design the polymer buffer is bonded directly to the fiber (<span class="arithmatex">\(\eta_\text{fiber} \approx 0.8\)</span>–<span class="arithmatex">\(1.0\)</span>). (Right) Cable-to-medium coupling transfer functions <span class="arithmatex">\(C_\text{med}(f) = [1+(f/f_c)^2]^{-1/2}\)</span> for four deployment scenarios: cemented borehole (<span class="arithmatex">\(f_c \to \infty\)</span>) and frozen coupling (<span class="arithmatex">\(f_c \approx 3000\)</span> Hz) are transparent across the seismic band; burial 0.3 m (<span class="arithmatex">\(f_c \approx 300\)</span> Hz) is reliable below 1 kHz; surface-laid cable (<span class="arithmatex">\(f_c \approx 30\)</span> Hz) attenuates significantly above 100 Hz.</em></p>
+<hr />
+<h3 id="updated-combined-instrument-response">Updated Combined Instrument Response<a class="headerlink" href="#updated-combined-instrument-response" title="Permanent link">&para;</a></h3>
+<p>Adding both coupling factors to the forward model from the previous section:</p>
+<div class="arithmatex">\[
+\boxed{
+d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
+\cdot \underbrace{C_\text{med}(f)}_{\substack{\text{medium–cable}\\\text{coupling}}}
+\cdot \underbrace{\eta_\text{fiber}}_{\substack{\text{jacket–fiber}\\\text{coupling}}}
+\cdot \underbrace{v\cos^2\theta}_{\text{directional}}
+\cdot \underbrace{\mathrm{sinc}\!\left(\frac{\pi fL}{v\cos\theta}\right)}_{\text{gauge length}}
+\cdot e^{-\pi ft^*}
+}
+\]</div>
+<p>Each coupling factor is associated with a distinct physical interface and can be assessed or controlled independently:</p>
+<table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>Engineering control</th>
+<th>Residual uncertainty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(C_\text{med}(f)\)</span></td>
+<td>Cementing / burial depth</td>
+<td>Grout porosity, cure quality</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\eta_\text{fiber}\)</span></td>
+<td>Select tight-buffered / sensing cable</td>
+<td>Buffer ageing, temperature</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(v\cos^2\theta\)</span></td>
+<td>Incidence-angle cut (<span class="arithmatex">\(\theta &lt; 45°\)</span>)</td>
+<td>Velocity model error</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathrm{sinc}(\cdots)\)</span></td>
+<td>Gauge-length selection</td>
+<td>See gauge-length section</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Coupling correction order before inversion</p>
+<ol>
+<li><strong>Confirm cable type</strong> (loose vs tight) — reject channels where <span class="arithmatex">\(\eta_\text{fiber} \approx 0\)</span></li>
+<li><strong>Assess deployment state</strong> — estimate <span class="arithmatex">\(f_c\)</span> and set the upper usable frequency limit</li>
+<li>If broadband inversion is needed, compensate the spectrum by <span class="arithmatex">\(1/C_\text{med}(f)\)</span> (avoid over-amplifying noise above <span class="arithmatex">\(f_c\)</span>)</li>
+<li>Then proceed with joint inversion of gauge-length, directional, and <span class="arithmatex">\(t^*\)</span> effects</li>
+</ol>
+</div>
+<hr />
+<h3 id="in-situ-coupling-assessment">In-Situ Coupling Assessment<a class="headerlink" href="#in-situ-coupling-assessment" title="Permanent link">&para;</a></h3>
+<p>Co-locate a standard seismometer with the DAS cable and compute the empirical transfer function:</p>
+<div class="arithmatex">\[
+T(f) = \frac{U_\text{DAS}(f)}{U_\text{ref}(f)}
+\]</div>
+<p>After correcting for directional sensitivity and gauge-length response, the expected value is <span class="arithmatex">\(T(f) \propto C_\text{med}(f) \cdot \eta_\text{fiber}\)</span>. A −20 dB/decade roll-off in <span class="arithmatex">\(|T(f)|\)</span> above some frequency directly reveals <span class="arithmatex">\(f_c\)</span>, from which the coupling stiffness <span class="arithmatex">\(k_s\)</span> can be estimated.</p>
 <hr />
 <h2 id="python-example">Python Example<a class="headerlink" href="#python-example" title="Permanent link">&para;</a></h2>
 <p>The code below reproduces both figures: the directional sensitivity polar plot and the gauge-length transfer function.</p>

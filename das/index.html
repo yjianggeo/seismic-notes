@@ -1381,6 +1381,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        光缆耦合
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="光缆耦合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        光缆外套到光纤的耦合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        光缆与介质的耦合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        修正后的综合仪器响应
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        耦合质量的现场评估
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1392,7 +1453,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
+  <a href="#_30" class="md-nav__link">
     <span class="md-ellipsis">
       
         参考文献
@@ -1849,6 +1910,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        光缆耦合
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="光缆耦合">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        光缆外套到光纤的耦合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        光缆与介质的耦合
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        修正后的综合仪器响应
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        耦合质量的现场评估
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1860,7 +1982,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
+  <a href="#_30" class="md-nav__link">
     <span class="md-ellipsis">
       
         参考文献
@@ -2383,6 +2505,222 @@ $<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_
 <span class="arithmatex">\(\theta &lt; 45°\)</span> 要求 <span class="arithmatex">\(r_H &lt; z_\text{src} - z_\text{ch}\)</span>，即<strong>事件的水平距离小于事件与台道的垂直距离差</strong>。因此谱比法 Q 反演优先使用<strong>井底正下方的事件</strong>。</p>
 </div>
 <hr />
+<h2 id="_22">光缆耦合<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
+<p>DAS 记录到的轴向应变信号，必须经历两个串联的机械传递环节才能真正反映地层运动：</p>
+<div class="arithmatex">\[
+\underbrace{\varepsilon_\text{地层}}_{\text{自由场应变}}
+\xrightarrow{C_\text{med}(f)}
+\underbrace{\varepsilon_\text{外套}}_{\text{缆套应变}}
+\xrightarrow{\eta_\text{fiber}}
+\underbrace{\varepsilon_\text{光纤}}_{\text{DAS 测量}}
+\]</div>
+<p>两个系数均小于 1，且各自有独立的频率响应和工程控制手段。</p>
+<hr />
+<h3 id="_23">光缆外套到光纤的耦合<a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
+<h4 id="_24">光缆机械结构与应变传递效率<a class="headerlink" href="#_24" title="Permanent link">&para;</a></h4>
+<p>光纤外封装结构决定了外套应变能否传递到光纤，是 DAS 最基本的硬件约束。</p>
+<p><strong>松套管结构（Loose-tube cable）</strong></p>
+<p>光纤悬浮在充满<strong>油膏</strong>（filling compound）的松套管内，管内光纤比管稍长（余量系数 0.1–0.5%）。</p>
+<ul>
+<li>径向和轴向均无机械约束 → <strong>动态应变传递效率 <span class="arithmatex">\(\eta_\text{fiber} \approx 0\)</span></strong></li>
+<li>专为通信设计：防止温度变化产生的热应力传递到光纤，保护传输性能</li>
+<li><strong>不适合 DAS 地震传感</strong>——使用松套管电缆进行 DAS 测量时，记录到的是近乎纯噪声</li>
+</ul>
+<p><strong>紧套管结构（Tight-buffered cable）</strong></p>
+<p>聚合物缓冲层（典型厚度 0.9 mm）直接热挤压到光纤包层（cladding）上，形成刚性键合。</p>
+<div class="arithmatex">\[\varepsilon_\text{fiber} = \eta_\text{fiber} \cdot \varepsilon_\text{jacket}, \qquad \eta_\text{fiber} \approx 0.7\text{–}0.9\]</div>
+<p>准静态下 <span class="arithmatex">\(\eta \to 1\)</span>；在高频段，由于缓冲层的黏弹性滞后（viscoelastic lag），<span class="arithmatex">\(\eta\)</span> 略有下降。</p>
+<p><strong>应变传感专用光缆（Strain-sensing cable）</strong></p>
+<p>为 DAS/分布式应变传感（DSS）优化设计，通常采用以下一种或几种结构：
+- <strong>增强紧套管</strong>：更高刚度的缓冲聚合物，<span class="arithmatex">\(\eta \approx 0.9\)</span>–<span class="arithmatex">\(1.0\)</span>
+- <strong>绞合型加强件</strong>（helically wound steel wires）：将应变均匀分配到光纤，兼顾保护与传感
+- <strong>直接粘接</strong>（direct bonding）：光纤用环氧树脂直接固定于金属护套内壁，应变传递最优</p>
+<table>
+<thead>
+<tr>
+<th>光缆类型</th>
+<th>典型 <span class="arithmatex">\(\eta_\text{fiber}\)</span></th>
+<th>地震 DAS 适用性</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>松套管（Loose-tube）</td>
+<td>≈ 0</td>
+<td>❌ 不适用</td>
+<td>长距离通信、海底光缆</td>
+</tr>
+<tr>
+<td>紧套管（Tight-buffered）</td>
+<td>0.7–0.9</td>
+<td>✓ 适用</td>
+<td>室内布线、短距离传感</td>
+</tr>
+<tr>
+<td>应变传感专用缆</td>
+<td>0.9–1.0</td>
+<td>✓ 最优</td>
+<td>DAS、DSS 传感专用</td>
+</tr>
+<tr>
+<td>铠装光缆（Armored）</td>
+<td>0.5–0.8†</td>
+<td>△ 视结构而定</td>
+<td>井下/恶劣环境</td>
+</tr>
+</tbody>
+</table>
+<p>†铠装钢丝若与内部松套管组合，则外层铠甲感知应变而内部光纤不感知，η 取决于松/紧套内芯。</p>
+<div class="admonition warning">
+<p class="admonition-title">通信光缆复用的陷阱</p>
+<p>城市 DAS 研究中常将现有通信光缆直接用于地震传感。多数城市通信光缆为<strong>松套管结构</strong>，尽管 DAS 询问器可正常工作，但所有通道的应变信号极弱，信噪比极低。仅当光缆包含<strong>紧套管芯</strong>（tight-buffered core）时，相应通道方可用于地震传感。在选缆前须向运营商索取光缆截面结构说明书（cable datasheet）。</p>
+</div>
+<h4 id="-">频率域的套-芯耦合模型<a class="headerlink" href="#-" title="Permanent link">&para;</a></h4>
+<p>对于紧套管结构，缓冲层的<strong>黏弹性剪切刚度</strong>决定了频率相关的应变传递率。考虑一段长度为 <span class="arithmatex">\(l\)</span>、内外径分别为 <span class="arithmatex">\(r_f\)</span>（光纤）和 <span class="arithmatex">\(r_b\)</span>（缓冲外径）的缓冲层，其轴向剪切传递导纳（Kuvshinov 2016）：</p>
+<div class="arithmatex">\[
+\eta_\text{fiber}(f) = \frac{k_b}{k_b + k_f \cdot (i 2\pi f \tau_b)}
+\]</div>
+<p>其中 <span class="arithmatex">\(k_b = G_b / \ln(r_b/r_f)\)</span> 为缓冲层剪切刚度，<span class="arithmatex">\(\tau_b\)</span> 为缓冲材料的黏弹性松弛时间（通常 <span class="arithmatex">\(\tau_b \sim 10^{-4}\)</span>–<span class="arithmatex">\(10^{-3}\)</span> s），<span class="arithmatex">\(k_f = E_f \pi r_f^2\)</span> 为光纤轴向刚度。</p>
+<p>在地震频段（1–1000 Hz），对于典型紧套缓冲材料（聚酰亚胺/ETFE，<span class="arithmatex">\(G_b \sim 0.5\)</span>–<span class="arithmatex">\(2\)</span> GPa），<strong>高频截止频率</strong> <span class="arithmatex">\(f_\text{cut} = k_b/(2\pi m_f)\)</span> 通常在数 kHz 以上，远高于地震信号频带，因此实践中可将 <span class="arithmatex">\(\eta_\text{fiber}\)</span> 近似为常数。</p>
+<hr />
+<h3 id="_25">光缆与介质的耦合<a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
+<h4 id="_26">物理机制<a class="headerlink" href="#_26" title="Permanent link">&para;</a></h4>
+<p>光缆铺设于地层后，地震波传播产生的<strong>自由场应变</strong> <span class="arithmatex">\(\varepsilon_g(f)\)</span> 必须通过光缆与周围介质之间的界面传入光缆外套。这一传递由界面剪切刚度 <span class="arithmatex">\(k_s\)</span>（单位长度，N/m²）决定：</p>
+<ul>
+<li><span class="arithmatex">\(k_s \to \infty\)</span>（完全固结）：<span class="arithmatex">\(C_\text{med}(f) = 1\)</span>，完美耦合</li>
+<li><span class="arithmatex">\(k_s = 0\)</span>（自由滑动）：<span class="arithmatex">\(C_\text{med}(f) = 0\)</span>，零耦合</li>
+</ul>
+<p>对于有限 <span class="arithmatex">\(k_s\)</span>，耦合系统等效为分布式弹簧-质量模型（distributed spring-mass），其传递函数近似为一阶低通（Martin et al. 2021）：</p>
+<div class="arithmatex">\[
+\boxed{C_\text{med}(f) = \frac{1}{\sqrt{1 + \left(\dfrac{f}{f_c}\right)^2}}}
+\]</div>
+<p>截止频率：</p>
+<div class="arithmatex">\[
+\boxed{f_c = \frac{1}{2\pi}\sqrt{\frac{k_s}{m_c}}}
+\]</div>
+<p>其中 <span class="arithmatex">\(m_c\)</span> 为光缆单位长度质量（kg/m）。<strong>当 <span class="arithmatex">\(f \gg f_c\)</span> 时，光缆惯性阻止其跟随地层运动，耦合效率以 <span class="arithmatex">\(-20\)</span> dB/decade 下降。</strong></p>
+<h4 id="_27">四类部署场景<a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
+<p><strong>（1）灌浆固化井孔（cemented borehole）</strong></p>
+<p>光缆置于套管外或裸眼孔中，用水泥浆（或快干环氧树脂）灌注固化。</p>
+<p>剪切刚度近似为（Kuvshinov 2016）：</p>
+<div class="arithmatex">\[
+k_s \approx \frac{2\pi G_g}{\ln\!\left(r_\text{bh}/r_c\right)}
+\]</div>
+<p>其中 <span class="arithmatex">\(G_g \sim 5\)</span>–<span class="arithmatex">\(20\)</span> GPa 为水泥浆剪切模量，<span class="arithmatex">\(r_\text{bh}\)</span> 为孔径，<span class="arithmatex">\(r_c\)</span> 为光缆半径。典型结果 <span class="arithmatex">\(f_c \gg 1000\)</span> Hz，<strong>在所有地震频段内视为完美耦合</strong>。</p>
+<p><strong>（2）冻结于冰中（frozen-in ice / permafrost）</strong></p>
+<p>热钻孔后插入光缆，待孔隙水重新冻结（数小时至数天）。冰的剪切模量 <span class="arithmatex">\(G_\text{ice} \approx 3.5\)</span> GPa。耦合效率与灌浆固化接近，估计 <span class="arithmatex">\(f_c \sim 1000\text{–}3000\)</span> Hz，<strong>实际地震频段完全耦合</strong>。冻融循环会破坏固化，需重新评估。</p>
+<p><strong>（3）浅埋于土壤（buried in soil）</strong></p>
+<p>在疏松土壤中，有效剪切刚度：</p>
+<div class="arithmatex">\[
+k_s \approx \frac{2\pi G_s}{\ln\!\left(D_\infty / r_c\right)}
+\]</div>
+<p><span class="arithmatex">\(G_s\)</span> 为土体剪切模量（软土 5–50 MPa，硬土 50–500 MPa），<span class="arithmatex">\(D_\infty \approx 10 r_c\)</span> 为影响半径。截止频率随埋深和土体刚度变化：</p>
+<table>
+<thead>
+<tr>
+<th>土体类型</th>
+<th><span class="arithmatex">\(G_s\)</span></th>
+<th>埋深 0.1 m</th>
+<th>埋深 0.3 m</th>
+<th>埋深 1.0 m</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>软黏土</td>
+<td>5 MPa</td>
+<td>~30 Hz</td>
+<td>~80 Hz</td>
+<td>~200 Hz</td>
+</tr>
+<tr>
+<td>砂土</td>
+<td>50 MPa</td>
+<td>~120 Hz</td>
+<td>~300 Hz</td>
+<td>~800 Hz</td>
+</tr>
+<tr>
+<td>硬土/风化岩</td>
+<td>200 MPa</td>
+<td>~400 Hz</td>
+<td>~1000 Hz</td>
+<td>&gt; 2000 Hz</td>
+</tr>
+</tbody>
+</table>
+<p><strong>实践建议</strong>：埋深 ≥ 0.3 m 可保证 100 Hz 以下地震信号的有效耦合（<span class="arithmatex">\(C &gt; -1\)</span> dB）。</p>
+<p><strong>（4）裸铺于地面（surface-laid cable）</strong></p>
+<p>光缆仅靠<strong>自重摩擦</strong>与地面接触，有效 <span class="arithmatex">\(k_s\)</span> 取决于光缆重量和地面粗糙度，通常极低（等效摩擦刚度 <span class="arithmatex">\(k_s \sim 10^3\)</span>–<span class="arithmatex">\(10^4\)</span> N/m²）。<span class="arithmatex">\(f_c\)</span> 低至 20–100 Hz，高频信号严重衰减。</p>
+<div class="admonition warning">
+<p class="admonition-title">裸铺光缆用于 DAS 的局限</p>
+<p>海底通信光缆通常<strong>裸铺</strong>于海床（铺设船直接放缆），其耦合效率受到双重限制：内部松套管结构（<span class="arithmatex">\(\eta_\text{fiber} \approx 0\)</span>）与表面摩擦耦合（<span class="arithmatex">\(f_c \sim 50\)</span> Hz）叠加，实际可用频带通常 &lt; 20 Hz，且信号振幅远低于标准地震仪。尽管如此，借助超长光缆（数千公里）与超低频信号（地震面波），海缆 DAS 依然在全球地震监测中取得了重要成果（Marra et al. 2018）。</p>
+</div>
+<p><img alt="光缆耦合截面与传递函数" src="../assets/images/das_coupling.png" />
+<em>图 4：（左）松套管与紧套管光缆截面对比——松套管中光纤自由漂浮于油膏中（<span class="arithmatex">\(\eta_\text{fiber} \approx 0\)</span>），紧套管中聚合物缓冲层直接键合于光纤（<span class="arithmatex">\(\eta_\text{fiber} \approx 0.8\)</span>–<span class="arithmatex">\(1.0\)</span>）。（右）四种部署场景的介质–光缆耦合传递函数 <span class="arithmatex">\(C_\text{med}(f) = [1+(f/f_c)^2]^{-1/2}\)</span>：灌浆固化井孔（<span class="arithmatex">\(f_c \to \infty\)</span>，绿色实线）和冻结耦合（<span class="arithmatex">\(f_c \approx 3000\)</span> Hz）在地震频段完全透明；埋深 0.3 m（<span class="arithmatex">\(f_c \approx 300\)</span> Hz，橙色虚线）在 1 kHz 以下可靠；裸铺地面（<span class="arithmatex">\(f_c \approx 30\)</span> Hz，红色点线）在 100 Hz 以上已严重衰减。</em></p>
+<hr />
+<h3 id="_28">修正后的综合仪器响应<a class="headerlink" href="#_28" title="Permanent link">&para;</a></h3>
+<p>引入两个耦合系数后，DAS P 波记录谱的完整前向模型扩展为：</p>
+<div class="arithmatex">\[
+\boxed{
+d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
+\cdot \underbrace{C_\text{med}(f)}_{\substack{\text{介质}\\\text{耦合}}}
+\cdot \underbrace{\eta_\text{fiber}}_{\substack{\text{套-芯}\\\text{耦合}}}
+\cdot \underbrace{v\cos^2\theta}_{\text{方向性}}
+\cdot \underbrace{\mathrm{sinc}\!\left(\frac{\pi fL}{v\cos\theta}\right)}_{\text{标距效应}}
+\cdot e^{-\pi ft^*}
+}
+\]</div>
+<p>各耦合因子对应不同的物理环节，可独立评估与校正：</p>
+<table>
+<thead>
+<tr>
+<th>因子</th>
+<th>控制手段</th>
+<th>残余不确定性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(C_\text{med}(f)\)</span></td>
+<td>灌浆固化 / 埋深</td>
+<td>孔隙率、泥浆固化质量</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\eta_\text{fiber}\)</span></td>
+<td>选用紧套管 / 传感专用缆</td>
+<td>缓冲层老化、温度</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(v\cos^2\theta\)</span></td>
+<td>入射角约束（<span class="arithmatex">\(\theta &lt; 45°\)</span>）</td>
+<td>速度模型误差</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\mathrm{sinc}(\cdots)\)</span></td>
+<td>标距选择</td>
+<td>见标距效应章节</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">反演前的耦合校正顺序</p>
+<ol>
+<li><strong>先确认光缆类型</strong>（紧/松套），筛除 <span class="arithmatex">\(\eta_\text{fiber} \approx 0\)</span> 的通道</li>
+<li><strong>评估部署状态</strong>，估计 <span class="arithmatex">\(f_c\)</span>，确定可用频带上限</li>
+<li>若需要宽频带反演，将 <span class="arithmatex">\(C_\text{med}(f)\)</span> 的倒数补偿到数据谱上（注意避免在截止频率以上过度放大噪声）</li>
+<li>再进行标距、方向性、<span class="arithmatex">\(t^*\)</span> 等的联合反演</li>
+</ol>
+</div>
+<hr />
+<h3 id="_29">耦合质量的现场评估<a class="headerlink" href="#_29" title="Permanent link">&para;</a></h3>
+<p>直接评估耦合效率的方法：将 DAS 与同位置<strong>点式地震仪</strong>（宽频或检波器）的记录进行比较，计算经验传递函数：</p>
+<div class="arithmatex">\[
+T(f) = \frac{U_\text{DAS}(f)}{U_\text{ref}(f)}
+\]</div>
+<p>期望值为 <span class="arithmatex">\(T(f) \propto (i2\pi f)^m \cdot C_\text{med}(f) \cdot \eta_\text{fiber} \cdot v\cos^2\theta\)</span>（在校正方向性和标距后）。若 <span class="arithmatex">\(|T(f)|\)</span> 在某频段以 <span class="arithmatex">\(-20\)</span> dB/decade 衰减，可直接读取 <span class="arithmatex">\(f_c\)</span>，进而估算耦合刚度 <span class="arithmatex">\(k_s\)</span>。</p>
+<hr />
 <h2 id="python">Python 示例<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
 <p>下面的代码生成上文中的两幅图：方向性响应极坐标图与标距效应传递函数图。</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -2505,7 +2843,7 @@ $<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_
 </span><span id="__span-0-118"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
-<h2 id="_22">参考文献<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h2>
+<h2 id="_30">参考文献<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Lindsey, N. J., Martin, E. R., Dreger, D. S., Freifeld, B., White, S., Monga, S. K., … &amp; Ajo-Franklin, J. B. (2017). Fiber-optic network observations of earthquake wavefields. <em>Geophysical Research Letters</em>, 44(23), 11–792.</li>
 <li>Mateeva, A., Lopez, J., Potters, H., Mestayer, J., Cox, B., Kiyashchenko, D., … &amp; Berlang, W. (2014). Distributed acoustic sensing for reservoir monitoring with vertical seismic profiling. <em>Geophysical Prospecting</em>, 62(4), 679–692.</li>
