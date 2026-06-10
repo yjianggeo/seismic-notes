@@ -380,6 +380,184 @@ Channels violating this criterion are excluded from spectral fitting.
 
 ---
 
+## Cable Coupling
+
+Before a seismic ground-strain signal reaches the DAS interrogator, it must pass through two mechanical interfaces in series:
+
+$$
+\underbrace{\varepsilon_\text{formation}}_{\text{free-field strain}}
+\xrightarrow{C_\text{med}(f)}
+\underbrace{\varepsilon_\text{jacket}}_{\text{cable-jacket strain}}
+\xrightarrow{\eta_\text{fiber}}
+\underbrace{\varepsilon_\text{fiber}}_{\text{DAS measurement}}
+$$
+
+Both factors are ≤ 1 and have independent frequency responses and engineering controls.
+
+---
+
+### Jacket-to-Fiber Coupling
+
+#### Cable Structure and Strain Transfer Efficiency
+
+The mechanical structure of the fiber-optic cable determines whether jacket strain is transferred to the fiber — the most fundamental hardware constraint on DAS sensing.
+
+**Loose-tube cable**
+
+The fiber(s) float inside a hollow tube filled with **filling compound (thixotropic gel)**. The fiber has a slight excess length (0.1–0.5%) so it experiences no axial tension from tube elongation.
+
+- No radial or axial mechanical constraint on the fiber → **dynamic strain transfer efficiency $\eta_\text{fiber} \approx 0$**
+- Designed for telecommunications: prevents thermal stress from straining the fiber, protecting transmission performance
+- **Unsuitable for DAS seismic sensing** — when a loose-tube cable is interrogated by DAS, every channel records near-zero seismic signal
+
+**Tight-buffered cable**
+
+A polymer buffer layer (typically 0.9 mm thick) is heat-extruded directly onto the fiber cladding, forming a rigid bond.
+
+$$\varepsilon_\text{fiber} = \eta_\text{fiber} \cdot \varepsilon_\text{jacket}, \qquad \eta_\text{fiber} \approx 0.7\text{–}0.9$$
+
+Under quasi-static loading $\eta \to 1$; at higher frequencies, viscoelastic lag of the buffer slightly reduces $\eta$.
+
+**Strain-sensing cables**
+
+Optimized for DAS / distributed strain sensing (DSS) through one or more structural features:
+- **Reinforced tight-buffer**: higher-stiffness polymer, $\eta \approx 0.9$–$1.0$
+- **Helically wound steel wires**: distribute strain uniformly to the fiber while providing mechanical protection
+- **Direct bonding**: fiber epoxy-bonded to the inner wall of a metallic sheath for maximum strain coupling
+
+| Cable type | Typical $\eta_\text{fiber}$ | DAS suitability | Common use |
+|------------|---------------------------|----------------|-----------|
+| Loose-tube | ≈ 0 | ❌ Unsuitable | Long-haul telecom, submarine |
+| Tight-buffered | 0.7–0.9 | ✓ Suitable | Premises, short-range sensing |
+| Strain-sensing | 0.9–1.0 | ✓ Optimal | DAS / DSS dedicated |
+| Armored† | 0.5–0.8 | △ Depends on core | Downhole / harsh environments |
+
+†If armored over a loose-tube core, the steel armour senses strain but the fiber inside does not.
+
+!!! warning "The telecom cable reuse trap"
+    Many urban DAS studies repurpose existing telecom infrastructure. Most urban telecom cables are **loose-tube** designs: although the DAS interrogator operates normally, all channels carry essentially zero seismic signal. Only cables that include a **tight-buffered core** are suitable. Always obtain the cable datasheet from the network operator before deploying DAS on third-party infrastructure.
+
+#### Frequency-Domain Jacket-to-Fiber Coupling Model
+
+For a tight-buffered cable, the viscoelastic shear stiffness of the buffer layer governs the frequency-dependent strain transfer (Kuvshinov 2016):
+
+$$
+\eta_\text{fiber}(f) = \frac{k_b}{k_b + k_f \cdot (i 2\pi f \tau_b)}
+$$
+
+where $k_b = G_b / \ln(r_b/r_f)$ is the buffer shear stiffness ($G_b$ = buffer shear modulus, $r_f$ and $r_b$ = fiber and buffer radii), $\tau_b$ is the viscoelastic relaxation time of the buffer material (~$10^{-4}$–$10^{-3}$ s), and $k_f = E_f \pi r_f^2$ is the fiber axial stiffness.
+
+For typical tight-buffer materials (polyimide / ETFE, $G_b \sim 0.5$–$2$ GPa), the high-frequency roll-off of $\eta_\text{fiber}$ occurs at several kHz, well above the seismic band. In practice, $\eta_\text{fiber}$ can be treated as a frequency-independent constant within the seismic band.
+
+---
+
+### Cable-to-Medium Coupling
+
+#### Physical Mechanism
+
+The **interface shear stiffness** $k_s$ (per unit cable length, N/m²) between the cable jacket and the surrounding medium determines how efficiently the free-field strain $\varepsilon_g$ enters the cable:
+
+- $k_s \to \infty$ (fully bonded): $C_\text{med}(f) = 1$ — perfect coupling at all frequencies
+- $k_s = 0$ (frictionless): $C_\text{med}(f) = 0$ — zero coupling
+
+For finite $k_s$, the coupled cable–medium system is equivalent to a distributed spring-mass model, giving an approximately first-order low-pass transfer function (Martin et al. 2021):
+
+$$
+\boxed{C_\text{med}(f) = \frac{1}{\sqrt{1 + \left(\dfrac{f}{f_c}\right)^2}}}
+$$
+
+with cut-off frequency:
+
+$$
+\boxed{f_c = \frac{1}{2\pi}\sqrt{\frac{k_s}{m_c}}}
+$$
+
+where $m_c$ is the cable mass per unit length (kg/m). **For $f \gg f_c$, cable inertia prevents it from following ground motion and coupling rolls off at −20 dB/decade.**
+
+#### Four Deployment Scenarios
+
+**Cemented borehole**
+
+The cable is placed in the annulus between casing and formation and fixed with cement or fast-set epoxy. Shear stiffness (Kuvshinov 2016):
+
+$$k_s \approx \frac{2\pi G_g}{\ln(r_\text{bh}/r_c)}$$
+
+where $G_g \sim 5$–$20$ GPa for cement grout, $r_\text{bh}$ = borehole radius, $r_c$ = cable radius. Typically $f_c \gg 1000$ Hz → **effectively perfect coupling across the entire seismic band**.
+
+**Frozen into ice or permafrost**
+
+Cable inserted into a hot-water-drilled hole and allowed to freeze in place. Ice shear modulus $G_\text{ice} \approx 3.5$ GPa → $f_c \sim 1000$–$3000$ Hz, comparable to cemented borehole. Effective coupling is essentially complete across the seismic band. Freeze–thaw cycles can degrade the bond and should be monitored.
+
+**Buried in soil**
+
+Interface shear stiffness scales with soil shear modulus $G_s$ and burial depth:
+
+$$k_s \approx \frac{2\pi G_s}{\ln(D_\infty / r_c)}, \qquad D_\infty \approx 10\, r_c$$
+
+| Soil type | $G_s$ | Burial 0.1 m | Burial 0.3 m | Burial 1.0 m |
+|-----------|--------|------------|------------|------------|
+| Soft clay | 5 MPa | ~30 Hz | ~80 Hz | ~200 Hz |
+| Sand | 50 MPa | ~120 Hz | ~300 Hz | ~800 Hz |
+| Hard soil / weathered rock | 200 MPa | ~400 Hz | ~1000 Hz | >2000 Hz |
+
+**Practical rule**: burial depth ≥ 0.3 m ensures $C > -1$ dB below 100 Hz in most soil conditions.
+
+**Surface-laid cable**
+
+Coupling relies only on **self-weight friction** with the ground surface. Effective $k_s$ is set by cable weight and surface roughness, typically very low. $f_c$ may be as low as 20–100 Hz, severely attenuating signals above ~100 Hz.
+
+!!! warning "Submarine telecom cables for DAS"
+    Submarine cables are usually **laid on the seafloor** with no burial. Coupled with a loose-tube internal structure, they suffer two simultaneous penalties: $\eta_\text{fiber} \approx 0$ and $f_c \sim 50$ Hz. The usable band is typically < 20 Hz and amplitudes are far below standard seismometers. Yet over thousands of kilometres of cable and exploiting ultra-low-frequency surface waves, submarine cable DAS has still produced important global seismology results (Marra et al. 2018).
+
+![DAS cable coupling: cross-sections and transfer functions](../assets/images/das_coupling.png)
+*Figure 4: (Left) Loose-tube vs tight-buffered cable cross-sections — in the loose-tube design the fiber floats freely in gel ($\eta_\text{fiber} \approx 0$); in the tight-buffered design the polymer buffer is bonded directly to the fiber ($\eta_\text{fiber} \approx 0.8$–$1.0$). (Right) Cable-to-medium coupling transfer functions $C_\text{med}(f) = [1+(f/f_c)^2]^{-1/2}$ for four deployment scenarios: cemented borehole ($f_c \to \infty$) and frozen coupling ($f_c \approx 3000$ Hz) are transparent across the seismic band; burial 0.3 m ($f_c \approx 300$ Hz) is reliable below 1 kHz; surface-laid cable ($f_c \approx 30$ Hz) attenuates significantly above 100 Hz.*
+
+---
+
+### Updated Combined Instrument Response
+
+Adding both coupling factors to the forward model from the previous section:
+
+$$
+\boxed{
+d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
+\cdot \underbrace{C_\text{med}(f)}_{\substack{\text{medium–cable}\\\text{coupling}}}
+\cdot \underbrace{\eta_\text{fiber}}_{\substack{\text{jacket–fiber}\\\text{coupling}}}
+\cdot \underbrace{v\cos^2\theta}_{\text{directional}}
+\cdot \underbrace{\mathrm{sinc}\!\left(\frac{\pi fL}{v\cos\theta}\right)}_{\text{gauge length}}
+\cdot e^{-\pi ft^*}
+}
+$$
+
+Each coupling factor is associated with a distinct physical interface and can be assessed or controlled independently:
+
+| Factor | Engineering control | Residual uncertainty |
+|--------|---------------------|---------------------|
+| $C_\text{med}(f)$ | Cementing / burial depth | Grout porosity, cure quality |
+| $\eta_\text{fiber}$ | Select tight-buffered / sensing cable | Buffer ageing, temperature |
+| $v\cos^2\theta$ | Incidence-angle cut ($\theta < 45°$) | Velocity model error |
+| $\mathrm{sinc}(\cdots)$ | Gauge-length selection | See gauge-length section |
+
+!!! tip "Coupling correction order before inversion"
+    1. **Confirm cable type** (loose vs tight) — reject channels where $\eta_\text{fiber} \approx 0$
+    2. **Assess deployment state** — estimate $f_c$ and set the upper usable frequency limit
+    3. If broadband inversion is needed, compensate the spectrum by $1/C_\text{med}(f)$ (avoid over-amplifying noise above $f_c$)
+    4. Then proceed with joint inversion of gauge-length, directional, and $t^*$ effects
+
+---
+
+### In-Situ Coupling Assessment
+
+Co-locate a standard seismometer with the DAS cable and compute the empirical transfer function:
+
+$$
+T(f) = \frac{U_\text{DAS}(f)}{U_\text{ref}(f)}
+$$
+
+After correcting for directional sensitivity and gauge-length response, the expected value is $T(f) \propto C_\text{med}(f) \cdot \eta_\text{fiber}$. A −20 dB/decade roll-off in $|T(f)|$ above some frequency directly reveals $f_c$, from which the coupling stiffness $k_s$ can be estimated.
+
+---
+
 ## Python Example
 
 The code below reproduces both figures: the directional sensitivity polar plot and the gauge-length transfer function.
