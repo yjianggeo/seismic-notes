@@ -19,6 +19,7 @@
     "vsp": "vsp-en",
     "surface-coda": "surface-coda-en",
     "fk-radon": "fk-radon-en",
+    "glacier": "glacier-en",
   };
 
   // Build reverse map: English → Chinese
