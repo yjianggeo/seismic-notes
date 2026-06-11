@@ -558,6 +558,104 @@ After correcting for directional sensitivity and gauge-length response, the expe
 
 ---
 
+## Curved Cables: Curvature and Gauge-Length Selection
+
+The directional response and gauge-length analyses above all assume a **straight** fibre. In practice cables are often curved — ring arrays, helical winding, road corners, routing around obstacles — and a single gauge length $L$ then spans an **arc** over which the fibre tangent direction rotates. Both the directional pattern and the gauge filter change as a result.
+
+### Gauge Arc Angle: the Key Dimensionless Parameter
+
+For a local curvature radius $R$ (the ring radius for a circular cable), the gauge length subtends a central angle (**gauge arc angle**):
+
+$$
+\boxed{\Delta\varphi = \frac{L}{R}}
+$$
+
+This single dimensionless parameter controls curved-cable DAS behaviour:
+
+- $\Delta\varphi \to 0$: the gauge is locally straight; the straight-cable theory applies
+- Increasing $\Delta\varphi$: the tangent rotates significantly within one gauge; the directional pattern is smeared
+- $\Delta\varphi = 2\pi$: the gauge wraps a full circle; the response is perfectly isotropic
+
+### Arc-Averaged Directional Response
+
+For a P wave arriving at azimuth $\theta$ (measured from the tangent at the arc midpoint), the local tangent at arc-length coordinate $s$ is rotated by $\varphi(s) = s/R$, $s \in [-L/2, L/2]$. The DAS channel output averages the axial strain over the gauge:
+
+$$
+\bar{R}(\theta) = \frac{1}{L}\int_{-L/2}^{L/2} \cos^2\!\big(\theta - \varphi(s)\big)\, \mathrm{d}s
+$$
+
+Substituting $\cos^2 x = \tfrac{1}{2}(1+\cos 2x)$ and integrating gives the closed form:
+
+$$
+\boxed{\bar{R}(\theta) = \frac{1}{2}\Big[1 + \mathrm{sinc}(\Delta\varphi)\cos 2\theta\Big]},
+\qquad \mathrm{sinc}(x) = \frac{\sin x}{x}
+$$
+
+where $m = \mathrm{sinc}(\Delta\varphi)$ is the **directional modulation depth**:
+
+| $\Delta\varphi$ | $m = \mathrm{sinc}(\Delta\varphi)$ | Pattern |
+|------------------|-----------------------------------|---------|
+| 0° (straight) | 1.000 | Standard $\cos^2\theta$ two-lobe |
+| 45° | 0.900 | Nearly straight-cable, slightly blunted lobes |
+| 90° | 0.637 | Visibly broadened lobes |
+| 180° (half circle) | 0.000* | Nearly isotropic |
+| 360° (full circle) | 0.000 | Perfectly isotropic, $\bar{R} \equiv 1/2$ |
+
+*$\mathrm{sinc}(\pi) = 0$ exactly.
+
+!!! note "Directionality: feature or bug?"
+    - **When direction matters** (beamforming, back-azimuth estimation): curvature is **harmful** — the smeared pattern broadens the slowness-spectrum main lobe and degrades location accuracy
+    - **When omnidirectional coverage matters** (event detection, amplitude monitoring): curvature is **beneficial** — channels with arc angles above a half circle respond almost isotropically, removing the straight-cable blind spot for broadside arrivals ($\cos^2 90° = 0$)
+
+### Gauge-Length Selection Under Curvature
+
+**Criterion 1 — preserve directionality** (beamforming, F-K analysis, moment-tensor inversion)
+
+Require modulation depth $m > 0.9$:
+
+$$
+\boxed{\Delta\varphi < 45° \iff L < 0.79\, R}
+$$
+
+**Criterion 2 — combine with the straight-cable optimum** (Dean et al. 2016)
+
+Straight-cable analysis gives the SNR-optimal gauge $L_\text{opt} \approx 0.577\,\lambda_s$ ($\lambda_s$ = shortest target wavelength). Intersecting with the curvature constraint:
+
+$$
+\boxed{L = \min\big(0.577\,\lambda_s,\ 0.79\,R\big)}
+$$
+
+- For $R > 0.73\,\lambda_s$ curvature is not binding — use the straight-cable rule
+- For small $R$ (compact ring arrays) the curvature constraint dominates, forcing a shorter gauge → SNR loss, compensated by stacking multiple channels
+
+**Criterion 3 — deliberate isotropy** (omnidirectional detection)
+
+Set $\Delta\varphi \geq 180°$ (i.e. $L \geq \pi R$) so that single-channel patterns are nearly omnidirectional. The extreme case — gauge wrapping the full ring ($L = 2\pi R$) — measures the rate of change of ring circumference, i.e. the areal strain enclosed by the ring: the working principle of a **ring strain gauge**.
+
+![Curved-cable DAS: curvature and gauge length](../assets/images/das_ring_curvature.png)
+*Figure 5: (Left) P-wave directional response for several gauge arc angles — straight cable (blue) shows the standard cos²θ two-lobe pattern; lobes broaden with increasing arc angle; the half-circle case (red dash-dot) is nearly isotropic. (Right) Directional modulation depth $m = \mathrm{sinc}(\Delta\varphi)$ vs arc angle: the green zone ($\Delta\varphi < 45°$, i.e. $L < 0.79R$) preserves strong directionality ($m > 0.9$); $m$ vanishes exactly at the half circle and the response is perfectly isotropic for the full circle.*
+
+### Effect of Curvature on the Gauge (Notch) Filter
+
+For a straight cable the gauge-filter notch lies at $f_1 = v_\text{app}/L$ with $v_\text{app} = c/\cos\theta$. On a curved cable the local along-fibre apparent slowness varies along the arc, so:
+
+1. **Shallower notches**: notch frequencies differ between arc segments; after averaging, the notch is no longer a perfect zero but a finite-depth trough
+2. **Effective gauge shortening**: the projection of the gauge onto the propagation direction is the **chord**, not the arc:
+
+$$
+L_\text{chord} = 2R\sin\!\left(\frac{\Delta\varphi}{2}\right) < L
+$$
+
+For $\Delta\varphi = 90°$, $L_\text{chord} \approx 0.90\,L$; for $\Delta\varphi = 180°$, $L_\text{chord} = 2R \approx 0.64\,L$. Notch frequencies shift upward correspondingly, and the effective spatial resolution is slightly better than the arc-length prediction.
+
+!!! tip "Practical notes for ring arrays"
+    1. **Ring diameter**: urban well-pad ring deployments typically use $2R \sim 50$–$200$ m. With a 10 m gauge and $R = 25$ m, $\Delta\varphi \approx 23°$ and $m \approx 0.97$ — directionality essentially unaffected
+    2. **Corner-channel rejection**: right-angle road corners can have curvature radii of 1–2 m; a 10 m gauge then spans $\Delta\varphi > 360°$ and the response is not analytically tractable. Standard practice is to **discard channels within ±L of each corner**
+    3. **Fibre bend loss**: besides response distortion, small bend radii cause macrobend optical loss. Single-mode fibre requires $R \gtrsim 15$ mm and jacketed cables $R \gtrsim 10$–$20\times$ the cable diameter — metre-scale ring arrays are far from this limit, but splice boxes and slack coils need attention
+    4. **Azimuthal diversity**: the intrinsic advantage of a ring — channel tangents sweep all 360° of azimuth, equivalent to a full set of single-component strainmeters at all orientations, which is particularly valuable for anisotropy inversion and source-mechanism constraints
+
+---
+
 ## Python Example
 
 The code below reproduces both figures: the directional sensitivity polar plot and the gauge-length transfer function.
