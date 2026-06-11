@@ -1442,6 +1442,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        环形光缆：曲率与标距的选取
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="环形光缆：曲率与标距的选取">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标距弧角：核心无量纲参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        弧上平均的方向响应推导
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        曲率约束下的标距选取准则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        弯曲对标距滤波（陷波）的影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1453,7 +1514,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_30" class="md-nav__link">
+  <a href="#_35" class="md-nav__link">
     <span class="md-ellipsis">
       
         参考文献
@@ -1971,6 +2032,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        环形光缆：曲率与标距的选取
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="环形光缆：曲率与标距的选取">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        标距弧角：核心无量纲参数
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        弧上平均的方向响应推导
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        曲率约束下的标距选取准则
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        弯曲对标距滤波（陷波）的影响
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1982,7 +2104,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_30" class="md-nav__link">
+  <a href="#_35" class="md-nav__link">
     <span class="md-ellipsis">
       
         参考文献
@@ -2721,6 +2843,117 @@ T(f) = \frac{U_\text{DAS}(f)}{U_\text{ref}(f)}
 \]</div>
 <p>期望值为 <span class="arithmatex">\(T(f) \propto (i2\pi f)^m \cdot C_\text{med}(f) \cdot \eta_\text{fiber} \cdot v\cos^2\theta\)</span>（在校正方向性和标距后）。若 <span class="arithmatex">\(|T(f)|\)</span> 在某频段以 <span class="arithmatex">\(-20\)</span> dB/decade 衰减，可直接读取 <span class="arithmatex">\(f_c\)</span>，进而估算耦合刚度 <span class="arithmatex">\(k_s\)</span>。</p>
 <hr />
+<h2 id="_30">环形光缆：曲率与标距的选取<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h2>
+<p>前文的方向性响应和标距效应均假设光纤为<strong>直线</strong>。实际部署中光缆常常弯曲——环形阵列（ring array）、螺旋缠绕（helical winding）、道路拐角、绕障碍布线——此时<strong>单个标距 <span class="arithmatex">\(L\)</span> 跨越一段圆弧</strong>，弧内各点的光纤切向方向不同，方向响应和标距滤波都会发生改变。</p>
+<h3 id="_31">标距弧角：核心无量纲参数<a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
+<p>设光缆局部曲率半径为 <span class="arithmatex">\(R\)</span>（环形光缆即为环的半径），标距 <span class="arithmatex">\(L\)</span> 在弧上对应的<strong>圆心角</strong>（标距弧角）为：</p>
+<div class="arithmatex">\[
+\boxed{\Delta\varphi = \frac{L}{R}}
+\]</div>
+<p>这是弯曲光缆 DAS 的核心无量纲参数：</p>
+<ul>
+<li><span class="arithmatex">\(\Delta\varphi \to 0\)</span>：标距内光纤近似直线，退化为直缆情形</li>
+<li><span class="arithmatex">\(\Delta\varphi\)</span> 增大：标距内切向方向显著旋转，方向图被"抹平"</li>
+<li><span class="arithmatex">\(\Delta\varphi = 2\pi\)</span>：标距绕环一整圈，响应完全各向同性</li>
+</ul>
+<h3 id="_32">弧上平均的方向响应推导<a class="headerlink" href="#_32" title="Permanent link">&para;</a></h3>
+<p>对入射方位角为 <span class="arithmatex">\(\theta\)</span>（相对弧段中点切向）的 P 波，弧上弧长坐标 <span class="arithmatex">\(s\)</span> 处的局部切向相对中点旋转了 <span class="arithmatex">\(\varphi(s) = s/R\)</span>（<span class="arithmatex">\(s \in [-L/2, L/2]\)</span>）。DAS 通道输出是轴向应变沿标距的平均：</p>
+<div class="arithmatex">\[
+\bar{R}(\theta) = \frac{1}{L}\int_{-L/2}^{L/2} \cos^2\!\big(\theta - \varphi(s)\big)\, \mathrm{d}s
+\]</div>
+<p>代入 <span class="arithmatex">\(\cos^2 x = \tfrac{1}{2}(1 + \cos 2x)\)</span>，变量替换 <span class="arithmatex">\(\varphi = s/R\)</span>：</p>
+<div class="arithmatex">\[
+\bar{R}(\theta) = \frac{1}{2} + \frac{1}{2\Delta\varphi}\int_{-\Delta\varphi/2}^{\Delta\varphi/2} \cos\!\big(2\theta - 2\varphi\big)\, \mathrm{d}\varphi
+\]</div>
+<p>积分后得到闭式解：</p>
+<div class="arithmatex">\[
+\boxed{\bar{R}(\theta) = \frac{1}{2}\Big[1 + \mathrm{sinc}(\Delta\varphi)\cos 2\theta\Big]},
+\qquad \mathrm{sinc}(x) = \frac{\sin x}{x}
+\]</div>
+<p>其中 <span class="arithmatex">\(m = \mathrm{sinc}(\Delta\varphi)\)</span> 称为<strong>方向调制深度</strong>（directional modulation depth）：</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(\Delta\varphi\)</span></th>
+<th><span class="arithmatex">\(m = \mathrm{sinc}(\Delta\varphi)\)</span></th>
+<th>方向图形态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0°（直缆）</td>
+<td>1.000</td>
+<td>标准 <span class="arithmatex">\(\cos^2\theta\)</span> 双瓣</td>
+</tr>
+<tr>
+<td>45°</td>
+<td>0.900</td>
+<td>接近直缆，瓣形略钝</td>
+</tr>
+<tr>
+<td>90°</td>
+<td>0.637</td>
+<td>瓣形明显展宽</td>
+</tr>
+<tr>
+<td>180°（半圆）</td>
+<td>0.000*</td>
+<td>接近各向同性</td>
+</tr>
+<tr>
+<td>360°（整圆）</td>
+<td>0.000</td>
+<td>完全各向同性，<span class="arithmatex">\(\bar{R} \equiv 1/2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>*<span class="arithmatex">\(\mathrm{sinc}(\pi) = 0\)</span> 精确为零。</p>
+<div class="admonition note">
+<p class="admonition-title">两面性：方向性是优点还是缺点</p>
+<ul>
+<li><strong>需要方向信息时</strong>（波束形成、方位角估计）：曲率是<strong>有害</strong>的——方向图模糊使慢度谱主瓣展宽，定位精度下降</li>
+<li><strong>需要全向覆盖时</strong>（事件检测、振幅监测）：曲率是<strong>有益</strong>的——半圆以上弧角的通道响应近似各向同性，消除了直缆 DAS 对垂直入射波的盲区（<span class="arithmatex">\(\cos^2 90° = 0\)</span>）</li>
+</ul>
+</div>
+<h3 id="_33">曲率约束下的标距选取准则<a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<p><strong>准则一：保持方向性（适用于波束形成、F-K 分析、矩张量反演）</strong></p>
+<p>要求方向调制深度 <span class="arithmatex">\(m &gt; 0.9\)</span>，即：</p>
+<div class="arithmatex">\[
+\boxed{\Delta\varphi &lt; 45° \iff L &lt; 0.79\, R}
+\]</div>
+<p><strong>准则二：兼顾直缆最优标距（Dean et al. 2016）</strong></p>
+<p>直缆分析给出 SNR 最优标距 <span class="arithmatex">\(L_\text{opt} \approx 0.577\,\lambda_s\)</span>（<span class="arithmatex">\(\lambda_s\)</span> 为目标信号最短波长）。曲率约束与之取交集：</p>
+<div class="arithmatex">\[
+\boxed{L = \min\big(0.577\,\lambda_s,\ 0.79\,R\big)}
+\]</div>
+<ul>
+<li>当 <span class="arithmatex">\(R &gt; 0.73\,\lambda_s\)</span> 时曲率不构成约束，按直缆准则选取</li>
+<li>当 <span class="arithmatex">\(R\)</span> 较小（紧凑环形阵列）时，曲率约束主导，被迫使用短标距 → SNR 损失，需通过叠加多通道弥补</li>
+</ul>
+<p><strong>准则三：刻意各向同性（适用于全向检测）</strong></p>
+<p>令 <span class="arithmatex">\(\Delta\varphi \geq 180°\)</span>（即 <span class="arithmatex">\(L \geq \pi R\)</span>），单通道方向图接近全向。极端情形是<strong>标距绕环整圈</strong>（<span class="arithmatex">\(L = 2\pi R\)</span>），该通道测量的是环的周长变化率，对环内的体应变（面应变）敏感——这正是<strong>环形应变计</strong>（ring strain gauge）的工作原理。</p>
+<p><img alt="环形光缆曲率与标距" src="../assets/images/das_ring_curvature.png" />
+<em>图 5：（左）不同标距弧角 <span class="arithmatex">\(\Delta\varphi\)</span> 下的 P 波方向响应极坐标图——直缆（蓝）为标准 cos²θ 双瓣；弧角增大时瓣形逐渐展宽；半圆（红色点划线）已接近各向同性。（右）方向调制深度 <span class="arithmatex">\(m = \mathrm{sinc}(\Delta\varphi)\)</span> 随弧角的变化：绿色区域（<span class="arithmatex">\(\Delta\varphi &lt; 45°\)</span>，即 <span class="arithmatex">\(L &lt; 0.79R\)</span>）保持 <span class="arithmatex">\(m &gt; 0.9\)</span> 的强方向性；半圆处 <span class="arithmatex">\(m\)</span> 精确为零（接近各向同性）；整圆处完全各向同性。</em></p>
+<h3 id="_34">弯曲对标距滤波（陷波）的影响<a class="headerlink" href="#_34" title="Permanent link">&para;</a></h3>
+<p>直缆标距滤波的陷波频率为 <span class="arithmatex">\(f_1 = v_\text{app}/L\)</span>（沿缆视速度 <span class="arithmatex">\(v_\text{app} = c/\cos\theta\)</span>）。弯曲光缆上，波前沿弧扫过的等效"沿缆视慢度"随位置变化，导致：</p>
+<ol>
+<li><strong>陷波变浅</strong>：不同弧段的陷波频率互不相同，平均后陷波不再是完全零点，而是有限深度的凹陷</li>
+<li><strong>有效标距缩短</strong>：波传播方向上的投影长度是<strong>弦长</strong>而非弧长：</li>
+</ol>
+<div class="arithmatex">\[
+L_\text{chord} = 2R\sin\!\left(\frac{\Delta\varphi}{2}\right) &lt; L
+\]</div>
+<p>例如 <span class="arithmatex">\(\Delta\varphi = 90°\)</span> 时 <span class="arithmatex">\(L_\text{chord} \approx 0.90\,L\)</span>；<span class="arithmatex">\(\Delta\varphi = 180°\)</span> 时 <span class="arithmatex">\(L_\text{chord} = 2R \approx 0.64\,L\)</span>。陷波频率相应上移，等效空间分辨率略优于按弧长计算的预期。</p>
+<div class="admonition tip">
+<p class="admonition-title">环形阵列的实践要点</p>
+<ol>
+<li><strong>环径选取</strong>：城市井场常用环径 <span class="arithmatex">\(2R \sim 50\)</span>–<span class="arithmatex">\(200\)</span> m 的环形布缆。若用 10 m 标距，<span class="arithmatex">\(R = 25\)</span> m 时 <span class="arithmatex">\(\Delta\varphi = L/R = 0.4\)</span> rad ≈ 23°，<span class="arithmatex">\(m \approx 0.97\)</span>，方向性几乎不受影响</li>
+<li><strong>拐角通道剔除</strong>：道路直角拐弯处曲率半径可低至 1–2 m，10 m 标距的 <span class="arithmatex">\(\Delta\varphi\)</span> 超过 360°，这些通道的响应不可解析，常规处理中直接<strong>剔除拐角附近 ±L 范围内的通道</strong></li>
+<li><strong>光纤弯曲损耗</strong>：除响应畸变外，过小的曲率半径还引起宏弯损耗（macrobend loss）。单模光纤要求 <span class="arithmatex">\(R \gtrsim 15\)</span> mm，带护套光缆要求 <span class="arithmatex">\(R \gtrsim 10\text{–}20\)</span> 倍缆径——环形阵列（米级以上）远未触及该极限，但<strong>接续盒和余缆盘绕</strong>处需注意</li>
+<li><strong>方位多样性</strong>：环形阵列的固有优势——环上各通道切向覆盖全部 360° 方位，等效于一套全方位的单分量应变计组合，对各向异性反演和震源机制约束特别有价值</li>
+</ol>
+</div>
+<hr />
 <h2 id="python">Python 示例<a class="headerlink" href="#python" title="Permanent link">&para;</a></h2>
 <p>下面的代码生成上文中的两幅图：方向性响应极坐标图与标距效应传递函数图。</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -2843,7 +3076,7 @@ T(f) = \frac{U_\text{DAS}(f)}{U_\text{ref}(f)}
 </span><span id="__span-0-118"><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </span></code></pre></div>
 <hr />
-<h2 id="_30">参考文献<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h2>
+<h2 id="_35">参考文献<a class="headerlink" href="#_35" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Lindsey, N. J., Martin, E. R., Dreger, D. S., Freifeld, B., White, S., Monga, S. K., … &amp; Ajo-Franklin, J. B. (2017). Fiber-optic network observations of earthquake wavefields. <em>Geophysical Research Letters</em>, 44(23), 11–792.</li>
 <li>Mateeva, A., Lopez, J., Potters, H., Mestayer, J., Cox, B., Kiyashchenko, D., … &amp; Berlang, W. (2014). Distributed acoustic sensing for reservoir monitoring with vertical seismic profiling. <em>Geophysical Prospecting</em>, 62(4), 679–692.</li>

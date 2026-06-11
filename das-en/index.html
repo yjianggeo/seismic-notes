@@ -1521,6 +1521,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#curved-cables-curvature-and-gauge-length-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Curved Cables: Curvature and Gauge-Length Selection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Curved Cables: Curvature and Gauge-Length Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gauge-arc-angle-the-key-dimensionless-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gauge Arc Angle: the Key Dimensionless Parameter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arc-averaged-directional-response" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Arc-Averaged Directional Response
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gauge-length-selection-under-curvature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gauge-Length Selection Under Curvature
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effect-of-curvature-on-the-gauge-notch-filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Effect of Curvature on the Gauge (Notch) Filter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#python-example" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2253,6 +2314,113 @@ d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
 T(f) = \frac{U_\text{DAS}(f)}{U_\text{ref}(f)}
 \]</div>
 <p>After correcting for directional sensitivity and gauge-length response, the expected value is <span class="arithmatex">\(T(f) \propto C_\text{med}(f) \cdot \eta_\text{fiber}\)</span>. A −20 dB/decade roll-off in <span class="arithmatex">\(|T(f)|\)</span> above some frequency directly reveals <span class="arithmatex">\(f_c\)</span>, from which the coupling stiffness <span class="arithmatex">\(k_s\)</span> can be estimated.</p>
+<hr />
+<h2 id="curved-cables-curvature-and-gauge-length-selection">Curved Cables: Curvature and Gauge-Length Selection<a class="headerlink" href="#curved-cables-curvature-and-gauge-length-selection" title="Permanent link">&para;</a></h2>
+<p>The directional response and gauge-length analyses above all assume a <strong>straight</strong> fibre. In practice cables are often curved — ring arrays, helical winding, road corners, routing around obstacles — and a single gauge length <span class="arithmatex">\(L\)</span> then spans an <strong>arc</strong> over which the fibre tangent direction rotates. Both the directional pattern and the gauge filter change as a result.</p>
+<h3 id="gauge-arc-angle-the-key-dimensionless-parameter">Gauge Arc Angle: the Key Dimensionless Parameter<a class="headerlink" href="#gauge-arc-angle-the-key-dimensionless-parameter" title="Permanent link">&para;</a></h3>
+<p>For a local curvature radius <span class="arithmatex">\(R\)</span> (the ring radius for a circular cable), the gauge length subtends a central angle (<strong>gauge arc angle</strong>):</p>
+<div class="arithmatex">\[
+\boxed{\Delta\varphi = \frac{L}{R}}
+\]</div>
+<p>This single dimensionless parameter controls curved-cable DAS behaviour:</p>
+<ul>
+<li><span class="arithmatex">\(\Delta\varphi \to 0\)</span>: the gauge is locally straight; the straight-cable theory applies</li>
+<li>Increasing <span class="arithmatex">\(\Delta\varphi\)</span>: the tangent rotates significantly within one gauge; the directional pattern is smeared</li>
+<li><span class="arithmatex">\(\Delta\varphi = 2\pi\)</span>: the gauge wraps a full circle; the response is perfectly isotropic</li>
+</ul>
+<h3 id="arc-averaged-directional-response">Arc-Averaged Directional Response<a class="headerlink" href="#arc-averaged-directional-response" title="Permanent link">&para;</a></h3>
+<p>For a P wave arriving at azimuth <span class="arithmatex">\(\theta\)</span> (measured from the tangent at the arc midpoint), the local tangent at arc-length coordinate <span class="arithmatex">\(s\)</span> is rotated by <span class="arithmatex">\(\varphi(s) = s/R\)</span>, <span class="arithmatex">\(s \in [-L/2, L/2]\)</span>. The DAS channel output averages the axial strain over the gauge:</p>
+<div class="arithmatex">\[
+\bar{R}(\theta) = \frac{1}{L}\int_{-L/2}^{L/2} \cos^2\!\big(\theta - \varphi(s)\big)\, \mathrm{d}s
+\]</div>
+<p>Substituting <span class="arithmatex">\(\cos^2 x = \tfrac{1}{2}(1+\cos 2x)\)</span> and integrating gives the closed form:</p>
+<div class="arithmatex">\[
+\boxed{\bar{R}(\theta) = \frac{1}{2}\Big[1 + \mathrm{sinc}(\Delta\varphi)\cos 2\theta\Big]},
+\qquad \mathrm{sinc}(x) = \frac{\sin x}{x}
+\]</div>
+<p>where <span class="arithmatex">\(m = \mathrm{sinc}(\Delta\varphi)\)</span> is the <strong>directional modulation depth</strong>:</p>
+<table>
+<thead>
+<tr>
+<th><span class="arithmatex">\(\Delta\varphi\)</span></th>
+<th><span class="arithmatex">\(m = \mathrm{sinc}(\Delta\varphi)\)</span></th>
+<th>Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0° (straight)</td>
+<td>1.000</td>
+<td>Standard <span class="arithmatex">\(\cos^2\theta\)</span> two-lobe</td>
+</tr>
+<tr>
+<td>45°</td>
+<td>0.900</td>
+<td>Nearly straight-cable, slightly blunted lobes</td>
+</tr>
+<tr>
+<td>90°</td>
+<td>0.637</td>
+<td>Visibly broadened lobes</td>
+</tr>
+<tr>
+<td>180° (half circle)</td>
+<td>0.000*</td>
+<td>Nearly isotropic</td>
+</tr>
+<tr>
+<td>360° (full circle)</td>
+<td>0.000</td>
+<td>Perfectly isotropic, <span class="arithmatex">\(\bar{R} \equiv 1/2\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>*<span class="arithmatex">\(\mathrm{sinc}(\pi) = 0\)</span> exactly.</p>
+<div class="admonition note">
+<p class="admonition-title">Directionality: feature or bug?</p>
+<ul>
+<li><strong>When direction matters</strong> (beamforming, back-azimuth estimation): curvature is <strong>harmful</strong> — the smeared pattern broadens the slowness-spectrum main lobe and degrades location accuracy</li>
+<li><strong>When omnidirectional coverage matters</strong> (event detection, amplitude monitoring): curvature is <strong>beneficial</strong> — channels with arc angles above a half circle respond almost isotropically, removing the straight-cable blind spot for broadside arrivals (<span class="arithmatex">\(\cos^2 90° = 0\)</span>)</li>
+</ul>
+</div>
+<h3 id="gauge-length-selection-under-curvature">Gauge-Length Selection Under Curvature<a class="headerlink" href="#gauge-length-selection-under-curvature" title="Permanent link">&para;</a></h3>
+<p><strong>Criterion 1 — preserve directionality</strong> (beamforming, F-K analysis, moment-tensor inversion)</p>
+<p>Require modulation depth <span class="arithmatex">\(m &gt; 0.9\)</span>:</p>
+<div class="arithmatex">\[
+\boxed{\Delta\varphi &lt; 45° \iff L &lt; 0.79\, R}
+\]</div>
+<p><strong>Criterion 2 — combine with the straight-cable optimum</strong> (Dean et al. 2016)</p>
+<p>Straight-cable analysis gives the SNR-optimal gauge <span class="arithmatex">\(L_\text{opt} \approx 0.577\,\lambda_s\)</span> (<span class="arithmatex">\(\lambda_s\)</span> = shortest target wavelength). Intersecting with the curvature constraint:</p>
+<div class="arithmatex">\[
+\boxed{L = \min\big(0.577\,\lambda_s,\ 0.79\,R\big)}
+\]</div>
+<ul>
+<li>For <span class="arithmatex">\(R &gt; 0.73\,\lambda_s\)</span> curvature is not binding — use the straight-cable rule</li>
+<li>For small <span class="arithmatex">\(R\)</span> (compact ring arrays) the curvature constraint dominates, forcing a shorter gauge → SNR loss, compensated by stacking multiple channels</li>
+</ul>
+<p><strong>Criterion 3 — deliberate isotropy</strong> (omnidirectional detection)</p>
+<p>Set <span class="arithmatex">\(\Delta\varphi \geq 180°\)</span> (i.e. <span class="arithmatex">\(L \geq \pi R\)</span>) so that single-channel patterns are nearly omnidirectional. The extreme case — gauge wrapping the full ring (<span class="arithmatex">\(L = 2\pi R\)</span>) — measures the rate of change of ring circumference, i.e. the areal strain enclosed by the ring: the working principle of a <strong>ring strain gauge</strong>.</p>
+<p><img alt="Curved-cable DAS: curvature and gauge length" src="../assets/images/das_ring_curvature.png" />
+<em>Figure 5: (Left) P-wave directional response for several gauge arc angles — straight cable (blue) shows the standard cos²θ two-lobe pattern; lobes broaden with increasing arc angle; the half-circle case (red dash-dot) is nearly isotropic. (Right) Directional modulation depth <span class="arithmatex">\(m = \mathrm{sinc}(\Delta\varphi)\)</span> vs arc angle: the green zone (<span class="arithmatex">\(\Delta\varphi &lt; 45°\)</span>, i.e. <span class="arithmatex">\(L &lt; 0.79R\)</span>) preserves strong directionality (<span class="arithmatex">\(m &gt; 0.9\)</span>); <span class="arithmatex">\(m\)</span> vanishes exactly at the half circle and the response is perfectly isotropic for the full circle.</em></p>
+<h3 id="effect-of-curvature-on-the-gauge-notch-filter">Effect of Curvature on the Gauge (Notch) Filter<a class="headerlink" href="#effect-of-curvature-on-the-gauge-notch-filter" title="Permanent link">&para;</a></h3>
+<p>For a straight cable the gauge-filter notch lies at <span class="arithmatex">\(f_1 = v_\text{app}/L\)</span> with <span class="arithmatex">\(v_\text{app} = c/\cos\theta\)</span>. On a curved cable the local along-fibre apparent slowness varies along the arc, so:</p>
+<ol>
+<li><strong>Shallower notches</strong>: notch frequencies differ between arc segments; after averaging, the notch is no longer a perfect zero but a finite-depth trough</li>
+<li><strong>Effective gauge shortening</strong>: the projection of the gauge onto the propagation direction is the <strong>chord</strong>, not the arc:</li>
+</ol>
+<div class="arithmatex">\[
+L_\text{chord} = 2R\sin\!\left(\frac{\Delta\varphi}{2}\right) &lt; L
+\]</div>
+<p>For <span class="arithmatex">\(\Delta\varphi = 90°\)</span>, <span class="arithmatex">\(L_\text{chord} \approx 0.90\,L\)</span>; for <span class="arithmatex">\(\Delta\varphi = 180°\)</span>, <span class="arithmatex">\(L_\text{chord} = 2R \approx 0.64\,L\)</span>. Notch frequencies shift upward correspondingly, and the effective spatial resolution is slightly better than the arc-length prediction.</p>
+<div class="admonition tip">
+<p class="admonition-title">Practical notes for ring arrays</p>
+<ol>
+<li><strong>Ring diameter</strong>: urban well-pad ring deployments typically use <span class="arithmatex">\(2R \sim 50\)</span>–<span class="arithmatex">\(200\)</span> m. With a 10 m gauge and <span class="arithmatex">\(R = 25\)</span> m, <span class="arithmatex">\(\Delta\varphi \approx 23°\)</span> and <span class="arithmatex">\(m \approx 0.97\)</span> — directionality essentially unaffected</li>
+<li><strong>Corner-channel rejection</strong>: right-angle road corners can have curvature radii of 1–2 m; a 10 m gauge then spans <span class="arithmatex">\(\Delta\varphi &gt; 360°\)</span> and the response is not analytically tractable. Standard practice is to <strong>discard channels within ±L of each corner</strong></li>
+<li><strong>Fibre bend loss</strong>: besides response distortion, small bend radii cause macrobend optical loss. Single-mode fibre requires <span class="arithmatex">\(R \gtrsim 15\)</span> mm and jacketed cables <span class="arithmatex">\(R \gtrsim 10\)</span>–<span class="arithmatex">\(20\times\)</span> the cable diameter — metre-scale ring arrays are far from this limit, but splice boxes and slack coils need attention</li>
+<li><strong>Azimuthal diversity</strong>: the intrinsic advantage of a ring — channel tangents sweep all 360° of azimuth, equivalent to a full set of single-component strainmeters at all orientations, which is particularly valuable for anisotropy inversion and source-mechanism constraints</li>
+</ol>
+</div>
 <hr />
 <h2 id="python-example">Python Example<a class="headerlink" href="#python-example" title="Permanent link">&para;</a></h2>
 <p>The code below reproduces both figures: the directional sensitivity polar plot and the gauge-length transfer function.</p>
