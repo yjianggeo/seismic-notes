@@ -13,6 +13,99 @@ Surface waves and coda waves are two fundamentally different components of a sei
 
 ---
 
+## Observability Conditions
+
+Surface waves and coda waves each have their own recording requirements. Understanding these conditions is the first step in assessing whether a given method is feasible before processing data.
+
+### When Surface Waves Are Clearly Observable
+
+**1. Source depth — the dominant controlling factor**
+
+Surface waves are excited by shallow sources; their amplitude decays rapidly with source depth $h$. The amplitude excited by a source at depth $h$ scales approximately as:
+
+$$
+A_\text{SW} \propto e^{-k h} = e^{-2\pi h/\lambda}
+$$
+
+where $k = 2\pi/\lambda$ is the horizontal wavenumber. Practical rule of thumb:
+
+| Source depth | Surface-wave development |
+|-------------|--------------------------|
+| $h < \lambda/2$ | Strong excitation, fundamental mode dominant |
+| $\lambda/2 < h < 2\lambda$ | Moderate; dispersion identifiable but amplitude reduced |
+| $h > 2\lambda$ | Amplitude strongly attenuated; fundamental mode suppressed |
+
+Practical implications:
+- **Shallow earthquakes** ($h < 30$ km) → strong long-period surface waves ($T > 10$ s);
+- **Deep earthquakes** ($h > 200$ km) → surface waves with $T < 100$ s are nearly absent;
+- **Engineering MASW** ($f = 1$–50 Hz, $\lambda \sim 10$–200 m): natural earthquakes are effectively infinitely deep for near-surface structure — use an artificial source (sledgehammer, drop weight) instead.
+
+!!! warning "Deep-earthquake pitfall"
+    Mid-depth earthquakes ($h \sim 100$–200 km) can still produce visible surface-wave envelopes, but higher modes often dominate the fundamental mode, making dispersion picking unreliable. Always verify source depth before processing.
+
+**2. Epicentral distance — dispersion needs propagation distance**
+
+Surface-wave dispersion (different frequencies arriving at different times) requires sufficient distance to temporally separate the frequency components:
+
+- **Regional/global surface waves** ($T = 10$–300 s): $\Delta \gtrsim 10°$ (~1000 km) gives clean separation from multiple body-wave arrivals (PP, SS); at $\Delta < 300$ km, the surface-wave packet overlaps the S-wave coda;
+- **Engineering MASW** ($f = 1$–50 Hz): array length $\geq \lambda_\text{max}$ (wavelength at the lowest target frequency); shorter arrays under-sample low-frequency modes and bias the dispersion curve high;
+- **Passive noise cross-correlation**: station spacing $d$ determines the extractable wavelength band, typically $\lambda \in [2d,\; 3\,d_\text{array}]$ ($d_\text{array}$ = array aperture).
+
+**3. Site and path conditions**
+
+- **Soft sedimentary basins**: low-velocity layers amplify surface-wave amplitude but also excite higher modes — fundamental-mode picking requires care;
+- **Laterally heterogeneous paths**: strong refraction biases apparent phase velocities; azimuth corrections are needed for cross-correlation methods;
+- **Noise azimuthal distribution**: passive cross-correlation assumes an isotropic noise field. Coastal stations are often dominated by uni-directional ocean swell — Rayleigh-wave convergence is fast, but Love-wave cross-correlations converge slowly and need longer records.
+
+---
+
+### When Coda Waves Are Clearly Observable
+
+**1. Scattering heterogeneity — directly controls coda energy**
+
+Coda waves arise from multiple scattering by heterogeneities (faults, pores, mineral boundaries). Denser, higher-contrast scatterers produce stronger, longer-lasting coda.
+
+| Tectonic setting | Coda character | Typical $Q_c$ (1 Hz) |
+|-----------------|---------------|----------------------|
+| Active volcanic area | Strong scattering, long coda | 50–150 |
+| Active fault zone | Moderate scattering | 100–300 |
+| Stable craton / shield | Weak scattering, short coda | 600–1500 |
+| Glacier (within ice) | Strong scattering (grains/cracks) | 50–200 |
+
+**2. Epicentral distance range**
+
+Coda analysis requires clear separation of direct arrivals from the scattered wavefield — too close or too far both violate this:
+
+$$
+\boxed{50\;\text{km} \lesssim \Delta \lesssim 300\;\text{km}}
+$$
+
+- $\Delta < 20$–30 km: P and S arrive almost simultaneously; the coda onset is too early to isolate from the direct wavefield;
+- $\Delta > 400$–500 km: regional phases (Lg, Pn) and surface waves arrive within the coda window, invalidating simple single-scattering models.
+
+!!! tip "Empirical coda onset criterion"
+    A coda window starting at $t_\text{start} \geq 2\,t_S$ (twice the S-wave travel time) is the standard choice (Aki & Chouet 1975). By this time, most body-wave phases have arrived and the field has entered a quasi-diffuse scattering regime.
+
+**3. Magnitude range**
+
+| Magnitude | Main issue | Recommendation |
+|-----------|-----------|----------------|
+| $M < 1$–2 | SNR too low; coda buried in noise | Raise high-pass frequency; deploy stations close to source |
+| $M = 1$–5 | **Optimal** for $Q_c$ and CWI | Standard workflow |
+| $M > 6$ | Aftershock sequences; nonlinear scattering | Rigorously exclude aftershock windows; interpret cautiously |
+
+**4. Time-window selection — balancing CWI sensitivity against SNR**
+
+The velocity-change uncertainty is $\sigma_{\delta v/v} \approx T/(2\pi f \bar{t}\,\text{CC})$: a later window (larger $\bar{t}$) gives higher sensitivity, but coda energy decays exponentially ($\propto e^{-\pi f t / Q_c}$). A practical upper time limit is:
+
+$$
+t_\text{end} \lesssim \frac{Q_c}{\pi f}
+$$
+
+Beyond this the cross-correlation coefficient CC drops sharply, and measurement error grows despite the larger $\bar{t}$.
+
+---
+
 ## Basic Properties of Surface Waves
 
 ### Rayleigh and Love Waves
