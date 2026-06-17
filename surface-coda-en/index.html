@@ -1727,6 +1727,75 @@ P(f, c) = \int e^{i 2\pi f x / c}\, \hat{u}(f, x)\, \mathrm{d}x
 C_{ij}(\tau) = \int u_i(t)\, u_j(t+\tau)\, \mathrm{d}t
 \]</div>
 <p>The envelope of <span class="arithmatex">\(C_{ij}(\tau)\)</span> approximates the Green's function between the two stations, from which Rayleigh- and Love-wave phase and group velocities can be extracted. DAS arrays are ideal for this approach due to their high channel density and continuous recording.</p>
+<h4 id="borehole-das-surface-wave-depth-attenuation">Borehole DAS: Surface-Wave Depth Attenuation<a class="headerlink" href="#borehole-das-surface-wave-depth-attenuation" title="Permanent link">&para;</a></h4>
+<p>Installing a DAS fibre in a vertical borehole gives direct access to the evanescent depth decay of Rayleigh waves — a dimension unreachable by surface arrays.</p>
+<p><strong>Geometry and measurement</strong></p>
+<p>In a vertical borehole the fibre axis is the depth direction <span class="arithmatex">\(z\)</span>, so DAS records the axial strain:</p>
+<div class="arithmatex">\[\varepsilon_\text{DAS}(z,\,t) = \frac{\partial u_z}{\partial z}(z,\,t)\]</div>
+<p>For a horizontally propagating Rayleigh wave, <span class="arithmatex">\(u_z(z,t) = r_z(z)\cdot A(t)\)</span>, meaning all depths share the <strong>same arrival time</strong> (zero vertical slowness <span class="arithmatex">\(p_z = 0\)</span>). Consequently:</p>
+<ul>
+<li>Phase velocity <strong>cannot</strong> be read from inter-depth time shifts;</li>
+<li>The <strong>amplitude–depth profile</strong> directly yields the eigenfunction <span class="arithmatex">\(r_z(z)\)</span>.</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Complementarity with surface DAS</p>
+<p>Surface DAS measures horizontal strain with a <span class="arithmatex">\(\cos^2\theta\)</span> azimuthal response. Vertical borehole DAS measures vertical strain and responds equally to Rayleigh waves arriving from any azimuth — making it ideal for quantifying depth decay.</p>
+</div>
+<p><strong>Rayleigh-wave depth eigenfunction</strong></p>
+<p>For a homogeneous half-space the vertical displacement eigenfunction, normalised to unity at the surface, is:</p>
+<div class="arithmatex">\[\boxed{r_z(z) = \frac{e^{-\eta_\alpha k z} - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}\,e^{-\eta_\beta k z}}{1 - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}}}\]</div>
+<p>where <span class="arithmatex">\(k = 2\pi f / V_R(f)\)</span> and</p>
+<div class="arithmatex">\[\eta_\alpha = \sqrt{1 - \frac{V_R^2}{V_P^2}}, \qquad \eta_\beta = \sqrt{1 - \frac{V_R^2}{V_S^2}}\]</div>
+<p>are the P- and S-wave vertical decay coefficients. For a Poisson solid (<span class="arithmatex">\(\nu = 0.25\)</span>, <span class="arithmatex">\(V_R \approx 0.919\,V_S\)</span>):</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Depth scale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\eta_\alpha\)</span></td>
+<td><span class="arithmatex">\(\approx 0.848\)</span></td>
+<td><span class="arithmatex">\(\sim \lambda/5.3\)</span> (P-wave, fast decay)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\eta_\beta\)</span></td>
+<td><span class="arithmatex">\(\approx 0.393\)</span></td>
+<td><span class="arithmatex">\(\sim \lambda/2.5\)</span> (S-wave, slow decay, dominates at depth)</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(2\eta_\alpha\eta_\beta/(1+\eta_\beta^2)\)</span></td>
+<td><span class="arithmatex">\(\approx 0.577\)</span></td>
+<td>Coupling weight between the two terms</td>
+</tr>
+</tbody>
+</table>
+<p>Once <span class="arithmatex">\(kz \gtrsim 1.2\)</span> (depth <span class="arithmatex">\(\gtrsim 0.2\lambda\)</span>) the P-wave term has decayed by over 90% and the eigenfunction approaches a single exponential:</p>
+<div class="arithmatex">\[r_z(z) \xrightarrow{\;kz \gg 1/\eta_\alpha\;} C_\beta\cdot e^{-\eta_\beta k z}\]</div>
+<p><strong>Extracting <span class="arithmatex">\(V_S\)</span> from the depth attenuation rate</strong></p>
+<p><em>Step 1 — obtain <span class="arithmatex">\(V_R(f)\)</span> independently</em></p>
+<p>Because all depths register the same arrival time, phase velocity must come from outside the borehole:
+- Surface DAS or seismometers via f-v transform;
+- Active source: known source offset divided by Rayleigh-wave arrival time.</p>
+<p><em>Step 2 — semi-log linear fit of the depth amplitude profile</em></p>
+<p>In the S-wave-dominated zone (<span class="arithmatex">\(kz \in [2,\;5]\)</span>) fit the slope <span class="arithmatex">\(-b(f)\)</span> of <span class="arithmatex">\(\ln|r_z(z, f)|\)</span> versus <span class="arithmatex">\(z\)</span>:</p>
+<div class="arithmatex">\[b(f) = \eta_\beta \cdot k = \frac{2\pi f}{V_R(f)}\sqrt{1 - \frac{V_R(f)^2}{V_S^2}}\]</div>
+<p><em>Step 3 — solve for <span class="arithmatex">\(V_S\)</span></em></p>
+<div class="arithmatex">\[\boxed{V_S = \frac{V_R(f)}{\sqrt{1 - \!\left(\dfrac{b(f)\,V_R(f)}{2\pi f}\right)^{\!2}}}}\]</div>
+<p>Combining the surface-measured <span class="arithmatex">\(V_R\)</span> with the borehole-measured decay slope <span class="arithmatex">\(b\)</span> gives a direct <span class="arithmatex">\(V_S\)</span> estimate <strong>without any surface receiver array</strong> — particularly valuable in seafloor, glacier, or mine environments where surface arrays are impractical.</p>
+<div class="admonition tip">
+<p class="admonition-title">Practical notes</p>
+<ul>
+<li><strong>Fitting range</strong>: <span class="arithmatex">\(kz \in [2,\;5]\)</span>; shallower levels are biased by the two-exponential superposition, deeper levels by low SNR;</li>
+<li><strong>Gauge-length correction</strong>: when <span class="arithmatex">\(\eta_\beta kL &gt; 0.1\)</span>, multiply the measured slope by the correction factor <span class="arithmatex">\(\mathrm{sinc}^{-1}(\eta_\beta kL/2)\)</span>;</li>
+<li><strong>Layered media</strong>: repeat for each frequency — the inferred <span class="arithmatex">\(V_S\)</span> corresponds to an effective depth <span class="arithmatex">\(\approx \lambda/4\)</span>, assembling a <span class="arithmatex">\(V_S(z)\)</span> profile.</li>
+</ul>
+</div>
+<p><img alt="Borehole DAS surface-wave depth eigenfunction" src="../assets/images/das_borehole_sw.png" />
+<em>Figure 3: Left — Rayleigh-wave depth eigenfunctions for a Poisson solid. Blue solid: vertical displacement <span class="arithmatex">\(r_z(z)\)</span>; red dashed: DAS axial strain <span class="arithmatex">\(|\varepsilon_{zz}|\)</span>; orange and green horizontal dotted lines mark the P- and S-wave 1/e characteristic depths (horizontal axis: normalised depth <span class="arithmatex">\(kz\)</span>). Right — Log-amplitude versus <span class="arithmatex">\(kz\)</span>. In the green zone (<span class="arithmatex">\(kz &gt; 1.8\)</span>) the curve asymptotes to a straight line with slope <span class="arithmatex">\(-\eta_\beta\)</span>; fitting that slope and combining with a known <span class="arithmatex">\(V_R(f)\)</span> directly yields <span class="arithmatex">\(V_S\)</span>.</em></p>
 <h3 id="dispersion-curve-inversion">Dispersion Curve Inversion<a class="headerlink" href="#dispersion-curve-inversion" title="Permanent link">&para;</a></h3>
 <p>Given observed dispersion curve <span class="arithmatex">\(c^\text{obs}(f_i)\)</span>, estimate the <span class="arithmatex">\(V_S(z)\)</span> model by minimizing:</p>
 <div class="arithmatex">\[

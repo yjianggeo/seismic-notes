@@ -1135,7 +1135,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#das" class="md-nav__link">
+  <a href="#das_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         DAS 与面波/尾波分析的结合
@@ -1745,7 +1745,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#das" class="md-nav__link">
+  <a href="#das_1" class="md-nav__link">
     <span class="md-ellipsis">
       
         DAS 与面波/尾波分析的结合
@@ -2073,6 +2073,75 @@ P(f, c) = \int e^{i 2\pi f x / c}\, \hat{u}(f, x)\, \mathrm{d}x
 C_{ij}(\tau) = \int u_i(t)\, u_j(t+\tau)\, \mathrm{d}t
 \]</div>
 <p>两台之间的 CCF 的包络近似于两台之间的格林函数（表面波响应），从中可提取 Rayleigh 波和 Love 波的群速度或相速度。DAS 阵列天然适合这一方法（高道密度 + 长连续记录）。</p>
+<h4 id="das">井下 DAS 面波监测与深度衰减分析<a class="headerlink" href="#das" title="Permanent link">&para;</a></h4>
+<p>将 DAS 光缆布设于竖直钻孔中，可直接观测 Rayleigh 波振幅随深度的倏逝（evanescent）衰减——这是地面阵列无法触及的深度维度。</p>
+<p><strong>观测几何与测量量</strong></p>
+<p>竖直钻孔 DAS 的轴向即深度方向 <span class="arithmatex">\(z\)</span>，测量量为轴向应变：</p>
+<div class="arithmatex">\[\varepsilon_\text{DAS}(z,\,t) = \frac{\partial u_z}{\partial z}(z,\,t)\]</div>
+<p>对于沿水平方向传播的 Rayleigh 波，<span class="arithmatex">\(u_z(z, t) = r_z(z)\cdot A(t)\)</span>，各深度上的波形<strong>同时到达</strong>（水平慢度 <span class="arithmatex">\(p_z = 0\)</span>）。因此：</p>
+<ul>
+<li><strong>无法</strong>从深度间的时差估算相速度；</li>
+<li><strong>可以</strong>从深度振幅剖面直接读出本征函数 <span class="arithmatex">\(r_z(z)\)</span>。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">与地面 DAS 的互补性</p>
+<p>地面 DAS 测量水平应变，对面波有 <span class="arithmatex">\(\cos^2\theta\)</span> 的方位角响应；竖直钻孔 DAS 测量竖向应变，对所有入射方位一视同仁，适合量化深度衰减。</p>
+</div>
+<p><strong>Rayleigh 波深度本征函数</strong></p>
+<p>对于均匀弹性半空间，竖向位移随深度的本征函数（归一化至地表为 1）为：</p>
+<div class="arithmatex">\[\boxed{r_z(z) = \frac{e^{-\eta_\alpha k z} - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}\,e^{-\eta_\beta k z}}{1 - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}}}\]</div>
+<p>其中 <span class="arithmatex">\(k = 2\pi f / V_R(f)\)</span>，而</p>
+<div class="arithmatex">\[\eta_\alpha = \sqrt{1 - \frac{V_R^2}{V_P^2}}, \qquad \eta_\beta = \sqrt{1 - \frac{V_R^2}{V_S^2}}\]</div>
+<p>分别是 P 波和 S 波的垂向衰减系数。对于 Poisson 固体（<span class="arithmatex">\(\nu = 0.25\)</span>，<span class="arithmatex">\(V_R \approx 0.919\,V_S\)</span>）：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>数值</th>
+<th>特征深度尺度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(\eta_\alpha\)</span></td>
+<td><span class="arithmatex">\(\approx 0.848\)</span></td>
+<td><span class="arithmatex">\(\sim \lambda/5.3\)</span>（P 波快速衰减）</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\eta_\beta\)</span></td>
+<td><span class="arithmatex">\(\approx 0.393\)</span></td>
+<td><span class="arithmatex">\(\sim \lambda/2.5\)</span>（S 波慢衰减，深部主导）</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(2\eta_\alpha\eta_\beta/(1+\eta_\beta^2)\)</span></td>
+<td><span class="arithmatex">\(\approx 0.577\)</span></td>
+<td>两项的耦合权重</td>
+</tr>
+</tbody>
+</table>
+<p>当 <span class="arithmatex">\(kz \gtrsim 1.2\)</span>（约 <span class="arithmatex">\(0.2\lambda\)</span> 深度）后，P 波项衰减超过 90%，本征函数退化为单指数：</p>
+<div class="arithmatex">\[r_z(z) \xrightarrow{\;kz \gg 1/\eta_\alpha\;} C_\beta \cdot e^{-\eta_\beta k z}\]</div>
+<p><strong>从深度衰减提取 S 波速度</strong></p>
+<p><em>第一步：独立估算 <span class="arithmatex">\(V_R(f)\)</span></em></p>
+<p>由于钻孔内各深度同时到达，相速度须从外部获取：
+- 地表 DAS/台站 f-v 变换拾取频散曲线；
+- 主动源：已知震源距除以到达时刻。</p>
+<p><em>第二步：对钻孔幅度剖面做半对数线性拟合</em></p>
+<p>在 S 波主导区（<span class="arithmatex">\(kz \in [2,\;5]\)</span>）拟合 <span class="arithmatex">\(\ln|r_z(z, f)|\)</span> 对 <span class="arithmatex">\(z\)</span> 的斜率 <span class="arithmatex">\(-b(f)\)</span>：</p>
+<div class="arithmatex">\[b(f) = \eta_\beta \cdot k = \frac{2\pi f}{V_R(f)}\sqrt{1 - \frac{V_R(f)^2}{V_S^2}}\]</div>
+<p><em>第三步：联立求解 <span class="arithmatex">\(V_S\)</span></em></p>
+<div class="arithmatex">\[\boxed{V_S = \frac{V_R(f)}{\sqrt{1 - \!\left(\dfrac{b(f)\,V_R(f)}{2\pi f}\right)^{\!2}}}}\]</div>
+<p>此式将地表测量的 <span class="arithmatex">\(V_R\)</span> 与钻孔测量的衰减斜率 <span class="arithmatex">\(b\)</span> 结合，直接给出 <span class="arithmatex">\(V_S\)</span> 估算，<strong>无需水平台站阵列</strong>——在海底、冰川钻孔等难以布设地面阵列的环境中具有独特价值。</p>
+<div class="admonition tip">
+<p class="admonition-title">实用要点</p>
+<ul>
+<li><strong>拟合区间</strong>：<span class="arithmatex">\(kz \in [2,\;5]\)</span>；过浅两指数叠加偏离线性，过深信噪比不足；</li>
+<li><strong>标距校正</strong>：若标距 <span class="arithmatex">\(L\)</span> 满足 <span class="arithmatex">\(\eta_\beta kL &gt; 0.1\)</span>，需将实测斜率乘以校正因子 <span class="arithmatex">\(\mathrm{sinc}^{-1}(\eta_\beta kL/2)\)</span>；</li>
+<li><strong>分层介质</strong>：各频率提取的 <span class="arithmatex">\(V_S\)</span> 对应不同有效深度（<span class="arithmatex">\(\sim \lambda/4\)</span>），对多个频率重复上述步骤即可得到 <span class="arithmatex">\(V_S(z)\)</span> 剖面。</li>
+</ul>
+</div>
+<p><img alt="井下DAS面波深度衰减" src="../assets/images/das_borehole_sw.png" />
+<em>图 3：左图——Poisson 固体中 Rayleigh 波深度本征函数。蓝色实线：竖向位移 <span class="arithmatex">\(r_z(z)\)</span>，深度越大振幅越小；红色虚线：DAS 测量的轴向应变 <span class="arithmatex">\(|\varepsilon_{zz}|\)</span>；橙色/绿色水平虚线分别标注 P 波和 S 波的 <span class="arithmatex">\(1/e\)</span> 特征深度（以 <span class="arithmatex">\(kz\)</span> 为归一化深度坐标）。右图：对数幅度与归一化深度的关系，深部（绿色区域，<span class="arithmatex">\(kz&gt;1.8\)</span>）渐近为斜率 <span class="arithmatex">\(-\eta_\beta\)</span> 的直线；拟合该斜率并结合已知 <span class="arithmatex">\(V_R(f)\)</span> 即可提取 <span class="arithmatex">\(V_S\)</span>。</em></p>
 <h3 id="_12">频散曲线反演<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <p>已知观测频散曲线 <span class="arithmatex">\(c^\text{obs}(f_i)\)</span>，通过最小化残差估计 <span class="arithmatex">\(V_S(z)\)</span> 模型：</p>
 <div class="arithmatex">\[
@@ -2187,7 +2256,7 @@ C(\tau) = \int_{t_a}^{t_b} u_1(t)\, u_2(t + \tau)\, \mathrm{d}t
 </tr>
 </tbody>
 </table>
-<h3 id="das">DAS 与面波/尾波分析的结合<a class="headerlink" href="#das" title="Permanent link">&para;</a></h3>
+<h3 id="das_1">DAS 与面波/尾波分析的结合<a class="headerlink" href="#das_1" title="Permanent link">&para;</a></h3>
 <p><strong>DAS + 噪声互相关</strong>：
 - DAS 阵列沿光缆提供数千虚拟台，道间距低至 1 m
 - 任意台对互相关自动给出高空间密度的格林函数采样
