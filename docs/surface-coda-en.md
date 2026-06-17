@@ -188,6 +188,74 @@ $$
 
 The envelope of $C_{ij}(\tau)$ approximates the Green's function between the two stations, from which Rayleigh- and Love-wave phase and group velocities can be extracted. DAS arrays are ideal for this approach due to their high channel density and continuous recording.
 
+#### Borehole DAS: Surface-Wave Depth Attenuation
+
+Installing a DAS fibre in a vertical borehole gives direct access to the evanescent depth decay of Rayleigh waves — a dimension unreachable by surface arrays.
+
+**Geometry and measurement**
+
+In a vertical borehole the fibre axis is the depth direction $z$, so DAS records the axial strain:
+
+$$\varepsilon_\text{DAS}(z,\,t) = \frac{\partial u_z}{\partial z}(z,\,t)$$
+
+For a horizontally propagating Rayleigh wave, $u_z(z,t) = r_z(z)\cdot A(t)$, meaning all depths share the **same arrival time** (zero vertical slowness $p_z = 0$). Consequently:
+
+- Phase velocity **cannot** be read from inter-depth time shifts;
+- The **amplitude–depth profile** directly yields the eigenfunction $r_z(z)$.
+
+!!! note "Complementarity with surface DAS"
+    Surface DAS measures horizontal strain with a $\cos^2\theta$ azimuthal response. Vertical borehole DAS measures vertical strain and responds equally to Rayleigh waves arriving from any azimuth — making it ideal for quantifying depth decay.
+
+**Rayleigh-wave depth eigenfunction**
+
+For a homogeneous half-space the vertical displacement eigenfunction, normalised to unity at the surface, is:
+
+$$\boxed{r_z(z) = \frac{e^{-\eta_\alpha k z} - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}\,e^{-\eta_\beta k z}}{1 - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}}}$$
+
+where $k = 2\pi f / V_R(f)$ and
+
+$$\eta_\alpha = \sqrt{1 - \frac{V_R^2}{V_P^2}}, \qquad \eta_\beta = \sqrt{1 - \frac{V_R^2}{V_S^2}}$$
+
+are the P- and S-wave vertical decay coefficients. For a Poisson solid ($\nu = 0.25$, $V_R \approx 0.919\,V_S$):
+
+| Parameter | Value | Depth scale |
+|-----------|-------|------------|
+| $\eta_\alpha$ | $\approx 0.848$ | $\sim \lambda/5.3$ (P-wave, fast decay) |
+| $\eta_\beta$ | $\approx 0.393$ | $\sim \lambda/2.5$ (S-wave, slow decay, dominates at depth) |
+| $2\eta_\alpha\eta_\beta/(1+\eta_\beta^2)$ | $\approx 0.577$ | Coupling weight between the two terms |
+
+Once $kz \gtrsim 1.2$ (depth $\gtrsim 0.2\lambda$) the P-wave term has decayed by over 90% and the eigenfunction approaches a single exponential:
+
+$$r_z(z) \xrightarrow{\;kz \gg 1/\eta_\alpha\;} C_\beta\cdot e^{-\eta_\beta k z}$$
+
+**Extracting $V_S$ from the depth attenuation rate**
+
+*Step 1 — obtain $V_R(f)$ independently*
+
+Because all depths register the same arrival time, phase velocity must come from outside the borehole:
+- Surface DAS or seismometers via f-v transform;
+- Active source: known source offset divided by Rayleigh-wave arrival time.
+
+*Step 2 — semi-log linear fit of the depth amplitude profile*
+
+In the S-wave-dominated zone ($kz \in [2,\;5]$) fit the slope $-b(f)$ of $\ln|r_z(z, f)|$ versus $z$:
+
+$$b(f) = \eta_\beta \cdot k = \frac{2\pi f}{V_R(f)}\sqrt{1 - \frac{V_R(f)^2}{V_S^2}}$$
+
+*Step 3 — solve for $V_S$*
+
+$$\boxed{V_S = \frac{V_R(f)}{\sqrt{1 - \!\left(\dfrac{b(f)\,V_R(f)}{2\pi f}\right)^{\!2}}}}$$
+
+Combining the surface-measured $V_R$ with the borehole-measured decay slope $b$ gives a direct $V_S$ estimate **without any surface receiver array** — particularly valuable in seafloor, glacier, or mine environments where surface arrays are impractical.
+
+!!! tip "Practical notes"
+    - **Fitting range**: $kz \in [2,\;5]$; shallower levels are biased by the two-exponential superposition, deeper levels by low SNR;
+    - **Gauge-length correction**: when $\eta_\beta kL > 0.1$, multiply the measured slope by the correction factor $\mathrm{sinc}^{-1}(\eta_\beta kL/2)$;
+    - **Layered media**: repeat for each frequency — the inferred $V_S$ corresponds to an effective depth $\approx \lambda/4$, assembling a $V_S(z)$ profile.
+
+![Borehole DAS surface-wave depth eigenfunction](../assets/images/das_borehole_sw.png)
+*Figure 3: Left — Rayleigh-wave depth eigenfunctions for a Poisson solid. Blue solid: vertical displacement $r_z(z)$; red dashed: DAS axial strain $|\varepsilon_{zz}|$; orange and green horizontal dotted lines mark the P- and S-wave 1/e characteristic depths (horizontal axis: normalised depth $kz$). Right — Log-amplitude versus $kz$. In the green zone ($kz > 1.8$) the curve asymptotes to a straight line with slope $-\eta_\beta$; fitting that slope and combining with a known $V_R(f)$ directly yields $V_S$.*
+
 ### Dispersion Curve Inversion
 
 Given observed dispersion curve $c^\text{obs}(f_i)$, estimate the $V_S(z)$ model by minimizing:
