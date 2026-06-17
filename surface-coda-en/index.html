@@ -1160,6 +1160,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#observability-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observability Conditions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Observability Conditions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-surface-waves-are-clearly-observable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Surface Waves Are Clearly Observable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#when-coda-waves-are-clearly-observable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When Coda Waves Are Clearly Observable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#basic-properties-of-surface-waves" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1470,6 +1509,140 @@
 </tr>
 </tbody>
 </table>
+<hr />
+<h2 id="observability-conditions">Observability Conditions<a class="headerlink" href="#observability-conditions" title="Permanent link">&para;</a></h2>
+<p>Surface waves and coda waves each have their own recording requirements. Understanding these conditions is the first step in assessing whether a given method is feasible before processing data.</p>
+<h3 id="when-surface-waves-are-clearly-observable">When Surface Waves Are Clearly Observable<a class="headerlink" href="#when-surface-waves-are-clearly-observable" title="Permanent link">&para;</a></h3>
+<p><strong>1. Source depth — the dominant controlling factor</strong></p>
+<p>Surface waves are excited by shallow sources; their amplitude decays rapidly with source depth <span class="arithmatex">\(h\)</span>. The amplitude excited by a source at depth <span class="arithmatex">\(h\)</span> scales approximately as:</p>
+<div class="arithmatex">\[
+A_\text{SW} \propto e^{-k h} = e^{-2\pi h/\lambda}
+\]</div>
+<p>where <span class="arithmatex">\(k = 2\pi/\lambda\)</span> is the horizontal wavenumber. Practical rule of thumb:</p>
+<table>
+<thead>
+<tr>
+<th>Source depth</th>
+<th>Surface-wave development</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(h &lt; \lambda/2\)</span></td>
+<td>Strong excitation, fundamental mode dominant</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(\lambda/2 &lt; h &lt; 2\lambda\)</span></td>
+<td>Moderate; dispersion identifiable but amplitude reduced</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(h &gt; 2\lambda\)</span></td>
+<td>Amplitude strongly attenuated; fundamental mode suppressed</td>
+</tr>
+</tbody>
+</table>
+<p>Practical implications:
+- <strong>Shallow earthquakes</strong> (<span class="arithmatex">\(h &lt; 30\)</span> km) → strong long-period surface waves (<span class="arithmatex">\(T &gt; 10\)</span> s);
+- <strong>Deep earthquakes</strong> (<span class="arithmatex">\(h &gt; 200\)</span> km) → surface waves with <span class="arithmatex">\(T &lt; 100\)</span> s are nearly absent;
+- <strong>Engineering MASW</strong> (<span class="arithmatex">\(f = 1\)</span>–50 Hz, <span class="arithmatex">\(\lambda \sim 10\)</span>–200 m): natural earthquakes are effectively infinitely deep for near-surface structure — use an artificial source (sledgehammer, drop weight) instead.</p>
+<div class="admonition warning">
+<p class="admonition-title">Deep-earthquake pitfall</p>
+<p>Mid-depth earthquakes (<span class="arithmatex">\(h \sim 100\)</span>–200 km) can still produce visible surface-wave envelopes, but higher modes often dominate the fundamental mode, making dispersion picking unreliable. Always verify source depth before processing.</p>
+</div>
+<p><strong>2. Epicentral distance — dispersion needs propagation distance</strong></p>
+<p>Surface-wave dispersion (different frequencies arriving at different times) requires sufficient distance to temporally separate the frequency components:</p>
+<ul>
+<li><strong>Regional/global surface waves</strong> (<span class="arithmatex">\(T = 10\)</span>–300 s): <span class="arithmatex">\(\Delta \gtrsim 10°\)</span> (~1000 km) gives clean separation from multiple body-wave arrivals (PP, SS); at <span class="arithmatex">\(\Delta &lt; 300\)</span> km, the surface-wave packet overlaps the S-wave coda;</li>
+<li><strong>Engineering MASW</strong> (<span class="arithmatex">\(f = 1\)</span>–50 Hz): array length <span class="arithmatex">\(\geq \lambda_\text{max}\)</span> (wavelength at the lowest target frequency); shorter arrays under-sample low-frequency modes and bias the dispersion curve high;</li>
+<li><strong>Passive noise cross-correlation</strong>: station spacing <span class="arithmatex">\(d\)</span> determines the extractable wavelength band, typically <span class="arithmatex">\(\lambda \in [2d,\; 3\,d_\text{array}]\)</span> (<span class="arithmatex">\(d_\text{array}\)</span> = array aperture).</li>
+</ul>
+<p><strong>3. Site and path conditions</strong></p>
+<ul>
+<li><strong>Soft sedimentary basins</strong>: low-velocity layers amplify surface-wave amplitude but also excite higher modes — fundamental-mode picking requires care;</li>
+<li><strong>Laterally heterogeneous paths</strong>: strong refraction biases apparent phase velocities; azimuth corrections are needed for cross-correlation methods;</li>
+<li><strong>Noise azimuthal distribution</strong>: passive cross-correlation assumes an isotropic noise field. Coastal stations are often dominated by uni-directional ocean swell — Rayleigh-wave convergence is fast, but Love-wave cross-correlations converge slowly and need longer records.</li>
+</ul>
+<hr />
+<h3 id="when-coda-waves-are-clearly-observable">When Coda Waves Are Clearly Observable<a class="headerlink" href="#when-coda-waves-are-clearly-observable" title="Permanent link">&para;</a></h3>
+<p><strong>1. Scattering heterogeneity — directly controls coda energy</strong></p>
+<p>Coda waves arise from multiple scattering by heterogeneities (faults, pores, mineral boundaries). Denser, higher-contrast scatterers produce stronger, longer-lasting coda.</p>
+<table>
+<thead>
+<tr>
+<th>Tectonic setting</th>
+<th>Coda character</th>
+<th>Typical <span class="arithmatex">\(Q_c\)</span> (1 Hz)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Active volcanic area</td>
+<td>Strong scattering, long coda</td>
+<td>50–150</td>
+</tr>
+<tr>
+<td>Active fault zone</td>
+<td>Moderate scattering</td>
+<td>100–300</td>
+</tr>
+<tr>
+<td>Stable craton / shield</td>
+<td>Weak scattering, short coda</td>
+<td>600–1500</td>
+</tr>
+<tr>
+<td>Glacier (within ice)</td>
+<td>Strong scattering (grains/cracks)</td>
+<td>50–200</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2. Epicentral distance range</strong></p>
+<p>Coda analysis requires clear separation of direct arrivals from the scattered wavefield — too close or too far both violate this:</p>
+<div class="arithmatex">\[
+\boxed{50\;\text{km} \lesssim \Delta \lesssim 300\;\text{km}}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\Delta &lt; 20\)</span>–30 km: P and S arrive almost simultaneously; the coda onset is too early to isolate from the direct wavefield;</li>
+<li><span class="arithmatex">\(\Delta &gt; 400\)</span>–500 km: regional phases (Lg, Pn) and surface waves arrive within the coda window, invalidating simple single-scattering models.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Empirical coda onset criterion</p>
+<p>A coda window starting at <span class="arithmatex">\(t_\text{start} \geq 2\,t_S\)</span> (twice the S-wave travel time) is the standard choice (Aki &amp; Chouet 1975). By this time, most body-wave phases have arrived and the field has entered a quasi-diffuse scattering regime.</p>
+</div>
+<p><strong>3. Magnitude range</strong></p>
+<table>
+<thead>
+<tr>
+<th>Magnitude</th>
+<th>Main issue</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(M &lt; 1\)</span>–2</td>
+<td>SNR too low; coda buried in noise</td>
+<td>Raise high-pass frequency; deploy stations close to source</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(M = 1\)</span>–5</td>
+<td><strong>Optimal</strong> for <span class="arithmatex">\(Q_c\)</span> and CWI</td>
+<td>Standard workflow</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(M &gt; 6\)</span></td>
+<td>Aftershock sequences; nonlinear scattering</td>
+<td>Rigorously exclude aftershock windows; interpret cautiously</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4. Time-window selection — balancing CWI sensitivity against SNR</strong></p>
+<p>The velocity-change uncertainty is <span class="arithmatex">\(\sigma_{\delta v/v} \approx T/(2\pi f \bar{t}\,\text{CC})\)</span>: a later window (larger <span class="arithmatex">\(\bar{t}\)</span>) gives higher sensitivity, but coda energy decays exponentially (<span class="arithmatex">\(\propto e^{-\pi f t / Q_c}\)</span>). A practical upper time limit is:</p>
+<div class="arithmatex">\[
+t_\text{end} \lesssim \frac{Q_c}{\pi f}
+\]</div>
+<p>Beyond this the cross-correlation coefficient CC drops sharply, and measurement error grows despite the larger <span class="arithmatex">\(\bar{t}\)</span>.</p>
 <hr />
 <h2 id="basic-properties-of-surface-waves">Basic Properties of Surface Waves<a class="headerlink" href="#basic-properties-of-surface-waves" title="Permanent link">&para;</a></h2>
 <h3 id="rayleigh-and-love-waves">Rayleigh and Love Waves<a class="headerlink" href="#rayleigh-and-love-waves" title="Permanent link">&para;</a></h3>
