@@ -34,6 +34,50 @@ Key challenges in modern glacioseismology:
 
 ---
 
+## Seismic Physical Properties of Ice
+
+Understanding the propagation and attenuation of glaciological seismic signals requires knowledge of ice's elastic parameters. Ice differs from typical crustal rock in three key ways: (1) it is extremely homogeneous, so scattering is weak and coda is short; (2) the firn layer has low and strongly depth-varying velocity; (3) crystal fabric produces significant elastic anisotropy (Podolskiy & Walter, 2016).
+
+### Elastic Wave Velocities and Q
+
+| Medium | $V_P$ (m/s) | $V_S$ (m/s) | $V_R$ (m/s) | $Q_P$ | $Q_S$ |
+|--------|------------|------------|------------|--------|--------|
+| Cold ice | 3600–3900 | 1700–1950 | 1650–1668 | ~600 | ~300 |
+| Temperate ice | 3500–3700 | 1700–1850 | — | <100 | <100 |
+| Firn (near surface) | ~500 | — | — | — | — |
+| Soft subglacial sediment | 1500–2500 | 300–600 | — | low | low |
+
+*$V_R$ measured at 45 Hz (Roux et al., 2010; Mikesell et al., 2012); Q values from Walter et al. (2009).*
+
+**Effect of attenuation on detection range**: With $Q_S \approx 300$, the effective detection radius for a 10 Hz event is approximately:
+
+$$
+r_\text{eff} \approx \frac{Q_S V_S}{\pi f} = \frac{300 \times 1800}{\pi \times 10} \approx 17\;\text{km}
+$$
+
+At 50 Hz this shrinks to ~3 km; events above 100 Hz are typically only detectable within ~1 km.
+
+### Crystal Fabric and Elastic Anisotropy
+
+Under ice flow and gravity, $c$-axes gradually align toward vertical, producing a **transversely isotropic (VTI)** elastic structure:
+
+- Horizontal vs vertical $V_P$ difference: ~3–5%; S waves exhibit birefringence (shear-wave splitting)
+- Ice effective viscosity varies by a factor of **50–100** with fabric (Dahl-Jensen et al., 2013), making fabric a critical parameter for ice-sheet dynamics models
+- Basal stick-slip S waves that traverse the full ice column carry integrated fabric information — the most efficient natural probe of englacial anisotropy
+
+!!! note "Cold vs temperate ice"
+    Temperate ice (near 0°C) contains liquid water at grain boundaries, lowering $V_P$ slightly and dramatically reducing $Q$ (< 100). Most Alpine and mountain glaciers are temperate; high attenuation limits propagation of signals above ~30 Hz to within 1–2 km.
+
+### Low Scattering in Glacier Ice
+
+Unlike multi-phase crustal rocks, glacier ice is nearly homogeneous. Icequake waveforms **lack sustained coda** — a defining feature that:
+
+- Makes P- and S-wave onsets easy to pick (clean waveforms)
+- Inhibits traditional noise cross-correlation methods (equipartitioned diffuse wavefield cannot be achieved by scattering alone)
+- Requires natural icequakes to act as **virtual sources** for seismic interferometry (see Passive Structural Imaging)
+
+---
+
 ## Instrumentation
 
 ### Broadband Seismometers
@@ -208,7 +252,19 @@ $$
 \varepsilon_{xx}(x, t) = \frac{\partial u_x}{\partial x}
 $$
 
-Basal stick-slip generates **low-frequency strain pulses coherent across all channels** (analogous to the large Whillans Ice Stream stick-slip events, but without conventional high-frequency radiation).
+Basal stick-slip generates **low-frequency strain pulses coherent across all channels**.
+
+**Whillans Ice Stream (WIS) characteristic parameters** (Winberry et al., 2009a, 2011; Pratt et al., 2014):
+
+- Single event: ice displacement **0.2–0.5 m**, duration **20–30 min**, peak velocity ~1 m/h
+- Rupture propagation: average **150 m/s**, maximum 1.5 km/s (~90% of $V_S$)
+- Controlled by **Ross Ice Shelf ocean tides** (near-diurnal period), in two modes:
+  - **High-tide events**: recurrence 14–19 h, nucleate at central sticky spot (CSS), critical shear ~0.49 kPa
+  - **Low-tide events**: recurrence <9 h, nucleate at grounding-line sticky spot (GLSS), critical shear ~0.42 kPa
+- Longer recurrence → larger accumulated elastic strain → larger slip (elastic slider-block model)
+- WIS is decelerating at **0.6%/yr²** and may stagnate within a century (Joughin et al., 2005)
+
+This **tidally paced stick-slip** is the clearest empirical analogue in the cryosphere for tectonic fault mechanics: elastic strain accumulation, threshold failure, and frictional healing between events.
 
 **Velocity change monitoring via CWI**
 
@@ -232,6 +288,80 @@ Ice velocity $v$ correlates with temperature, liquid water content, and porosity
 | Malaspina Glacier, Alaska | USGS | 5 km surface | Surface-wave dispersion, ice-surface strain rate | Gimbert et al. 2021 |
 | Whillans Ice Stream, Antarctica | Consortium | Surface | Spatial propagation of stick-slip events | Lipovsky et al. 2019 |
 | Argentière Glacier, France | IPGP | Borehole | CWI seasonal velocity changes in ice | Nanni et al. 2021 |
+
+---
+
+## Passive Structural Imaging
+
+Passive seismic techniques exploit naturally occurring icequakes and ambient noise as sources to image ice structure without active sources. Podolskiy & Walter (2016) identify these methods as one of the major underexploited frontiers in glacioseismology.
+
+### Seismic Interferometry
+
+Cross-correlating two seismometer records recovers the Green's function (impulse response) between the two stations — the virtual-source method:
+
+$$
+C_{ij}(\tau) = \int u_i(t)\,u_j(t+\tau)\,\mathrm{d}t \;\xrightarrow{\text{equipartitioned source}}\; \hat{G}(\mathbf{r}_i,\,\mathbf{r}_j,\,\tau)
+$$
+
+**Challenge in ice**: weak scattering means a diffuse, equipartitioned wavefield cannot develop naturally. The practical solution is to use **surface icequakes** (10–50 Hz) as distributed virtual sources. When icequakes occur on both sides of a station pair, the cross-correlation surface-wave component converges to the Green's function (Walter et al., 2015a).
+
+| Site | Method | Outcome |
+|------|--------|---------|
+| Gornergletscher, Switzerland | Icequake virtual sources + dispersion | Ice thickness, $V_S(z)$ profile (Walter et al., 2015a) |
+| Ross Ice Shelf, Antarctica | Ambient noise dispersion | Ice-shelf thickness and structure (Diez et al., 2016) |
+| Greenland Ice Sheet | Broadband noise cross-correlation | Near-real-time ice mass balance (Mordret et al., 2016) |
+
+### Shear-Wave Splitting and Crystal Fabric
+
+S waves from basal stick-slip events traverse the entire ice column and split into fast and slow components in the anisotropic crystal fabric:
+
+$$
+\delta t_\text{split} = H \cdot \frac{\delta V_S}{V_S \cdot \bar{V}_S}
+$$
+
+where $H$ is ice thickness and $\delta V_S$ is the fast-slow velocity difference. The time lag $\delta t$ directly measures the column-integrated anisotropy strength.
+
+The **Rutford Ice Stream** study (Harland et al., 2013) used basal-icequake shear-wave splitting to resolve:
+- Strong crystal preferred orientation in the high-shear basal zone
+- Dominant englacial fracture orientation
+
+This provides a unique deep-penetrating constraint on ice-flow deformation history that surface measurements cannot reach.
+
+### Receiver Functions
+
+Teleseismic P waves incident near-vertically generate P-to-S conversions at velocity contrasts. Deconvolving the radial from the vertical component isolates the conversion time:
+
+$$
+\text{RF}(\tau) = \mathcal{F}^{-1}\!\left[\frac{R(\omega)}{Z(\omega)}\right]
+$$
+
+**Two applications in glaciology:**
+
+1. **Ice thickness (active-source-free)**: The P-to-S conversion at the ice-bed interface gives delay $\Delta t \approx H(1/V_{S,\text{ice}} - 1/V_{P,\text{ice}})$. Using $V_P/V_S \approx 2.0$ for ice yields $H$ directly.
+
+2. **Subglacial sediment detection**: A second conversion at the sediment-bedrock interface reveals sediment thickness. Tens to hundreds of metres of water-saturated soft sediment have been found beneath the Antarctic and Greenland ice sheets (Anandakrishnan & Winberry, 2004). Such **soft beds** drastically reduce basal friction and control long-term ice-stream velocity — the largest single uncertainty in ice-sheet projections.
+
+### Quantitative Subglacial Hydraulic Tremor
+
+Subglacial channel water flow produces continuous 1.5–10 Hz tremor whose amplitude tracks discharge through an empirical power law:
+
+$$
+A_\text{tremor}(t) \propto Q_w(t)^{\,\beta}, \quad \beta \approx 0.4\text{–}0.6
+$$
+
+(Bartholomaus et al., 2015b; Gimbert et al., 2016)
+
+This makes passive seismic monitoring a **non-invasive proxy** for subglacial discharge — particularly valuable for tidewater glaciers where subglacial water drives fjord circulation, submarine melting, and calving. The tremor shows a recognisable **diurnal cycle** during the melt season (peak 4–6 h after the afternoon air-temperature maximum), diagnosing subglacial drainage connectivity and response lag (Métaxian, 2003; Röösli et al., 2014).
+
+### Rayleigh-Lamb Waves in Ice Shelves
+
+Floating ice shelves behave as **elastic thin plates** ($H \ll \lambda$); the dominant wave type is the **Rayleigh-Lamb flexural mode** rather than the half-space Rayleigh wave. Long-period ocean swell (50–250 s infragravity waves) impacting the ice front excites flexural waves propagating across the shelf:
+
+$$
+\omega^2 = \frac{EH^2}{12\rho(1-\nu^2)}\,k^4 \quad \text{(low-}f\text{ asymptote, }A_0\text{ mode)}
+$$
+
+Dispersion analysis of these waves constrains ice-shelf thickness $H$ and elastic modulus $E$ (Bromirski et al., 2010, 2015), enabling passive remote sensing of ice-shelf structure and dynamic response — including early detection of fracture-related rigidity loss.
 
 ---
 
@@ -291,3 +421,10 @@ Continuous raw records
 - Walter, F., Röösli, C., & Greenwood, A. (2020). Borehole seismology and the study of the glacial environment. *The Cryosphere*, 14(1), 357–380.
 - Nanni, U., Gimbert, F., Roux, P., & Lecointre, A. (2021). Observing the subglacial hydrology of the Argentière Glacier using ambient seismic noise. *The Cryosphere*, 15(11), 5003–5020.
 - Winberry, J. P., Anandakrishnan, S., Alley, R. B., Bindschadler, R. A., & King, M. A. (2009). Basal mechanics of ice streams: insights from the stick-slip motion of Whillans Ice Stream, West Antarctica. *Journal of Geophysical Research: Earth Surface*, 114(F1).
+- Pratt, M. J., et al. (2014). Seismic and geodetic evidence for grounding-line and ice-shelf dynamics at the Whillans Ice Stream. *Journal of Geophysical Research*, 119(3), 651–675.
+- Harland, S. R., et al. (2013). Deformation in Rutford Ice Stream, West Antarctica: measuring shear wave anisotropy from icequakes. *Annals of Glaciology*, 54(64), 105–114.
+- Walter, F., et al. (2015a). Using glacier seismicity for phase velocity measurements and Green's function retrieval. *Geophysical Journal International*, 201(3), 1722–1738.
+- Diez, A., et al. (2016). Ice shelf structure derived from dispersion curve analysis of ambient seismic noise, Ross Ice Shelf, Antarctica. *Geophysical Journal International*, 205(2), 785–795.
+- Anandakrishnan, S., & Winberry, J. P. (2004). Antarctic subglacial sedimentary layer thickness from receiver function analysis. *Global and Planetary Change*, 42(1–4), 167–176.
+- Bartholomaus, T. C., et al. (2015b). Subglacial discharge at tidewater glaciers revealed by seismic tremor. *Geophysical Research Letters*, 42(15), 6391–6398.
+- Bromirski, P. D., et al. (2015). Ross Ice Shelf vibrations. *Geophysical Research Letters*, 42(18), 7589–7597.

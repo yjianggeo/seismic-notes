@@ -34,6 +34,52 @@ $$
 
 ---
 
+## 冰的地震物理特性
+
+掌握冰体的弹性参数是理解冰川地震信号传播和衰减的前提。冰与常见地壳岩石的显著差异在于：（1）均匀性极高，散射弱，波形尾波短；（2）粒雪（firn）层速度低且梯度大；（3）晶体织构引起明显弹性各向异性（Podolskiy & Walter, 2016）。
+
+### 弹性波速与 Q 值
+
+| 介质 | $V_P$（m/s） | $V_S$（m/s） | $V_R$（m/s） | $Q_P$ | $Q_S$ |
+|------|-------------|-------------|-------------|--------|--------|
+| 冷冰（cold ice） | 3600–3900 | 1700–1950 | 1650–1668 | ~600 | ~300 |
+| 温冰（temperate ice） | 3500–3700 | 1700–1850 | — | < 100 | < 100 |
+| 粒雪（firn，近表层） | ~500 | — | — | — | — |
+| 冰床软沉积物 | 1500–2500 | 300–600 | — | 低 | 低 |
+
+*$V_R$ 为 45 Hz 实测值（Roux et al., 2010; Mikesell et al., 2012）；$Q$ 值来自 Walter et al.（2009）。*
+
+**衰减对检测距离的影响**：$Q_S \approx 300$ 对应有效检测半径约为：
+
+$$
+r_\text{eff} \approx \frac{Q_S V_S}{\pi f} = \frac{300 \times 1800}{\pi \times 10\,\text{Hz}} \approx 17\;\text{km}
+$$
+
+频率升至 50 Hz 时，$r_\text{eff}$ 缩短至约 3 km；超过 100 Hz 的冰震通常只能被 1 km 以内的台站可靠记录。
+
+### 冰晶织构（Fabric）与弹性各向异性
+
+多晶冰在流动和重力共同作用下，$c$ 轴逐渐趋向垂直，产生**横向各向同性**（VTI）弹性结构：
+
+- 水平与垂直方向 $V_P$ 差异约 3–5%，$V_S$ 亦存在双折射
+- S 波在各向异性介质中分裂为**快 S 波**和**慢 S 波**，时间差 $\delta t$ 反映各向异性强度与冰柱厚度的乘积
+- 冰的等效黏度因织构不同可相差 **50–100 倍**（Dahl-Jensen et al., 2013）——织构是冰盖数值模型不可或缺的参数
+
+!!! note "温冰与冷冰的差异"
+    温冰（Temperate ice，$T \approx 0°\text{C}$）内含少量液态水，$V_P$ 略低于冷冰，且 $Q$ 值急剧下降（高衰减）。Alpine 山地冰川多属温冰，其 $Q_S < 100$，使 > 30 Hz 信号的传播距离显著受限。
+
+### 冰的低散射性
+
+冰川冰极度均匀，冰震波形**几乎无尾波（coda）**，与多相地壳岩石形成鲜明对比：
+
+- 表面冰裂隙带（典型厚度 ~20 m）是主要散射层（Cuffey & Paterson, 2010）
+- 表面冰震波形以 Rayleigh 波为主（逆椭圆质点运动），P 和 S 波相对微弱
+- 深部（底部或中深部）冰震波形则 P 和 S 波突出，尾波短而简单（图 Figure 3，Walter et al., 2009）
+
+低散射性制约了传统噪声互相关技术——等方位噪声分布难以通过散射自然实现，需借助均匀分布的冰震事件作为**虚拟源**（见"被动结构成像"一节）。
+
+---
+
 ## 观测仪器
 
 ### 宽频地震仪（Broadband Seismometer）
@@ -213,7 +259,19 @@ $$
 \varepsilon_{xx}(x, t) = \frac{\partial u_x}{\partial x}
 $$
 
-底部粘-滑产生水平应变脉冲，在 DAS 记录上表现为**全道同相的低频脉冲**（类似 Whillans Ice Stream 的粘滑事件，Mw > 7，但无传统意义上的高频辐射）。
+底部粘-滑产生水平应变脉冲，在 DAS 记录上表现为**全道同相的低频脉冲**。
+
+**Whillans 冰流（WIS）典型粘-滑参数**（Winberry et al., 2009a, 2011; Pratt et al., 2014）：
+
+- 单次事件：冰体位移 **0.2–0.5 m**，历时 **20–30 min**，冰流速度峰值约 1 m/h
+- 破裂传播速度：平均 **150 m/s**，最高达 1.5 km/s（约为冰内 $V_S$ 的 90%）
+- 受 **Ross 冰架潮汐**调控（接近日周期），分两类事件：
+  - **高潮型**：间隔 14–19 h，从中央粘滞点（CSS）核化，临界剪应力 ~0.49 kPa
+  - **低潮型**：间隔 < 9 h，从接地线粘滞点（GLSS）核化，临界剪应力 ~0.42 kPa
+- 间隔时间越长→积累弹性应变越多→释放位移越大（弹性 slider-block 模型）
+- WIS 已观测到以 **0.6%/yr²** 的速率减速，可能在百年内停滞（Joughin et al., 2005）
+
+这种"**潮汐节律粘-滑**"（tidally paced stick-slip）是冰床弹性应变积累最典型的实证，与构造地震断层的慢速蠕变-脆性破裂类比高度吻合。
 
 **冰川加速与减速**
 
@@ -237,6 +295,79 @@ $$
 | Malaspina Glacier，阿拉斯加 | USGS | 冰面 5 km | 面波频散，冰面形变速率 | Gimbert et al. 2021 |
 | Whillans Ice Stream，南极 | 多机构 | 冰面 | DAS 记录粘-滑事件的空间传播 | Lipovsky et al. 2019 |
 | Argentière Glacier，法国 | IPGP | 冰孔 | CWI 监测季节性速度变化 | Nanni et al. 2021 |
+
+---
+
+## 被动结构成像
+
+被动地震技术以冰震或环境噪声为源，无需主动震源即可成像冰体结构。Podolskiy & Walter（2016）将这类方法列为冰川地震学三大前沿之一，认为其利用程度仍严重不足。
+
+### 地震干涉法（Seismic Interferometry）
+
+互相关两台地震仪的记录，可从中恢复两点间的格林函数（虚拟震源法）：
+
+$$
+C_{ij}(\tau) = \int u_i(t)\,u_j(t+\tau)\,\mathrm{d}t \;\xrightarrow{\text{等方位源}}\; \hat{G}(\mathbf{r}_i,\,\mathbf{r}_j,\,\tau)
+$$
+
+**冰川中的特殊挑战**：冰体散射弱，无法靠多次散射实现等方位噪声。解决方案是以**表面冰震**（10–50 Hz）充当分布式虚拟源——只要冰震在台对两侧均有分布，互相关的面波分量仍可恢复格林函数（Walter et al., 2015a）。
+
+| 研究地点 | 方法 | 成果 |
+|---------|------|------|
+| Gornergletscher，瑞士 | 冰震虚拟源 + 频散分析 | 局部冰厚、$V_S(z)$ 剖面（Walter et al., 2015a）|
+| Ross 冰架，南极 | 环境噪声频散 | 冰架厚度与结构（Diez et al., 2016）|
+| 格陵兰冰盖 | 宽频噪声互相关 | 冰质量平衡近实时估算（Mordret et al., 2016）|
+
+### S 波分裂与冰晶织构
+
+底部粘-滑冰震产生的 S 波穿越整个冰柱后，在具有各向异性的冰晶织构介质中发生**S 波双折射（shear wave splitting）**：
+
+$$
+\delta t_\text{split} = H \cdot \frac{\delta V_S}{V_S \cdot \bar{V}_S}
+$$
+
+其中 $H$ 为冰厚，$\delta V_S$ 为快慢 S 波速度差。该时差直接测量冰柱积分各向异性强度。
+
+南极 **Rutford 冰流**研究（Harland et al., 2013）利用底部冰震 S 波分裂，识别了底部高剪切变形带的晶体优选方位和英格拉西裂隙走向，为冰流变形历史提供了独立约束——这是接收函数或地面测量难以企及的深度信息。
+
+### 接收函数（Receiver Functions）
+
+利用远震宽角 P 波竖直入射时的 P-to-S 转换，接收函数突出速度界面位置：
+
+$$
+\text{RF}(\tau) = \mathcal{F}^{-1}\!\left[\frac{R(\omega)}{Z(\omega)}\right]
+$$
+
+在冰川环境中有两类直接应用：
+
+1. **冰厚测量（无需主动源）**：冰-床界面的 P-to-S 转换时延 $\Delta t \approx H(1/V_{S,\text{ice}} - 1/V_{P,\text{ice}})$，已知冰的 $V_P/V_S \approx 2.0$ 即可求解冰厚 $H$。
+
+2. **冰床软沉积层厚度**：若冰床之下存在饱水软沉积物（"软床"），则沉积物-岩床界面产生额外的 P-to-S 转换，时延差给出沉积层厚度（Anandakrishnan & Winberry, 2004）。Antarctic 和 Greenland 冰盖下已发现 **数十至数百米厚**的饱水沉积物——软床控制着冰流的基底阻力和长期速率，是冰盖模型中最大的不确定性之一。
+
+### 冰下水文震颤的定量监测
+
+冰下管道水流（1.5–10 Hz 段）的连续震颤振幅 $A_\text{tremor}$ 与冰下排水量 $Q_w$ 成经验幂律关系：
+
+$$
+A_\text{tremor}(t) \propto Q_w(t)^{\,\beta}, \quad \beta \approx 0.4\text{–}0.6
+$$
+
+（Bartholomaus et al., 2015b；Gimbert et al., 2016）
+
+这使被动地震成为估算冰下水流量的**独立工具**，无需直接入侵测量（钻孔压力计等）。对于出海冰川，冰下水排放驱动峡湾水循环并促进冰前水下融化，是崩解速率最重要的控制因素之一。
+
+!!! tip "日周期信号"
+    高消融期冰下震颤振幅呈明显**日周期**变化（夏季峰值出现在午后气温最高之后 4–6 h），可作为冰下水系连通性和响应延迟时间的诊断指标（Métaxian, 2003; Röösli et al., 2014）。
+
+### 冰架中的 Rayleigh-Lamb 波
+
+浮动冰架是**薄板几何**（板厚 $H \ll$ 波长），其中传播的是 **Rayleigh-Lamb 模态**（而非半空间 Rayleigh 波）。海洋长周期涌浪（50–250 s）冲击冰前沿，激发沿冰架传播的弯曲波（flexural wave）：
+
+$$
+\omega^2 = \frac{E H^2}{12\rho(1-\nu^2)}\, k^4 \quad (\text{低频渐近，A}_0\text{ 模})
+$$
+
+弯曲波的频散曲线与冰厚 $H$ 和弹性模量 $E$ 有解析关系，利用台阵频散分析即可反演冰架结构（Bromirski et al., 2010, 2015）。冰架流动状态（搁浅 vs 漂浮）和冰架裂隙发育均影响弯曲波传播，为冰架稳定性监测提供了被动遥感手段。
 
 ---
 
@@ -298,4 +429,10 @@ DAS（线状高密度）  ─── 空间覆盖 / 到时约束 / 分布式应�
 - Walter, F., Röösli, C., & Greenwood, A. (2020). Borehole seismology and the study of the glacial environment. *The Cryosphere*, 14(1), 357–380.
 - Nanni, U., Gimbert, F., Roux, P., & Lecointre, A. (2021). Observing the subglacial hydrology of the Argentière Glacier using ambient seismic noise. *The Cryosphere*, 15(11), 5003–5020.
 - Winberry, J. P., Anandakrishnan, S., Alley, R. B., Bindschadler, R. A., & King, M. A. (2009). Basal mechanics of ice streams: insights from the stick-slip motion of Whillans Ice Stream, West Antarctica. *Journal of Geophysical Research: Earth Surface*, 114(F1).
-- Sergeant, A., Stutzmann, E., Maggi, A., Schimmel, M., Ardhuin, F., & Obrebski, M. (2013). Frequency‐dependent noise sources in the North Atlantic Ocean. *Geochemistry, Geophysics, Geosystems*, 14(12), 5341–5353.
+- Pratt, M. J., et al. (2014). Seismic and geodetic evidence for grounding-line and ice-shelf dynamics at the Whillans Ice Stream. *Journal of Geophysical Research*, 119(3), 651–675.
+- Harland, S. R., et al. (2013). Deformation in Rutford Ice Stream, West Antarctica: measuring shear wave anisotropy from icequakes. *Annals of Glaciology*, 54(64), 105–114.
+- Walter, F., et al. (2015a). Using glacier seismicity for phase velocity measurements and Green's function retrieval. *Geophysical Journal International*, 201(3), 1722–1738.
+- Diez, A., et al. (2016). Ice shelf structure derived from dispersion curve analysis of ambient seismic noise, Ross Ice Shelf, Antarctica. *Geophysical Journal International*, 205(2), 785–795.
+- Anandakrishnan, S., & Winberry, J. P. (2004). Antarctic subglacial sedimentary layer thickness from receiver function analysis. *Global and Planetary Change*, 42(1–4), 167–176.
+- Bartholomaus, T. C., et al. (2015b). Subglacial discharge at tidewater glaciers revealed by seismic tremor. *Geophysical Research Letters*, 42(15), 6391–6398.
+- Bromirski, P. D., et al. (2015). Ross Ice Shelf vibrations. *Geophysical Research Letters*, 42(18), 7589–7597.
