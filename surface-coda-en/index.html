@@ -1260,6 +1260,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#surface-wave-eigenfunctions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Surface-Wave Eigenfunctions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Surface-Wave Eigenfunctions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#from-the-wave-equation-to-an-eigenvalue-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        From the Wave Equation to an Eigenvalue Problem
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rayleigh-eigenfunctions-in-a-half-space-analytical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rayleigh Eigenfunctions in a Half-Space (Analytical)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#love-eigenfunctions-low-velocity-layer-over-a-half-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Love Eigenfunctions (Low-Velocity Layer over a Half-Space)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eigenfunctions-control-depth-sensitivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eigenfunctions Control Depth Sensitivity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#extracting-and-inverting-dispersion-curves" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1713,6 +1774,135 @@ V_R \approx 0.919\, V_S
 <p>This formula applies only to a homogeneous half-space. In layered media, <span class="arithmatex">\(V_R(f)\)</span> is frequency-dependent (the dispersion curve), and <span class="arithmatex">\(V_S(z)\)</span> must be recovered by inverting the observed dispersion curve using a forward model (e.g., Thomson-Haskell matrix method).</p>
 </div>
 <hr />
+<h2 id="surface-wave-eigenfunctions">Surface-Wave Eigenfunctions<a class="headerlink" href="#surface-wave-eigenfunctions" title="Permanent link">&para;</a></h2>
+<h3 id="from-the-wave-equation-to-an-eigenvalue-problem">From the Wave Equation to an Eigenvalue Problem<a class="headerlink" href="#from-the-wave-equation-to-an-eigenvalue-problem" title="Permanent link">&para;</a></h3>
+<p>In a laterally homogeneous (horizontally layered) medium, a plane surface wave travelling in the <span class="arithmatex">\(x\)</span> direction separates as:</p>
+<div class="arithmatex">\[
+\mathbf{u}(x, z, t) = \mathbf{r}(z)\, e^{i(kx - \omega t)}
+\]</div>
+<p>Substituting into the elastic equations of motion, together with two boundary conditions — traction-free surface and decay at depth (<span class="arithmatex">\(\mathbf{u} \to 0\)</span> as <span class="arithmatex">\(z \to \infty\)</span>) — yields a <strong>Sturm-Liouville-type eigenvalue problem</strong>: at a given frequency <span class="arithmatex">\(\omega\)</span>, non-trivial solutions exist only for a discrete set of wavenumbers <span class="arithmatex">\(k_n(\omega)\)</span> (<span class="arithmatex">\(n = 0, 1, 2, \dots\)</span>).</p>
+<ul>
+<li><strong>Eigenvalues</strong> <span class="arithmatex">\(k_n(\omega)\)</span> → phase velocities <span class="arithmatex">\(c_n = \omega/k_n\)</span>, i.e. the dispersion curves;</li>
+<li><strong>Eigenfunctions</strong> <span class="arithmatex">\(\mathbf{r}_n(z)\)</span> → the depth shape of the displacement for each mode.</li>
+</ul>
+<p>Dispersion curves and eigenfunctions are two outputs of the same eigenvalue problem: the former answers "how fast the wave travels", the latter "at which depths the wave lives".</p>
+<table>
+<thead>
+<tr>
+<th>Wave type</th>
+<th>Coupled components</th>
+<th>Eigenfunctions</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rayleigh</td>
+<td>P-SV (<span class="arithmatex">\(u_x\)</span>, <span class="arithmatex">\(u_z\)</span>)</td>
+<td><span class="arithmatex">\(r_x(z)\)</span>, <span class="arithmatex">\(r_z(z)\)</span></td>
+<td>Radial / vertical displacement vs depth</td>
+</tr>
+<tr>
+<td>Love</td>
+<td>SH (<span class="arithmatex">\(u_y\)</span>)</td>
+<td><span class="arithmatex">\(l(z)\)</span></td>
+<td>Transverse displacement vs depth</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rayleigh-eigenfunctions-in-a-half-space-analytical">Rayleigh Eigenfunctions in a Half-Space (Analytical)<a class="headerlink" href="#rayleigh-eigenfunctions-in-a-half-space-analytical" title="Permanent link">&para;</a></h3>
+<p>The homogeneous half-space is the only case with a closed-form solution (no dispersion, fundamental mode only). Normalising each component to unity at the surface:</p>
+<div class="arithmatex">\[
+r_x(z) = \frac{e^{-\eta_\alpha k z} - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}\, e^{-\eta_\beta k z}}{1 - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}}, \qquad
+r_z(z) = \frac{\dfrac{2}{1+\eta_\beta^2}\, e^{-\eta_\beta k z} - e^{-\eta_\alpha k z}}{\dfrac{1-\eta_\beta^2}{1+\eta_\beta^2}}
+\]</div>
+<p>where <span class="arithmatex">\(k = \omega / V_R\)</span> and</p>
+<div class="arithmatex">\[
+\eta_\alpha = \sqrt{1 - \frac{V_R^2}{V_P^2}}, \qquad \eta_\beta = \sqrt{1 - \frac{V_R^2}{V_S^2}}
+\]</div>
+<p>are the vertical decay coefficients of the P- and S-wave terms. Both components are linear combinations of a fast-decaying P term (<span class="arithmatex">\(e^{-\eta_\alpha kz}\)</span>) and a slow-decaying S term (<span class="arithmatex">\(e^{-\eta_\beta kz}\)</span>), but with <strong>different weights</strong> — which is exactly why the two components behave so differently with depth. Numerical features for a Poisson solid (<span class="arithmatex">\(\nu = 0.25\)</span>):</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Value</th>
+<th>Remark</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Surface ellipticity <span class="arithmatex">\(\lvert r_x/r_z\rvert_{z=0}\)</span></td>
+<td><span class="arithmatex">\(\approx 0.68\)</span></td>
+<td>Theoretical baseline for H/V ratios</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(r_x\)</span> node depth</td>
+<td><span class="arithmatex">\(z \approx 0.19\lambda\)</span></td>
+<td>Horizontal component changes sign</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(r_z\)</span> maximum</td>
+<td><span class="arithmatex">\(z \approx 0.08\lambda\)</span> (amplitude <span class="arithmatex">\(\approx 1.05\)</span>)</td>
+<td>Vertical component slightly amplified below the surface</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(r_z(\lambda/2)\)</span></td>
+<td><span class="arithmatex">\(\approx 0.59\)</span></td>
+<td>Still ~60% amplitude at half a wavelength</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(r_z(\lambda)\)</span></td>
+<td><span class="arithmatex">\(\approx 0.19\)</span></td>
+<td>Quantifies the rule "penetration depth ~ one wavelength"</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Retrograde → Prograde</p>
+<p>At the surface <span class="arithmatex">\(r_x\)</span> and <span class="arithmatex">\(r_z\)</span> are <span class="arithmatex">\(90°\)</span> out of phase and the particle motion is a <strong>retrograde</strong> ellipse. At <span class="arithmatex">\(z \approx 0.19\lambda\)</span> the horizontal component changes sign and the motion becomes <strong>prograde</strong> below. The frequency dependence of the surface H/V ellipticity is also commonly used as an additional constraint on <span class="arithmatex">\(V_S\)</span> structure.</p>
+</div>
+<h3 id="love-eigenfunctions-low-velocity-layer-over-a-half-space">Love Eigenfunctions (Low-Velocity Layer over a Half-Space)<a class="headerlink" href="#love-eigenfunctions-low-velocity-layer-over-a-half-space" title="Permanent link">&para;</a></h3>
+<p>Love waves require a waveguide (a low-velocity surface layer). For a single layer (thickness <span class="arithmatex">\(H\)</span>, velocity <span class="arithmatex">\(\beta_1\)</span>) over a half-space (<span class="arithmatex">\(\beta_2 &gt; \beta_1\)</span>):</p>
+<div class="arithmatex">\[
+l(z) = \begin{cases} \cos(\nu_1 z), &amp; z \le H \\[4pt] \cos(\nu_1 H)\, e^{-\nu_2 (z-H)}, &amp; z &gt; H \end{cases}
+\qquad
+\nu_1 = \frac{\omega}{c}\sqrt{\frac{c^2}{\beta_1^2} - 1}, \quad \nu_2 = \frac{\omega}{c}\sqrt{1 - \frac{c^2}{\beta_2^2}}
+\]</div>
+<p>The eigenfunction oscillates (cosine) inside the layer and decays exponentially in the half-space; the phase velocity <span class="arithmatex">\(c \in (\beta_1, \beta_2)\)</span> is fixed by the dispersion relation:</p>
+<div class="arithmatex">\[
+\boxed{\tan(\nu_1 H) = \frac{\mu_2 \nu_2}{\mu_1 \nu_1}}
+\]</div>
+<p>Mode structure:</p>
+<ul>
+<li><strong>Fundamental mode</strong> (<span class="arithmatex">\(n=0\)</span>): no node inside the layer; energy concentrated near the surface;</li>
+<li><strong><span class="arithmatex">\(n\)</span>-th higher mode</strong>: <span class="arithmatex">\(n\)</span> nodes inside the layer; deeper penetration and higher phase velocity;</li>
+<li>The <span class="arithmatex">\(n\)</span>-th mode exists only above its cut-off frequency:</li>
+</ul>
+<div class="arithmatex">\[
+f_n = \frac{n}{2H\sqrt{1/\beta_1^2 - 1/\beta_2^2}}
+\]</div>
+<h3 id="eigenfunctions-control-depth-sensitivity">Eigenfunctions Control Depth Sensitivity<a class="headerlink" href="#eigenfunctions-control-depth-sensitivity" title="Permanent link">&para;</a></h3>
+<p>The <strong>sensitivity kernels</strong> used in surface-wave inversion are built directly from the eigenfunctions. By Rayleigh's variational principle, a perturbation <span class="arithmatex">\(\delta\beta(z)\)</span> of the medium perturbs the phase velocity as:</p>
+<div class="arithmatex">\[
+\frac{\delta c}{c} = \int_0^\infty K_\beta(z)\, \frac{\delta \beta(z)}{\beta(z)}\, \mathrm{d}z
+\]</div>
+<p>where the kernel <span class="arithmatex">\(K_\beta(z)\)</span> is a quadratic combination of the eigenfunctions and their derivatives, normalised by the modal energy integral. Qualitatively:</p>
+<ul>
+<li><span class="arithmatex">\(K_\beta(z)\)</span> is large ⟺ the eigenfunction amplitude is large at that depth (the wave "lives" there);</li>
+<li>The fundamental-mode Rayleigh kernel peaks at <span class="arithmatex">\(z \approx \lambda/3\)</span> — this is the theoretical origin of the empirical <span class="arithmatex">\(\lambda/3\)</span> rule in the <a href="#depth-sensitivity-rule">Depth Sensitivity Rule</a> above;</li>
+<li>Higher-mode eigenfunctions penetrate deeper, so their kernels peak deeper; joint multi-mode inversion markedly improves resolution at depth.</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Three practical roles of eigenfunctions</p>
+<ol>
+<li><strong>Forward modelling</strong>: Thomson-Haskell / propagator-matrix codes return eigenfunctions alongside dispersion curves;</li>
+<li><strong>Inversion</strong>: sensitivity kernels (Fréchet derivatives) are built from eigenfunctions and dictate which depth each frequency constrains;</li>
+<li><strong>Observation</strong>: vertical borehole DAS directly samples <span class="arithmatex">\(\mathrm{d}r_z/\mathrm{d}z\)</span> (see the <a href="#borehole-das-surface-wave-depth-attenuation">borehole DAS section</a> below), and the surface H/V ellipticity corresponds to <span class="arithmatex">\(|r_x/r_z|_{z=0}\)</span>.</li>
+</ol>
+</div>
+<p><img alt="Surface wave eigenfunctions" src="../assets/images/sw_eigenfunctions.png" />
+<em>Figure 4: Left — Rayleigh-wave displacement eigenfunctions in a Poisson half-space. Blue solid: vertical component <span class="arithmatex">\(r_z(z)\)</span>, slightly amplified (<span class="arithmatex">\(\approx 1.05\)</span>) at <span class="arithmatex">\(z \approx 0.08\lambda\)</span> before decaying monotonically; red dashed: horizontal component <span class="arithmatex">\(r_x(z)\)</span> (scaled to true relative amplitude, surface <span class="arithmatex">\(|r_x/r_z| \approx 0.68\)</span>), changing sign at <span class="arithmatex">\(z \approx 0.19\lambda\)</span> — retrograde particle motion above, prograde below. Right — Love-wave eigenfunctions at 12 Hz for a low-velocity layer (<span class="arithmatex">\(\beta_1 = 200\)</span> m/s, <span class="arithmatex">\(H = 20\)</span> m) over a half-space (<span class="arithmatex">\(\beta_2 = 400\)</span> m/s): the fundamental mode (blue) has no node in the layer and concentrates near the surface; the first higher mode (red) has one node and penetrates deeper. Grey dashed line: layer base.</em></p>
+<hr />
 <h2 id="extracting-and-inverting-dispersion-curves">Extracting and Inverting Dispersion Curves<a class="headerlink" href="#extracting-and-inverting-dispersion-curves" title="Permanent link">&para;</a></h2>
 <h3 id="extraction-methods">Extraction Methods<a class="headerlink" href="#extraction-methods" title="Permanent link">&para;</a></h3>
 <h4 id="active-source-masw-multichannel-analysis-of-surface-waves">Active-Source MASW (Multichannel Analysis of Surface Waves)<a class="headerlink" href="#active-source-masw-multichannel-analysis-of-surface-waves" title="Permanent link">&para;</a></h4>
@@ -1742,8 +1932,8 @@ C_{ij}(\tau) = \int u_i(t)\, u_j(t+\tau)\, \mathrm{d}t
 <p>Surface DAS measures horizontal strain with a <span class="arithmatex">\(\cos^2\theta\)</span> azimuthal response. Vertical borehole DAS measures vertical strain and responds equally to Rayleigh waves arriving from any azimuth — making it ideal for quantifying depth decay.</p>
 </div>
 <p><strong>Rayleigh-wave depth eigenfunction</strong></p>
-<p>For a homogeneous half-space the vertical displacement eigenfunction, normalised to unity at the surface, is:</p>
-<div class="arithmatex">\[\boxed{r_z(z) = \frac{e^{-\eta_\alpha k z} - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}\,e^{-\eta_\beta k z}}{1 - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}}}\]</div>
+<p>For a homogeneous half-space the vertical displacement eigenfunction, normalised to unity at the surface (see the Surface-Wave Eigenfunctions section above), is:</p>
+<div class="arithmatex">\[\boxed{r_z(z) = \frac{\dfrac{2}{1+\eta_\beta^2}\,e^{-\eta_\beta k z} - e^{-\eta_\alpha k z}}{\dfrac{1-\eta_\beta^2}{1+\eta_\beta^2}}}\]</div>
 <p>where <span class="arithmatex">\(k = 2\pi f / V_R(f)\)</span> and</p>
 <div class="arithmatex">\[\eta_\alpha = \sqrt{1 - \frac{V_R^2}{V_P^2}}, \qquad \eta_\beta = \sqrt{1 - \frac{V_R^2}{V_S^2}}\]</div>
 <p>are the P- and S-wave vertical decay coefficients. For a Poisson solid (<span class="arithmatex">\(\nu = 0.25\)</span>, <span class="arithmatex">\(V_R \approx 0.919\,V_S\)</span>):</p>
@@ -1767,13 +1957,13 @@ C_{ij}(\tau) = \int u_i(t)\, u_j(t+\tau)\, \mathrm{d}t
 <td><span class="arithmatex">\(\sim \lambda/2.5\)</span> (S-wave, slow decay, dominates at depth)</td>
 </tr>
 <tr>
-<td><span class="arithmatex">\(2\eta_\alpha\eta_\beta/(1+\eta_\beta^2)\)</span></td>
-<td><span class="arithmatex">\(\approx 0.577\)</span></td>
-<td>Coupling weight between the two terms</td>
+<td><span class="arithmatex">\(2/(1+\eta_\beta^2)\)</span></td>
+<td><span class="arithmatex">\(\approx 1.732\)</span></td>
+<td>S-term weight (P-term weight is <span class="arithmatex">\(-1\)</span>; opposite signs)</td>
 </tr>
 </tbody>
 </table>
-<p>Once <span class="arithmatex">\(kz \gtrsim 1.2\)</span> (depth <span class="arithmatex">\(\gtrsim 0.2\lambda\)</span>) the P-wave term has decayed by over 90% and the eigenfunction approaches a single exponential:</p>
+<p>Because the two terms have opposite signs, <span class="arithmatex">\(r_z\)</span> has a shallow maximum of about 5% at <span class="arithmatex">\(z \approx 0.08\lambda\)</span>; once <span class="arithmatex">\(kz \gtrsim 3\)</span> the P-wave contribution drops below 15% and keeps shrinking rapidly, so the eigenfunction approaches a single exponential:</p>
 <div class="arithmatex">\[r_z(z) \xrightarrow{\;kz \gg 1/\eta_\alpha\;} C_\beta\cdot e^{-\eta_\beta k z}\]</div>
 <p><strong>Extracting <span class="arithmatex">\(V_S\)</span> from the depth attenuation rate</strong></p>
 <p><em>Step 1 — obtain <span class="arithmatex">\(V_R(f)\)</span> independently</em></p>
@@ -1781,7 +1971,7 @@ C_{ij}(\tau) = \int u_i(t)\, u_j(t+\tau)\, \mathrm{d}t
 - Surface DAS or seismometers via f-v transform;
 - Active source: known source offset divided by Rayleigh-wave arrival time.</p>
 <p><em>Step 2 — semi-log linear fit of the depth amplitude profile</em></p>
-<p>In the S-wave-dominated zone (<span class="arithmatex">\(kz \in [2,\;5]\)</span>) fit the slope <span class="arithmatex">\(-b(f)\)</span> of <span class="arithmatex">\(\ln|r_z(z, f)|\)</span> versus <span class="arithmatex">\(z\)</span>:</p>
+<p>In the S-wave-dominated zone (<span class="arithmatex">\(kz \in [3,\;6]\)</span>) fit the slope <span class="arithmatex">\(-b(f)\)</span> of <span class="arithmatex">\(\ln|r_z(z, f)|\)</span> versus <span class="arithmatex">\(z\)</span>:</p>
 <div class="arithmatex">\[b(f) = \eta_\beta \cdot k = \frac{2\pi f}{V_R(f)}\sqrt{1 - \frac{V_R(f)^2}{V_S^2}}\]</div>
 <p><em>Step 3 — solve for <span class="arithmatex">\(V_S\)</span></em></p>
 <div class="arithmatex">\[\boxed{V_S = \frac{V_R(f)}{\sqrt{1 - \!\left(\dfrac{b(f)\,V_R(f)}{2\pi f}\right)^{\!2}}}}\]</div>
@@ -1789,13 +1979,13 @@ C_{ij}(\tau) = \int u_i(t)\, u_j(t+\tau)\, \mathrm{d}t
 <div class="admonition tip">
 <p class="admonition-title">Practical notes</p>
 <ul>
-<li><strong>Fitting range</strong>: <span class="arithmatex">\(kz \in [2,\;5]\)</span>; shallower levels are biased by the two-exponential superposition, deeper levels by low SNR;</li>
+<li><strong>Fitting range</strong>: <span class="arithmatex">\(kz \in [3,\;6]\)</span>; shallower levels are biased by the two-exponential superposition, deeper levels by low SNR. The residual P-term makes the fitted slope slightly gentler (<span class="arithmatex">\(V_S\)</span> underestimated by ~2%); fit a two-exponential model when higher accuracy is needed;</li>
 <li><strong>Gauge-length correction</strong>: when <span class="arithmatex">\(\eta_\beta kL &gt; 0.1\)</span>, multiply the measured slope by the correction factor <span class="arithmatex">\(\mathrm{sinc}^{-1}(\eta_\beta kL/2)\)</span>;</li>
 <li><strong>Layered media</strong>: repeat for each frequency — the inferred <span class="arithmatex">\(V_S\)</span> corresponds to an effective depth <span class="arithmatex">\(\approx \lambda/4\)</span>, assembling a <span class="arithmatex">\(V_S(z)\)</span> profile.</li>
 </ul>
 </div>
 <p><img alt="Borehole DAS surface-wave depth eigenfunction" src="../assets/images/das_borehole_sw.png" />
-<em>Figure 3: Left — Rayleigh-wave depth eigenfunctions for a Poisson solid. Blue solid: vertical displacement <span class="arithmatex">\(r_z(z)\)</span>; red dashed: DAS axial strain <span class="arithmatex">\(|\varepsilon_{zz}|\)</span>; orange and green horizontal dotted lines mark the P- and S-wave 1/e characteristic depths (horizontal axis: normalised depth <span class="arithmatex">\(kz\)</span>). Right — Log-amplitude versus <span class="arithmatex">\(kz\)</span>. In the green zone (<span class="arithmatex">\(kz &gt; 1.8\)</span>) the curve asymptotes to a straight line with slope <span class="arithmatex">\(-\eta_\beta\)</span>; fitting that slope and combining with a known <span class="arithmatex">\(V_R(f)\)</span> directly yields <span class="arithmatex">\(V_S\)</span>.</em></p>
+<em>Figure 3: Left — Rayleigh-wave depth eigenfunctions for a Poisson solid. Blue solid: vertical displacement <span class="arithmatex">\(r_z(z)\)</span>, slightly amplified at <span class="arithmatex">\(kz \approx 0.48\)</span> (<span class="arithmatex">\(z \approx 0.08\lambda\)</span>) before decaying monotonically; red dashed: DAS axial strain <span class="arithmatex">\(|\varepsilon_{zz}|\)</span>, with a node at <span class="arithmatex">\(kz \approx 0.48\)</span>; orange and green horizontal dotted lines mark the P- and S-wave 1/e characteristic depths (vertical axis: normalised depth <span class="arithmatex">\(kz\)</span>). Right — Log-amplitude versus <span class="arithmatex">\(kz\)</span>. In the green zone (<span class="arithmatex">\(kz &gt; 3\)</span>) the curve asymptotes to a straight line with slope <span class="arithmatex">\(-\eta_\beta\)</span>; fitting that slope and combining with a known <span class="arithmatex">\(V_R(f)\)</span> directly yields <span class="arithmatex">\(V_S\)</span>.</em></p>
 <h3 id="dispersion-curve-inversion">Dispersion Curve Inversion<a class="headerlink" href="#dispersion-curve-inversion" title="Permanent link">&para;</a></h3>
 <p>Given observed dispersion curve <span class="arithmatex">\(c^\text{obs}(f_i)\)</span>, estimate the <span class="arithmatex">\(V_S(z)\)</span> model by minimizing:</p>
 <div class="arithmatex">\[
@@ -1923,6 +2113,9 @@ C(\tau) = \int_{t_a}^{t_b} u_1(t)\, u_2(t + \tau)\, \mathrm{d}t
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Aki, K., &amp; Chouet, B. (1975). Origin of coda waves: Source, attenuation and scattering effects. <em>Journal of Geophysical Research</em>, 80(23), 3322–3342.</li>
+<li>Aki, K., &amp; Richards, P. G. (2002). <em>Quantitative Seismology</em> (2<sup>nd</sup> ed.). University Science Books. [Chapter 7: surface-wave eigenvalue problem and variational principle]</li>
+<li>Haskell, N. A. (1953). The dispersion of surface waves on multilayered media. <em>Bulletin of the Seismological Society of America</em>, 43(1), 17–34.</li>
+<li>Takeuchi, H., &amp; Saito, M. (1972). Seismic surface waves. <em>Methods in Computational Physics</em>, 11, 217–295.</li>
 <li>Park, C. B., Miller, R. D., &amp; Xia, J. (1999). Multichannel analysis of surface waves. <em>Geophysics</em>, 64(3), 800–808.</li>
 <li>Bensen, G. D., Ritzwoller, M. H., Barmin, M. P., Levshin, A. L., Lin, F., Moschetti, M. P., … &amp; Yang, Y. (2007). Processing seismic ambient noise data to obtain reliable broad-band surface wave dispersion measurements. <em>Geophysical Journal International</em>, 169(3), 1239–1260.</li>
 <li>Snieder, R. (2006). The theory of coda wave interferometry. <em>Pure and Applied Geophysics</em>, 163(2–3), 455–473.</li>
