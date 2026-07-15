@@ -164,6 +164,106 @@ $$
 
 ---
 
+## Surface-Wave Eigenfunctions
+
+### From the Wave Equation to an Eigenvalue Problem
+
+In a laterally homogeneous (horizontally layered) medium, a plane surface wave travelling in the $x$ direction separates as:
+
+$$
+\mathbf{u}(x, z, t) = \mathbf{r}(z)\, e^{i(kx - \omega t)}
+$$
+
+Substituting into the elastic equations of motion, together with two boundary conditions — traction-free surface and decay at depth ($\mathbf{u} \to 0$ as $z \to \infty$) — yields a **Sturm-Liouville-type eigenvalue problem**: at a given frequency $\omega$, non-trivial solutions exist only for a discrete set of wavenumbers $k_n(\omega)$ ($n = 0, 1, 2, \dots$).
+
+- **Eigenvalues** $k_n(\omega)$ → phase velocities $c_n = \omega/k_n$, i.e. the dispersion curves;
+- **Eigenfunctions** $\mathbf{r}_n(z)$ → the depth shape of the displacement for each mode.
+
+Dispersion curves and eigenfunctions are two outputs of the same eigenvalue problem: the former answers "how fast the wave travels", the latter "at which depths the wave lives".
+
+| Wave type | Coupled components | Eigenfunctions | Meaning |
+|-----------|-------------------|----------------|---------|
+| Rayleigh | P-SV ($u_x$, $u_z$) | $r_x(z)$, $r_z(z)$ | Radial / vertical displacement vs depth |
+| Love | SH ($u_y$) | $l(z)$ | Transverse displacement vs depth |
+
+### Rayleigh Eigenfunctions in a Half-Space (Analytical)
+
+The homogeneous half-space is the only case with a closed-form solution (no dispersion, fundamental mode only). Normalising each component to unity at the surface:
+
+$$
+r_x(z) = \frac{e^{-\eta_\alpha k z} - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}\, e^{-\eta_\beta k z}}{1 - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}}, \qquad
+r_z(z) = \frac{\dfrac{2}{1+\eta_\beta^2}\, e^{-\eta_\beta k z} - e^{-\eta_\alpha k z}}{\dfrac{1-\eta_\beta^2}{1+\eta_\beta^2}}
+$$
+
+where $k = \omega / V_R$ and
+
+$$
+\eta_\alpha = \sqrt{1 - \frac{V_R^2}{V_P^2}}, \qquad \eta_\beta = \sqrt{1 - \frac{V_R^2}{V_S^2}}
+$$
+
+are the vertical decay coefficients of the P- and S-wave terms. Both components are linear combinations of a fast-decaying P term ($e^{-\eta_\alpha kz}$) and a slow-decaying S term ($e^{-\eta_\beta kz}$), but with **different weights** — which is exactly why the two components behave so differently with depth. Numerical features for a Poisson solid ($\nu = 0.25$):
+
+| Feature | Value | Remark |
+|---------|-------|--------|
+| Surface ellipticity $\lvert r_x/r_z\rvert_{z=0}$ | $\approx 0.68$ | Theoretical baseline for H/V ratios |
+| $r_x$ node depth | $z \approx 0.19\lambda$ | Horizontal component changes sign |
+| $r_z$ maximum | $z \approx 0.08\lambda$ (amplitude $\approx 1.05$) | Vertical component slightly amplified below the surface |
+| $r_z(\lambda/2)$ | $\approx 0.59$ | Still ~60% amplitude at half a wavelength |
+| $r_z(\lambda)$ | $\approx 0.19$ | Quantifies the rule "penetration depth ~ one wavelength" |
+
+!!! note "Retrograde → Prograde"
+    At the surface $r_x$ and $r_z$ are $90°$ out of phase and the particle motion is a **retrograde** ellipse. At $z \approx 0.19\lambda$ the horizontal component changes sign and the motion becomes **prograde** below. The frequency dependence of the surface H/V ellipticity is also commonly used as an additional constraint on $V_S$ structure.
+
+### Love Eigenfunctions (Low-Velocity Layer over a Half-Space)
+
+Love waves require a waveguide (a low-velocity surface layer). For a single layer (thickness $H$, velocity $\beta_1$) over a half-space ($\beta_2 > \beta_1$):
+
+$$
+l(z) = \begin{cases} \cos(\nu_1 z), & z \le H \\[4pt] \cos(\nu_1 H)\, e^{-\nu_2 (z-H)}, & z > H \end{cases}
+\qquad
+\nu_1 = \frac{\omega}{c}\sqrt{\frac{c^2}{\beta_1^2} - 1}, \quad \nu_2 = \frac{\omega}{c}\sqrt{1 - \frac{c^2}{\beta_2^2}}
+$$
+
+The eigenfunction oscillates (cosine) inside the layer and decays exponentially in the half-space; the phase velocity $c \in (\beta_1, \beta_2)$ is fixed by the dispersion relation:
+
+$$
+\boxed{\tan(\nu_1 H) = \frac{\mu_2 \nu_2}{\mu_1 \nu_1}}
+$$
+
+Mode structure:
+
+- **Fundamental mode** ($n=0$): no node inside the layer; energy concentrated near the surface;
+- **$n$-th higher mode**: $n$ nodes inside the layer; deeper penetration and higher phase velocity;
+- The $n$-th mode exists only above its cut-off frequency:
+
+$$
+f_n = \frac{n}{2H\sqrt{1/\beta_1^2 - 1/\beta_2^2}}
+$$
+
+### Eigenfunctions Control Depth Sensitivity
+
+The **sensitivity kernels** used in surface-wave inversion are built directly from the eigenfunctions. By Rayleigh's variational principle, a perturbation $\delta\beta(z)$ of the medium perturbs the phase velocity as:
+
+$$
+\frac{\delta c}{c} = \int_0^\infty K_\beta(z)\, \frac{\delta \beta(z)}{\beta(z)}\, \mathrm{d}z
+$$
+
+where the kernel $K_\beta(z)$ is a quadratic combination of the eigenfunctions and their derivatives, normalised by the modal energy integral. Qualitatively:
+
+- $K_\beta(z)$ is large ⟺ the eigenfunction amplitude is large at that depth (the wave "lives" there);
+- The fundamental-mode Rayleigh kernel peaks at $z \approx \lambda/3$ — this is the theoretical origin of the empirical $\lambda/3$ rule in the [Depth Sensitivity Rule](#depth-sensitivity-rule) above;
+- Higher-mode eigenfunctions penetrate deeper, so their kernels peak deeper; joint multi-mode inversion markedly improves resolution at depth.
+
+!!! tip "Three practical roles of eigenfunctions"
+    1. **Forward modelling**: Thomson-Haskell / propagator-matrix codes return eigenfunctions alongside dispersion curves;
+    2. **Inversion**: sensitivity kernels (Fréchet derivatives) are built from eigenfunctions and dictate which depth each frequency constrains;
+    3. **Observation**: vertical borehole DAS directly samples $\mathrm{d}r_z/\mathrm{d}z$ (see the [borehole DAS section](#borehole-das-surface-wave-depth-attenuation) below), and the surface H/V ellipticity corresponds to $|r_x/r_z|_{z=0}$.
+
+![Surface wave eigenfunctions](../assets/images/sw_eigenfunctions.png)
+*Figure 4: Left — Rayleigh-wave displacement eigenfunctions in a Poisson half-space. Blue solid: vertical component $r_z(z)$, slightly amplified ($\approx 1.05$) at $z \approx 0.08\lambda$ before decaying monotonically; red dashed: horizontal component $r_x(z)$ (scaled to true relative amplitude, surface $|r_x/r_z| \approx 0.68$), changing sign at $z \approx 0.19\lambda$ — retrograde particle motion above, prograde below. Right — Love-wave eigenfunctions at 12 Hz for a low-velocity layer ($\beta_1 = 200$ m/s, $H = 20$ m) over a half-space ($\beta_2 = 400$ m/s): the fundamental mode (blue) has no node in the layer and concentrates near the surface; the first higher mode (red) has one node and penetrates deeper. Grey dashed line: layer base.*
+
+---
+
 ## Extracting and Inverting Dispersion Curves
 
 ### Extraction Methods
@@ -208,9 +308,9 @@ For a horizontally propagating Rayleigh wave, $u_z(z,t) = r_z(z)\cdot A(t)$, mea
 
 **Rayleigh-wave depth eigenfunction**
 
-For a homogeneous half-space the vertical displacement eigenfunction, normalised to unity at the surface, is:
+For a homogeneous half-space the vertical displacement eigenfunction, normalised to unity at the surface (see the Surface-Wave Eigenfunctions section above), is:
 
-$$\boxed{r_z(z) = \frac{e^{-\eta_\alpha k z} - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}\,e^{-\eta_\beta k z}}{1 - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}}}$$
+$$\boxed{r_z(z) = \frac{\dfrac{2}{1+\eta_\beta^2}\,e^{-\eta_\beta k z} - e^{-\eta_\alpha k z}}{\dfrac{1-\eta_\beta^2}{1+\eta_\beta^2}}}$$
 
 where $k = 2\pi f / V_R(f)$ and
 
@@ -222,9 +322,9 @@ are the P- and S-wave vertical decay coefficients. For a Poisson solid ($\nu = 0
 |-----------|-------|------------|
 | $\eta_\alpha$ | $\approx 0.848$ | $\sim \lambda/5.3$ (P-wave, fast decay) |
 | $\eta_\beta$ | $\approx 0.393$ | $\sim \lambda/2.5$ (S-wave, slow decay, dominates at depth) |
-| $2\eta_\alpha\eta_\beta/(1+\eta_\beta^2)$ | $\approx 0.577$ | Coupling weight between the two terms |
+| $2/(1+\eta_\beta^2)$ | $\approx 1.732$ | S-term weight (P-term weight is $-1$; opposite signs) |
 
-Once $kz \gtrsim 1.2$ (depth $\gtrsim 0.2\lambda$) the P-wave term has decayed by over 90% and the eigenfunction approaches a single exponential:
+Because the two terms have opposite signs, $r_z$ has a shallow maximum of about 5% at $z \approx 0.08\lambda$; once $kz \gtrsim 3$ the P-wave contribution drops below 15% and keeps shrinking rapidly, so the eigenfunction approaches a single exponential:
 
 $$r_z(z) \xrightarrow{\;kz \gg 1/\eta_\alpha\;} C_\beta\cdot e^{-\eta_\beta k z}$$
 
@@ -238,7 +338,7 @@ Because all depths register the same arrival time, phase velocity must come from
 
 *Step 2 — semi-log linear fit of the depth amplitude profile*
 
-In the S-wave-dominated zone ($kz \in [2,\;5]$) fit the slope $-b(f)$ of $\ln|r_z(z, f)|$ versus $z$:
+In the S-wave-dominated zone ($kz \in [3,\;6]$) fit the slope $-b(f)$ of $\ln|r_z(z, f)|$ versus $z$:
 
 $$b(f) = \eta_\beta \cdot k = \frac{2\pi f}{V_R(f)}\sqrt{1 - \frac{V_R(f)^2}{V_S^2}}$$
 
@@ -249,12 +349,12 @@ $$\boxed{V_S = \frac{V_R(f)}{\sqrt{1 - \!\left(\dfrac{b(f)\,V_R(f)}{2\pi f}\righ
 Combining the surface-measured $V_R$ with the borehole-measured decay slope $b$ gives a direct $V_S$ estimate **without any surface receiver array** — particularly valuable in seafloor, glacier, or mine environments where surface arrays are impractical.
 
 !!! tip "Practical notes"
-    - **Fitting range**: $kz \in [2,\;5]$; shallower levels are biased by the two-exponential superposition, deeper levels by low SNR;
+    - **Fitting range**: $kz \in [3,\;6]$; shallower levels are biased by the two-exponential superposition, deeper levels by low SNR. The residual P-term makes the fitted slope slightly gentler ($V_S$ underestimated by ~2%); fit a two-exponential model when higher accuracy is needed;
     - **Gauge-length correction**: when $\eta_\beta kL > 0.1$, multiply the measured slope by the correction factor $\mathrm{sinc}^{-1}(\eta_\beta kL/2)$;
     - **Layered media**: repeat for each frequency — the inferred $V_S$ corresponds to an effective depth $\approx \lambda/4$, assembling a $V_S(z)$ profile.
 
 ![Borehole DAS surface-wave depth eigenfunction](../assets/images/das_borehole_sw.png)
-*Figure 3: Left — Rayleigh-wave depth eigenfunctions for a Poisson solid. Blue solid: vertical displacement $r_z(z)$; red dashed: DAS axial strain $|\varepsilon_{zz}|$; orange and green horizontal dotted lines mark the P- and S-wave 1/e characteristic depths (horizontal axis: normalised depth $kz$). Right — Log-amplitude versus $kz$. In the green zone ($kz > 1.8$) the curve asymptotes to a straight line with slope $-\eta_\beta$; fitting that slope and combining with a known $V_R(f)$ directly yields $V_S$.*
+*Figure 3: Left — Rayleigh-wave depth eigenfunctions for a Poisson solid. Blue solid: vertical displacement $r_z(z)$, slightly amplified at $kz \approx 0.48$ ($z \approx 0.08\lambda$) before decaying monotonically; red dashed: DAS axial strain $|\varepsilon_{zz}|$, with a node at $kz \approx 0.48$; orange and green horizontal dotted lines mark the P- and S-wave 1/e characteristic depths (vertical axis: normalised depth $kz$). Right — Log-amplitude versus $kz$. In the green zone ($kz > 3$) the curve asymptotes to a straight line with slope $-\eta_\beta$; fitting that slope and combining with a known $V_R(f)$ directly yields $V_S$.*
 
 ### Dispersion Curve Inversion
 
@@ -388,6 +488,9 @@ The code below reproduces both figures in this note. See the full code in [the C
 ## References
 
 - Aki, K., & Chouet, B. (1975). Origin of coda waves: Source, attenuation and scattering effects. *Journal of Geophysical Research*, 80(23), 3322–3342.
+- Aki, K., & Richards, P. G. (2002). *Quantitative Seismology* (2nd ed.). University Science Books. [Chapter 7: surface-wave eigenvalue problem and variational principle]
+- Haskell, N. A. (1953). The dispersion of surface waves on multilayered media. *Bulletin of the Seismological Society of America*, 43(1), 17–34.
+- Takeuchi, H., & Saito, M. (1972). Seismic surface waves. *Methods in Computational Physics*, 11, 217–295.
 - Park, C. B., Miller, R. D., & Xia, J. (1999). Multichannel analysis of surface waves. *Geophysics*, 64(3), 800–808.
 - Bensen, G. D., Ritzwoller, M. H., Barmin, M. P., Levshin, A. L., Lin, F., Moschetti, M. P., … & Yang, Y. (2007). Processing seismic ambient noise data to obtain reliable broad-band surface wave dispersion measurements. *Geophysical Journal International*, 169(3), 1239–1260.
 - Snieder, R. (2006). The theory of coda wave interferometry. *Pure and Applied Geophysics*, 163(2–3), 455–473.

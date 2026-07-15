@@ -166,6 +166,106 @@ $$
 
 ---
 
+## 面波本征函数
+
+### 从波动方程到本征值问题
+
+水平分层介质中，设平面面波沿 $x$ 方向传播，位移场可分离变量：
+
+$$
+\mathbf{u}(x, z, t) = \mathbf{r}(z)\, e^{i(kx - \omega t)}
+$$
+
+代入弹性运动方程，配合两个边界条件——地表自由（应力为零）、深部衰减（$z \to \infty$ 时位移趋于零）——构成一个 **Sturm-Liouville 型本征值问题**：给定频率 $\omega$，只有离散的波数 $k_n(\omega)$（$n = 0, 1, 2, \dots$）能使方程存在非零解。
+
+- **本征值** $k_n(\omega)$ → 相速度 $c_n = \omega/k_n$，即频散曲线；
+- **本征函数** $\mathbf{r}_n(z)$ → 该模式的位移随深度的分布形状。
+
+频散曲线与本征函数是同一个本征值问题的两个输出：前者回答"传多快"，后者回答"波住在哪个深度"。
+
+| 波型 | 耦合分量 | 本征函数 | 物理意义 |
+|------|---------|---------|---------|
+| Rayleigh | P-SV（$u_x$, $u_z$）| $r_x(z)$, $r_z(z)$ | 径向/竖向位移随深度分布 |
+| Love | SH（$u_y$）| $l(z)$ | 横向位移随深度分布 |
+
+### 半空间 Rayleigh 波本征函数（解析解）
+
+均匀半空间是唯一存在解析解的情形（此时无频散，仅有基阶模式）。将各分量归一化至地表值为 1：
+
+$$
+r_x(z) = \frac{e^{-\eta_\alpha k z} - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}\, e^{-\eta_\beta k z}}{1 - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}}, \qquad
+r_z(z) = \frac{\dfrac{2}{1+\eta_\beta^2}\, e^{-\eta_\beta k z} - e^{-\eta_\alpha k z}}{\dfrac{1-\eta_\beta^2}{1+\eta_\beta^2}}
+$$
+
+其中 $k = \omega / V_R$，而
+
+$$
+\eta_\alpha = \sqrt{1 - \frac{V_R^2}{V_P^2}}, \qquad \eta_\beta = \sqrt{1 - \frac{V_R^2}{V_S^2}}
+$$
+
+分别是 P 波项和 S 波项的垂向衰减系数。两个分量都是 P 项（$e^{-\eta_\alpha kz}$，快衰减）与 S 项（$e^{-\eta_\beta kz}$，慢衰减）的线性组合，但**权重不同**——这正是两分量深度行为迥异的原因。Poisson 固体（$\nu = 0.25$）的数值特征：
+
+| 特征 | 数值 | 说明 |
+|------|------|------|
+| 地表椭圆率 $\lvert r_x/r_z\rvert_{z=0}$ | $\approx 0.68$ | H/V 谱比的理论基线 |
+| $r_x$ 节点深度 | $z \approx 0.19\lambda$ | 水平分量变号 |
+| $r_z$ 极大深度 | $z \approx 0.08\lambda$（幅值 $\approx 1.05$）| 竖向分量在地表下略有增强 |
+| $r_z(\lambda/2)$ | $\approx 0.59$ | 半波长深度仍有近六成振幅 |
+| $r_z(\lambda)$ | $\approx 0.19$ | "穿透深度约一个波长"的定量依据 |
+
+!!! note "逆进椭圆 → 顺进椭圆"
+    地表处 $r_x$ 与 $r_z$ 相位差 $90°$，质点做**逆进椭圆**（retrograde）运动。在 $z \approx 0.19\lambda$ 处 $r_x$ 变号，其下质点运动转为**顺进**（prograde）。地表 H/V 椭圆率随频率的变化也常被用作 $V_S$ 结构的附加约束。
+
+### Love 波本征函数（低速层上覆半空间）
+
+Love 波需要波导（低速表层）才能存在。对厚度 $H$、速度 $\beta_1$ 的单层覆盖半空间（$\beta_2 > \beta_1$）的情形：
+
+$$
+l(z) = \begin{cases} \cos(\nu_1 z), & z \le H \\[4pt] \cos(\nu_1 H)\, e^{-\nu_2 (z-H)}, & z > H \end{cases}
+\qquad
+\nu_1 = \frac{\omega}{c}\sqrt{\frac{c^2}{\beta_1^2} - 1}, \quad \nu_2 = \frac{\omega}{c}\sqrt{1 - \frac{c^2}{\beta_2^2}}
+$$
+
+层内为驻波式振荡（余弦），半空间中指数衰减，相速度 $c \in (\beta_1, \beta_2)$，由频散方程决定：
+
+$$
+\boxed{\tan(\nu_1 H) = \frac{\mu_2 \nu_2}{\mu_1 \nu_1}}
+$$
+
+模式结构：
+
+- **基阶**（$n=0$）：层内无节点，能量集中于表层；
+- **第 $n$ 阶**：层内有 $n$ 个节点，穿透更深、相速度更高；
+- 第 $n$ 阶模式仅当 $f > f_n$ 时存在，截止频率为：
+
+$$
+f_n = \frac{n}{2H\sqrt{1/\beta_1^2 - 1/\beta_2^2}}
+$$
+
+### 本征函数决定深度灵敏度
+
+面波反演中的**灵敏度核**直接由本征函数构造。由 Rayleigh 变分原理，介质扰动 $\delta\beta(z)$ 引起的相速度扰动为：
+
+$$
+\frac{\delta c}{c} = \int_0^\infty K_\beta(z)\, \frac{\delta \beta(z)}{\beta(z)}\, \mathrm{d}z
+$$
+
+核函数 $K_\beta(z)$ 是本征函数及其导数的二次组合，按模式能量积分归一化。定性规律：
+
+- $K_\beta(z)$ 大 ⟺ 该深度上本征函数振幅大（波的能量"住在"那里）；
+- Rayleigh 基阶 $K_\beta$ 峰值位于 $z \approx \lambda/3$——这正是上文「深度灵敏度规则」中 $\lambda/3$ 经验公式的理论来源；
+- 高阶模态本征函数穿透更深，其核函数峰值也更深，联合多模式反演可显著改善深部分辨率。
+
+!!! tip "本征函数的三个实用角色"
+    1. **正演**：Thomson-Haskell / 传播矩阵法计算频散曲线时同步给出本征函数；
+    2. **反演**：灵敏度核（Fréchet 导数）由本征函数构造，决定各频率约束哪个深度；
+    3. **观测**：竖直钻孔 DAS 直接采样 $\mathrm{d}r_z/\mathrm{d}z$（见下文井下 DAS 一节），地表 H/V 椭圆率对应 $|r_x/r_z|_{z=0}$。
+
+![面波本征函数](../assets/images/sw_eigenfunctions.png)
+*图 4：左图——Poisson 半空间中 Rayleigh 波位移本征函数：蓝色实线为竖向分量 $r_z(z)$，在 $z \approx 0.08\lambda$ 处略有增强（$\approx 1.05$）后单调衰减；红色虚线为水平分量 $r_x(z)$（按真实相对振幅缩放，地表 $|r_x/r_z| \approx 0.68$），在 $z \approx 0.19\lambda$ 处变号——其上质点逆进、其下顺进。右图——低速层（$\beta_1 = 200$ m/s，$H = 20$ m）覆盖半空间（$\beta_2 = 400$ m/s）中 12 Hz Love 波本征函数：基阶（蓝）层内无节点、能量集中于表层；一阶（红）层内一个节点、穿透更深。灰色虚线为层界面。*
+
+---
+
 ## 频散曲线的提取与反演
 
 ### 提取方法
@@ -210,9 +310,9 @@ $$\varepsilon_\text{DAS}(z,\,t) = \frac{\partial u_z}{\partial z}(z,\,t)$$
 
 **Rayleigh 波深度本征函数**
 
-对于均匀弹性半空间，竖向位移随深度的本征函数（归一化至地表为 1）为：
+对于均匀弹性半空间，竖向位移随深度的本征函数（归一化至地表为 1，推导见上文「面波本征函数」一节）为：
 
-$$\boxed{r_z(z) = \frac{e^{-\eta_\alpha k z} - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}\,e^{-\eta_\beta k z}}{1 - \dfrac{2\eta_\alpha\eta_\beta}{1+\eta_\beta^2}}}$$
+$$\boxed{r_z(z) = \frac{\dfrac{2}{1+\eta_\beta^2}\,e^{-\eta_\beta k z} - e^{-\eta_\alpha k z}}{\dfrac{1-\eta_\beta^2}{1+\eta_\beta^2}}}$$
 
 其中 $k = 2\pi f / V_R(f)$，而
 
@@ -224,9 +324,9 @@ $$\eta_\alpha = \sqrt{1 - \frac{V_R^2}{V_P^2}}, \qquad \eta_\beta = \sqrt{1 - \f
 |------|------|------------|
 | $\eta_\alpha$ | $\approx 0.848$ | $\sim \lambda/5.3$（P 波快速衰减）|
 | $\eta_\beta$ | $\approx 0.393$ | $\sim \lambda/2.5$（S 波慢衰减，深部主导）|
-| $2\eta_\alpha\eta_\beta/(1+\eta_\beta^2)$ | $\approx 0.577$ | 两项的耦合权重 |
+| $2/(1+\eta_\beta^2)$ | $\approx 1.732$ | S 项权重（P 项权重为 $-1$，两项符号相反）|
 
-当 $kz \gtrsim 1.2$（约 $0.2\lambda$ 深度）后，P 波项衰减超过 90%，本征函数退化为单指数：
+P、S 两项符号相反，使 $r_z$ 在 $z \approx 0.08\lambda$ 处出现约 5% 的浅部极大；当 $kz \gtrsim 3$ 后，P 波项贡献降至 15% 以下并继续快速减小，本征函数趋于单指数：
 
 $$r_z(z) \xrightarrow{\;kz \gg 1/\eta_\alpha\;} C_\beta \cdot e^{-\eta_\beta k z}$$
 
@@ -240,7 +340,7 @@ $$r_z(z) \xrightarrow{\;kz \gg 1/\eta_\alpha\;} C_\beta \cdot e^{-\eta_\beta k z
 
 *第二步：对钻孔幅度剖面做半对数线性拟合*
 
-在 S 波主导区（$kz \in [2,\;5]$）拟合 $\ln|r_z(z, f)|$ 对 $z$ 的斜率 $-b(f)$：
+在 S 波主导区（$kz \in [3,\;6]$）拟合 $\ln|r_z(z, f)|$ 对 $z$ 的斜率 $-b(f)$：
 
 $$b(f) = \eta_\beta \cdot k = \frac{2\pi f}{V_R(f)}\sqrt{1 - \frac{V_R(f)^2}{V_S^2}}$$
 
@@ -251,12 +351,12 @@ $$\boxed{V_S = \frac{V_R(f)}{\sqrt{1 - \!\left(\dfrac{b(f)\,V_R(f)}{2\pi f}\righ
 此式将地表测量的 $V_R$ 与钻孔测量的衰减斜率 $b$ 结合，直接给出 $V_S$ 估算，**无需水平台站阵列**——在海底、冰川钻孔等难以布设地面阵列的环境中具有独特价值。
 
 !!! tip "实用要点"
-    - **拟合区间**：$kz \in [2,\;5]$；过浅两指数叠加偏离线性，过深信噪比不足；
+    - **拟合区间**：$kz \in [3,\;6]$；过浅两指数叠加偏离线性，过深信噪比不足。残余 P 项使拟合斜率略缓、$V_S$ 低估约 2%，要求更高精度时可直接用双指数模型拟合；
     - **标距校正**：若标距 $L$ 满足 $\eta_\beta kL > 0.1$，需将实测斜率乘以校正因子 $\mathrm{sinc}^{-1}(\eta_\beta kL/2)$；
     - **分层介质**：各频率提取的 $V_S$ 对应不同有效深度（$\sim \lambda/4$），对多个频率重复上述步骤即可得到 $V_S(z)$ 剖面。
 
 ![井下DAS面波深度衰减](../assets/images/das_borehole_sw.png)
-*图 3：左图——Poisson 固体中 Rayleigh 波深度本征函数。蓝色实线：竖向位移 $r_z(z)$，深度越大振幅越小；红色虚线：DAS 测量的轴向应变 $|\varepsilon_{zz}|$；橙色/绿色水平虚线分别标注 P 波和 S 波的 $1/e$ 特征深度（以 $kz$ 为归一化深度坐标）。右图：对数幅度与归一化深度的关系，深部（绿色区域，$kz>1.8$）渐近为斜率 $-\eta_\beta$ 的直线；拟合该斜率并结合已知 $V_R(f)$ 即可提取 $V_S$。*
+*图 3：左图——Poisson 固体中 Rayleigh 波深度本征函数。蓝色实线：竖向位移 $r_z(z)$，在 $kz \approx 0.48$（$z \approx 0.08\lambda$）处略有增强后单调衰减；红色虚线：DAS 测量的轴向应变 $|\varepsilon_{zz}|$，在 $kz \approx 0.48$ 处有一节点；橙色/绿色水平虚线分别标注 P 波和 S 波的 $1/e$ 特征深度（以 $kz$ 为归一化深度坐标）。右图：对数幅度与归一化深度的关系，深部（绿色区域，$kz>3$）渐近为斜率 $-\eta_\beta$ 的直线；拟合该斜率并结合已知 $V_R(f)$ 即可提取 $V_S$。*
 
 ### 频散曲线反演
 
@@ -502,6 +602,9 @@ plt.show()
 ## 参考文献
 
 - Aki, K., & Chouet, B. (1975). Origin of coda waves: Source, attenuation and scattering effects. *Journal of Geophysical Research*, 80(23), 3322–3342.
+- Aki, K., & Richards, P. G. (2002). *Quantitative Seismology* (2nd ed.). University Science Books. [第 7 章：面波本征值问题与变分原理]
+- Haskell, N. A. (1953). The dispersion of surface waves on multilayered media. *Bulletin of the Seismological Society of America*, 43(1), 17–34.
+- Takeuchi, H., & Saito, M. (1972). Seismic surface waves. *Methods in Computational Physics*, 11, 217–295.
 - Park, C. B., Miller, R. D., & Xia, J. (1999). Multichannel analysis of surface waves. *Geophysics*, 64(3), 800–808.
 - Bensen, G. D., Ritzwoller, M. H., Barmin, M. P., Levshin, A. L., Lin, F., Moschetti, M. P., … & Yang, Y. (2007). Processing seismic ambient noise data to obtain reliable broad-band surface wave dispersion measurements. *Geophysical Journal International*, 169(3), 1239–1260.
 - Snieder, R. (2006). The theory of coda wave interferometry. *Pure and Applied Geophysics*, 163(2–3), 455–473.
