@@ -6,13 +6,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="地震学与 DAS 学习笔记">
+        <meta name="description" content="从震源到光纤，系统梳理地震学、DAS 与波场分析">
       
       
         <meta name="author" content="Jiang Yi">
       
       
-        <link rel="canonical" href="https://yjianggeo.github.io/source-spectrum-site/q-spectral-ratio/">
+        <link rel="canonical" href="https://yjianggeo.github.io/seismic-notes/q-spectral-ratio/">
       
       
         <link rel="prev" href="../brune/">
@@ -21,11 +21,8 @@
         <link rel="next" href="../vsp/">
       
       
-        
-      
-      
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
     
     
       
@@ -33,10 +30,10 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -60,9 +57,26 @@
     <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
+  
+
 
     
     
+    
+  
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Seismic Notes">
+  <meta property="og:title" content="谱比法 Q 值反演 · Seismic Notes">
+  <meta property="og:description" content="从震源到光纤，系统梳理地震学、DAS 与波场分析">
+  <meta property="og:image" content="https://yjianggeo.github.io/seismic-notes/assets/images/og-seismic-notes.png">
+  <meta property="og:image:width" content="1731">
+  <meta property="og:image:height" content="909">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="谱比法 Q 值反演 · Seismic Notes">
+  <meta name="twitter:description" content="从震源到光纤，系统梳理地震学、DAS 与波场分析">
+  <meta name="twitter:image" content="https://yjianggeo.github.io/seismic-notes/assets/images/og-seismic-notes.png">
+  <meta name="theme-color" content="#246f68">
+
   </head>
   
   
@@ -73,7 +87,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -131,7 +145,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换深色模式"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="切换深色模式"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="切换深色模式" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -141,7 +155,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="切换浅色模式"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="切换浅色模式"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="切换浅色模式" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
@@ -205,13 +219,13 @@
     
     
       <div class="md-header__source">
-        <a href="https://github.com/yjianggeo/source-spectrum-site" title="前往仓库" class="md-source" data-md-component="source">
+        <a href="https://github.com/yjianggeo/seismic-notes" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
   </div>
   <div class="md-source__repository">
-    yjianggeo/source-spectrum-site
+    yjianggeo/seismic-notes
   </div>
 </a>
       </div>
@@ -437,13 +451,13 @@
   </label>
   
     <div class="md-nav__source">
-      <a href="https://github.com/yjianggeo/source-spectrum-site" title="前往仓库" class="md-source" data-md-component="source">
+      <a href="https://github.com/yjianggeo/seismic-notes" title="前往仓库" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
   </div>
   <div class="md-source__repository">
-    yjianggeo/source-spectrum-site
+    yjianggeo/seismic-notes
   </div>
 </a>
     </div>
@@ -462,14 +476,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     首页
-  
-
     
   </span>
-  
   
 
       </a>
@@ -511,14 +520,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     震源理论
-  
-
     
   </span>
-  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -527,11 +531,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            
-  
-    震源理论
-  
-
+            震源理论
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -547,14 +547,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     Brune模型
-  
-
     
   </span>
-  
   
 
       </a>
@@ -607,14 +602,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     地震波衰减
-  
-
     
   </span>
-  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -623,11 +613,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            
-  
-    地震波衰减
-  
-
+            地震波衰减
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -652,14 +638,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     谱比法 Q 值反演
-  
-
     
   </span>
-  
   
 
           <span class="md-nav__icon md-icon"></span>
@@ -670,14 +651,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     谱比法 Q 值反演
-  
-
     
   </span>
-  
   
 
       </a>
@@ -700,9 +676,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        引言
-      
+      引言
     </span>
   </a>
   
@@ -711,9 +685,7 @@
         <li class="md-nav__item">
   <a href="#q_1" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        地震波衰减与 Q 的定义
-      
+      地震波衰减与 Q 的定义
     </span>
   </a>
   
@@ -723,9 +695,7 @@
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        品质因子的物理定义
-      
+      品质因子的物理定义
     </span>
   </a>
   
@@ -734,9 +704,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        单程衰减振幅谱
-      
+      单程衰减振幅谱
     </span>
   </a>
   
@@ -745,9 +713,7 @@
           <li class="md-nav__item">
   <a href="#t" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        t* 参数
-      
+      t* 参数
     </span>
   </a>
   
@@ -756,9 +722,7 @@
           <li class="md-nav__item">
   <a href="#q_2" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        常见 Q 模型
-      
+      常见 Q 模型
     </span>
   </a>
   
@@ -772,9 +736,7 @@
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        谱比法推导
-      
+      谱比法推导
     </span>
   </a>
   
@@ -784,9 +746,7 @@
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        完整位移振幅谱模型
-      
+      完整位移振幅谱模型
     </span>
   </a>
   
@@ -795,9 +755,7 @@
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        双台站谱比推导
-      
+      双台站谱比推导
     </span>
   </a>
   
@@ -806,9 +764,7 @@
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        线性化
-      
+      线性化
     </span>
   </a>
   
@@ -817,9 +773,7 @@
           <li class="md-nav__item">
   <a href="#q_3" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        提取 Q 值
-      
+      提取 Q 值
     </span>
   </a>
   
@@ -833,9 +787,7 @@
         <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        实际操作步骤
-      
+      实际操作步骤
     </span>
   </a>
   
@@ -845,9 +797,7 @@
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        数据预处理流程
-      
+      数据预处理流程
     </span>
   </a>
   
@@ -856,9 +806,7 @@
           <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        有效频段的选取
-      
+      有效频段的选取
     </span>
   </a>
   
@@ -867,9 +815,7 @@
           <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        κ 衰减（近地表高频衰减）
-      
+      κ 衰减（近地表高频衰减）
     </span>
   </a>
   
@@ -883,9 +829,7 @@
         <li class="md-nav__item">
   <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        Python 示例
-      
+      Python 示例
     </span>
   </a>
   
@@ -894,9 +838,7 @@
         <li class="md-nav__item">
   <a href="#q_4" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        频率依赖 Q 的推广
-      
+      频率依赖 Q 的推广
     </span>
   </a>
   
@@ -905,9 +847,7 @@
         <li class="md-nav__item">
   <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        方法变体
-      
+      方法变体
     </span>
   </a>
   
@@ -916,9 +856,7 @@
         <li class="md-nav__item">
   <a href="#q_5" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        频移类 Q 值估计方法
-      
+      频移类 Q 值估计方法
     </span>
   </a>
   
@@ -928,9 +866,7 @@
           <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        高频选择性衰减的物理基础
-      
+      高频选择性衰减的物理基础
     </span>
   </a>
   
@@ -939,9 +875,7 @@
           <li class="md-nav__item">
   <a href="#cfs" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        重心频率漂移法（CFS）
-      
+      重心频率漂移法（CFS）
     </span>
   </a>
   
@@ -950,9 +884,7 @@
           <li class="md-nav__item">
   <a href="#pfs" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        峰值频率漂移法（PFS）
-      
+      峰值频率漂移法（PFS）
     </span>
   </a>
   
@@ -961,9 +893,7 @@
           <li class="md-nav__item">
   <a href="#lcfs" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        局部重心频率漂移法（LCFS）
-      
+      局部重心频率漂移法（LCFS）
     </span>
   </a>
   
@@ -972,9 +902,7 @@
           <li class="md-nav__item">
   <a href="#lcfslu-et-al-2026" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        多维非稳态 LCFS（Lu et al. 2026）
-      
+      多维非稳态 LCFS（Lu et al. 2026）
     </span>
   </a>
   
@@ -983,9 +911,7 @@
           <li class="md-nav__item">
   <a href="#ricker-hao-et-al-2024" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        Ricker 小波分解法（Hao et al. 2024）
-      
+      Ricker 小波分解法（Hao et al. 2024）
     </span>
   </a>
   
@@ -994,9 +920,7 @@
           <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        各方法综合对比
-      
+      各方法综合对比
     </span>
   </a>
   
@@ -1010,9 +934,7 @@
         <li class="md-nav__item">
   <a href="#das-q" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        使用井下 DAS 进行逐道谱比 Q 反演
-      
+      使用井下 DAS 进行逐道谱比 Q 反演
     </span>
   </a>
   
@@ -1022,9 +944,7 @@
           <li class="md-nav__item">
   <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        原理
-      
+      原理
     </span>
   </a>
   
@@ -1033,9 +953,7 @@
           <li class="md-nav__item">
   <a href="#das" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        DAS 谱比的修正
-      
+      DAS 谱比的修正
     </span>
   </a>
   
@@ -1044,9 +962,7 @@
           <li class="md-nav__item">
   <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        入射角的要求
-      
+      入射角的要求
     </span>
   </a>
   
@@ -1055,9 +971,7 @@
           <li class="md-nav__item">
   <a href="#q_6" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        高分辨率 Q 剖面
-      
+      高分辨率 Q 剖面
     </span>
   </a>
   
@@ -1066,9 +980,7 @@
           <li class="md-nav__item">
   <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        与震源参数反演的联系
-      
+      与震源参数反演的联系
     </span>
   </a>
   
@@ -1082,9 +994,7 @@
         <li class="md-nav__item">
   <a href="#_18" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        参考文献
-      
+      参考文献
     </span>
   </a>
   
@@ -1140,14 +1050,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     垂直地震剖面
-  
-
     
   </span>
-  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1156,11 +1061,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            
-  
-    垂直地震剖面
-  
-
+            垂直地震剖面
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1176,14 +1077,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     VSP 原理与应用
-  
-
     
   </span>
-  
   
 
       </a>
@@ -1233,14 +1129,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     面波与尾波
-  
-
     
   </span>
-  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1249,11 +1140,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
-            
-  
-    面波与尾波
-  
-
+            面波与尾波
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1269,14 +1156,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     波速提取与监测
-  
-
     
   </span>
-  
   
 
       </a>
@@ -1326,14 +1208,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     地震数据处理
-  
-
     
   </span>
-  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1342,11 +1219,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            
-  
-    地震数据处理
-  
-
+            地震数据处理
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1362,14 +1235,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     F-K 分析与 Radon 变换
-  
-
     
   </span>
-  
   
 
       </a>
@@ -1419,14 +1287,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     DAS 分布式声学传感
-  
-
     
   </span>
-  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1435,11 +1298,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            
-  
-    DAS 分布式声学传感
-  
-
+            DAS 分布式声学传感
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1455,14 +1314,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     基本原理与应用
-  
-
     
   </span>
-  
   
 
       </a>
@@ -1512,14 +1366,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     冰川地震学
-  
-
     
   </span>
-  
   
 
             <span class="md-nav__icon md-icon"></span>
@@ -1528,11 +1377,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
-            
-  
-    冰川地震学
-  
-
+            冰川地震学
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1548,14 +1393,9 @@
   
   
   <span class="md-ellipsis">
-    
-  
     仪器、阵列与 DAS 应用
-  
-
     
   </span>
-  
   
 
       </a>
@@ -1600,9 +1440,7 @@
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        引言
-      
+      引言
     </span>
   </a>
   
@@ -1611,9 +1449,7 @@
         <li class="md-nav__item">
   <a href="#q_1" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        地震波衰减与 Q 的定义
-      
+      地震波衰减与 Q 的定义
     </span>
   </a>
   
@@ -1623,9 +1459,7 @@
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        品质因子的物理定义
-      
+      品质因子的物理定义
     </span>
   </a>
   
@@ -1634,9 +1468,7 @@
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        单程衰减振幅谱
-      
+      单程衰减振幅谱
     </span>
   </a>
   
@@ -1645,9 +1477,7 @@
           <li class="md-nav__item">
   <a href="#t" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        t* 参数
-      
+      t* 参数
     </span>
   </a>
   
@@ -1656,9 +1486,7 @@
           <li class="md-nav__item">
   <a href="#q_2" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        常见 Q 模型
-      
+      常见 Q 模型
     </span>
   </a>
   
@@ -1672,9 +1500,7 @@
         <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        谱比法推导
-      
+      谱比法推导
     </span>
   </a>
   
@@ -1684,9 +1510,7 @@
           <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        完整位移振幅谱模型
-      
+      完整位移振幅谱模型
     </span>
   </a>
   
@@ -1695,9 +1519,7 @@
           <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        双台站谱比推导
-      
+      双台站谱比推导
     </span>
   </a>
   
@@ -1706,9 +1528,7 @@
           <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        线性化
-      
+      线性化
     </span>
   </a>
   
@@ -1717,9 +1537,7 @@
           <li class="md-nav__item">
   <a href="#q_3" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        提取 Q 值
-      
+      提取 Q 值
     </span>
   </a>
   
@@ -1733,9 +1551,7 @@
         <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        实际操作步骤
-      
+      实际操作步骤
     </span>
   </a>
   
@@ -1745,9 +1561,7 @@
           <li class="md-nav__item">
   <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        数据预处理流程
-      
+      数据预处理流程
     </span>
   </a>
   
@@ -1756,9 +1570,7 @@
           <li class="md-nav__item">
   <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        有效频段的选取
-      
+      有效频段的选取
     </span>
   </a>
   
@@ -1767,9 +1579,7 @@
           <li class="md-nav__item">
   <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        κ 衰减（近地表高频衰减）
-      
+      κ 衰减（近地表高频衰减）
     </span>
   </a>
   
@@ -1783,9 +1593,7 @@
         <li class="md-nav__item">
   <a href="#python" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        Python 示例
-      
+      Python 示例
     </span>
   </a>
   
@@ -1794,9 +1602,7 @@
         <li class="md-nav__item">
   <a href="#q_4" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        频率依赖 Q 的推广
-      
+      频率依赖 Q 的推广
     </span>
   </a>
   
@@ -1805,9 +1611,7 @@
         <li class="md-nav__item">
   <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        方法变体
-      
+      方法变体
     </span>
   </a>
   
@@ -1816,9 +1620,7 @@
         <li class="md-nav__item">
   <a href="#q_5" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        频移类 Q 值估计方法
-      
+      频移类 Q 值估计方法
     </span>
   </a>
   
@@ -1828,9 +1630,7 @@
           <li class="md-nav__item">
   <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        高频选择性衰减的物理基础
-      
+      高频选择性衰减的物理基础
     </span>
   </a>
   
@@ -1839,9 +1639,7 @@
           <li class="md-nav__item">
   <a href="#cfs" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        重心频率漂移法（CFS）
-      
+      重心频率漂移法（CFS）
     </span>
   </a>
   
@@ -1850,9 +1648,7 @@
           <li class="md-nav__item">
   <a href="#pfs" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        峰值频率漂移法（PFS）
-      
+      峰值频率漂移法（PFS）
     </span>
   </a>
   
@@ -1861,9 +1657,7 @@
           <li class="md-nav__item">
   <a href="#lcfs" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        局部重心频率漂移法（LCFS）
-      
+      局部重心频率漂移法（LCFS）
     </span>
   </a>
   
@@ -1872,9 +1666,7 @@
           <li class="md-nav__item">
   <a href="#lcfslu-et-al-2026" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        多维非稳态 LCFS（Lu et al. 2026）
-      
+      多维非稳态 LCFS（Lu et al. 2026）
     </span>
   </a>
   
@@ -1883,9 +1675,7 @@
           <li class="md-nav__item">
   <a href="#ricker-hao-et-al-2024" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        Ricker 小波分解法（Hao et al. 2024）
-      
+      Ricker 小波分解法（Hao et al. 2024）
     </span>
   </a>
   
@@ -1894,9 +1684,7 @@
           <li class="md-nav__item">
   <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        各方法综合对比
-      
+      各方法综合对比
     </span>
   </a>
   
@@ -1910,9 +1698,7 @@
         <li class="md-nav__item">
   <a href="#das-q" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        使用井下 DAS 进行逐道谱比 Q 反演
-      
+      使用井下 DAS 进行逐道谱比 Q 反演
     </span>
   </a>
   
@@ -1922,9 +1708,7 @@
           <li class="md-nav__item">
   <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        原理
-      
+      原理
     </span>
   </a>
   
@@ -1933,9 +1717,7 @@
           <li class="md-nav__item">
   <a href="#das" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        DAS 谱比的修正
-      
+      DAS 谱比的修正
     </span>
   </a>
   
@@ -1944,9 +1726,7 @@
           <li class="md-nav__item">
   <a href="#_16" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        入射角的要求
-      
+      入射角的要求
     </span>
   </a>
   
@@ -1955,9 +1735,7 @@
           <li class="md-nav__item">
   <a href="#q_6" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        高分辨率 Q 剖面
-      
+      高分辨率 Q 剖面
     </span>
   </a>
   
@@ -1966,9 +1744,7 @@
           <li class="md-nav__item">
   <a href="#_17" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        与震源参数反演的联系
-      
+      与震源参数反演的联系
     </span>
   </a>
   
@@ -1982,9 +1758,7 @@
         <li class="md-nav__item">
   <a href="#_18" class="md-nav__link">
     <span class="md-ellipsis">
-      
-        参考文献
-      
+      参考文献
     </span>
   </a>
   
@@ -2000,14 +1774,13 @@
           
           
             <div class="md-content" data-md-component="content">
-              
               <article class="md-content__inner md-typeset">
                 
                   
 
 
   
-    <a href="https://github.com/yjianggeo/source-spectrum-site/edit/main/docs/q-spectral-ratio.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/yjianggeo/seismic-notes/edit/main/docs/q-spectral-ratio.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
@@ -2016,7 +1789,7 @@
     
       
     
-    <a href="https://github.com/yjianggeo/source-spectrum-site/raw/main/docs/q-spectral-ratio.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/yjianggeo/seismic-notes/raw/main/docs/q-spectral-ratio.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
     </a>
@@ -2574,7 +2347,7 @@ L(f) = \ln\!\left(\frac{r_1}{r_2}\right) - \frac{\pi\,\Delta t}{Q_0}\, f^{1-\eta
 <div class="admonition note">
 <p class="admonition-title">几何解释</p>
 <p>对于垂直井中深度为 <span class="arithmatex">\(z_\text{ch}\)</span> 的台道，以及水平距离 <span class="arithmatex">\(r_H\)</span>、深度 <span class="arithmatex">\(z_\text{src}\)</span>（<span class="arithmatex">\(z_\text{src} &gt; z_\text{ch}\)</span>）处的微地震：
-$<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)\)</span>$
+<span class="arithmatex">\(<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)\)</span>\)</span>
 <span class="arithmatex">\(\theta &lt; 45°\)</span> 等价于 <span class="arithmatex">\(r_H &lt; z_\text{src} - z_\text{ch}\)</span>，即<strong>事件的水平偏移小于事件到该台道的深度差</strong>。</p>
 <p>因此，Q 反演最适合使用<strong>位于井底正下方</strong>的事件：这类事件对所有台道的入射角均较小，平坦响应校正稳定，有效频带宽。</p>
 </div>
@@ -2625,7 +2398,59 @@ $<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_
 
 
 
+  
 
+
+
+  <form class="md-feedback" name="feedback" hidden>
+    <fieldset>
+      <legend class="md-feedback__title">
+        这页笔记对你有帮助吗？
+      </legend>
+      <div class="md-feedback__inner">
+        <div class="md-feedback__list">
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="有帮助" data-md-value="1">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9v12H1V9zm4 12a2 2 0 0 1-2-2V9c0-.55.22-1.05.59-1.41L14.17 1l1.06 1.06c.27.27.44.64.44 1.05l-.03.32L14.69 8H21a2 2 0 0 1 2 2v2c0 .26-.05.5-.14.73l-3.02 7.05C19.54 20.5 18.83 21 18 21zm0-2h9.03L21 12v-2h-8.79l1.13-5.32L9 9.03z"/></svg>
+            </button>
+          
+            <button class="md-feedback__icon md-icon" type="submit" title="还可以更好" data-md-value="0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 15V3h4v12zM15 3a2 2 0 0 1 2 2v10c0 .55-.22 1.05-.59 1.41L9.83 23l-1.06-1.06c-.27-.27-.44-.64-.44-1.06l.03-.31.95-4.57H3a2 2 0 0 1-2-2v-2c0-.26.05-.5.14-.73l3.02-7.05C4.46 3.5 5.17 3 6 3zm0 2H5.97L3 12v2h8.78l-1.13 5.32L15 14.97z"/></svg>
+            </button>
+          
+        </div>
+        <div class="md-feedback__note">
+          
+            <div data-md-value="1" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              谢谢你的反馈
+            </div>
+          
+            <div data-md-value="0" hidden>
+              
+              
+                
+              
+              
+              
+                
+                
+              
+              欢迎通过 GitHub 提出建议
+            </div>
+          
+        </div>
+      </div>
+    </fieldset>
+  </form>
 
 
                 
@@ -2648,6 +2473,46 @@ $<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../brune/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Brune模型">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Brune模型
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../vsp/" class="md-footer__link md-footer__link--next" aria-label="下一页: VSP 原理与应用">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                VSP 原理与应用
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
@@ -2655,8 +2520,7 @@ $<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_
   
 </div>
       
-        
-<div class="md-social">
+        <div class="md-social">
   
     
     
@@ -2666,7 +2530,7 @@ $<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_
       
     
     <a href="https://github.com/yjianggeo" target="_blank" rel="noopener" title="github.com" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
 </div>
@@ -2683,11 +2547,10 @@ $<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_
     
     
       
-      
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.indexes", "search.highlight", "search.share", "search.suggest", "content.tabs.link", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "header.autohide"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.indexes", "navigation.footer", "search.highlight", "search.share", "search.suggest", "content.tabs.link", "content.code.copy", "content.code.annotate", "content.action.edit", "content.action.view", "header.autohide"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.13a4f30d.min.js"></script>
       
         <script src="../assets/javascripts/mathjax.js"></script>
       
@@ -2696,6 +2559,8 @@ $<span class="arithmatex">\(\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../assets/javascripts/lang-toggle.js"></script>
+      
+        <script src="../assets/javascripts/home.js"></script>
       
     
   </body>

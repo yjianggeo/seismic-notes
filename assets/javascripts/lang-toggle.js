@@ -31,8 +31,8 @@
   /**
    * Extract the page slug from the current URL path.
    * Works whether the site is served at root or a sub-path.
-   * e.g. /source-spectrum-site/brune/ → "brune"
-   *      /source-spectrum-site/brune-en/ → "brune-en"
+   * e.g. /seismic-notes/brune/ → "brune"
+   *      /seismic-notes/brune-en/ → "brune-en"
    */
   function currentSlug() {
     var path = window.location.pathname;
