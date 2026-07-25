@@ -261,7 +261,7 @@ $$
     2. **反演**：灵敏度核（Fréchet 导数）由本征函数构造，决定各频率约束哪个深度；
     3. **观测**：竖直钻孔 DAS 直接采样 $\mathrm{d}r_z/\mathrm{d}z$（见下文井下 DAS 一节），地表 H/V 椭圆率对应 $|r_x/r_z|_{z=0}$。
 
-![面波本征函数](../assets/images/sw_eigenfunctions.png)
+![面波本征函数](assets/images/sw_eigenfunctions.png)
 *图 4：左图——Poisson 半空间中 Rayleigh 波位移本征函数：蓝色实线为竖向分量 $r_z(z)$，在 $z \approx 0.08\lambda$ 处略有增强（$\approx 1.05$）后单调衰减；红色虚线为水平分量 $r_x(z)$（按真实相对振幅缩放，地表 $|r_x/r_z| \approx 0.68$），在 $z \approx 0.19\lambda$ 处变号——其上质点逆进、其下顺进。右图——低速层（$\beta_1 = 200$ m/s，$H = 20$ m）覆盖半空间（$\beta_2 = 400$ m/s）中 12 Hz Love 波本征函数：基阶（蓝）层内无节点、能量集中于表层；一阶（红）层内一个节点、穿透更深。灰色虚线为层界面。*
 
 ---
@@ -355,7 +355,7 @@ $$\boxed{V_S = \frac{V_R(f)}{\sqrt{1 - \!\left(\dfrac{b(f)\,V_R(f)}{2\pi f}\righ
     - **标距校正**：若标距 $L$ 满足 $\eta_\beta kL > 0.1$，需将实测斜率乘以校正因子 $\mathrm{sinc}^{-1}(\eta_\beta kL/2)$；
     - **分层介质**：各频率提取的 $V_S$ 对应不同有效深度（$\sim \lambda/4$），对多个频率重复上述步骤即可得到 $V_S(z)$ 剖面。
 
-![井下DAS面波深度衰减](../assets/images/das_borehole_sw.png)
+![井下DAS面波深度衰减](assets/images/das_borehole_sw.png)
 *图 3：左图——Poisson 固体中 Rayleigh 波深度本征函数。蓝色实线：竖向位移 $r_z(z)$，在 $kz \approx 0.48$（$z \approx 0.08\lambda$）处略有增强后单调衰减；红色虚线：DAS 测量的轴向应变 $|\varepsilon_{zz}|$，在 $kz \approx 0.48$ 处有一节点；橙色/绿色水平虚线分别标注 P 波和 S 波的 $1/e$ 特征深度（以 $kz$ 为归一化深度坐标）。右图：对数幅度与归一化深度的关系，深部（绿色区域，$kz>3$）渐近为斜率 $-\eta_\beta$ 的直线；拟合该斜率并结合已知 $V_R(f)$ 即可提取 $V_S$。*
 
 ### 频散曲线反演
@@ -368,7 +368,7 @@ $$
 
 其中 $\mathbf{m}$ 为各层的 $V_S$（和厚度），$\mathbf{c}^\text{pred}$ 通过 Thomson-Haskell 矩阵法正演计算，正则化项 $\varepsilon^2\|\mathbf{D}\mathbf{m}\|^2$ 约束模型光滑性。
 
-![面波频散](../assets/images/sw_dispersion.png)
+![面波频散](assets/images/sw_dispersion.png)
 *图 1：左图——双层模型（软层覆硬半空间）的 Rayleigh 波频散曲线，蓝色为相速度 $c(f)$，红色为群速度 $U(f)$，低频对应深部高速，高频对应浅层低速；右图——不同频率对应的深度灵敏度核，峰值深度约为 $\lambda/3$，频率越低穿透越深。*
 
 ---
@@ -457,7 +457,7 @@ $$
 !!! tip "时窗越晚，灵敏度越高"
     $\delta v/v$ 的测量不确定度近似为 $\sigma_{\delta v/v} \approx T/(2\pi f \bar{t}\,\text{CC})$，其中 $T$ 为周期，CC 为互相关系数。因此选用**更晚的尾波时窗**（大 $\bar{t}$）可以显著提高灵敏度，但需同时保证足够的信噪比。
 
-![尾波干涉法示意](../assets/images/coda_cwi.png)
+![尾波干涉法示意](assets/images/coda_cwi.png)
 *图 2：左图——参考尾波（蓝）与速度增加 1% 后的扰动尾波（红），橙色窗口为 CWI 分析时段；绿色虚线为理论包络 $\propto e^{-\pi f_0 t/Q_c}$；右图——尾波时窗内的互相关函数，峰值对应时延 $\delta t$，代入公式得 $\delta v/v \approx +1.1\%$（真实值 1.0%）。*
 
 ---

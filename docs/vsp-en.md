@@ -63,7 +63,7 @@ $$
 
 The two lines intersect at $z = z_r$ — the **crossover point** — whose depth equals the reflector depth.
 
-![VSP geometry and gather](../assets/images/vsp_overview.png)
+![VSP geometry and gather](assets/images/vsp_overview.png)
 *Figure 1: Left — VSP observation geometry (zero-offset and offset sources, downgoing direct and upgoing reflected ray paths). Right — typical VSP gather: orange = downgoing direct P-wave (positive slope); green = upgoing reflection (negative slope); they cross at the reflector depth.*
 
 ---
@@ -79,7 +79,7 @@ The two lines intersect at $z = z_r$ — the **crossover point** — whose depth
 | **3D VSP** | Dense surface grid | 3D near-well imaging | Analogous to 3D surface seismic |
 | **DAS VSP** | Any configuration | High-resolution Q profile; dense imaging | Fiber replaces geophone string |
 
-![VSP types](../assets/images/vsp_types.png)
+![VSP types](assets/images/vsp_types.png)
 *Figure 2: From left to right — zero-offset VSP, offset VSP, walkaway VSP (multiple sources), DAS VSP (continuous fiber). Background color gradients represent different geological layers.*
 
 ---

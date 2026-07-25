@@ -107,7 +107,7 @@ $$
 
 导向向量与噪声子空间正交时谱值趋于无穷，分辨率理论上无上限（仅受 SNR 限制）。代价是需要预知信源数 $d$（即取前 $d$ 个特征向量为信号子空间）。
 
-![F-K 分析与扇形滤波](../assets/images/fk_analysis.png)
+![F-K 分析与扇形滤波](assets/images/fk_analysis.png)
 *图 1：（左上）含面波噪声的原始 CMP 道集；（右上）F-K 谱（对数幅度），白线为 P 波视速度 2000 m/s，青线为面波 350 m/s；（左下）扇形滤波器掩模（白色为通带，$v_\text{app} > 700$ m/s）；（右下）滤波后道集，面波噪声被有效压制。*
 
 ---
@@ -216,7 +216,7 @@ $$
 
 其中 $\mathbf{L}_\text{irr}$ 为非规则采样的 Radon 算子，无需插值预处理即可直接重建。
 
-![Radon 变换对比](../assets/images/radon_transform.png)
+![Radon 变换对比](assets/images/radon_transform.png)
 *图 2：（左）含双曲同相轴的 CMP 道集；（中）传统 L2 Radon 变换，各事件在慢度轴上明显扩散；（右）稀疏/IRLS Radon，同相轴在 τ-p 域聚焦为尖锐条纹。*
 
 ---

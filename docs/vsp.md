@@ -63,7 +63,7 @@ $$
 
 两条线在 $z = z_r$ 处相交（交叉点，crossover），交叉点深度即反射界面深度。
 
-![VSP 几何与道集](../assets/images/vsp_overview.png)
+![VSP 几何与道集](assets/images/vsp_overview.png)
 *图 1：左图——VSP 观测几何示意（零偏与偏移源、下行直达波与上行反射波射线路径）；右图——典型 VSP 道集，橙色为下行直达波（正斜率），绿色为上行反射波（负斜率），两者在反射界面深度处交叉。*
 
 ---
@@ -79,7 +79,7 @@ $$
 | **3D VSP** | 地面多点，面状分布 | 井周三维成像 | 类比 3D 地面地震 |
 | **DAS VSP** | 任意设置 | 高分辨率 Q 剖面、密集阵列成像 | 光纤替代检波器串 |
 
-![VSP 类型](../assets/images/vsp_types.png)
+![VSP 类型](assets/images/vsp_types.png)
 *图 2：从左至右：零偏 VSP、偏移 VSP、Walkaway VSP（多震源）、DAS VSP（光纤连续接收）。颜色渐变背景表示不同地层。*
 
 ---

@@ -103,7 +103,7 @@ $$
 
 diverges when the steering vector is orthogonal to the noise subspace, giving theoretically unlimited resolution (SNR-limited in practice). The cost is the need to know the source count $d$ (number of eigenvectors to assign to the signal subspace).
 
-![F-K analysis and fan filtering](../assets/images/fk_analysis.png)
+![F-K analysis and fan filtering](assets/images/fk_analysis.png)
 *Figure 1: (top-left) Original CMP gather with surface-wave noise; (top-right) F-K spectrum (log amplitude) — white line at 2000 m/s marks P-waves, cyan at 350 m/s marks surface waves; (bottom-left) fan filter mask (white = pass, $v_\text{app} > 700$ m/s); (bottom-right) filtered gather with surface-wave energy removed.*
 
 ---
@@ -210,7 +210,7 @@ $$
 
 where $\mathbf{L}_\text{irr}$ is the irregular-sampling Radon operator. No interpolation pre-processing is required.
 
-![Radon transform comparison](../assets/images/radon_transform.png)
+![Radon transform comparison](assets/images/radon_transform.png)
 *Figure 2: (left) CMP gather with hyperbolic moveout events; (centre) conventional L2 Radon — events smear widely in slowness; (right) sparse/IRLS Radon — events focus into sharp stripes in the τ-p domain.*
 
 ---

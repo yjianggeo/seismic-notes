@@ -286,7 +286,7 @@ Slope m      = -0.29958  (theory: -0.29920)
 R²           = 0.9806
 ```
 
-![Spectral ratio example](../assets/images/q_spectral_ratio.png)
+![Spectral ratio example](assets/images/q_spectral_ratio.png)
 *Figure 1: Left — attenuation (dB) versus frequency for Q = 50, 100, 200, 500; lower Q causes faster high-frequency decay. Right — noisy observed log spectral ratio (blue dots), theoretical curve (black dashed), and linear regression fit (red line); the slope yields Q.*
 
 ---

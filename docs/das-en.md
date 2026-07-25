@@ -153,7 +153,7 @@ $$
 
 Taking $\theta$ as the polar angle and $|\varepsilon_{xx}|$ as the radius, the polar diagrams for P-wave ($\cos^2\theta$) and SV-wave ($|\sin 2\theta|/2$) responses are shown in Figure 1.
 
-![DAS directional sensitivity](../assets/images/das_angle_response.png)
+![DAS directional sensitivity](assets/images/das_angle_response.png)
 *Figure 1: Polar diagrams of DAS directional sensitivity for P-waves (blue) and SV-waves (orange). Shaded area represents relative response amplitude. The fiber axis lies along the horizontal (0°–180°).*
 
 ---
@@ -264,7 +264,7 @@ where $c_\mathrm{app} = c/\cos\theta$ is the **apparent velocity** along the fib
 
 The angular dependence: larger $\theta$ (wave more perpendicular to fiber) → smaller $k_x$ → higher notch frequency (better high-frequency preservation), but weaker amplitude (smaller $\cos^2\theta$ factor).
 
-![Gauge length effect](../assets/images/das_gauge_length.png)
+![Gauge length effect](assets/images/das_gauge_length.png)
 *Figure 2: DAS transfer function $|H(f)|$ for different gauge lengths ($\theta = 0°$, $c = 3000$ m/s). Larger gauge lengths shift the first notch to lower frequencies.*
 
 ### Optimum Gauge Length: SNR–Resolution Trade-off
@@ -321,7 +321,7 @@ $$
 !!! warning "Hardware Lower Bound"
     When $L$ approaches the laser pulse width (~8 m), the phase–strain relationship becomes nonlinear and the DAS measurement breaks down. Thus $L_\mathrm{min} \approx 8$ m is a hard lower limit regardless of the theoretical optimum.
 
-![Optimum gauge length](../assets/images/das_gauge_opt.png)
+![Optimum gauge length](assets/images/das_gauge_opt.png)
 *Figure 3: Left — normalised $\Delta L$ (SNR proxy) vs $GL/\lambda_s$; the green region marks SNR > 90 % of the maximum, and the red region marks the wavelet-distortion zone. Right — normalised DAS wavelet output for five GL/$\lambda_s$ ratios ($f_p$ = 40 Hz, $v$ = 1000 m/s, $\lambda_s \approx$ 19.5 m). After Dean et al. (2017).*
 
 ---
@@ -509,7 +509,7 @@ Coupling relies only on **self-weight friction** with the ground surface. Effect
 !!! warning "Submarine telecom cables for DAS"
     Submarine cables are usually **laid on the seafloor** with no burial. Coupled with a loose-tube internal structure, they suffer two simultaneous penalties: $\eta_\text{fiber} \approx 0$ and $f_c \sim 50$ Hz. The usable band is typically < 20 Hz and amplitudes are far below standard seismometers. Yet over thousands of kilometres of cable and exploiting ultra-low-frequency surface waves, submarine cable DAS has still produced important global seismology results (Marra et al. 2018).
 
-![DAS cable coupling: cross-sections and transfer functions](../assets/images/das_coupling.png)
+![DAS cable coupling: cross-sections and transfer functions](assets/images/das_coupling.png)
 *Figure 4: (Left) Loose-tube vs tight-buffered cable cross-sections — in the loose-tube design the fiber floats freely in gel ($\eta_\text{fiber} \approx 0$); in the tight-buffered design the polymer buffer is bonded directly to the fiber ($\eta_\text{fiber} \approx 0.8$–$1.0$). (Right) Cable-to-medium coupling transfer functions $C_\text{med}(f) = [1+(f/f_c)^2]^{-1/2}$ for four deployment scenarios: cemented borehole ($f_c \to \infty$) and frozen coupling ($f_c \approx 3000$ Hz) are transparent across the seismic band; burial 0.3 m ($f_c \approx 300$ Hz) is reliable below 1 kHz; surface-laid cable ($f_c \approx 30$ Hz) attenuates significantly above 100 Hz.*
 
 ---
@@ -632,7 +632,7 @@ $$
 
 Set $\Delta\varphi \geq 180°$ (i.e. $L \geq \pi R$) so that single-channel patterns are nearly omnidirectional. The extreme case — gauge wrapping the full ring ($L = 2\pi R$) — measures the rate of change of ring circumference, i.e. the areal strain enclosed by the ring: the working principle of a **ring strain gauge**.
 
-![Curved-cable DAS: curvature and gauge length](../assets/images/das_ring_curvature.png)
+![Curved-cable DAS: curvature and gauge length](assets/images/das_ring_curvature.png)
 *Figure 5: (Left) P-wave directional response for several gauge arc angles — straight cable (blue) shows the standard cos²θ two-lobe pattern; lobes broaden with increasing arc angle; the half-circle case (red dash-dot) is nearly isotropic. (Right) Directional modulation depth $m = \mathrm{sinc}(\Delta\varphi)$ vs arc angle: the green zone ($\Delta\varphi < 45°$, i.e. $L < 0.79R$) preserves strong directionality ($m > 0.9$); $m$ vanishes exactly at the half circle and the response is perfectly isotropic for the full circle.*
 
 ### Effect of Curvature on the Gauge (Notch) Filter

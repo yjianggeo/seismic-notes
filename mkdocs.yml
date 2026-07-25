@@ -1,11 +1,12 @@
 site_name: Seismic Notes
-site_description: 地震学与 DAS 学习笔记
+site_description: 从震源到光纤，系统梳理地震学、DAS 与波场分析
 site_author: Jiang Yi
-site_url: https://yjianggeo.github.io/source-spectrum-site/
+site_url: https://yjianggeo.github.io/seismic-notes/
 
 theme:
   name: material
   language: zh
+  custom_dir: docs/overrides
 
   features:
 
@@ -17,6 +18,7 @@ theme:
     - navigation.top
     - navigation.tracking
     - navigation.indexes
+    - navigation.footer
 
     # 搜索
     - search.highlight
@@ -40,8 +42,8 @@ theme:
     # 浅色
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
 
       toggle:
         icon: material/brightness-7
@@ -50,8 +52,8 @@ theme:
     # 深色
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: custom
+      accent: custom
 
       toggle:
         icon: material/brightness-4
@@ -62,8 +64,8 @@ theme:
     edit: material/pencil
     view: material/eye
 
-repo_url: https://github.com/yjianggeo/source-spectrum-site
-repo_name: yjianggeo/source-spectrum-site
+repo_url: https://github.com/yjianggeo/seismic-notes
+repo_name: yjianggeo/seismic-notes
 edit_uri: edit/main/docs/
 
 markdown_extensions:
@@ -150,6 +152,19 @@ extra:
 
   generator: false
 
+  analytics:
+    feedback:
+      title: 这页笔记对你有帮助吗？
+      ratings:
+        - icon: material/thumb-up-outline
+          name: 有帮助
+          data: 1
+          note: 谢谢你的反馈
+        - icon: material/thumb-down-outline
+          name: 还可以更好
+          data: 0
+          note: 欢迎通过 GitHub 提出建议
+
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/yjianggeo
@@ -170,6 +185,9 @@ extra_javascript:
 
   # 中英文切换
   - assets/javascripts/lang-toggle.js
+
+  # 首页动效与阅读进度
+  - assets/javascripts/home.js
 
 not_in_nav: |
   brune-en.md

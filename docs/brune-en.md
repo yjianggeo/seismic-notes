@@ -115,7 +115,7 @@ $$
 
 The figure below shows the time histories of moment rate and moment function for $f_c = 5\,\text{Hz}$:
 
-![Brune Source Time Function](../assets/images/brune_source_time.png)
+![Brune Source Time Function](assets/images/brune_source_time.png)
 
 ### Fourier Transform of the Moment Rate Function
 
@@ -442,7 +442,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Brune source spectrum](../assets/images/brune_spectrum.png)
+![Brune source spectrum](assets/images/brune_spectrum.png)
 
 ### Comparing Multiple Corner Frequencies
 
@@ -471,7 +471,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Brune spectra — multiple corner frequencies](../assets/images/brune_multi_fc.png)
+![Brune spectra — multiple corner frequencies](assets/images/brune_multi_fc.png)
 
 ### Computing Source Parameters from Spectral Measurements
 

@@ -116,7 +116,7 @@ $$
 
 下图展示了 $f_c = 5\,\text{Hz}$ 时，矩率函数与矩函数的时程：
 
-![Brune 震源时间函数](../assets/images/brune_source_time.png)
+![Brune 震源时间函数](assets/images/brune_source_time.png)
 
 ### 矩率函数的傅里叶变换
 
@@ -444,7 +444,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![Brune 震源谱](../assets/images/brune_spectrum.png)
+![Brune 震源谱](assets/images/brune_spectrum.png)
 
 ### 多个拐角频率对比
 
@@ -473,7 +473,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-![不同拐角频率的 Brune 谱](../assets/images/brune_multi_fc.png)
+![不同拐角频率的 Brune 谱](assets/images/brune_multi_fc.png)
 
 ### 从谱参数计算震源参数
 

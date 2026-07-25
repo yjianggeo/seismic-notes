@@ -285,7 +285,7 @@ plt.show()
 R²         = 0.9806
 ```
 
-![谱比法示例图](../assets/images/q_spectral_ratio.png)
+![谱比法示例图](assets/images/q_spectral_ratio.png)
 *图 1：左图为不同 Q 值下衰减量（dB）随频率的变化，Q 越小衰减越剧烈；右图为含噪声的对数谱比数据（蓝色散点）、理论曲线（黑虚线）与线性拟合结果（红线）。*
 
 ---

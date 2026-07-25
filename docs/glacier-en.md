@@ -29,7 +29,7 @@ Key challenges in modern glacioseismology:
 | Subglacial hydraulic tremor | 1–20 | Continuous | min–hours | Subglacial channel water flow |
 | Subglacial-lake drainage | 0.01–1 | Mw 2–4 | Hours | Sudden outburst flood |
 
-![Glaciological seismic signal types](../assets/images/glacier_signals.png)
+![Glaciological seismic signal types](assets/images/glacier_signals.png)
 *Figure 1: Synthetic waveforms of four typical glaciological seismic signals. From top: high-frequency impulsive surface crevasse; low-frequency emergent basal stick-slip; long-period calving/collapse; continuous narrowband subglacial hydraulic tremor. The wide variation in frequency content and duration demands broadband instruments and multi-window processing.*
 
 ---
@@ -194,7 +194,7 @@ DAS measures the phase shift of Rayleigh backscatter continuously along the fibr
 - Highly sensitive to basal signals (bed friction, subglacial meltwater)
 - Typical applications: ice-thickness determination, basal sliding monitoring, englacial velocity profiles
 
-![DAS glacier deployment and example records](../assets/images/glacier_das.png)
+![DAS glacier deployment and example records](assets/images/glacier_das.png)
 *Figure 2: (Left) Glacier DAS deployment schematic — orange: surface cable (A); red dashed: borehole cable (B); yellow box: DAS interrogator unit. Crevasse and subglacial water features are labelled. (Middle) Surface DAS icequake record showing fast P-wave and slower Rayleigh surface wave. (Right) Borehole DAS VSP-style record with clear downgoing P and bed reflection at opposite apparent velocities.*
 
 ### Englacial Structure Imaging

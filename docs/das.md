@@ -153,7 +153,7 @@ $$
 
 以 $\theta$ 为极角，$|\varepsilon_{xx}|$ 为极径，P 波响应（$\cos^2\theta$）和 SV 波响应（$|\sin 2\theta|/2$）的极坐标图见图 1。
 
-![DAS 方向性响应](../assets/images/das_angle_response.png)
+![DAS 方向性响应](assets/images/das_angle_response.png)
 *图 1：DAS 对 P 波（蓝）和 SV 波（橙）的方向性响应极坐标图。阴影区域面积代表相对响应强度。光纤方向为水平轴。*
 
 ---
@@ -268,7 +268,7 @@ $$
 
 角度效应：入射角 $\theta$ 越大（波越接近垂直于光纤），$k_x$ 越小，陷波频率越高，高频信息保留越好，但振幅响应（$\cos^2\theta$ 因子）也越弱。
 
-![标距效应](../assets/images/das_gauge_length.png)
+![标距效应](assets/images/das_gauge_length.png)
 *图 2：不同标距下 DAS 的传递函数（$|H(f)|$）随频率的变化（$\theta = 0°$，$c$ = 3000 m/s）。标距越大，陷波频率越低。*
 
 ### 最优标距：信噪比与分辨率的权衡
@@ -336,7 +336,7 @@ $$
 !!! warning "标距下限的物理约束"
     当 $L$ 减小到接近激光脉冲宽度时（通常 $L < 8$ m），相位与应变的关系变为非线性，DAS 系统的基本假设失效。因此，尽管理论上更小的 $L$ 给出更好的分辨率，实际中 $L_\mathrm{min} \approx 8$ m 是硬性下限。
 
-![最优标距分析](../assets/images/das_gauge_opt.png)
+![最优标距分析](assets/images/das_gauge_opt.png)
 *图 3：左图——归一化 $\Delta L$（SNR 代理）随 $GL/\lambda_s$ 的变化，绿色区域为 SNR > 90% 最大值的区间，红色阴影区为波形畸变区；右图——不同 $GL/\lambda_s$ 比值下 DAS 输出的归一化子波形状（$f_p$ = 40 Hz，$v$ = 1000 m/s，$\lambda_s \approx 19.5$ m）。（基于 Dean et al. 2016）*
 
 ---
@@ -532,7 +532,7 @@ $G_s$ 为土体剪切模量（软土 5–50 MPa，硬土 50–500 MPa），$D_\i
 !!! warning "裸铺光缆用于 DAS 的局限"
     海底通信光缆通常**裸铺**于海床（铺设船直接放缆），其耦合效率受到双重限制：内部松套管结构（$\eta_\text{fiber} \approx 0$）与表面摩擦耦合（$f_c \sim 50$ Hz）叠加，实际可用频带通常 < 20 Hz，且信号振幅远低于标准地震仪。尽管如此，借助超长光缆（数千公里）与超低频信号（地震面波），海缆 DAS 依然在全球地震监测中取得了重要成果（Marra et al. 2018）。
 
-![光缆耦合截面与传递函数](../assets/images/das_coupling.png)
+![光缆耦合截面与传递函数](assets/images/das_coupling.png)
 *图 4：（左）松套管与紧套管光缆截面对比——松套管中光纤自由漂浮于油膏中（$\eta_\text{fiber} \approx 0$），紧套管中聚合物缓冲层直接键合于光纤（$\eta_\text{fiber} \approx 0.8$–$1.0$）。（右）四种部署场景的介质–光缆耦合传递函数 $C_\text{med}(f) = [1+(f/f_c)^2]^{-1/2}$：灌浆固化井孔（$f_c \to \infty$，绿色实线）和冻结耦合（$f_c \approx 3000$ Hz）在地震频段完全透明；埋深 0.3 m（$f_c \approx 300$ Hz，橙色虚线）在 1 kHz 以下可靠；裸铺地面（$f_c \approx 30$ Hz，红色点线）在 100 Hz 以上已严重衰减。*
 
 ---
@@ -661,7 +661,7 @@ $$
 
 令 $\Delta\varphi \geq 180°$（即 $L \geq \pi R$），单通道方向图接近全向。极端情形是**标距绕环整圈**（$L = 2\pi R$），该通道测量的是环的周长变化率，对环内的体应变（面应变）敏感——这正是**环形应变计**（ring strain gauge）的工作原理。
 
-![环形光缆曲率与标距](../assets/images/das_ring_curvature.png)
+![环形光缆曲率与标距](assets/images/das_ring_curvature.png)
 *图 5：（左）不同标距弧角 $\Delta\varphi$ 下的 P 波方向响应极坐标图——直缆（蓝）为标准 cos²θ 双瓣；弧角增大时瓣形逐渐展宽；半圆（红色点划线）已接近各向同性。（右）方向调制深度 $m = \mathrm{sinc}(\Delta\varphi)$ 随弧角的变化：绿色区域（$\Delta\varphi < 45°$，即 $L < 0.79R$）保持 $m > 0.9$ 的强方向性；半圆处 $m$ 精确为零（接近各向同性）；整圆处完全各向同性。*
 
 ### 弯曲对标距滤波（陷波）的影响

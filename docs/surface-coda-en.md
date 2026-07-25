@@ -259,7 +259,7 @@ where the kernel $K_\beta(z)$ is a quadratic combination of the eigenfunctions a
     2. **Inversion**: sensitivity kernels (Fréchet derivatives) are built from eigenfunctions and dictate which depth each frequency constrains;
     3. **Observation**: vertical borehole DAS directly samples $\mathrm{d}r_z/\mathrm{d}z$ (see the [borehole DAS section](#borehole-das-surface-wave-depth-attenuation) below), and the surface H/V ellipticity corresponds to $|r_x/r_z|_{z=0}$.
 
-![Surface wave eigenfunctions](../assets/images/sw_eigenfunctions.png)
+![Surface wave eigenfunctions](assets/images/sw_eigenfunctions.png)
 *Figure 4: Left — Rayleigh-wave displacement eigenfunctions in a Poisson half-space. Blue solid: vertical component $r_z(z)$, slightly amplified ($\approx 1.05$) at $z \approx 0.08\lambda$ before decaying monotonically; red dashed: horizontal component $r_x(z)$ (scaled to true relative amplitude, surface $|r_x/r_z| \approx 0.68$), changing sign at $z \approx 0.19\lambda$ — retrograde particle motion above, prograde below. Right — Love-wave eigenfunctions at 12 Hz for a low-velocity layer ($\beta_1 = 200$ m/s, $H = 20$ m) over a half-space ($\beta_2 = 400$ m/s): the fundamental mode (blue) has no node in the layer and concentrates near the surface; the first higher mode (red) has one node and penetrates deeper. Grey dashed line: layer base.*
 
 ---
@@ -353,7 +353,7 @@ Combining the surface-measured $V_R$ with the borehole-measured decay slope $b$ 
     - **Gauge-length correction**: when $\eta_\beta kL > 0.1$, multiply the measured slope by the correction factor $\mathrm{sinc}^{-1}(\eta_\beta kL/2)$;
     - **Layered media**: repeat for each frequency — the inferred $V_S$ corresponds to an effective depth $\approx \lambda/4$, assembling a $V_S(z)$ profile.
 
-![Borehole DAS surface-wave depth eigenfunction](../assets/images/das_borehole_sw.png)
+![Borehole DAS surface-wave depth eigenfunction](assets/images/das_borehole_sw.png)
 *Figure 3: Left — Rayleigh-wave depth eigenfunctions for a Poisson solid. Blue solid: vertical displacement $r_z(z)$, slightly amplified at $kz \approx 0.48$ ($z \approx 0.08\lambda$) before decaying monotonically; red dashed: DAS axial strain $|\varepsilon_{zz}|$, with a node at $kz \approx 0.48$; orange and green horizontal dotted lines mark the P- and S-wave 1/e characteristic depths (vertical axis: normalised depth $kz$). Right — Log-amplitude versus $kz$. In the green zone ($kz > 3$) the curve asymptotes to a straight line with slope $-\eta_\beta$; fitting that slope and combining with a known $V_R(f)$ directly yields $V_S$.*
 
 ### Dispersion Curve Inversion
@@ -366,7 +366,7 @@ $$
 
 where $\mathbf{m}$ contains the layer $V_S$ values and thicknesses, $\mathbf{c}^\text{pred}$ is computed via the Thomson-Haskell matrix method, and the regularisation term constrains model smoothness.
 
-![Surface wave dispersion](../assets/images/sw_dispersion.png)
+![Surface wave dispersion](assets/images/sw_dispersion.png)
 *Figure 1: Left — Rayleigh wave dispersion for a two-layer model (soft over hard). Blue: phase velocity $c(f)$; red: group velocity $U(f)$. Low frequencies penetrate deeply (high velocity); high frequencies are confined to the shallow soft layer. Right — Depth sensitivity kernels for four frequencies; the peak depth scales as $\approx\lambda/3$.*
 
 ---
@@ -453,7 +453,7 @@ Then $\delta v/v = -\hat\alpha$. The stretching method is more robust at low SNR
 !!! tip "Later Windows → Higher Sensitivity"
     The measurement uncertainty scales as $\sigma_{\delta v/v} \approx T/(2\pi f \bar{t}\,\text{CC})$. Using **later coda windows** (larger $\bar{t}$) directly reduces uncertainty, but requires sufficient SNR. Noise correlation methods can circumvent this trade-off by stacking many windows.
 
-![Coda wave interferometry](../assets/images/coda_cwi.png)
+![Coda wave interferometry](assets/images/coda_cwi.png)
 *Figure 2: Left — reference coda (blue) and perturbed coda with +1% velocity increase (red); orange band marks the CWI analysis window; green dashed lines show the theoretical envelope $\propto e^{-\pi f_0 t/Q_c}$. Right — coda cross-correlation function; the peak lag $\delta t$ gives $\delta v/v \approx +1.1\%$ (true value: +1.0%).*
 
 ---
