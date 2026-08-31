@@ -23,6 +23,9 @@ $$
 
 where $t_0 = 2h/v$ is the zero-offset two-way time. The travel-time curve is a **hyperbola** symmetric about the $t$ axis.
 
+![Reflection geometry and image-source method](assets/images/geom_ray_geom.png)
+*Figure 1: Reflection geometry and the image-source method. Left — horizontal interface: shot $S$, geophone $G$, the reflection point directly beneath the midpoint, and the image source $S^{*}$ mirrored across the interface (the reflected ray is equivalent to a straight line from $S^{*}$ to $G$); right — dipping interface: the reflection point shifts updip of the midpoint, and the image source is the mirror of the shot across the dipping interface.*
+
 **Normal Moveout (NMO)** is the difference between the travel time at offset $x$ and at zero offset:
 
 $$
@@ -42,12 +45,15 @@ $$
 
 The hyperbola's **minimum shifts away from the shot**, and the shift's direction and magnitude carry dip information (travel times are smaller in the downdip direction). This is why a single-sided spread cannot distinguish "dipping interface" from "velocity variation".
 
+![Travel-time curves](assets/images/geom_traveltime.png)
+*Figure 2: Travel-time curves. Left — hyperbolas over a horizontal interface for two values of $t_0$; the red dashed line is the direct wave $t=|x|/v$, the asymptote of the hyperbola, and the orange arrow marks the normal moveout $\Delta t_\text{NMO}$; right — asymmetric curve for a dipping interface ($\varphi = 12°$, solid) versus the symmetric horizontal case (dashed), with the minimum shifted updip to $x_\text{min}=-2h\sin\varphi$.*
+
 ### NMO correction
 
 NMO correction shifts each offset's reflection time $t(x)$ back to its zero-offset time $t_0$, **flattening** the event so that traces can be stacked in phase:
 
 ![CMP gather before/after NMO](assets/images/geom_nmo.png)
-*Figure 1: NMO correction of a synthetic CMP gather. Left — before correction, three reflection events follow hyperbolas (red dashes: theoretical curves); right — after correction with the correct $v_\text{rms}$, events are flattened to their $t_0$ and ready to stack.*
+*Figure 3: NMO correction of a synthetic CMP gather. Left — before correction, three reflection events follow hyperbolas (red dashes: theoretical curves); right — after correction with the correct $v_\text{rms}$, events are flattened to their $t_0$ and ready to stack.*
 
 !!! warning "NMO stretch"
     NMO is a nonlinear compression/stretching of the time axis: shallow, far-offset wavelets are stretched noticeably (lowered in frequency). Such data are usually **muted** above a stretch threshold, otherwise they contaminate the high-frequency shallow part of the stack.
@@ -111,7 +117,7 @@ where $t_n$ is the zero-offset two-way time of the $n$-th interface. The Dix for
     The Dix formula is highly error-sensitive: $v_n$ depends on the difference of two large numbers ($v_{\text{rms},n}^2 t_n$ and $v_{\text{rms},n-1}^2 t_{n-1}$), and the small denominator $t_n - t_{n-1}$ amplifies errors for thin layers. The thinner the layer and the noisier the picks, the less reliable the estimate.
 
 ![Velocity definitions](assets/images/geom_velocity.png)
-*Figure 2: Left — interval velocities of a five-layer horizontal model; right — the corresponding average (green) and RMS (red) velocities versus two-way time, with stacking-velocity picks from semblance analysis (orange dots). Note $v_\text{stack} \approx v_\text{rms} \geq v_\text{avg}$, and how the low-velocity layer (layer 4, 2400 m/s) pulls the average velocity down.*
+*Figure 4: Left — interval velocities of a five-layer horizontal model; right — the corresponding average (green) and RMS (red) velocities versus two-way time, with stacking-velocity picks from semblance analysis (orange dots). Note $v_\text{stack} \approx v_\text{rms} \geq v_\text{avg}$, and how the low-velocity layer (layer 4, 2400 m/s) pulls the average velocity down.*
 
 ### Velocity cheat sheet
 
@@ -131,7 +137,7 @@ where $t_n$ is the zero-offset two-way time of the $n$-th interface. The Dix for
 A seismic survey records a dense grid of traces indexed by (shot, receiver). A **gather** groups traces sharing one attribute of that geometry. The same field data can be resorted into different gathers, each serving its own purpose:
 
 ![Gather sorting](assets/images/geom_gathers.png)
-*Figure 3: Gather selection on the shot-receiver grid. Each point is one recorded trace; highlighted traces form common-shot (vertical line), common-receiver (horizontal line), common-midpoint (anti-diagonal, constant $s+g$) and common-offset (diagonal, constant $g-s$) gathers.*
+*Figure 5: Gather selection on the shot-receiver grid. Each point is one recorded trace; highlighted traces form common-shot (vertical line), common-receiver (horizontal line), common-midpoint (anti-diagonal, constant $s+g$) and common-offset (diagonal, constant $g-s$) gathers.*
 
 | Gather | Shared attribute | Event shape (flat layers) | Main use |
 |--------|-----------------|---------------------------|----------|
