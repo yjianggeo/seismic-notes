@@ -197,9 +197,13 @@ not_in_nav: |
   surface-coda-en.md
   fk-radon-en.md
   glacier-en.md
+  geom-seismic-en.md
 
 nav:
   - 首页: index.md
+
+  - 几何地震学:
+      - 时距曲线、速度与道集: geom-seismic.md
 
   - 震源理论:
       - Brune模型: brune.md

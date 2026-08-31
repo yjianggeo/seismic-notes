@@ -13,6 +13,7 @@
 
 | 主题 | 中文 | English |
 | --- | --- | --- |
+| 几何地震学 · 时距曲线、速度与道集 | [geom-seismic.md](docs/geom-seismic.md) | [geom-seismic-en.md](docs/geom-seismic-en.md) |
 | 震源理论 · Brune 震源模型 | [brune.md](docs/brune.md) | [brune-en.md](docs/brune-en.md) |
 | 地震波衰减 · 谱比法 Q 值反演 | [q-spectral-ratio.md](docs/q-spectral-ratio.md) | [q-spectral-ratio-en.md](docs/q-spectral-ratio-en.md) |
 | 垂直地震剖面 · VSP 原理与应用 | [vsp.md](docs/vsp.md) | [vsp-en.md](docs/vsp-en.md) |
