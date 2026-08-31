@@ -12,9 +12,13 @@
         <meta name="author" content="Jiang Yi">
       
       
-        <link rel="canonical" href="https://yjianggeo.github.io/seismic-notes/fk-radon-en/">
+        <link rel="canonical" href="https://yjianggeo.github.io/seismic-notes/geom-seismic/">
       
       
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../brune/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +26,7 @@
     
     
       
-        <title>F-K Analysis and Radon Transform - Seismic Notes</title>
+        <title>时距曲线、速度与道集 - Seismic Notes</title>
       
     
     
@@ -62,13 +66,13 @@
   
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Seismic Notes">
-  <meta property="og:title" content="F-K Analysis and Radon Transform · Seismic Notes">
+  <meta property="og:title" content="时距曲线、速度与道集 · Seismic Notes">
   <meta property="og:description" content="从震源到光纤，系统梳理地震学、DAS 与波场分析">
   <meta property="og:image" content="https://yjianggeo.github.io/seismic-notes/assets/images/og-seismic-notes.png">
   <meta property="og:image:width" content="1731">
   <meta property="og:image:height" content="909">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="F-K Analysis and Radon Transform · Seismic Notes">
+  <meta name="twitter:title" content="时距曲线、速度与道集 · Seismic Notes">
   <meta name="twitter:description" content="从震源到光纤，系统梳理地震学、DAS 与波场分析">
   <meta name="twitter:image" content="https://yjianggeo.github.io/seismic-notes/assets/images/og-seismic-notes.png">
   <meta name="theme-color" content="#246f68">
@@ -92,7 +96,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#f-k-analysis-and-radon-transform" class="md-skip">
+        <a href="#_1" class="md-skip">
           跳转至
         </a>
       
@@ -128,7 +132,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              F-K Analysis and Radon Transform
+              时距曲线、速度与道集
             
           </span>
         </div>
@@ -257,11 +261,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../geom-seismic/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
           
   
   
@@ -506,8 +512,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -517,21 +525,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -544,7 +553,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             几何地震学
@@ -555,10 +564,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../geom-seismic/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    时距曲线、速度与道集
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -569,6 +600,206 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      引言
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      反射波时距曲线
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="反射波时距曲线">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      水平界面：双曲线时距方程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      倾斜界面：时距曲线不对称
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      折射波（首波）时距曲线
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nmo" class="md-nav__link">
+    <span class="md-ellipsis">
+      动校正（NMO 校正）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      地震勘探中的各种速度
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="地震勘探中的各种速度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#average-velocity" class="md-nav__link">
+    <span class="md-ellipsis">
+      平均速度（Average Velocity）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rms-velocity" class="md-nav__link">
+    <span class="md-ellipsis">
+      均方根速度（RMS Velocity）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stacking-velocity" class="md-nav__link">
+    <span class="md-ellipsis">
+      叠加速度（Stacking Velocity）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dix" class="md-nav__link">
+    <span class="md-ellipsis">
+      层速度与 Dix 公式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      速度概念速查表
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      观测系统与道集
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="观测系统与道集">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      多次覆盖与道集分类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      共中心点道集：核心中的核心
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      从道集到叠加剖面：处理流程骨架
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      小结
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考文献
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1161,64 +1392,55 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      Introduction
+      引言
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#f-k-analysis" class="md-nav__link">
+  <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
-      F-K Analysis
+      反射波时距曲线
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="F-K Analysis">
+    <nav class="md-nav" aria-label="反射波时距曲线">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-2d-fourier-transform" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      The 2D Fourier Transform
+      水平界面：双曲线时距方程
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fan-filter" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      Fan Filter
+      倾斜界面：时距曲线不对称
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#spatial-aliasing" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
-      Spatial Aliasing
+      折射波（首波）时距曲线
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#high-resolution-f-k-capon-adaptive-beamforming" class="md-nav__link">
+  <a href="#nmo" class="md-nav__link">
     <span class="md-ellipsis">
-      High-Resolution F-K: Capon Adaptive Beamforming
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#music-algorithm" class="md-nav__link">
-    <span class="md-ellipsis">
-      MUSIC Algorithm
+      动校正（NMO 校正）
     </span>
   </a>
   
@@ -1230,46 +1452,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#radon-transform-slant-stack" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     <span class="md-ellipsis">
-      Radon Transform (Slant Stack)
+      地震勘探中的各种速度
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Radon Transform (Slant Stack)">
+    <nav class="md-nav" aria-label="地震勘探中的各种速度">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#linear-radon-p-transform" class="md-nav__link">
+  <a href="#average-velocity" class="md-nav__link">
     <span class="md-ellipsis">
-      Linear Radon (τ-p Transform)
+      平均速度（Average Velocity）
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#discrete-implementation-phase-shift-summation" class="md-nav__link">
+  <a href="#rms-velocity" class="md-nav__link">
     <span class="md-ellipsis">
-      Discrete Implementation: Phase-Shift Summation
+      均方根速度（RMS Velocity）
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#parabolic-radon" class="md-nav__link">
+  <a href="#stacking-velocity" class="md-nav__link">
     <span class="md-ellipsis">
-      Parabolic Radon
+      叠加速度（Stacking Velocity）
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-l2-smearing-problem" class="md-nav__link">
+  <a href="#dix" class="md-nav__link">
     <span class="md-ellipsis">
-      The L2 Smearing Problem
+      层速度与 Dix 公式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      速度概念速查表
     </span>
   </a>
   
@@ -1281,46 +1512,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sparse-high-resolution-radon-current-research" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
-      Sparse / High-Resolution Radon (Current Research)
+      观测系统与道集
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Sparse / High-Resolution Radon (Current Research)">
+    <nav class="md-nav" aria-label="观测系统与道集">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#l1-regularisation-sparse-radon" class="md-nav__link">
+  <a href="#_10" class="md-nav__link">
     <span class="md-ellipsis">
-      L1 Regularisation (Sparse Radon)
+      多次覆盖与道集分类
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#iteratively-reweighted-least-squares-irls" class="md-nav__link">
+  <a href="#_11" class="md-nav__link">
     <span class="md-ellipsis">
-      Iteratively Reweighted Least Squares (IRLS)
+      共中心点道集：核心中的核心
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sacchi-ulrych-high-resolution-radon" class="md-nav__link">
+  <a href="#_12" class="md-nav__link">
     <span class="md-ellipsis">
-      Sacchi-Ulrych High-Resolution Radon
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#compressive-sensing-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compressive Sensing Radon
+      从道集到叠加剖面：处理流程骨架
     </span>
   </a>
   
@@ -1332,60 +1554,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-requirements-and-guidelines" class="md-nav__link">
+  <a href="#_13" class="md-nav__link">
     <span class="md-ellipsis">
-      Practical Requirements and Guidelines
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Practical Requirements and Guidelines">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#f-k-filtering" class="md-nav__link">
-    <span class="md-ellipsis">
-      F-K Filtering
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linear-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Linear Radon
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#high-resolution-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      High-Resolution Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary-comparison" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary Comparison
+      小结
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
+  <a href="#_14" class="md-nav__link">
     <span class="md-ellipsis">
-      References
+      参考文献
     </span>
   </a>
   
@@ -1407,7 +1587,7 @@
 
 
   
-    <a href="https://github.com/yjianggeo/seismic-notes/edit/main/docs/fk-radon-en.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/yjianggeo/seismic-notes/edit/main/docs/geom-seismic.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
@@ -1416,390 +1596,246 @@
     
       
     
-    <a href="https://github.com/yjianggeo/seismic-notes/raw/main/docs/fk-radon-en.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/yjianggeo/seismic-notes/raw/main/docs/geom-seismic.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
     </a>
   
 
 
-<h1 id="f-k-analysis-and-radon-transform">F-K Analysis and Radon Transform<a class="headerlink" href="#f-k-analysis-and-radon-transform" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p><strong>Transform-domain methods</strong> in seismic data processing map data from the time-space (<span class="arithmatex">\(t\)</span>-<span class="arithmatex">\(x\)</span>) domain into a new domain where different wavefields, or signal and noise, become separable. An overview of the most commonly used transforms:</p>
-<table>
-<thead>
-<tr>
-<th>Transform</th>
-<th>Input → Output</th>
-<th>Separates</th>
-<th>Typical use</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>F-K (2D FFT)</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(D(k,f)\)</span></td>
-<td>Frequency + wavenumber (apparent velocity)</td>
-<td>Dip noise removal, wavefield separation</td>
-</tr>
-<tr>
-<td>Linear Radon (τ-p, slant stack)</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(m(\tau,p)\)</span></td>
-<td>Intercept time + slowness</td>
-<td>Multiple attenuation, surface-wave extraction</td>
-</tr>
-<tr>
-<td>Parabolic Radon</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(m(\tau,q)\)</span></td>
-<td>Intercept time + curvature</td>
-<td>Accurate multiple attenuation</td>
-</tr>
-<tr>
-<td>Beamforming</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(P(f,k)\)</span></td>
-<td>Azimuth + slowness</td>
-<td>Array steering, source location</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Apparent velocity</strong> is the unifying concept across all these transforms:</p>
-<div class="arithmatex">\[
-v_\text{app} = \left.\frac{\partial t}{\partial x}\right|^{-1} = \frac{f}{k} = \frac{1}{p}
-\]</div>
-<p>where <span class="arithmatex">\(p = k/f\)</span> is the <strong>slowness</strong> (units: s/m or s/km).</p>
+<h1 id="_1">几何地震学：时距曲线、速度与道集<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">引言<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><strong>几何地震学</strong>（geometrical seismology）研究地震波传播的<strong>运动学</strong>特征——旅行时、射线路径与观测几何，而不涉及振幅、相位等动力学信息。它是反射地震勘探的基石：从野外采集的原始记录到地下构造图像，每一步（动校正、速度分析、叠加、偏移）都建立在几何地震学的时距关系之上。</p>
+<p>两个核心问题贯穿始终：</p>
+<ol>
+<li><strong>波走了多久？</strong> —— 时距曲线（travel-time curve）描述旅行时随炮检距的变化；</li>
+<li><strong>怎么排列数据？</strong> —— 道集（gather）定义了多道记录的组织方式，决定了后续处理能提取什么信息。</li>
+</ol>
 <hr />
-<h2 id="f-k-analysis">F-K Analysis<a class="headerlink" href="#f-k-analysis" title="Permanent link">&para;</a></h2>
-<h3 id="the-2d-fourier-transform">The 2D Fourier Transform<a class="headerlink" href="#the-2d-fourier-transform" title="Permanent link">&para;</a></h3>
-<p>The 2D discrete Fourier transform of a multi-channel record <span class="arithmatex">\(d(x_i, t)\)</span> yields the <strong>frequency-wavenumber spectrum</strong>:</p>
+<h2 id="_3">反射波时距曲线<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">水平界面：双曲线时距方程<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>对于速度为 <span class="arithmatex">\(v\)</span> 的均匀介质中深度为 <span class="arithmatex">\(h\)</span> 的水平反射界面，炮点-检波点间距（<strong>炮检距</strong>，offset）为 <span class="arithmatex">\(x\)</span> 时，反射波旅行时满足：</p>
 <div class="arithmatex">\[
-D(k, f) = \sum_{i=1}^{N_x}\sum_{j=1}^{N_t} d(x_i, t_j)\, e^{-i 2\pi (k x_i + f t_j)}
+t^2(x) = t_0^2 + \frac{x^2}{v^2}
 \]</div>
+<p>其中 <span class="arithmatex">\(t_0 = 2h/v\)</span> 为零炮检距（自激自收）双程旅行时。时距曲线是一条以 <span class="arithmatex">\(t\)</span> 轴为对称轴的<strong>双曲线</strong>。</p>
+<p><img alt="反射几何与虚震源法" src="../assets/images/geom_ray_geom.png" />
+<em>图 1：反射几何与虚震源法。左——水平界面：炮点 <span class="arithmatex">\(S\)</span>、检波点 <span class="arithmatex">\(G\)</span>、反射点位于中点正下方，虚震源 <span class="arithmatex">\(S^*\)</span> 位于界面镜像处，反射射线路径等效于从 <span class="arithmatex">\(S^*\)</span> 到 <span class="arithmatex">\(G\)</span> 的直线；右——倾斜界面：反射点相对炮检中点向上倾方向偏移，虚震源为炮点关于倾斜界面的镜像。</em></p>
+<p><strong>正常时差</strong>（Normal Moveout, NMO）定义为某炮检距处旅行时与零炮检距旅行时之差：</p>
+<div class="arithmatex">\[
+\Delta t_\text{NMO} = t(x) - t_0 = \sqrt{t_0^2 + \frac{x^2}{v^2}} - t_0 \approx \frac{x^2}{2 v^2 t_0}
+\qquad (x \ll h)
+\]</div>
+<p>正常时差随炮检距<strong>平方增长</strong>、随深度（<span class="arithmatex">\(t_0\)</span>）<strong>衰减</strong>——深部反射的双曲线更"平"。</p>
+<h3 id="_5">倾斜界面：时距曲线不对称<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>当界面以倾角 <span class="arithmatex">\(\varphi\)</span> 倾斜时，时距曲线变为：</p>
+<div class="arithmatex">\[
+t^2(x) = \frac{4h^2 + x^2 + 4 h x \sin\varphi}{v^2}
+\]</div>
+<p>双曲线的<strong>极小点偏离炮点</strong>，偏移方向和大小携带了界面倾角信息（下倾方向旅行时更小）。这也是单边放炮观测无法区分"界面倾斜"与"速度变化"的原因。</p>
+<p><img alt="时距曲线" src="../assets/images/geom_traveltime.png" />
+<em>图 2：时距曲线。左——水平界面的双曲线族（两个 <span class="arithmatex">\(t_0\)</span>），红色虚线为直达波 <span class="arithmatex">\(t=|x|/v\)</span>，即双曲线的渐近线，橙色箭头指示正常时差 <span class="arithmatex">\(\Delta t_\text{NMO}\)</span>；右——倾斜界面（<span class="arithmatex">\(\varphi = 12°\)</span>）的不对称时距曲线（实线）与水平界面对称曲线（虚线）对比，极小点向上倾方向偏移至 <span class="arithmatex">\(x_\text{min}=-2h\sin\varphi\)</span>。</em></p>
+<h3 id="_6">折射波（首波）时距曲线<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>当下伏介质速度大于上覆介质（<span class="arithmatex">\(v_2 &gt; v_1\)</span>）时，存在<strong>临界角</strong>：</p>
+<div class="arithmatex">\[
+\sin i_c = \frac{v_1}{v_2}
+\]</div>
+<p>以临界角入射的射线进入下层后<strong>沿界面以 <span class="arithmatex">\(v_2\)</span> 滑行</strong>，再沿临界角折返地面，形成<strong>折射波</strong>（首波，head wave）。其时距曲线是一条<strong>直线</strong>：</p>
+<div class="arithmatex">\[
+t(x) = \frac{x}{v_2} + t_i, \qquad
+t_i = \frac{2h\cos i_c}{v_1}
+\]</div>
+<p>其中 <span class="arithmatex">\(t_i\)</span> 为<strong>截距时间</strong>（折射线延长线与 <span class="arithmatex">\(t\)</span> 轴的交点）。两个关键距离：</p>
 <ul>
-<li><span class="arithmatex">\(f\)</span> (Hz): temporal frequency — how fast the signal oscillates in time</li>
-<li><span class="arithmatex">\(k\)</span> (1/m): spatial wavenumber — how fast the signal oscillates across the array</li>
-<li>Apparent velocity: <span class="arithmatex">\(v_\text{app} = f/k\)</span>; apparent slowness: <span class="arithmatex">\(p = k/f\)</span></li>
+<li><strong>临界距离</strong> <span class="arithmatex">\(x_c = 2h\tan i_c\)</span>：<span class="arithmatex">\(x &lt; x_c\)</span> 为<strong>盲区</strong>，折射波尚未返回地面；</li>
+<li><strong>超越距离</strong>（crossover）<span class="arithmatex">\(x_{cr} = 2h\sqrt{\dfrac{v_2+v_1}{v_2-v_1}}\)</span>：<span class="arithmatex">\(x &gt; x_{cr}\)</span> 后，走高速路径的折射波反而<strong>最先到达</strong>，成为初至。</li>
 </ul>
-<p><strong>Key property</strong>: A plane wave propagating with apparent velocity <span class="arithmatex">\(v\)</span> along <span class="arithmatex">\(x\)</span>, i.e. <span class="arithmatex">\(d(x,t) = w(t - x/v)\)</span>, concentrates all its energy on the line <span class="arithmatex">\(k = f/v\)</span> in the F-K domain. Different wavefields — P-waves, S-waves, surface waves, noise — occupy distinct <strong>wedge-shaped bands</strong> in F-K space, enabling separation by a fan-shaped filter.</p>
-<h3 id="fan-filter">Fan Filter<a class="headerlink" href="#fan-filter" title="Permanent link">&para;</a></h3>
-<p>A fan (velocity) filter passes energy within an apparent velocity range <span class="arithmatex">\([v_\min, v_\max]\)</span>:</p>
+<p><img alt="折射波几何与时距曲线" src="../assets/images/geom_refraction.png" />
+<em>图 3：两层模型（<span class="arithmatex">\(v_1\)</span> = 2000 m/s，<span class="arithmatex">\(v_2\)</span> = 4000 m/s）中的折射波。左——射线几何：直达波（红）、反射波（橙）、以临界角 <span class="arithmatex">\(i_c\)</span> 入射并沿界面滑行的首波（紫），<span class="arithmatex">\(x &lt; x_c\)</span> 为首波盲区；右——时距图：直达波直线、反射双曲线与折射直线三支，折射支在超越距离 <span class="arithmatex">\(x_{cr}\)</span> 之后成为初至，截距时间 <span class="arithmatex">\(t_i\)</span> 可用于反演界面深度。</em></p>
+<p>由折射时距曲线可以直接反演近地表结构：斜率给出 <span class="arithmatex">\(v_1\)</span>、<span class="arithmatex">\(v_2\)</span>，截距时间给出界面深度：</p>
 <div class="arithmatex">\[
-H(f, k) = \begin{cases}
-1, &amp; |f/k| \geq v_\min \text{ and } |f/k| \leq v_\max \\
-0, &amp; \text{otherwise (slow/fast noise zone)}
-\end{cases}
+h = \frac{t_i \, v_1}{2\cos i_c}
 \]</div>
-<p>In practice, the passband boundaries must be <strong>tapered</strong> (cosine or Hanning taper) to suppress Gibbs-effect ringing in the <span class="arithmatex">\(t\)</span>-<span class="arithmatex">\(x\)</span> domain.</p>
 <div class="admonition note">
-<p class="admonition-title">F-K Filtering in VSP Wavefield Separation</p>
-<p>In VSP processing, downgoing waves (<span class="arithmatex">\(\partial t/\partial z &gt; 0\)</span>) and upgoing waves (<span class="arithmatex">\(\partial t/\partial z &lt; 0\)</span>) have opposite-sign apparent velocities. An F-K filter retaining only <span class="arithmatex">\(k &gt; 0\)</span> or <span class="arithmatex">\(k &lt; 0\)</span> separates them directly. See <a href="../vsp-en/">VSP Principles</a>.</p>
+<p class="admonition-title">折射方法的前提与用途</p>
+<p>折射波存在的必要条件是<strong>速度随深度增加</strong>（<span class="arithmatex">\(v_2 &gt; v_1\)</span>）；低速夹层（如低速含气层）对折射方法"隐身"。折射分析是<strong>初至拾取、近地表速度建模与静校正</strong>的基础——陆地资料的低降速带校正正是依赖初至折射信息。</p>
 </div>
-<h3 id="spatial-aliasing">Spatial Aliasing<a class="headerlink" href="#spatial-aliasing" title="Permanent link">&para;</a></h3>
-<p>When the channel spacing <span class="arithmatex">\(\Delta x\)</span> is too large, steeply dipping events alias in the wavenumber domain:</p>
-<div class="arithmatex">\[
-k_\text{Nyquist} = \frac{1}{2\Delta x}, \qquad
-f_\text{alias} = \frac{v_\text{app}}{2\Delta x}
-\]</div>
-<p>For surface waves (<span class="arithmatex">\(v_\text{app} = 500\)</span> m/s) and <span class="arithmatex">\(\Delta x = 25\)</span> m: <span class="arithmatex">\(f_\text{alias} = 10\)</span> Hz — surface waves alias above 10 Hz, contaminating the filter design. The spatial Nyquist condition is:</p>
-<div class="arithmatex">\[
-\boxed{\Delta x \leq \frac{v_\text{app,min}}{2 f_\text{max}}}
-\]</div>
-<p>DAS channel spacings (1–5 m) largely eliminate this problem, whereas conventional geophone arrays (25–50 m spacing) often violate it for slow coherent noise.</p>
-<h3 id="high-resolution-f-k-capon-adaptive-beamforming">High-Resolution F-K: Capon Adaptive Beamforming<a class="headerlink" href="#high-resolution-f-k-capon-adaptive-beamforming" title="Permanent link">&para;</a></h3>
-<p>Conventional F-K (delay-and-sum beamforming) applies equal weights <span class="arithmatex">\(1/N\)</span> to all channels, equivalent to a rectangular spatial window — leading to high <strong>sidelobes</strong> that contaminate the spectrum.</p>
-<p>Capon (1969) proposed the <strong>Minimum Variance Distortionless Response (MVDR)</strong>: maintain unit gain toward the look direction while minimising total output power, thereby maximally suppressing energy from all other directions.</p>
-<p>Using the <strong>spatial covariance matrix</strong> <span class="arithmatex">\(\hat{\mathbf{R}}(f)\)</span> estimated from multiple data segments, the Capon spectrum is:</p>
-<div class="arithmatex">\[
-\boxed{P_\text{Capon}(f, k) = \frac{1}{\mathbf{a}^H(k)\,\hat{\mathbf{R}}^{-1}(f)\,\mathbf{a}(k)}}
-\]</div>
-<p>where <span class="arithmatex">\(\mathbf{a}(k) = [1,\, e^{ik\Delta x},\, e^{i2k\Delta x},\, \ldots]^T\)</span> is the <strong>steering vector</strong> and <span class="arithmatex">\(\hat{\mathbf{R}}(f) = \frac{1}{N_\text{seg}}\sum_n \hat{\mathbf{d}}_n\hat{\mathbf{d}}_n^H\)</span> is estimated from <span class="arithmatex">\(N_\text{seg}\)</span> independent snapshots. The sidelobe level is typically 10–20 dB lower than conventional beamforming.</p>
+<h3 id="nmo">动校正（NMO 校正）<a class="headerlink" href="#nmo" title="Permanent link">&para;</a></h3>
+<p>动校正的目的是把每个炮检距处的反射时间 <span class="arithmatex">\(t(x)\)</span> 拉回零炮检距时间 <span class="arithmatex">\(t_0\)</span>，使同一反射界面的同相轴<strong>校平</strong>，从而可以同相叠加：</p>
+<p><img alt="NMO 校正前后对比" src="../assets/images/geom_nmo.png" />
+<em>图 4：合成 CMP 道集的 NMO 校正。左——校正前，三条反射同相轴呈双曲线（红色虚线为理论时距曲线）；右——用正确的 <span class="arithmatex">\(v_\text{rms}\)</span> 动校正后，同相轴被拉平到各自的 <span class="arithmatex">\(t_0\)</span>，可以同相叠加。</em></p>
 <div class="admonition warning">
-<p class="admonition-title">Practical Requirements for Capon MVDR</p>
-<p><span class="arithmatex">\(\hat{\mathbf{R}}\)</span> must be well-conditioned: requires <span class="arithmatex">\(N_\text{seg} \gg N_x\)</span> independent snapshots. When this condition is not met, use <strong>diagonal loading</strong>: <span class="arithmatex">\(\hat{\mathbf{R}}_\epsilon = \hat{\mathbf{R}} + \epsilon\mathbf{I}\)</span> with <span class="arithmatex">\(\epsilon \approx 1\)</span>–<span class="arithmatex">\(5\%\)</span> of the largest eigenvalue.</p>
+<p class="admonition-title">动校正拉伸（NMO stretch）</p>
+<p>动校正是时间轴的非线性压缩/拉伸：浅层、大炮检距处波形被明显拉长（频率降低），通常按拉伸百分比对这部分数据做<strong>切除（mute）</strong>，否则会污染叠加结果的浅层高频成分。</p>
 </div>
-<h3 id="music-algorithm">MUSIC Algorithm<a class="headerlink" href="#music-algorithm" title="Permanent link">&para;</a></h3>
-<p><strong>Multiple Signal Classification (MUSIC)</strong> decomposes the covariance matrix into signal and noise subspaces:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{R}} = \mathbf{E}_s \boldsymbol{\Lambda}_s \mathbf{E}_s^H + \sigma_n^2 \mathbf{E}_n \mathbf{E}_n^H
-\]</div>
-<p>The MUSIC spectrum:</p>
-<div class="arithmatex">\[
-P_\text{MUSIC}(k) = \frac{1}{\|\mathbf{E}_n^H\,\mathbf{a}(k)\|^2}
-\]</div>
-<p>diverges when the steering vector is orthogonal to the noise subspace, giving theoretically unlimited resolution (SNR-limited in practice). The cost is the need to know the source count <span class="arithmatex">\(d\)</span> (number of eigenvectors to assign to the signal subspace).</p>
-<p><img alt="F-K analysis and fan filtering" src="../assets/images/fk_analysis.png" />
-<em>Figure 1: (top-left) Original CMP gather with surface-wave noise; (top-right) F-K spectrum (log amplitude) — white line at 2000 m/s marks P-waves, cyan at 350 m/s marks surface waves; (bottom-left) fan filter mask (white = pass, <span class="arithmatex">\(v_\text{app} &gt; 700\)</span> m/s); (bottom-right) filtered gather with surface-wave energy removed.</em></p>
 <hr />
-<h2 id="radon-transform-slant-stack">Radon Transform (Slant Stack)<a class="headerlink" href="#radon-transform-slant-stack" title="Permanent link">&para;</a></h2>
-<h3 id="linear-radon-p-transform">Linear Radon (τ-p Transform)<a class="headerlink" href="#linear-radon-p-transform" title="Permanent link">&para;</a></h3>
-<p>The linear Radon transform (also called the <strong>slant stack</strong> or <strong>τ-p transform</strong>) maps <span class="arithmatex">\(x\)</span>-<span class="arithmatex">\(t\)</span> data to intercept-time–slowness (τ-p) space:</p>
+<h2 id="_7">地震勘探中的各种速度<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>"速度"在地震资料处理中并不是唯一的概念。理解每种速度的<strong>定义、来源与用途</strong>，是正确使用它们的前提。</p>
+<h3 id="average-velocity">平均速度（Average Velocity）<a class="headerlink" href="#average-velocity" title="Permanent link">&para;</a></h3>
 <div class="arithmatex">\[
-m(\tau, p) = \int d(x,\, \tau + p\,x)\, \mathrm{d}x
+v_\text{avg} = \frac{z}{\displaystyle\sum_i \frac{h_i}{v_i}} = \frac{z}{t_\text{单程}}
 \]</div>
-<p><strong>Physical meaning</strong>: integrate <span class="arithmatex">\(d(x,t)\)</span> along a straight line with slope <span class="arithmatex">\(p\)</span> (= apparent slowness). A linear moveout event with apparent velocity <span class="arithmatex">\(v = 1/p\)</span> collapses to a single point at <span class="arithmatex">\((τ, p)\)</span> in the Radon domain.</p>
-<p><strong>Inverse transform</strong>:</p>
+<p>即总深度除以单程垂直旅行时。它回答"<strong>波垂直走这一段平均多快</strong>"，是<strong>时深转换</strong>的标准工具（VSP、声波测井标定的就是这个速度）。</p>
+<h3 id="rms-velocity">均方根速度（RMS Velocity）<a class="headerlink" href="#rms-velocity" title="Permanent link">&para;</a></h3>
 <div class="arithmatex">\[
-d(x, t) = \int m(\tau,\, p)\big|_{\tau = t - px}\, \mathrm{d}p
+v_\text{rms}^2 = \frac{\displaystyle\sum_i v_i^2 \, \Delta t_i}{\displaystyle\sum_i \Delta t_i}
 \]</div>
-<h3 id="discrete-implementation-phase-shift-summation">Discrete Implementation: Phase-Shift Summation<a class="headerlink" href="#discrete-implementation-phase-shift-summation" title="Permanent link">&para;</a></h3>
-<p>Efficient frequency-domain implementation: for each frequency <span class="arithmatex">\(f\)</span>,</p>
+<p>其中 <span class="arithmatex">\(\Delta t_i\)</span> 为第 <span class="arithmatex">\(i\)</span> 层的单程垂直旅行时。均方根速度是<strong>时间加权</strong>的均方根，高速层权重更大，因此：</p>
 <div class="arithmatex">\[
-M(p, f) = \sum_{i=1}^{N_x} D(x_i, f)\, e^{-i 2\pi f\, p\, x_i}
+v_\text{rms} \geq v_\text{avg}
 \]</div>
-<p>This is a phase rotation for each slowness <span class="arithmatex">\(p\)</span>, with total cost <span class="arithmatex">\(O(N_p \cdot N_x \cdot N_f)\)</span> — much faster than time-domain interpolation.</p>
-<h3 id="parabolic-radon">Parabolic Radon<a class="headerlink" href="#parabolic-radon" title="Permanent link">&para;</a></h3>
-<p>Real reflection moveout is hyperbolic; the <strong>parabolic approximation</strong> is more accurate after NMO:</p>
+<p>等号仅在均匀介质中成立。<strong>物理意义</strong>：在小炮检距近似下，水平层状介质的反射时距曲线仍是双曲线，只要把均匀介质速度换成 <span class="arithmatex">\(v_\text{rms}\)</span>——这正是 Dix（1955）经典结果。</p>
+<h3 id="stacking-velocity">叠加速度（Stacking Velocity）<a class="headerlink" href="#stacking-velocity" title="Permanent link">&para;</a></h3>
+<p><strong>叠加速度 <span class="arithmatex">\(v_\text{stack}\)</span> 是从数据里"拟合"出来的</strong>：对 CMP 道集用一系列候选速度做动校正并叠加（或计算相似性度量 semblance），使叠加能量最大的那个速度就是叠加速度。由双曲线拟合的定义：</p>
 <div class="arithmatex">\[
-m(\tau, q) = \int d(x,\, \tau + q\,x^2)\, \mathrm{d}x
+t^2(x) = t_0^2 + \frac{x^2}{v_\text{stack}^2}
 \]</div>
-<p>where <span class="arithmatex">\(q\)</span> (s/m²) is the curvature parameter. After NMO correction, primary reflections map near <span class="arithmatex">\(q = 0\)</span>, while multiples with residual moveout map to finite <span class="arithmatex">\(q\)</span> — enabling <strong>multiple attenuation by muting</strong> in the Radon domain.</p>
-<table>
-<thead>
-<tr>
-<th>Radon type</th>
-<th>Integration path</th>
-<th>Focuses</th>
-<th>Primary application</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Linear (τ-p)</td>
-<td><span class="arithmatex">\(t = \tau + px\)</span></td>
-<td>Linear events</td>
-<td>Surface-wave extraction, plane-wave decomposition</td>
-</tr>
-<tr>
-<td>Parabolic</td>
-<td><span class="arithmatex">\(t = \tau + qx^2\)</span></td>
-<td>Post-NMO hyperbolic events</td>
-<td>Multiple attenuation (OBC, towed streamer)</td>
-</tr>
-<tr>
-<td>Hyperbolic</td>
-<td><span class="arithmatex">\(t = \sqrt{\tau^2 + x^2/v^2}\)</span></td>
-<td>Raw hyperbolic events</td>
-<td>Precise velocity analysis</td>
-</tr>
-</tbody>
-</table>
-<h3 id="the-l2-smearing-problem">The L2 Smearing Problem<a class="headerlink" href="#the-l2-smearing-problem" title="Permanent link">&para;</a></h3>
-<p>In discrete form: <span class="arithmatex">\(\mathbf{d} = \mathbf{L}\mathbf{m}\)</span>. The <strong>minimum-norm L2 solution</strong>:</p>
+<p>三者关系：</p>
 <div class="arithmatex">\[
-\hat{\mathbf{m}}_{L2} = (\mathbf{L}^H\mathbf{L} + \varepsilon^2\mathbf{I})^{-1}\mathbf{L}^H\mathbf{d}
+v_\text{stack} \;\approx\; v_\text{rms} \;\geq\; v_\text{avg}
 \]</div>
-<p>Because <span class="arithmatex">\(\mathbf{L}^H\mathbf{L}\)</span> is not the identity (the operator is non-orthogonal for finite arrays), the L2 solution <strong>smears</strong> energy across neighbouring slownesses, degrading the contrast between primaries and multiples and reducing the effectiveness of subsequent muting.</p>
-<hr />
-<h2 id="sparse-high-resolution-radon-current-research">Sparse / High-Resolution Radon (Current Research)<a class="headerlink" href="#sparse-high-resolution-radon-current-research" title="Permanent link">&para;</a></h2>
-<h3 id="l1-regularisation-sparse-radon">L1 Regularisation (Sparse Radon)<a class="headerlink" href="#l1-regularisation-sparse-radon" title="Permanent link">&para;</a></h3>
-<p>Replacing the L2 penalty with an L1 term forces most Radon coefficients to zero, consistent with the sparse nature of seismic reflectivity:</p>
-<div class="arithmatex">\[
-\boxed{\hat{\mathbf{m}} = \arg\min_{\mathbf{m}} \left\{\|\mathbf{d} - \mathbf{L}\mathbf{m}\|_2^2 + \lambda\|\mathbf{m}\|_1\right\}}
-\]</div>
-<p>Common solvers: ADMM (Alternating Direction Method of Multipliers), ISTA/FISTA (iterative soft thresholding).</p>
-<h3 id="iteratively-reweighted-least-squares-irls">Iteratively Reweighted Least Squares (IRLS)<a class="headerlink" href="#iteratively-reweighted-least-squares-irls" title="Permanent link">&para;</a></h3>
-<p>IRLS solves a series of weighted L2 problems, updating the weight matrix from the previous solution's amplitude:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{m}}^{(k+1)} = \left(\mathbf{L}^H\mathbf{L} + \varepsilon\,[\mathbf{Q}^{(k)}]^{-1}\right)^{-1} \mathbf{L}^H\mathbf{d}
-\]</div>
-<div class="arithmatex">\[
-Q^{(k)}_{ii} = \left|m_i^{(k)}\right| + \delta, \quad \delta \ll 1
-\]</div>
-<p>Even 1–3 iterations produce dramatically sharper Radon panels compared with the L2 solution, at only a modest computational overhead.</p>
-<h3 id="sacchi-ulrych-high-resolution-radon">Sacchi-Ulrych High-Resolution Radon<a class="headerlink" href="#sacchi-ulrych-high-resolution-radon" title="Permanent link">&para;</a></h3>
-<p>Sacchi &amp; Ulrych (1995) perform frequency-by-frequency estimation in the frequency domain using <strong>adaptive weighting</strong> derived from the estimated model power spectrum:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{M}}(\omega) = \left(\mathbf{L}^H\mathbf{L} + \mu\,\mathbf{Q}^{-1}(\omega)\right)^{-1} \mathbf{L}^H\mathbf{D}(\omega), \quad \mathbf{Q}(\omega) = \mathrm{diag}(|\hat{M}_j(\omega)|^2)
-\]</div>
-<p>This <strong>frequency-adaptive regularisation</strong> applies strong constraint only where the model power is low (noise-dominated frequencies), achieving consistent focusing across the full bandwidth.</p>
-<h3 id="compressive-sensing-radon">Compressive Sensing Radon<a class="headerlink" href="#compressive-sensing-radon" title="Permanent link">&para;</a></h3>
-<p>When receiver spacing is non-uniform or traces are missing, the conventional regular-grid Radon assumption breaks down. The compressive sensing formulation directly recovers a sparse Radon panel from irregular observations:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{m}} = \arg\min_{\mathbf{m}} \|\mathbf{m}\|_1 \quad \text{s.t.} \quad \|\mathbf{d} - \mathbf{L}_\text{irr}\mathbf{m}\|_2 \leq \sigma
-\]</div>
-<p>where <span class="arithmatex">\(\mathbf{L}_\text{irr}\)</span> is the irregular-sampling Radon operator. No interpolation pre-processing is required.</p>
-<p><img alt="Radon transform comparison" src="../assets/images/radon_transform.png" />
-<em>Figure 2: (left) CMP gather with hyperbolic moveout events; (centre) conventional L2 Radon — events smear widely in slowness; (right) sparse/IRLS Radon — events focus into sharp stripes in the τ-p domain.</em></p>
-<hr />
-<h2 id="practical-requirements-and-guidelines">Practical Requirements and Guidelines<a class="headerlink" href="#practical-requirements-and-guidelines" title="Permanent link">&para;</a></h2>
-<h3 id="f-k-filtering">F-K Filtering<a class="headerlink" href="#f-k-filtering" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Issue</th>
-<th>Explanation</th>
-<th>Mitigation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Uniform channel spacing</td>
-<td>Non-uniform spacing distorts the F-K spectrum</td>
-<td>Interpolate to a regular grid, or use NUFFT</td>
-</tr>
-<tr>
-<td>Edge effects</td>
-<td>Finite aperture produces sidelobes</td>
-<td>Apply spatial/temporal tapers (Hanning, Tukey)</td>
-</tr>
-<tr>
-<td>Filter boundary</td>
-<td>Rectangular cut creates ringing</td>
-<td>Cosine-taper the boundary (≥ 5% of band width)</td>
-</tr>
-<tr>
-<td>Signal leakage</td>
-<td>Overly narrow passband clips useful signal</td>
-<td>Widen passband to acceptable residual noise level</td>
-</tr>
-<tr>
-<td>3D data</td>
-<td>2D F-K misses cross-line dips</td>
-<td>Extend to 3D F-K (<span class="arithmatex">\(k_x\)</span>, <span class="arithmatex">\(k_y\)</span>, <span class="arithmatex">\(f\)</span>)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="linear-radon">Linear Radon<a class="headerlink" href="#linear-radon" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Issue</th>
-<th>Explanation</th>
-<th>Mitigation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Slowness range</td>
-<td>Too narrow → energy overflow</td>
-<td>Cover all target apparent velocities including surface waves</td>
-</tr>
-<tr>
-<td>Slowness sampling</td>
-<td>Large <span class="arithmatex">\(\Delta p\)</span> → poor slowness resolution</td>
-<td><span class="arithmatex">\(\Delta p \leq 1/(N_x \cdot x_\max \cdot f_\max)\)</span></td>
-</tr>
-<tr>
-<td>NMO residual</td>
-<td>Linear Radon cannot focus hyperbolic events exactly</td>
-<td>Use parabolic Radon, or apply NMO before linear Radon</td>
-</tr>
-<tr>
-<td>Regularisation <span class="arithmatex">\(\varepsilon\)</span></td>
-<td>Too large → smearing; too small → instability</td>
-<td>L-curve or cross-validation for automatic selection</td>
-</tr>
-<tr>
-<td>Computational cost</td>
-<td>Time-domain: <span class="arithmatex">\(O(N_p N_x N_t)\)</span></td>
-<td>Frequency-domain: <span class="arithmatex">\(O(N_p N_x N_f)\)</span> per iteration</td>
-</tr>
-</tbody>
-</table>
-<h3 id="high-resolution-methods">High-Resolution Methods<a class="headerlink" href="#high-resolution-methods" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Key parameter</th>
-<th>Recommended range</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Capon MVDR</td>
-<td>Diagonal loading <span class="arithmatex">\(\epsilon\)</span></td>
-<td><span class="arithmatex">\(1\)</span>–<span class="arithmatex">\(5\%\)</span> of largest eigenvalue</td>
-</tr>
-<tr>
-<td>Capon MVDR</td>
-<td>Number of snapshots <span class="arithmatex">\(N_\text{seg}\)</span></td>
-<td><span class="arithmatex">\(N_\text{seg} &gt; 2 N_x\)</span> (otherwise singular)</td>
-</tr>
-<tr>
-<td>IRLS Radon</td>
-<td>Number of iterations</td>
-<td>3–10; more iterations risk over-sparsity and amplitude distortion</td>
-</tr>
-<tr>
-<td>IRLS Radon</td>
-<td>Stabilisation factor <span class="arithmatex">\(\delta\)</span></td>
-<td><span class="arithmatex">\(1\)</span>–<span class="arithmatex">\(5\%\)</span> of maximum amplitude</td>
-</tr>
-<tr>
-<td>Sparse Radon (ADMM)</td>
-<td>Regularisation <span class="arithmatex">\(\lambda\)</span></td>
-<td><span class="arithmatex">\(\lambda = \sigma_n\sqrt{2\ln N}\)</span> (BIC estimate)</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="summary-comparison">Summary Comparison<a class="headerlink" href="#summary-comparison" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Separation criterion</th>
-<th>Resolution</th>
-<th>Cost</th>
-<th>Current research</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>F-K fan filter</td>
-<td>Apparent velocity (linear)</td>
-<td>Aperture-limited</td>
-<td>Low (FFT)</td>
-<td>Adaptive weights, DAS non-uniform sampling</td>
-</tr>
-<tr>
-<td>Capon MVDR</td>
-<td>Apparent velocity (adaptive)</td>
-<td>High (SNR-limited)</td>
-<td>Medium (matrix inversion)</td>
-<td>Diagonal loading optimisation, recursive update</td>
-</tr>
-<tr>
-<td>MUSIC</td>
-<td>Apparent velocity (subspace)</td>
-<td>Super-resolution</td>
-<td>High (eigendecomposition)</td>
-<td>Source-count estimation, non-stationary covariance</td>
-</tr>
-<tr>
-<td>Linear Radon (L2)</td>
-<td>Apparent velocity (linear)</td>
-<td>Low (smeared)</td>
-<td>Medium</td>
-<td>Baseline reference; largely superseded</td>
-</tr>
-<tr>
-<td>High-res Radon (IRLS)</td>
-<td>Apparent velocity (linear)</td>
-<td>High</td>
-<td>Medium-high</td>
-<td>Compressive sensing, irregular sampling</td>
-</tr>
-<tr>
-<td>Parabolic Radon (L1)</td>
-<td>Curvature + velocity</td>
-<td>High</td>
-<td>High</td>
-<td>Deep-water multiple suppression</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Capon, J. (1969). High-resolution frequency-wavenumber spectrum analysis. <em>Proceedings of the IEEE</em>, 57(8), 1408–1418.</li>
-<li>Schmidt, R. O. (1986). Multiple emitter location and signal parameter estimation. <em>IEEE Transactions on Antennas and Propagation</em>, 34(3), 276–280.</li>
-<li>Hampson, D. (1986). Inverse velocity stacking for multiple elimination. <em>SEG Technical Program Expanded Abstracts</em>, 422–424.</li>
-<li>Sacchi, M. D., &amp; Ulrych, T. J. (1995). High-resolution velocity gathers and offset space reconstruction. <em>Geophysics</em>, 60(4), 1169–1177.</li>
-<li>Trad, D., Ulrych, T., &amp; Sacchi, M. (2003). Latest views of the sparse Radon transform. <em>Geophysics</em>, 68(1), 386–399.</li>
-<li>Herrmann, F. J., &amp; Hennenfent, G. (2008). Non-parametric seismic data recovery with curvelet frames. <em>Geophysical Journal International</em>, 173(1), 233–248.</li>
-<li>Naghizadeh, M., &amp; Sacchi, M. D. (2010). Beyond alias hierarchical scale curvelet interpolation of regularly and irregularly sampled seismic data. <em>Geophysics</em>, 75(6), WB189–WB202.</li>
+<li>水平层状、小炮检距：<span class="arithmatex">\(v_\text{stack} \approx v_\text{rms}\)</span>，这是连接"处理"与"地质"的桥梁；</li>
+<li>界面倾斜或速度横向变化时，<span class="arithmatex">\(v_\text{stack}\)</span> 会系统性偏离 <span class="arithmatex">\(v_\text{rms}\)</span>（倾斜界面 <span class="arithmatex">\(v_\text{stack} = v/\cos\varphi\)</span>），此时直接 Dix 反演会出错。</li>
 </ul>
+<h3 id="dix">层速度与 Dix 公式<a class="headerlink" href="#dix" title="Permanent link">&para;</a></h3>
+<p>由相邻两个界面的均方根速度反推第 <span class="arithmatex">\(n\)</span> 层的<strong>层速度</strong>（interval velocity）：</p>
+<div class="arithmatex">\[
+\boxed{\,v_n^2 = \frac{v_{\text{rms},n}^2 \, t_n - v_{\text{rms},n-1}^2 \, t_{n-1}}{t_n - t_{n-1}}\,}
+\]</div>
+<p>其中 <span class="arithmatex">\(t_n\)</span> 为第 <span class="arithmatex">\(n\)</span> 个界面的零炮检距双程旅行时。Dix 公式是<strong>速度谱 → 层速度 → 岩性解释</strong>（如识别高速盐层、低速气藏）的关键一步。</p>
+<div class="admonition note">
+<p class="admonition-title">Dix 反演的脆弱性</p>
+<p>Dix 公式对小误差非常敏感：<span class="arithmatex">\(v_n\)</span> 依赖于两个大数之差（<span class="arithmatex">\(v_{\text{rms},n}^2 t_n\)</span> 与 <span class="arithmatex">\(v_{\text{rms},n-1}^2 t_{n-1}\)</span>），薄层（<span class="arithmatex">\(t_n - t_{n-1}\)</span> 小）时分母放大误差。层越薄、拾取噪声越大，层速度估计越不可靠。</p>
+</div>
+<p><img alt="速度定义对比" src="../assets/images/geom_velocity.png" />
+<em>图 5：左——五层水平层状模型的层速度；右——对应的平均速度（绿）与均方根速度（红）随双程旅行时的变化，橙色圆点为速度谱拾取的叠加速度。可见 <span class="arithmatex">\(v_\text{stack} \approx v_\text{rms} \geq v_\text{avg}\)</span>，且低速夹层（第 4 层 2400 m/s）处平均速度被明显拉低。</em></p>
+<h3 id="_8">速度概念速查表<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>速度</th>
+<th>定义来源</th>
+<th>回答的问题</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>层速度 <span class="arithmatex">\(v_i\)</span></td>
+<td>介质本身</td>
+<td>这一层传播多快？</td>
+<td>岩性解释、储层预测</td>
+</tr>
+<tr>
+<td>平均速度 <span class="arithmatex">\(v_\text{avg}\)</span></td>
+<td>深度 ÷ 垂直时间</td>
+<td>垂直走这段平均多快？</td>
+<td>时深转换</td>
+</tr>
+<tr>
+<td>均方根速度 <span class="arithmatex">\(v_\text{rms}\)</span></td>
+<td>层速度的时间加权均方根</td>
+<td>小炮检距双曲线的等效速度？</td>
+<td>理论分析、Dix 反演输入</td>
+</tr>
+<tr>
+<td>叠加速度 <span class="arithmatex">\(v_\text{stack}\)</span></td>
+<td>数据双曲线拟合</td>
+<td>什么速度让道集校得最平？</td>
+<td>动校正、叠加</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_9">观测系统与道集<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="_10">多次覆盖与道集分类<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<p>数字地震仪记录的是"炮 × 检波点"二维网格上的大量单道记录。<strong>道集</strong>（gather）就是按某种共同属性把道分组的切片方式。同一份野外数据可以重排成不同道集，各司其职：</p>
+<p><img alt="道集分类示意" src="../assets/images/geom_gathers.png" />
+<em>图 6：炮点-检波点网格上的道集选取。每个点代表一道记录；高亮道分别构成共炮点（竖线）、共接收点（横线）、共中心点（反对角线，<span class="arithmatex">\(s + g\)</span> 恒定）与共偏移距（正对角线，<span class="arithmatex">\(g - s\)</span> 恒定）道集。</em></p>
+<table>
+<thead>
+<tr>
+<th>道集</th>
+<th>共同属性</th>
+<th>同相轴形态（水平层）</th>
+<th>主要用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>共炮点道集（CSG / shot gather）</td>
+<td>同一炮</td>
+<td>双曲线</td>
+<td>野外质量监控、初至拾取、折射分析</td>
+</tr>
+<tr>
+<td>共接收点道集（CRG）</td>
+<td>同一检波点</td>
+<td>双曲线</td>
+<td>检波点一致性、静校正、接收函数</td>
+</tr>
+<tr>
+<td>共中心点道集（CMP / CDP gather）</td>
+<td>同一炮检中点</td>
+<td>双曲线</td>
+<td><strong>速度分析、动校正与叠加的主战场</strong></td>
+</tr>
+<tr>
+<td>共偏移距道集（COG）</td>
+<td>同一炮检距</td>
+<td>近似水平</td>
+<td>偏移前处理、AVO、规则化（regularization）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">共中心点道集：核心中的核心<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>CMP 道集把<strong>中点相同</strong>的各道放在一起。对水平界面，中点相同意味着<strong>反射点相同</strong>（此时 CMP = CRP，共反射点），道集中每一道都是对地下同一点的重复采样——这正是"多次覆盖"思想的精髓：</p>
+<ol>
+<li><strong>动校正</strong>消除炮检距引起的时差，把同相轴校平；</li>
+<li><strong>叠加</strong>把 <span class="arithmatex">\(N\)</span> 道同相相加，随机噪声按 <span class="arithmatex">\(\sqrt{N}\)</span> 衰减，反射信号增强 <span class="arithmatex">\(N\)</span> 倍，信噪比提升 <span class="arithmatex">\(\sqrt{N}\)</span> 倍；</li>
+<li><strong>速度分析</strong>沿时间滑动做速度扫描（semblance 谱），逐 <span class="arithmatex">\(t_0\)</span> 拾取 <span class="arithmatex">\(v_\text{stack}\)</span>。</li>
+</ol>
+<p><strong>覆盖次数</strong>（fold）：每个 CMP 包含的道数。对单边放炮排列：</p>
+<div class="arithmatex">\[
+F = \frac{N \, \Delta g}{2 \, \Delta s}
+\]</div>
+<p>其中 <span class="arithmatex">\(N\)</span> 为接收道数、<span class="arithmatex">\(\Delta g\)</span> 为道间距、<span class="arithmatex">\(\Delta s\)</span> 为炮点距。典型陆地勘探覆盖 30–120 次；覆盖次数越高，叠加压制噪声和多次波的能力越强，但成本也越高。</p>
+<div class="admonition note">
+<p class="admonition-title">水平界面的幸运巧合</p>
+<p>CMP 方法的有效性建立在"中点相同 ≈ 反射点相同"之上。界面倾斜时反射点会沿下倾方向发散（reflection point dispersal），复杂构造区 CMP 道集实际混合了不同反射点的信息——这正是需要<strong>叠前偏移</strong>（prestack migration）而不是简单叠加的根本原因。</p>
+</div>
+<h3 id="_12">从道集到叠加剖面：处理流程骨架<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1">野外记录 (shot gathers)
+</span><span id="__span-0-2">      │  重排（sort）
+</span><span id="__span-0-3">      ▼
+</span><span id="__span-0-4">CMP 道集 ──► 速度分析（semblance 扫描拾取 v_stack）
+</span><span id="__span-0-5">      │           │
+</span><span id="__span-0-6">      ▼           ▼
+</span><span id="__span-0-7">   动校正 ◄── 叠加速度场
+</span><span id="__span-0-8">      │
+</span><span id="__span-0-9">      ▼
+</span><span id="__span-0-10">    叠加 ──► 叠加剖面（自激自收近似）
+</span><span id="__span-0-11">      │
+</span><span id="__span-0-12">      ▼
+</span><span id="__span-0-13">    偏移 ──► 构造成像
+</span></code></pre></div>
+<hr />
+<h2 id="_13">小结<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>水平界面反射时距曲线是双曲线 <span class="arithmatex">\(t^2 = t_0^2 + x^2/v^2\)</span>，正常时差随炮检距平方增长；</li>
+<li>折射波要求 <span class="arithmatex">\(v_2 &gt; v_1\)</span>，时距曲线为直线 <span class="arithmatex">\(t = x/v_2 + t_i\)</span>，超越距离后成为初至，由斜率和截距可反演近地表速度结构与界面深度；</li>
+<li><span class="arithmatex">\(v_\text{avg}\)</span> 用于时深转换，<span class="arithmatex">\(v_\text{rms}\)</span> 是小炮检距双曲线的等效速度，<span class="arithmatex">\(v_\text{stack}\)</span> 由数据拟合得到，三者满足 <span class="arithmatex">\(v_\text{stack} \approx v_\text{rms} \geq v_\text{avg}\)</span>；</li>
+<li>Dix 公式把均方根速度转换为层速度，但对薄层和拾取误差敏感；</li>
+<li>道集是按采集几何属性对道的重组：共炮点用于监控，<strong>共中心点道集</strong>是速度分析与叠加的核心；</li>
+<li>多次覆盖 + 动校正 + 叠加使信噪比按 <span class="arithmatex">\(\sqrt{N}\)</span> 提升，但构造复杂时必须让位于叠前偏移。</li>
+</ul>
+<h2 id="_14">参考文献<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Dix, C. H. (1955). Seismic velocities from surface measurements. <em>Geophysics</em>, 20(1), 68–86.</li>
+<li>Yilmaz, Ö. (2001). <em>Seismic Data Analysis: Processing, Inversion, and Interpretation of Seismic Data</em>. SEG.</li>
+<li>Sheriff, R. E., &amp; Geldart, L. P. (1995). <em>Exploration Seismology</em> (2<sup>nd</sup> ed.). Cambridge University Press.</li>
+</ol>
 
 
 
@@ -1884,6 +1920,44 @@ Q^{(k)}_{ii} = \left|m_i^{(k)}\right| + \delta, \quad \delta \ll 1
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="上一页: 首页">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                首页
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../brune/" class="md-footer__link md-footer__link--next" aria-label="下一页: Brune模型">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Brune模型
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

@@ -12,7 +12,7 @@
         <meta name="author" content="Jiang Yi">
       
       
-        <link rel="canonical" href="https://yjianggeo.github.io/seismic-notes/fk-radon-en/">
+        <link rel="canonical" href="https://yjianggeo.github.io/seismic-notes/geom-seismic-en/">
       
       
       
@@ -22,7 +22,7 @@
     
     
       
-        <title>F-K Analysis and Radon Transform - Seismic Notes</title>
+        <title>Geometrical Seismology: Travel-Time Curves, Velocities and Gathers - Seismic Notes</title>
       
     
     
@@ -62,13 +62,13 @@
   
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Seismic Notes">
-  <meta property="og:title" content="F-K Analysis and Radon Transform · Seismic Notes">
+  <meta property="og:title" content="Geometrical Seismology: Travel-Time Curves, Velocities and Gathers · Seismic Notes">
   <meta property="og:description" content="从震源到光纤，系统梳理地震学、DAS 与波场分析">
   <meta property="og:image" content="https://yjianggeo.github.io/seismic-notes/assets/images/og-seismic-notes.png">
   <meta property="og:image:width" content="1731">
   <meta property="og:image:height" content="909">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="F-K Analysis and Radon Transform · Seismic Notes">
+  <meta name="twitter:title" content="Geometrical Seismology: Travel-Time Curves, Velocities and Gathers · Seismic Notes">
   <meta name="twitter:description" content="从震源到光纤，系统梳理地震学、DAS 与波场分析">
   <meta name="twitter:image" content="https://yjianggeo.github.io/seismic-notes/assets/images/og-seismic-notes.png">
   <meta name="theme-color" content="#246f68">
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#f-k-analysis-and-radon-transform" class="md-skip">
+        <a href="#geometrical-seismology-travel-time-curves-velocities-and-gathers" class="md-skip">
           跳转至
         </a>
       
@@ -128,7 +128,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              F-K Analysis and Radon Transform
+              Geometrical Seismology: Travel-Time Curves, Velocities and Gathers
             
           </span>
         </div>
@@ -1170,55 +1170,46 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#f-k-analysis" class="md-nav__link">
+  <a href="#reflection-travel-time-curves" class="md-nav__link">
     <span class="md-ellipsis">
-      F-K Analysis
+      Reflection Travel-Time Curves
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="F-K Analysis">
+    <nav class="md-nav" aria-label="Reflection Travel-Time Curves">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-2d-fourier-transform" class="md-nav__link">
+  <a href="#horizontal-interface-the-hyperbolic-moveout-equation" class="md-nav__link">
     <span class="md-ellipsis">
-      The 2D Fourier Transform
+      Horizontal interface: the hyperbolic moveout equation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fan-filter" class="md-nav__link">
+  <a href="#dipping-interface-an-asymmetric-curve" class="md-nav__link">
     <span class="md-ellipsis">
-      Fan Filter
+      Dipping interface: an asymmetric curve
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#spatial-aliasing" class="md-nav__link">
+  <a href="#refraction-head-wave-travel-time-curve" class="md-nav__link">
     <span class="md-ellipsis">
-      Spatial Aliasing
+      Refraction (head-wave) travel-time curve
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#high-resolution-f-k-capon-adaptive-beamforming" class="md-nav__link">
+  <a href="#nmo-correction" class="md-nav__link">
     <span class="md-ellipsis">
-      High-Resolution F-K: Capon Adaptive Beamforming
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#music-algorithm" class="md-nav__link">
-    <span class="md-ellipsis">
-      MUSIC Algorithm
+      NMO correction
     </span>
   </a>
   
@@ -1230,46 +1221,55 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#radon-transform-slant-stack" class="md-nav__link">
+  <a href="#the-many-velocities-of-reflection-seismology" class="md-nav__link">
     <span class="md-ellipsis">
-      Radon Transform (Slant Stack)
+      The Many Velocities of Reflection Seismology
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Radon Transform (Slant Stack)">
+    <nav class="md-nav" aria-label="The Many Velocities of Reflection Seismology">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#linear-radon-p-transform" class="md-nav__link">
+  <a href="#average-velocity" class="md-nav__link">
     <span class="md-ellipsis">
-      Linear Radon (τ-p Transform)
+      Average velocity
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#discrete-implementation-phase-shift-summation" class="md-nav__link">
+  <a href="#rms-velocity" class="md-nav__link">
     <span class="md-ellipsis">
-      Discrete Implementation: Phase-Shift Summation
+      RMS velocity
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#parabolic-radon" class="md-nav__link">
+  <a href="#stacking-velocity" class="md-nav__link">
     <span class="md-ellipsis">
-      Parabolic Radon
+      Stacking velocity
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-l2-smearing-problem" class="md-nav__link">
+  <a href="#interval-velocity-and-the-dix-formula" class="md-nav__link">
     <span class="md-ellipsis">
-      The L2 Smearing Problem
+      Interval velocity and the Dix formula
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#velocity-cheat-sheet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Velocity cheat sheet
     </span>
   </a>
   
@@ -1281,46 +1281,37 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#sparse-high-resolution-radon-current-research" class="md-nav__link">
+  <a href="#acquisition-geometry-and-gathers" class="md-nav__link">
     <span class="md-ellipsis">
-      Sparse / High-Resolution Radon (Current Research)
+      Acquisition Geometry and Gathers
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Sparse / High-Resolution Radon (Current Research)">
+    <nav class="md-nav" aria-label="Acquisition Geometry and Gathers">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#l1-regularisation-sparse-radon" class="md-nav__link">
+  <a href="#multi-fold-coverage-and-gather-sorting" class="md-nav__link">
     <span class="md-ellipsis">
-      L1 Regularisation (Sparse Radon)
+      Multi-fold coverage and gather sorting
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#iteratively-reweighted-least-squares-irls" class="md-nav__link">
+  <a href="#the-cmp-gather-heart-of-the-method" class="md-nav__link">
     <span class="md-ellipsis">
-      Iteratively Reweighted Least Squares (IRLS)
+      The CMP gather: heart of the method
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#sacchi-ulrych-high-resolution-radon" class="md-nav__link">
+  <a href="#from-gathers-to-stacked-section-the-processing-skeleton" class="md-nav__link">
     <span class="md-ellipsis">
-      Sacchi-Ulrych High-Resolution Radon
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#compressive-sensing-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compressive Sensing Radon
+      From gathers to stacked section: the processing skeleton
     </span>
   </a>
   
@@ -1332,51 +1323,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-requirements-and-guidelines" class="md-nav__link">
+  <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      Practical Requirements and Guidelines
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Practical Requirements and Guidelines">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#f-k-filtering" class="md-nav__link">
-    <span class="md-ellipsis">
-      F-K Filtering
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linear-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Linear Radon
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#high-resolution-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      High-Resolution Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary-comparison" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary Comparison
+      Summary
     </span>
   </a>
   
@@ -1407,7 +1356,7 @@
 
 
   
-    <a href="https://github.com/yjianggeo/seismic-notes/edit/main/docs/fk-radon-en.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/yjianggeo/seismic-notes/edit/main/docs/geom-seismic-en.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
@@ -1416,390 +1365,246 @@
     
       
     
-    <a href="https://github.com/yjianggeo/seismic-notes/raw/main/docs/fk-radon-en.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/yjianggeo/seismic-notes/raw/main/docs/geom-seismic-en.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
     </a>
   
 
 
-<h1 id="f-k-analysis-and-radon-transform">F-K Analysis and Radon Transform<a class="headerlink" href="#f-k-analysis-and-radon-transform" title="Permanent link">&para;</a></h1>
+<h1 id="geometrical-seismology-travel-time-curves-velocities-and-gathers">Geometrical Seismology: Travel-Time Curves, Velocities and Gathers<a class="headerlink" href="#geometrical-seismology-travel-time-curves-velocities-and-gathers" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p><strong>Transform-domain methods</strong> in seismic data processing map data from the time-space (<span class="arithmatex">\(t\)</span>-<span class="arithmatex">\(x\)</span>) domain into a new domain where different wavefields, or signal and noise, become separable. An overview of the most commonly used transforms:</p>
+<p><strong>Geometrical seismology</strong> studies the <strong>kinematics</strong> of seismic wave propagation — travel times, ray paths and acquisition geometry — without reference to amplitude, phase or other dynamical information. It is the foundation of reflection seismology: every step from raw field records to a structural image (NMO, velocity analysis, stacking, migration) rests on geometrical travel-time relations.</p>
+<p>Two core questions run throughout:</p>
+<ol>
+<li><strong>How long did the wave travel?</strong> — the travel-time curve describes how travel time varies with offset;</li>
+<li><strong>How should the data be arranged?</strong> — the gather defines how multi-channel records are organized, and determines what information subsequent processing can extract.</li>
+</ol>
+<hr />
+<h2 id="reflection-travel-time-curves">Reflection Travel-Time Curves<a class="headerlink" href="#reflection-travel-time-curves" title="Permanent link">&para;</a></h2>
+<h3 id="horizontal-interface-the-hyperbolic-moveout-equation">Horizontal interface: the hyperbolic moveout equation<a class="headerlink" href="#horizontal-interface-the-hyperbolic-moveout-equation" title="Permanent link">&para;</a></h3>
+<p>For a horizontal reflector at depth <span class="arithmatex">\(h\)</span> in a homogeneous medium of velocity <span class="arithmatex">\(v\)</span>, with source-receiver <strong>offset</strong> <span class="arithmatex">\(x\)</span>, the reflection travel time satisfies:</p>
+<div class="arithmatex">\[
+t^2(x) = t_0^2 + \frac{x^2}{v^2}
+\]</div>
+<p>where <span class="arithmatex">\(t_0 = 2h/v\)</span> is the zero-offset two-way time. The travel-time curve is a <strong>hyperbola</strong> symmetric about the <span class="arithmatex">\(t\)</span> axis.</p>
+<p><img alt="Reflection geometry and image-source method" src="../assets/images/geom_ray_geom.png" />
+<em>Figure 1: Reflection geometry and the image-source method. Left — horizontal interface: shot <span class="arithmatex">\(S\)</span>, geophone <span class="arithmatex">\(G\)</span>, the reflection point directly beneath the midpoint, and the image source <span class="arithmatex">\(S^{*}\)</span> mirrored across the interface (the reflected ray is equivalent to a straight line from <span class="arithmatex">\(S^{*}\)</span> to <span class="arithmatex">\(G\)</span>); right — dipping interface: the reflection point shifts updip of the midpoint, and the image source is the mirror of the shot across the dipping interface.</em></p>
+<p><strong>Normal Moveout (NMO)</strong> is the difference between the travel time at offset <span class="arithmatex">\(x\)</span> and at zero offset:</p>
+<div class="arithmatex">\[
+\Delta t_\text{NMO} = t(x) - t_0 = \sqrt{t_0^2 + \frac{x^2}{v^2}} - t_0 \approx \frac{x^2}{2 v^2 t_0}
+\qquad (x \ll h)
+\]</div>
+<p>Moveout grows <strong>quadratically with offset</strong> and decays with depth (<span class="arithmatex">\(t_0\)</span>) — deeper reflections have flatter hyperbolas.</p>
+<h3 id="dipping-interface-an-asymmetric-curve">Dipping interface: an asymmetric curve<a class="headerlink" href="#dipping-interface-an-asymmetric-curve" title="Permanent link">&para;</a></h3>
+<p>When the interface dips at angle <span class="arithmatex">\(\varphi\)</span>:</p>
+<div class="arithmatex">\[
+t^2(x) = \frac{4h^2 + x^2 + 4 h x \sin\varphi}{v^2}
+\]</div>
+<p>The hyperbola's <strong>minimum shifts away from the shot</strong>, and the shift's direction and magnitude carry dip information (travel times are smaller in the downdip direction). This is why a single-sided spread cannot distinguish "dipping interface" from "velocity variation".</p>
+<p><img alt="Travel-time curves" src="../assets/images/geom_traveltime.png" />
+<em>Figure 2: Travel-time curves. Left — hyperbolas over a horizontal interface for two values of <span class="arithmatex">\(t_0\)</span>; the red dashed line is the direct wave <span class="arithmatex">\(t=|x|/v\)</span>, the asymptote of the hyperbola, and the orange arrow marks the normal moveout <span class="arithmatex">\(\Delta t_\text{NMO}\)</span>; right — asymmetric curve for a dipping interface (<span class="arithmatex">\(\varphi = 12°\)</span>, solid) versus the symmetric horizontal case (dashed), with the minimum shifted updip to <span class="arithmatex">\(x_\text{min}=-2h\sin\varphi\)</span>.</em></p>
+<h3 id="refraction-head-wave-travel-time-curve">Refraction (head-wave) travel-time curve<a class="headerlink" href="#refraction-head-wave-travel-time-curve" title="Permanent link">&para;</a></h3>
+<p>When the underlying layer is faster than the overburden (<span class="arithmatex">\(v_2 &gt; v_1\)</span>), a <strong>critical angle</strong> exists:</p>
+<div class="arithmatex">\[
+\sin i_c = \frac{v_1}{v_2}
+\]</div>
+<p>A ray incident at the critical angle enters the lower layer, <strong>travels along the interface at <span class="arithmatex">\(v_2\)</span></strong>, and returns to the surface along the same angle, forming the <strong>refraction</strong> (head wave). Its travel-time curve is a <strong>straight line</strong>:</p>
+<div class="arithmatex">\[
+t(x) = \frac{x}{v_2} + t_i, \qquad
+t_i = \frac{2h\cos i_c}{v_1}
+\]</div>
+<p>where <span class="arithmatex">\(t_i\)</span> is the <strong>intercept time</strong> (where the refraction line extrapolates to the <span class="arithmatex">\(t\)</span> axis). Two key distances:</p>
+<ul>
+<li><strong>Critical distance</strong> <span class="arithmatex">\(x_c = 2h\tan i_c\)</span>: for <span class="arithmatex">\(x &lt; x_c\)</span> there is a <strong>blind zone</strong> — the head wave has not yet returned to the surface;</li>
+<li><strong>Crossover distance</strong> <span class="arithmatex">\(x_{cr} = 2h\sqrt{\dfrac{v_2+v_1}{v_2-v_1}}\)</span>: beyond <span class="arithmatex">\(x_{cr}\)</span> the head wave, despite its longer path, <strong>arrives first</strong> and becomes the first break.</li>
+</ul>
+<p><img alt="Refraction geometry and travel-time curves" src="../assets/images/geom_refraction.png" />
+<em>Figure 3: Refraction in a two-layer model (<span class="arithmatex">\(v_1\)</span> = 2000 m/s, <span class="arithmatex">\(v_2\)</span> = 4000 m/s). Left — ray geometry: direct wave (red), reflection (orange), and the head wave (purple) entering at the critical angle <span class="arithmatex">\(i_c\)</span> and travelling along the interface; <span class="arithmatex">\(x &lt; x_c\)</span> is the blind zone; right — travel-time diagram with the direct line, reflection hyperbola and refraction line: beyond the crossover distance <span class="arithmatex">\(x_{cr}\)</span> the refraction branch is the first arrival, and the intercept time <span class="arithmatex">\(t_i\)</span> yields the interface depth.</em></p>
+<p>The refraction travel-time curve directly yields the near-surface structure: the slopes give <span class="arithmatex">\(v_1\)</span> and <span class="arithmatex">\(v_2\)</span>, and the intercept time gives the interface depth:</p>
+<div class="arithmatex">\[
+h = \frac{t_i \, v_1}{2\cos i_c}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Prerequisites and uses of refraction</p>
+<p>A head wave exists only when <strong>velocity increases with depth</strong> (<span class="arithmatex">\(v_2 &gt; v_1\)</span>); a low-velocity layer (e.g., a gas-charged zone) is "invisible" to refraction. Refraction analysis underlies <strong>first-break picking, near-surface velocity modelling and static corrections</strong> — land weathering-layer correction relies precisely on first-break refraction information.</p>
+</div>
+<h3 id="nmo-correction">NMO correction<a class="headerlink" href="#nmo-correction" title="Permanent link">&para;</a></h3>
+<p>NMO correction shifts each offset's reflection time <span class="arithmatex">\(t(x)\)</span> back to its zero-offset time <span class="arithmatex">\(t_0\)</span>, <strong>flattening</strong> the event so that traces can be stacked in phase:</p>
+<p><img alt="CMP gather before/after NMO" src="../assets/images/geom_nmo.png" />
+<em>Figure 4: NMO correction of a synthetic CMP gather. Left — before correction, three reflection events follow hyperbolas (red dashes: theoretical curves); right — after correction with the correct <span class="arithmatex">\(v_\text{rms}\)</span>, events are flattened to their <span class="arithmatex">\(t_0\)</span> and ready to stack.</em></p>
+<div class="admonition warning">
+<p class="admonition-title">NMO stretch</p>
+<p>NMO is a nonlinear compression/stretching of the time axis: shallow, far-offset wavelets are stretched noticeably (lowered in frequency). Such data are usually <strong>muted</strong> above a stretch threshold, otherwise they contaminate the high-frequency shallow part of the stack.</p>
+</div>
+<hr />
+<h2 id="the-many-velocities-of-reflection-seismology">The Many Velocities of Reflection Seismology<a class="headerlink" href="#the-many-velocities-of-reflection-seismology" title="Permanent link">&para;</a></h2>
+<p>"Velocity" is not a single concept in seismic processing. Understanding each velocity's <strong>definition, origin and purpose</strong> is a prerequisite for using them correctly.</p>
+<h3 id="average-velocity">Average velocity<a class="headerlink" href="#average-velocity" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+v_\text{avg} = \frac{z}{\displaystyle\sum_i \frac{h_i}{v_i}} = \frac{z}{t_\text{one-way}}
+\]</div>
+<p>Total depth divided by one-way vertical travel time. It answers "<strong>how fast, on average, does the wave travel vertically</strong>" and is the standard tool for <strong>time-depth conversion</strong> (calibrated by VSP and sonic logs).</p>
+<h3 id="rms-velocity">RMS velocity<a class="headerlink" href="#rms-velocity" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+v_\text{rms}^2 = \frac{\displaystyle\sum_i v_i^2 \, \Delta t_i}{\displaystyle\sum_i \Delta t_i}
+\]</div>
+<p>with <span class="arithmatex">\(\Delta t_i\)</span> the one-way vertical time in layer <span class="arithmatex">\(i\)</span>. RMS velocity is a <strong>time-weighted</strong> root mean square in which fast layers weigh more, so:</p>
+<div class="arithmatex">\[
+v_\text{rms} \geq v_\text{avg}
+\]</div>
+<p>with equality only in a homogeneous medium. <strong>Physical meaning</strong>: in the small-offset approximation, the reflection hyperbola of a horizontally layered medium keeps its form if the homogeneous velocity is replaced by <span class="arithmatex">\(v_\text{rms}\)</span> — the classic result of Dix (1955).</p>
+<h3 id="stacking-velocity">Stacking velocity<a class="headerlink" href="#stacking-velocity" title="Permanent link">&para;</a></h3>
+<p><strong><span class="arithmatex">\(v_\text{stack}\)</span> is fitted from the data</strong>: a CMP gather is NMO-corrected and stacked (or measured by semblance) over a suite of trial velocities; the velocity maximizing stack power is the stacking velocity. Defined by hyperbola fitting:</p>
+<div class="arithmatex">\[
+t^2(x) = t_0^2 + \frac{x^2}{v_\text{stack}^2}
+\]</div>
+<p>Relation between the three:</p>
+<div class="arithmatex">\[
+v_\text{stack} \;\approx\; v_\text{rms} \;\geq\; v_\text{avg}
+\]</div>
+<ul>
+<li>Horizontal layering, small offsets: <span class="arithmatex">\(v_\text{stack} \approx v_\text{rms}\)</span> — the bridge between "processing" and "geology";</li>
+<li>With dip or lateral velocity variation, <span class="arithmatex">\(v_\text{stack}\)</span> deviates systematically from <span class="arithmatex">\(v_\text{rms}\)</span> (for a dipping interface <span class="arithmatex">\(v_\text{stack} = v/\cos\varphi\)</span>), and a direct Dix inversion will be in error.</li>
+</ul>
+<h3 id="interval-velocity-and-the-dix-formula">Interval velocity and the Dix formula<a class="headerlink" href="#interval-velocity-and-the-dix-formula" title="Permanent link">&para;</a></h3>
+<p>The <strong>interval velocity</strong> of layer <span class="arithmatex">\(n\)</span> is recovered from the RMS velocities of the interfaces above and below it:</p>
+<div class="arithmatex">\[
+\boxed{\,v_n^2 = \frac{v_{\text{rms},n}^2 \, t_n - v_{\text{rms},n-1}^2 \, t_{n-1}}{t_n - t_{n-1}}\,}
+\]</div>
+<p>where <span class="arithmatex">\(t_n\)</span> is the zero-offset two-way time of the <span class="arithmatex">\(n\)</span>-th interface. The Dix formula is the key step from <strong>velocity spectra → interval velocities → lithology interpretation</strong> (e.g., identifying fast salt or slow gas-charged zones).</p>
+<div class="admonition note">
+<p class="admonition-title">The fragility of Dix inversion</p>
+<p>The Dix formula is highly error-sensitive: <span class="arithmatex">\(v_n\)</span> depends on the difference of two large numbers (<span class="arithmatex">\(v_{\text{rms},n}^2 t_n\)</span> and <span class="arithmatex">\(v_{\text{rms},n-1}^2 t_{n-1}\)</span>), and the small denominator <span class="arithmatex">\(t_n - t_{n-1}\)</span> amplifies errors for thin layers. The thinner the layer and the noisier the picks, the less reliable the estimate.</p>
+</div>
+<p><img alt="Velocity definitions" src="../assets/images/geom_velocity.png" />
+<em>Figure 5: Left — interval velocities of a five-layer horizontal model; right — the corresponding average (green) and RMS (red) velocities versus two-way time, with stacking-velocity picks from semblance analysis (orange dots). Note <span class="arithmatex">\(v_\text{stack} \approx v_\text{rms} \geq v_\text{avg}\)</span>, and how the low-velocity layer (layer 4, 2400 m/s) pulls the average velocity down.</em></p>
+<h3 id="velocity-cheat-sheet">Velocity cheat sheet<a class="headerlink" href="#velocity-cheat-sheet" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
-<th>Transform</th>
-<th>Input → Output</th>
-<th>Separates</th>
+<th>Velocity</th>
+<th>Defined by</th>
+<th>Question answered</th>
 <th>Typical use</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>F-K (2D FFT)</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(D(k,f)\)</span></td>
-<td>Frequency + wavenumber (apparent velocity)</td>
-<td>Dip noise removal, wavefield separation</td>
+<td>Interval <span class="arithmatex">\(v_i\)</span></td>
+<td>the medium itself</td>
+<td>How fast in this layer?</td>
+<td>Lithology, reservoir prediction</td>
 </tr>
 <tr>
-<td>Linear Radon (τ-p, slant stack)</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(m(\tau,p)\)</span></td>
-<td>Intercept time + slowness</td>
-<td>Multiple attenuation, surface-wave extraction</td>
+<td>Average <span class="arithmatex">\(v_\text{avg}\)</span></td>
+<td>depth ÷ vertical time</td>
+<td>Mean vertical speed?</td>
+<td>Time-depth conversion</td>
 </tr>
 <tr>
-<td>Parabolic Radon</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(m(\tau,q)\)</span></td>
-<td>Intercept time + curvature</td>
-<td>Accurate multiple attenuation</td>
+<td>RMS <span class="arithmatex">\(v_\text{rms}\)</span></td>
+<td>time-weighted RMS of <span class="arithmatex">\(v_i\)</span></td>
+<td>Equivalent hyperbola velocity?</td>
+<td>Theory, input to Dix inversion</td>
 </tr>
 <tr>
-<td>Beamforming</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(P(f,k)\)</span></td>
-<td>Azimuth + slowness</td>
-<td>Array steering, source location</td>
+<td>Stacking <span class="arithmatex">\(v_\text{stack}\)</span></td>
+<td>hyperbola fit to data</td>
+<td>What velocity flattens best?</td>
+<td>NMO and stacking</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Apparent velocity</strong> is the unifying concept across all these transforms:</p>
-<div class="arithmatex">\[
-v_\text{app} = \left.\frac{\partial t}{\partial x}\right|^{-1} = \frac{f}{k} = \frac{1}{p}
-\]</div>
-<p>where <span class="arithmatex">\(p = k/f\)</span> is the <strong>slowness</strong> (units: s/m or s/km).</p>
 <hr />
-<h2 id="f-k-analysis">F-K Analysis<a class="headerlink" href="#f-k-analysis" title="Permanent link">&para;</a></h2>
-<h3 id="the-2d-fourier-transform">The 2D Fourier Transform<a class="headerlink" href="#the-2d-fourier-transform" title="Permanent link">&para;</a></h3>
-<p>The 2D discrete Fourier transform of a multi-channel record <span class="arithmatex">\(d(x_i, t)\)</span> yields the <strong>frequency-wavenumber spectrum</strong>:</p>
+<h2 id="acquisition-geometry-and-gathers">Acquisition Geometry and Gathers<a class="headerlink" href="#acquisition-geometry-and-gathers" title="Permanent link">&para;</a></h2>
+<h3 id="multi-fold-coverage-and-gather-sorting">Multi-fold coverage and gather sorting<a class="headerlink" href="#multi-fold-coverage-and-gather-sorting" title="Permanent link">&para;</a></h3>
+<p>A seismic survey records a dense grid of traces indexed by (shot, receiver). A <strong>gather</strong> groups traces sharing one attribute of that geometry. The same field data can be resorted into different gathers, each serving its own purpose:</p>
+<p><img alt="Gather sorting" src="../assets/images/geom_gathers.png" />
+<em>Figure 6: Gather selection on the shot-receiver grid. Each point is one recorded trace; highlighted traces form common-shot (vertical line), common-receiver (horizontal line), common-midpoint (anti-diagonal, constant <span class="arithmatex">\(s+g\)</span>) and common-offset (diagonal, constant <span class="arithmatex">\(g-s\)</span>) gathers.</em></p>
+<table>
+<thead>
+<tr>
+<th>Gather</th>
+<th>Shared attribute</th>
+<th>Event shape (flat layers)</th>
+<th>Main use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Common shot (CSG)</td>
+<td>same shot</td>
+<td>hyperbola</td>
+<td>Field QC, first-break picking, refraction analysis</td>
+</tr>
+<tr>
+<td>Common receiver (CRG)</td>
+<td>same receiver</td>
+<td>hyperbola</td>
+<td>Receiver consistency, statics, receiver functions</td>
+</tr>
+<tr>
+<td>Common midpoint (CMP/CDP)</td>
+<td>same midpoint</td>
+<td>hyperbola</td>
+<td><strong>The arena of velocity analysis, NMO and stacking</strong></td>
+</tr>
+<tr>
+<td>Common offset (COG)</td>
+<td>same offset</td>
+<td>nearly flat</td>
+<td>Pre-migration processing, AVO, regularization</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-cmp-gather-heart-of-the-method">The CMP gather: heart of the method<a class="headerlink" href="#the-cmp-gather-heart-of-the-method" title="Permanent link">&para;</a></h3>
+<p>A CMP gather collects traces with the <strong>same midpoint</strong>. For horizontal interfaces, equal midpoint means <strong>equal reflection point</strong> (CMP = CRP), so every trace samples the same subsurface point repeatedly — the essence of multi-fold coverage:</p>
+<ol>
+<li><strong>NMO</strong> removes offset-dependent moveout and flattens the events;</li>
+<li><strong>Stacking</strong> sums <span class="arithmatex">\(N\)</span> traces in phase: random noise decays as <span class="arithmatex">\(\sqrt{N}\)</span>, signal grows as <span class="arithmatex">\(N\)</span>, and the signal-to-noise ratio improves by <span class="arithmatex">\(\sqrt{N}\)</span>;</li>
+<li><strong>Velocity analysis</strong> scans velocities along time (semblance spectra), picking <span class="arithmatex">\(v_\text{stack}\)</span> at each <span class="arithmatex">\(t_0\)</span>.</li>
+</ol>
+<p><strong>Fold</strong>: the number of traces per CMP. For a single-ended spread:</p>
 <div class="arithmatex">\[
-D(k, f) = \sum_{i=1}^{N_x}\sum_{j=1}^{N_t} d(x_i, t_j)\, e^{-i 2\pi (k x_i + f t_j)}
+F = \frac{N \, \Delta g}{2 \, \Delta s}
 \]</div>
-<ul>
-<li><span class="arithmatex">\(f\)</span> (Hz): temporal frequency — how fast the signal oscillates in time</li>
-<li><span class="arithmatex">\(k\)</span> (1/m): spatial wavenumber — how fast the signal oscillates across the array</li>
-<li>Apparent velocity: <span class="arithmatex">\(v_\text{app} = f/k\)</span>; apparent slowness: <span class="arithmatex">\(p = k/f\)</span></li>
-</ul>
-<p><strong>Key property</strong>: A plane wave propagating with apparent velocity <span class="arithmatex">\(v\)</span> along <span class="arithmatex">\(x\)</span>, i.e. <span class="arithmatex">\(d(x,t) = w(t - x/v)\)</span>, concentrates all its energy on the line <span class="arithmatex">\(k = f/v\)</span> in the F-K domain. Different wavefields — P-waves, S-waves, surface waves, noise — occupy distinct <strong>wedge-shaped bands</strong> in F-K space, enabling separation by a fan-shaped filter.</p>
-<h3 id="fan-filter">Fan Filter<a class="headerlink" href="#fan-filter" title="Permanent link">&para;</a></h3>
-<p>A fan (velocity) filter passes energy within an apparent velocity range <span class="arithmatex">\([v_\min, v_\max]\)</span>:</p>
-<div class="arithmatex">\[
-H(f, k) = \begin{cases}
-1, &amp; |f/k| \geq v_\min \text{ and } |f/k| \leq v_\max \\
-0, &amp; \text{otherwise (slow/fast noise zone)}
-\end{cases}
-\]</div>
-<p>In practice, the passband boundaries must be <strong>tapered</strong> (cosine or Hanning taper) to suppress Gibbs-effect ringing in the <span class="arithmatex">\(t\)</span>-<span class="arithmatex">\(x\)</span> domain.</p>
+<p>with <span class="arithmatex">\(N\)</span> channels, receiver spacing <span class="arithmatex">\(\Delta g\)</span> and shot spacing <span class="arithmatex">\(\Delta s\)</span>. Typical land surveys use 30–120 fold; higher fold suppresses noise and multiples better, at higher cost.</p>
 <div class="admonition note">
-<p class="admonition-title">F-K Filtering in VSP Wavefield Separation</p>
-<p>In VSP processing, downgoing waves (<span class="arithmatex">\(\partial t/\partial z &gt; 0\)</span>) and upgoing waves (<span class="arithmatex">\(\partial t/\partial z &lt; 0\)</span>) have opposite-sign apparent velocities. An F-K filter retaining only <span class="arithmatex">\(k &gt; 0\)</span> or <span class="arithmatex">\(k &lt; 0\)</span> separates them directly. See <a href="../vsp-en/">VSP Principles</a>.</p>
+<p class="admonition-title">A fortunate coincidence of flat geology</p>
+<p>CMP processing works because "same midpoint ≈ same reflection point". On dipping interfaces reflection points disperse downdip, and in complex structure a CMP gather mixes information from different reflection points — the fundamental reason <strong>prestack migration</strong> is needed instead of simple stacking.</p>
 </div>
-<h3 id="spatial-aliasing">Spatial Aliasing<a class="headerlink" href="#spatial-aliasing" title="Permanent link">&para;</a></h3>
-<p>When the channel spacing <span class="arithmatex">\(\Delta x\)</span> is too large, steeply dipping events alias in the wavenumber domain:</p>
-<div class="arithmatex">\[
-k_\text{Nyquist} = \frac{1}{2\Delta x}, \qquad
-f_\text{alias} = \frac{v_\text{app}}{2\Delta x}
-\]</div>
-<p>For surface waves (<span class="arithmatex">\(v_\text{app} = 500\)</span> m/s) and <span class="arithmatex">\(\Delta x = 25\)</span> m: <span class="arithmatex">\(f_\text{alias} = 10\)</span> Hz — surface waves alias above 10 Hz, contaminating the filter design. The spatial Nyquist condition is:</p>
-<div class="arithmatex">\[
-\boxed{\Delta x \leq \frac{v_\text{app,min}}{2 f_\text{max}}}
-\]</div>
-<p>DAS channel spacings (1–5 m) largely eliminate this problem, whereas conventional geophone arrays (25–50 m spacing) often violate it for slow coherent noise.</p>
-<h3 id="high-resolution-f-k-capon-adaptive-beamforming">High-Resolution F-K: Capon Adaptive Beamforming<a class="headerlink" href="#high-resolution-f-k-capon-adaptive-beamforming" title="Permanent link">&para;</a></h3>
-<p>Conventional F-K (delay-and-sum beamforming) applies equal weights <span class="arithmatex">\(1/N\)</span> to all channels, equivalent to a rectangular spatial window — leading to high <strong>sidelobes</strong> that contaminate the spectrum.</p>
-<p>Capon (1969) proposed the <strong>Minimum Variance Distortionless Response (MVDR)</strong>: maintain unit gain toward the look direction while minimising total output power, thereby maximally suppressing energy from all other directions.</p>
-<p>Using the <strong>spatial covariance matrix</strong> <span class="arithmatex">\(\hat{\mathbf{R}}(f)\)</span> estimated from multiple data segments, the Capon spectrum is:</p>
-<div class="arithmatex">\[
-\boxed{P_\text{Capon}(f, k) = \frac{1}{\mathbf{a}^H(k)\,\hat{\mathbf{R}}^{-1}(f)\,\mathbf{a}(k)}}
-\]</div>
-<p>where <span class="arithmatex">\(\mathbf{a}(k) = [1,\, e^{ik\Delta x},\, e^{i2k\Delta x},\, \ldots]^T\)</span> is the <strong>steering vector</strong> and <span class="arithmatex">\(\hat{\mathbf{R}}(f) = \frac{1}{N_\text{seg}}\sum_n \hat{\mathbf{d}}_n\hat{\mathbf{d}}_n^H\)</span> is estimated from <span class="arithmatex">\(N_\text{seg}\)</span> independent snapshots. The sidelobe level is typically 10–20 dB lower than conventional beamforming.</p>
-<div class="admonition warning">
-<p class="admonition-title">Practical Requirements for Capon MVDR</p>
-<p><span class="arithmatex">\(\hat{\mathbf{R}}\)</span> must be well-conditioned: requires <span class="arithmatex">\(N_\text{seg} \gg N_x\)</span> independent snapshots. When this condition is not met, use <strong>diagonal loading</strong>: <span class="arithmatex">\(\hat{\mathbf{R}}_\epsilon = \hat{\mathbf{R}} + \epsilon\mathbf{I}\)</span> with <span class="arithmatex">\(\epsilon \approx 1\)</span>–<span class="arithmatex">\(5\%\)</span> of the largest eigenvalue.</p>
-</div>
-<h3 id="music-algorithm">MUSIC Algorithm<a class="headerlink" href="#music-algorithm" title="Permanent link">&para;</a></h3>
-<p><strong>Multiple Signal Classification (MUSIC)</strong> decomposes the covariance matrix into signal and noise subspaces:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{R}} = \mathbf{E}_s \boldsymbol{\Lambda}_s \mathbf{E}_s^H + \sigma_n^2 \mathbf{E}_n \mathbf{E}_n^H
-\]</div>
-<p>The MUSIC spectrum:</p>
-<div class="arithmatex">\[
-P_\text{MUSIC}(k) = \frac{1}{\|\mathbf{E}_n^H\,\mathbf{a}(k)\|^2}
-\]</div>
-<p>diverges when the steering vector is orthogonal to the noise subspace, giving theoretically unlimited resolution (SNR-limited in practice). The cost is the need to know the source count <span class="arithmatex">\(d\)</span> (number of eigenvectors to assign to the signal subspace).</p>
-<p><img alt="F-K analysis and fan filtering" src="../assets/images/fk_analysis.png" />
-<em>Figure 1: (top-left) Original CMP gather with surface-wave noise; (top-right) F-K spectrum (log amplitude) — white line at 2000 m/s marks P-waves, cyan at 350 m/s marks surface waves; (bottom-left) fan filter mask (white = pass, <span class="arithmatex">\(v_\text{app} &gt; 700\)</span> m/s); (bottom-right) filtered gather with surface-wave energy removed.</em></p>
+<h3 id="from-gathers-to-stacked-section-the-processing-skeleton">From gathers to stacked section: the processing skeleton<a class="headerlink" href="#from-gathers-to-stacked-section-the-processing-skeleton" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1">field records (shot gathers)
+</span><span id="__span-0-2">      │  sorting
+</span><span id="__span-0-3">      ▼
+</span><span id="__span-0-4">CMP gathers ──► velocity analysis (semblance scan, pick v_stack)
+</span><span id="__span-0-5">      │                │
+</span><span id="__span-0-6">      ▼                ▼
+</span><span id="__span-0-7">   NMO correction ◄── stacking-velocity field
+</span><span id="__span-0-8">      │
+</span><span id="__span-0-9">      ▼
+</span><span id="__span-0-10">   stack ──► stacked section (zero-offset approximation)
+</span><span id="__span-0-11">      │
+</span><span id="__span-0-12">      ▼
+</span><span id="__span-0-13">  migration ──► structural image
+</span></code></pre></div>
 <hr />
-<h2 id="radon-transform-slant-stack">Radon Transform (Slant Stack)<a class="headerlink" href="#radon-transform-slant-stack" title="Permanent link">&para;</a></h2>
-<h3 id="linear-radon-p-transform">Linear Radon (τ-p Transform)<a class="headerlink" href="#linear-radon-p-transform" title="Permanent link">&para;</a></h3>
-<p>The linear Radon transform (also called the <strong>slant stack</strong> or <strong>τ-p transform</strong>) maps <span class="arithmatex">\(x\)</span>-<span class="arithmatex">\(t\)</span> data to intercept-time–slowness (τ-p) space:</p>
-<div class="arithmatex">\[
-m(\tau, p) = \int d(x,\, \tau + p\,x)\, \mathrm{d}x
-\]</div>
-<p><strong>Physical meaning</strong>: integrate <span class="arithmatex">\(d(x,t)\)</span> along a straight line with slope <span class="arithmatex">\(p\)</span> (= apparent slowness). A linear moveout event with apparent velocity <span class="arithmatex">\(v = 1/p\)</span> collapses to a single point at <span class="arithmatex">\((τ, p)\)</span> in the Radon domain.</p>
-<p><strong>Inverse transform</strong>:</p>
-<div class="arithmatex">\[
-d(x, t) = \int m(\tau,\, p)\big|_{\tau = t - px}\, \mathrm{d}p
-\]</div>
-<h3 id="discrete-implementation-phase-shift-summation">Discrete Implementation: Phase-Shift Summation<a class="headerlink" href="#discrete-implementation-phase-shift-summation" title="Permanent link">&para;</a></h3>
-<p>Efficient frequency-domain implementation: for each frequency <span class="arithmatex">\(f\)</span>,</p>
-<div class="arithmatex">\[
-M(p, f) = \sum_{i=1}^{N_x} D(x_i, f)\, e^{-i 2\pi f\, p\, x_i}
-\]</div>
-<p>This is a phase rotation for each slowness <span class="arithmatex">\(p\)</span>, with total cost <span class="arithmatex">\(O(N_p \cdot N_x \cdot N_f)\)</span> — much faster than time-domain interpolation.</p>
-<h3 id="parabolic-radon">Parabolic Radon<a class="headerlink" href="#parabolic-radon" title="Permanent link">&para;</a></h3>
-<p>Real reflection moveout is hyperbolic; the <strong>parabolic approximation</strong> is more accurate after NMO:</p>
-<div class="arithmatex">\[
-m(\tau, q) = \int d(x,\, \tau + q\,x^2)\, \mathrm{d}x
-\]</div>
-<p>where <span class="arithmatex">\(q\)</span> (s/m²) is the curvature parameter. After NMO correction, primary reflections map near <span class="arithmatex">\(q = 0\)</span>, while multiples with residual moveout map to finite <span class="arithmatex">\(q\)</span> — enabling <strong>multiple attenuation by muting</strong> in the Radon domain.</p>
-<table>
-<thead>
-<tr>
-<th>Radon type</th>
-<th>Integration path</th>
-<th>Focuses</th>
-<th>Primary application</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Linear (τ-p)</td>
-<td><span class="arithmatex">\(t = \tau + px\)</span></td>
-<td>Linear events</td>
-<td>Surface-wave extraction, plane-wave decomposition</td>
-</tr>
-<tr>
-<td>Parabolic</td>
-<td><span class="arithmatex">\(t = \tau + qx^2\)</span></td>
-<td>Post-NMO hyperbolic events</td>
-<td>Multiple attenuation (OBC, towed streamer)</td>
-</tr>
-<tr>
-<td>Hyperbolic</td>
-<td><span class="arithmatex">\(t = \sqrt{\tau^2 + x^2/v^2}\)</span></td>
-<td>Raw hyperbolic events</td>
-<td>Precise velocity analysis</td>
-</tr>
-</tbody>
-</table>
-<h3 id="the-l2-smearing-problem">The L2 Smearing Problem<a class="headerlink" href="#the-l2-smearing-problem" title="Permanent link">&para;</a></h3>
-<p>In discrete form: <span class="arithmatex">\(\mathbf{d} = \mathbf{L}\mathbf{m}\)</span>. The <strong>minimum-norm L2 solution</strong>:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{m}}_{L2} = (\mathbf{L}^H\mathbf{L} + \varepsilon^2\mathbf{I})^{-1}\mathbf{L}^H\mathbf{d}
-\]</div>
-<p>Because <span class="arithmatex">\(\mathbf{L}^H\mathbf{L}\)</span> is not the identity (the operator is non-orthogonal for finite arrays), the L2 solution <strong>smears</strong> energy across neighbouring slownesses, degrading the contrast between primaries and multiples and reducing the effectiveness of subsequent muting.</p>
-<hr />
-<h2 id="sparse-high-resolution-radon-current-research">Sparse / High-Resolution Radon (Current Research)<a class="headerlink" href="#sparse-high-resolution-radon-current-research" title="Permanent link">&para;</a></h2>
-<h3 id="l1-regularisation-sparse-radon">L1 Regularisation (Sparse Radon)<a class="headerlink" href="#l1-regularisation-sparse-radon" title="Permanent link">&para;</a></h3>
-<p>Replacing the L2 penalty with an L1 term forces most Radon coefficients to zero, consistent with the sparse nature of seismic reflectivity:</p>
-<div class="arithmatex">\[
-\boxed{\hat{\mathbf{m}} = \arg\min_{\mathbf{m}} \left\{\|\mathbf{d} - \mathbf{L}\mathbf{m}\|_2^2 + \lambda\|\mathbf{m}\|_1\right\}}
-\]</div>
-<p>Common solvers: ADMM (Alternating Direction Method of Multipliers), ISTA/FISTA (iterative soft thresholding).</p>
-<h3 id="iteratively-reweighted-least-squares-irls">Iteratively Reweighted Least Squares (IRLS)<a class="headerlink" href="#iteratively-reweighted-least-squares-irls" title="Permanent link">&para;</a></h3>
-<p>IRLS solves a series of weighted L2 problems, updating the weight matrix from the previous solution's amplitude:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{m}}^{(k+1)} = \left(\mathbf{L}^H\mathbf{L} + \varepsilon\,[\mathbf{Q}^{(k)}]^{-1}\right)^{-1} \mathbf{L}^H\mathbf{d}
-\]</div>
-<div class="arithmatex">\[
-Q^{(k)}_{ii} = \left|m_i^{(k)}\right| + \delta, \quad \delta \ll 1
-\]</div>
-<p>Even 1–3 iterations produce dramatically sharper Radon panels compared with the L2 solution, at only a modest computational overhead.</p>
-<h3 id="sacchi-ulrych-high-resolution-radon">Sacchi-Ulrych High-Resolution Radon<a class="headerlink" href="#sacchi-ulrych-high-resolution-radon" title="Permanent link">&para;</a></h3>
-<p>Sacchi &amp; Ulrych (1995) perform frequency-by-frequency estimation in the frequency domain using <strong>adaptive weighting</strong> derived from the estimated model power spectrum:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{M}}(\omega) = \left(\mathbf{L}^H\mathbf{L} + \mu\,\mathbf{Q}^{-1}(\omega)\right)^{-1} \mathbf{L}^H\mathbf{D}(\omega), \quad \mathbf{Q}(\omega) = \mathrm{diag}(|\hat{M}_j(\omega)|^2)
-\]</div>
-<p>This <strong>frequency-adaptive regularisation</strong> applies strong constraint only where the model power is low (noise-dominated frequencies), achieving consistent focusing across the full bandwidth.</p>
-<h3 id="compressive-sensing-radon">Compressive Sensing Radon<a class="headerlink" href="#compressive-sensing-radon" title="Permanent link">&para;</a></h3>
-<p>When receiver spacing is non-uniform or traces are missing, the conventional regular-grid Radon assumption breaks down. The compressive sensing formulation directly recovers a sparse Radon panel from irregular observations:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{m}} = \arg\min_{\mathbf{m}} \|\mathbf{m}\|_1 \quad \text{s.t.} \quad \|\mathbf{d} - \mathbf{L}_\text{irr}\mathbf{m}\|_2 \leq \sigma
-\]</div>
-<p>where <span class="arithmatex">\(\mathbf{L}_\text{irr}\)</span> is the irregular-sampling Radon operator. No interpolation pre-processing is required.</p>
-<p><img alt="Radon transform comparison" src="../assets/images/radon_transform.png" />
-<em>Figure 2: (left) CMP gather with hyperbolic moveout events; (centre) conventional L2 Radon — events smear widely in slowness; (right) sparse/IRLS Radon — events focus into sharp stripes in the τ-p domain.</em></p>
-<hr />
-<h2 id="practical-requirements-and-guidelines">Practical Requirements and Guidelines<a class="headerlink" href="#practical-requirements-and-guidelines" title="Permanent link">&para;</a></h2>
-<h3 id="f-k-filtering">F-K Filtering<a class="headerlink" href="#f-k-filtering" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Issue</th>
-<th>Explanation</th>
-<th>Mitigation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Uniform channel spacing</td>
-<td>Non-uniform spacing distorts the F-K spectrum</td>
-<td>Interpolate to a regular grid, or use NUFFT</td>
-</tr>
-<tr>
-<td>Edge effects</td>
-<td>Finite aperture produces sidelobes</td>
-<td>Apply spatial/temporal tapers (Hanning, Tukey)</td>
-</tr>
-<tr>
-<td>Filter boundary</td>
-<td>Rectangular cut creates ringing</td>
-<td>Cosine-taper the boundary (≥ 5% of band width)</td>
-</tr>
-<tr>
-<td>Signal leakage</td>
-<td>Overly narrow passband clips useful signal</td>
-<td>Widen passband to acceptable residual noise level</td>
-</tr>
-<tr>
-<td>3D data</td>
-<td>2D F-K misses cross-line dips</td>
-<td>Extend to 3D F-K (<span class="arithmatex">\(k_x\)</span>, <span class="arithmatex">\(k_y\)</span>, <span class="arithmatex">\(f\)</span>)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="linear-radon">Linear Radon<a class="headerlink" href="#linear-radon" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Issue</th>
-<th>Explanation</th>
-<th>Mitigation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Slowness range</td>
-<td>Too narrow → energy overflow</td>
-<td>Cover all target apparent velocities including surface waves</td>
-</tr>
-<tr>
-<td>Slowness sampling</td>
-<td>Large <span class="arithmatex">\(\Delta p\)</span> → poor slowness resolution</td>
-<td><span class="arithmatex">\(\Delta p \leq 1/(N_x \cdot x_\max \cdot f_\max)\)</span></td>
-</tr>
-<tr>
-<td>NMO residual</td>
-<td>Linear Radon cannot focus hyperbolic events exactly</td>
-<td>Use parabolic Radon, or apply NMO before linear Radon</td>
-</tr>
-<tr>
-<td>Regularisation <span class="arithmatex">\(\varepsilon\)</span></td>
-<td>Too large → smearing; too small → instability</td>
-<td>L-curve or cross-validation for automatic selection</td>
-</tr>
-<tr>
-<td>Computational cost</td>
-<td>Time-domain: <span class="arithmatex">\(O(N_p N_x N_t)\)</span></td>
-<td>Frequency-domain: <span class="arithmatex">\(O(N_p N_x N_f)\)</span> per iteration</td>
-</tr>
-</tbody>
-</table>
-<h3 id="high-resolution-methods">High-Resolution Methods<a class="headerlink" href="#high-resolution-methods" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Key parameter</th>
-<th>Recommended range</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Capon MVDR</td>
-<td>Diagonal loading <span class="arithmatex">\(\epsilon\)</span></td>
-<td><span class="arithmatex">\(1\)</span>–<span class="arithmatex">\(5\%\)</span> of largest eigenvalue</td>
-</tr>
-<tr>
-<td>Capon MVDR</td>
-<td>Number of snapshots <span class="arithmatex">\(N_\text{seg}\)</span></td>
-<td><span class="arithmatex">\(N_\text{seg} &gt; 2 N_x\)</span> (otherwise singular)</td>
-</tr>
-<tr>
-<td>IRLS Radon</td>
-<td>Number of iterations</td>
-<td>3–10; more iterations risk over-sparsity and amplitude distortion</td>
-</tr>
-<tr>
-<td>IRLS Radon</td>
-<td>Stabilisation factor <span class="arithmatex">\(\delta\)</span></td>
-<td><span class="arithmatex">\(1\)</span>–<span class="arithmatex">\(5\%\)</span> of maximum amplitude</td>
-</tr>
-<tr>
-<td>Sparse Radon (ADMM)</td>
-<td>Regularisation <span class="arithmatex">\(\lambda\)</span></td>
-<td><span class="arithmatex">\(\lambda = \sigma_n\sqrt{2\ln N}\)</span> (BIC estimate)</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="summary-comparison">Summary Comparison<a class="headerlink" href="#summary-comparison" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Separation criterion</th>
-<th>Resolution</th>
-<th>Cost</th>
-<th>Current research</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>F-K fan filter</td>
-<td>Apparent velocity (linear)</td>
-<td>Aperture-limited</td>
-<td>Low (FFT)</td>
-<td>Adaptive weights, DAS non-uniform sampling</td>
-</tr>
-<tr>
-<td>Capon MVDR</td>
-<td>Apparent velocity (adaptive)</td>
-<td>High (SNR-limited)</td>
-<td>Medium (matrix inversion)</td>
-<td>Diagonal loading optimisation, recursive update</td>
-</tr>
-<tr>
-<td>MUSIC</td>
-<td>Apparent velocity (subspace)</td>
-<td>Super-resolution</td>
-<td>High (eigendecomposition)</td>
-<td>Source-count estimation, non-stationary covariance</td>
-</tr>
-<tr>
-<td>Linear Radon (L2)</td>
-<td>Apparent velocity (linear)</td>
-<td>Low (smeared)</td>
-<td>Medium</td>
-<td>Baseline reference; largely superseded</td>
-</tr>
-<tr>
-<td>High-res Radon (IRLS)</td>
-<td>Apparent velocity (linear)</td>
-<td>High</td>
-<td>Medium-high</td>
-<td>Compressive sensing, irregular sampling</td>
-</tr>
-<tr>
-<td>Parabolic Radon (L1)</td>
-<td>Curvature + velocity</td>
-<td>High</td>
-<td>High</td>
-<td>Deep-water multiple suppression</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Capon, J. (1969). High-resolution frequency-wavenumber spectrum analysis. <em>Proceedings of the IEEE</em>, 57(8), 1408–1418.</li>
-<li>Schmidt, R. O. (1986). Multiple emitter location and signal parameter estimation. <em>IEEE Transactions on Antennas and Propagation</em>, 34(3), 276–280.</li>
-<li>Hampson, D. (1986). Inverse velocity stacking for multiple elimination. <em>SEG Technical Program Expanded Abstracts</em>, 422–424.</li>
-<li>Sacchi, M. D., &amp; Ulrych, T. J. (1995). High-resolution velocity gathers and offset space reconstruction. <em>Geophysics</em>, 60(4), 1169–1177.</li>
-<li>Trad, D., Ulrych, T., &amp; Sacchi, M. (2003). Latest views of the sparse Radon transform. <em>Geophysics</em>, 68(1), 386–399.</li>
-<li>Herrmann, F. J., &amp; Hennenfent, G. (2008). Non-parametric seismic data recovery with curvelet frames. <em>Geophysical Journal International</em>, 173(1), 233–248.</li>
-<li>Naghizadeh, M., &amp; Sacchi, M. D. (2010). Beyond alias hierarchical scale curvelet interpolation of regularly and irregularly sampled seismic data. <em>Geophysics</em>, 75(6), WB189–WB202.</li>
+<li>The reflection travel-time curve over a horizontal interface is a hyperbola <span class="arithmatex">\(t^2 = t_0^2 + x^2/v^2\)</span>; moveout grows quadratically with offset;</li>
+<li>A head wave requires <span class="arithmatex">\(v_2 &gt; v_1\)</span>; its travel-time curve is the line <span class="arithmatex">\(t = x/v_2 + t_i\)</span>, becoming the first arrival beyond the crossover distance, with slope and intercept yielding near-surface velocities and interface depth;</li>
+<li><span class="arithmatex">\(v_\text{avg}\)</span> serves time-depth conversion, <span class="arithmatex">\(v_\text{rms}\)</span> is the small-offset hyperbola-equivalent velocity, <span class="arithmatex">\(v_\text{stack}\)</span> is fitted from data; <span class="arithmatex">\(v_\text{stack} \approx v_\text{rms} \geq v_\text{avg}\)</span>;</li>
+<li>The Dix formula converts RMS to interval velocity but is sensitive to thin layers and picking errors;</li>
+<li>Gathers re-sort traces by acquisition attribute: common-shot for QC, the <strong>CMP gather</strong> as the core of velocity analysis and stacking;</li>
+<li>Multi-fold coverage + NMO + stacking boosts SNR as <span class="arithmatex">\(\sqrt{N}\)</span>, but must give way to prestack migration in complex structure.</li>
 </ul>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Dix, C. H. (1955). Seismic velocities from surface measurements. <em>Geophysics</em>, 20(1), 68–86.</li>
+<li>Yilmaz, Ö. (2001). <em>Seismic Data Analysis: Processing, Inversion, and Interpretation of Seismic Data</em>. SEG.</li>
+<li>Sheriff, R. E., &amp; Geldart, L. P. (1995). <em>Exploration Seismology</em> (2<sup>nd</sup> ed.). Cambridge University Press.</li>
+</ol>
 
 
 

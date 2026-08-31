@@ -20,6 +20,7 @@
     "surface-coda": "surface-coda-en",
     "fk-radon": "fk-radon-en",
     "glacier": "glacier-en",
+    "geom-seismic": "geom-seismic-en",
   };
 
   // Build reverse map: English → Chinese
