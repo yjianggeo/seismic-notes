@@ -269,7 +269,7 @@ Classical transfer-matrix (Thomson–Haskell) and generalized R/T (Chen, 1993) f
 
 !!! note "Why care about critical modes?"
     1. **Completeness of forward modelling**: dispersion-picking-based inversion risks mode misidentification and missing roots, and critical modes are exactly the roots that conventional root-finding tends to lose (the secular function tends to zero near the critical phase velocity);
-    2. **Mode–ray correspondence**: critical modes tie surface-wave modes directly to head waves / critically refracted rays — a bridge between modal and ray pictures;
+    2. **Mode–ray correspondence**: critical modes tie surface-wave modes directly to head waves / critically refracted rays (see [refraction travel-time curves](geom-seismic-en.md) for the ray-theoretic view) — a bridge between modal and ray pictures;
     3. **New observables**: 3-D borehole arrays can measure the depth dependence of eigendisplacements, and the "non-decaying in the half-space" signature of critical modes is a distinctive observable.
 
 ### Eigenfunctions Control Depth Sensitivity

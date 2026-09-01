@@ -80,6 +80,9 @@ $$
 !!! note "Prerequisites and uses of refraction"
     A head wave exists only when **velocity increases with depth** ($v_2 > v_1$); a low-velocity layer (e.g., a gas-charged zone) is "invisible" to refraction. Refraction analysis underlies **first-break picking, near-surface velocity modelling and static corrections** — land weathering-layer correction relies precisely on first-break refraction information.
 
+!!! tip "From rays to modes: the other face of critical refraction"
+    The same critical refraction described here in ray language reappears in wave theory as a **critical mode** of the surface-wave dispersion equation: when the phase velocity of a Love/Rayleigh mode equals a layer's S-wave velocity, the eigendisplacement no longer decays in that layer, and the mode is the wave-theoretic counterpart of the critically refracted head wave. See [Critical modes](surface-coda-en.md) in the surface-wave notes.
+
 ### NMO correction
 
 NMO correction shifts each offset's reflection time $t(x)$ back to its zero-offset time $t_0$, **flattening** the event so that traces can be stacked in phase:
