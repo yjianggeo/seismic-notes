@@ -987,6 +987,8 @@
       
         
       
+        
+      
     
     
     
@@ -1038,6 +1040,29 @@
   
   <span class="md-ellipsis">
     基本原理与应用
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cable-coupling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    光缆耦合状态检测
     
   </span>
   
@@ -2251,6 +2276,10 @@ d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
 T(f) = \frac{U_\text{DAS}(f)}{U_\text{ref}(f)}
 \]</div>
 <p>After correcting for directional sensitivity and gauge-length response, the expected value is <span class="arithmatex">\(T(f) \propto C_\text{med}(f) \cdot \eta_\text{fiber}\)</span>. A −20 dB/decade roll-off in <span class="arithmatex">\(|T(f)|\)</span> above some frequency directly reveals <span class="arithmatex">\(f_c\)</span>, from which the coupling stiffness <span class="arithmatex">\(k_s\)</span> can be estimated.</p>
+<div class="admonition tip">
+<p class="admonition-title">No reference station? Detect coupling from the data itself</p>
+<p>The method above requires a co-located point seismometer, which is rarely feasible for subsea or long-range cables. In that case the <strong>spatial irregularity of spectral fingerprints across neighbouring channels</strong> can reveal the coupling state (buried / exposed / suspended) directly from DAS data — for example the Poincaré spectral-coherence method and the Burial Index (BI); see <a href="../cable-coupling-en/">Detecting and Assessing DAS Cable Coupling State</a>.</p>
+</div>
 <hr />
 <h2 id="curved-cables-curvature-and-gauge-length-selection">Curved Cables: Curvature and Gauge-Length Selection<a class="headerlink" href="#curved-cables-curvature-and-gauge-length-selection" title="Permanent link">&para;</a></h2>
 <p>The directional response and gauge-length analyses above all assume a <strong>straight</strong> fibre. In practice cables are often curved — ring arrays, helical winding, road corners, routing around obstacles — and a single gauge length <span class="arithmatex">\(L\)</span> then spans an <strong>arc</strong> over which the fibre tangent direction rotates. Both the directional pattern and the gauge filter change as a result.</p>

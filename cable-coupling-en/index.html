@@ -12,7 +12,7 @@
         <meta name="author" content="Jiang Yi">
       
       
-        <link rel="canonical" href="https://yjianggeo.github.io/seismic-notes/fk-radon-en/">
+        <link rel="canonical" href="https://yjianggeo.github.io/seismic-notes/cable-coupling-en/">
       
       
       
@@ -22,7 +22,7 @@
     
     
       
-        <title>F-K Analysis and Radon Transform - Seismic Notes</title>
+        <title>Detecting and Assessing DAS Cable Coupling State - Seismic Notes</title>
       
     
     
@@ -62,13 +62,13 @@
   
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Seismic Notes">
-  <meta property="og:title" content="F-K Analysis and Radon Transform · Seismic Notes">
+  <meta property="og:title" content="Detecting and Assessing DAS Cable Coupling State · Seismic Notes">
   <meta property="og:description" content="从震源到光纤，系统梳理地震学、DAS 与波场分析">
   <meta property="og:image" content="https://yjianggeo.github.io/seismic-notes/assets/images/og-seismic-notes.png">
   <meta property="og:image:width" content="1731">
   <meta property="og:image:height" content="909">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="F-K Analysis and Radon Transform · Seismic Notes">
+  <meta name="twitter:title" content="Detecting and Assessing DAS Cable Coupling State · Seismic Notes">
   <meta name="twitter:description" content="从震源到光纤，系统梳理地震学、DAS 与波场分析">
   <meta name="twitter:image" content="https://yjianggeo.github.io/seismic-notes/assets/images/og-seismic-notes.png">
   <meta name="theme-color" content="#246f68">
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#f-k-analysis-and-radon-transform" class="md-skip">
+        <a href="#detecting-and-assessing-das-cable-coupling-state" class="md-skip">
           跳转至
         </a>
       
@@ -128,7 +128,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              F-K Analysis and Radon Transform
+              Detecting and Assessing DAS Cable Coupling State
             
           </span>
         </div>
@@ -1195,55 +1195,64 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#f-k-analysis" class="md-nav__link">
+  <a href="#four-coupling-states-and-their-physical-effects" class="md-nav__link">
     <span class="md-ellipsis">
-      F-K Analysis
+      Four Coupling States and Their Physical Effects
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="F-K Analysis">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#overview-of-coupling-state-detection-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overview of Coupling-State Detection Methods
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-poincare-spectral-coherence-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Poincaré Spectral-Coherence Framework
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="The Poincaré Spectral-Coherence Framework">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-2d-fourier-transform" class="md-nav__link">
+  <a href="#stage-1-two-band-spectral-fingerprints" class="md-nav__link">
     <span class="md-ellipsis">
-      The 2D Fourier Transform
+      Stage 1: Two-Band Spectral Fingerprints
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fan-filter" class="md-nav__link">
+  <a href="#stage-2-the-poincare-type-spatial-coherence-coefficient" class="md-nav__link">
     <span class="md-ellipsis">
-      Fan Filter
+      Stage 2: The Poincaré-Type Spatial Coherence Coefficient
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#spatial-aliasing" class="md-nav__link">
+  <a href="#stage-3-robust-logmadexp-normalisation" class="md-nav__link">
     <span class="md-ellipsis">
-      Spatial Aliasing
+      Stage 3: Robust log–MAD–exp Normalisation
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#high-resolution-f-k-capon-adaptive-beamforming" class="md-nav__link">
+  <a href="#stage-4-spatial-smoothing-and-the-burial-index-bi" class="md-nav__link">
     <span class="md-ellipsis">
-      High-Resolution F-K: Capon Adaptive Beamforming
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#music-algorithm" class="md-nav__link">
-    <span class="md-ellipsis">
-      MUSIC Algorithm
+      Stage 4: Spatial Smoothing and the Burial Index (BI)
     </span>
   </a>
   
@@ -1255,153 +1264,27 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#radon-transform-slant-stack" class="md-nav__link">
+  <a href="#field-validation" class="md-nav__link">
     <span class="md-ellipsis">
-      Radon Transform (Slant Stack)
+      Field Validation
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Radon Transform (Slant Stack)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#linear-radon-p-transform" class="md-nav__link">
-    <span class="md-ellipsis">
-      Linear Radon (τ-p Transform)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#discrete-implementation-phase-shift-summation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Discrete Implementation: Phase-Shift Summation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parabolic-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parabolic Radon
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-l2-smearing-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      The L2 Smearing Problem
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#sparse-high-resolution-radon-current-research" class="md-nav__link">
+  <a href="#artefacts-and-pitfalls" class="md-nav__link">
     <span class="md-ellipsis">
-      Sparse / High-Resolution Radon (Current Research)
+      Artefacts and Pitfalls
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Sparse / High-Resolution Radon (Current Research)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#l1-regularisation-sparse-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      L1 Regularisation (Sparse Radon)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#iteratively-reweighted-least-squares-irls" class="md-nav__link">
-    <span class="md-ellipsis">
-      Iteratively Reweighted Least Squares (IRLS)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sacchi-ulrych-high-resolution-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sacchi-Ulrych High-Resolution Radon
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#compressive-sensing-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compressive Sensing Radon
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#practical-requirements-and-guidelines" class="md-nav__link">
+  <a href="#limitations-and-outlook" class="md-nav__link">
     <span class="md-ellipsis">
-      Practical Requirements and Guidelines
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Practical Requirements and Guidelines">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#f-k-filtering" class="md-nav__link">
-    <span class="md-ellipsis">
-      F-K Filtering
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linear-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Linear Radon
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#high-resolution-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      High-Resolution Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary-comparison" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary Comparison
+      Limitations and Outlook
     </span>
   </a>
   
@@ -1432,7 +1315,7 @@
 
 
   
-    <a href="https://github.com/yjianggeo/seismic-notes/edit/main/docs/fk-radon-en.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/yjianggeo/seismic-notes/edit/main/docs/cable-coupling-en.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
@@ -1441,389 +1324,240 @@
     
       
     
-    <a href="https://github.com/yjianggeo/seismic-notes/raw/main/docs/fk-radon-en.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/yjianggeo/seismic-notes/raw/main/docs/cable-coupling-en.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
     </a>
   
 
 
-<h1 id="f-k-analysis-and-radon-transform">F-K Analysis and Radon Transform<a class="headerlink" href="#f-k-analysis-and-radon-transform" title="Permanent link">&para;</a></h1>
+<h1 id="detecting-and-assessing-das-cable-coupling-state">Detecting and Assessing DAS Cable Coupling State<a class="headerlink" href="#detecting-and-assessing-das-cable-coupling-state" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Keywords: DAS, cable coupling, burial state, Poincaré spectral coherence, Burial Index (BI), vortex-induced vibration (VIV)</p>
+</blockquote>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p><strong>Transform-domain methods</strong> in seismic data processing map data from the time-space (<span class="arithmatex">\(t\)</span>-<span class="arithmatex">\(x\)</span>) domain into a new domain where different wavefields, or signal and noise, become separable. An overview of the most commonly used transforms:</p>
+<p>The <a href="../das-en/">DAS fundamentals</a> chapter established the theoretical transfer-function model of cable coupling (jacket-to-fibre coupling <span class="arithmatex">\(\eta_\text{fiber}\)</span>, medium coupling <span class="arithmatex">\(C_\text{med}(f)\)</span> and coupling stiffness <span class="arithmatex">\(k_s\)</span>). In real deployments, however, <strong>the coupling state varies along the cable and is unknown</strong>: a subsea cable may be buried in sediment over one stretch, resting exposed on the seabed over another, and suspended across a scour depression elsewhere. The same physical forcing produces entirely different responses on differently coupled segments; without knowing the spatial distribution of coupling, ambient-noise interpretation, event detection and structural imaging can all be systematically biased.</p>
+<p>This chapter addresses the question: <strong>how can the coupling state of a cable be detected and assessed directly from DAS data itself</strong> — with no controlled sources, no diver inspections, and no prior geological knowledge — in an automated, near-real-time fashion.</p>
+<h2 id="four-coupling-states-and-their-physical-effects">Four Coupling States and Their Physical Effects<a class="headerlink" href="#four-coupling-states-and-their-physical-effects" title="Permanent link">&para;</a></h2>
+<p>Subsea cable coupling is commonly divided into four states with distinct mechanical constraints and frequency responses:</p>
 <table>
 <thead>
 <tr>
-<th>Transform</th>
-<th>Input → Output</th>
-<th>Separates</th>
-<th>Typical use</th>
+<th>Coupling state</th>
+<th>Mechanical constraint</th>
+<th>Frequency-response signature</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>F-K (2D FFT)</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(D(k,f)\)</span></td>
-<td>Frequency + wavenumber (apparent velocity)</td>
-<td>Dip noise removal, wavefield separation</td>
+<td><strong>Buried</strong></td>
+<td>Sediment confinement adds effective mass, stiffness and damping</td>
+<td>Low-pass: mid-to-high frequencies suppressed by sediment damping; low frequencies (gravity-wave band) retained and spatially smooth</td>
 </tr>
 <tr>
-<td>Linear Radon (τ-p, slant stack)</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(m(\tau,p)\)</span></td>
-<td>Intercept time + slowness</td>
-<td>Multiple attenuation, surface-wave extraction</td>
+<td><strong>Partially buried</strong></td>
+<td>Intermediate constraint, possibly intermittent contact</td>
+<td>Transitional response between buried and exposed</td>
 </tr>
 <tr>
-<td>Parabolic Radon</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(m(\tau,q)\)</span></td>
-<td>Intercept time + curvature</td>
-<td>Accurate multiple attenuation</td>
+<td><strong>Exposed</strong></td>
+<td>Driven directly by hydrodynamic pressure</td>
+<td>Broadband sensitivity to waves, currents and vessels, but also elevated broadband noise</td>
 </tr>
 <tr>
-<td>Beamforming</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(P(f,k)\)</span></td>
-<td>Azimuth + slowness</td>
-<td>Array steering, source location</td>
+<td><strong>Suspended (free span)</strong></td>
+<td>Almost no mechanical constraint</td>
+<td>Broadband + resonance: currents drive <strong>vortex-induced vibration (VIV)</strong>, producing narrowband resonant peaks</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Apparent velocity</strong> is the unifying concept across all these transforms:</p>
+<div class="admonition note">
+<p class="admonition-title">Coupling is a double-edged sword for observation</p>
+<p>While burial suppresses high-frequency water-column signals, it may <strong>improve</strong> coupling to solid-Earth wavefields (Scholte, Rayleigh and body waves) — buried segments can actually be better suited to regional and teleseismic monitoring (Taweesintananon et al.). Exposed segments are sensitive to hydrodynamic and anthropogenic forcing but prone to resonant artefacts. Coupling mapping is therefore not only a data-quality tool but also a basis for <strong>selecting which cable segments to use</strong> for a given observation goal.</p>
+</div>
+<p><img alt="Cable coupling states and Poincaré spectral coherence" src="../assets/images/cable_coupling_poincare.png" />
+<em>Figure 1: (a) Scenarios and frequency-response signatures of three typical coupling states — buried segments are low-pass (high frequencies damped by sediment), exposed segments are broadband-sensitive, and suspended segments show a VIV resonant peak (orange band: the 100–120 Hz high-frequency band used for detection); (b) Burial Index (BI) profile derived from Poincaré spectral coherence: low BI corresponds to buried segments with smooth, coherent spectral fingerprints across neighbouring channels, high BI to spatially irregular exposed/suspended segments, and sharp BI jumps mark coupling transitions. (Synthetic illustration, patterned after the OBSEA layout; following Shiri &amp; Belal, 2026.)</em></p>
+<h2 id="overview-of-coupling-state-detection-methods">Overview of Coupling-State Detection Methods<a class="headerlink" href="#overview-of-coupling-state-detection-methods" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Observable</th>
+<th>Strengths</th>
+<th>Limitations</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vessel-induced band energy (Harmon et al.)</td>
+<td>Along-cable band-energy distribution during vessel passages</td>
+<td>Strong signals, clear contrast</td>
+<td>Requires vessel transits; manual interpretation; not continuous</td>
+</tr>
+<tr>
+<td>Resonance-frequency shift (Taweesintananon et al.)</td>
+<td>Changes in near-surface shear-wave resonance frequencies with coupling</td>
+<td>Physically direct, independent proxy</td>
+<td>Requires identifiable resonance peaks; sensitive to shallow structure</td>
+</tr>
+<tr>
+<td>Frequency-dependent amplitude modulation (Bakulin et al.)</td>
+<td>Amplitude modulation by sub-wavelength seabed stiffness variations</td>
+<td>Reveals coupling dependence on wave type (Scholte/Rayleigh/body)</td>
+<td>Qualitative; no segment-resolved coupling map</td>
+</tr>
+<tr>
+<td>Co-located point seismometer</td>
+<td>Empirical transfer function <span class="arithmatex">\(T(f)\)</span></td>
+<td>Direct readout of the corner frequency <span class="arithmatex">\(f_c\)</span> (see <a href="../das-en/">DAS: field assessment of coupling quality</a>)</td>
+<td>Requires an additional reference station</td>
+</tr>
+<tr>
+<td><strong>Poincaré spectral coherence</strong> (Shiri &amp; Belal, 2026)</td>
+<td>Spatial irregularity of spectral fingerprints across neighbouring channels</td>
+<td>Unsupervised, near-real-time, lightweight, continuous mapping</td>
+<td>Bands must be tuned per site; BI is a relative index, not burial depth</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-poincare-spectral-coherence-framework">The Poincaré Spectral-Coherence Framework<a class="headerlink" href="#the-poincare-spectral-coherence-framework" title="Permanent link">&para;</a></h2>
+<p>The framework of Shiri &amp; Belal (2026) converts DAS differential-phase measurements <span class="arithmatex">\(Y(t, x)\)</span> into an along-cable coupling indicator in four stages. Everything reduces to short-time FFTs and block statistics — <strong>no training, no iterative optimisation</strong> — and runs in near real time on a single CPU core.</p>
+<h3 id="stage-1-two-band-spectral-fingerprints">Stage 1: Two-Band Spectral Fingerprints<a class="headerlink" href="#stage-1-two-band-spectral-fingerprints" title="Permanent link">&para;</a></h3>
+<p>The data are partitioned into overlapping 2–4 s windows (length <span class="arithmatex">\(N_t^{(w)}\)</span>) and tapered with a Hanning window to suppress spectral leakage:</p>
 <div class="arithmatex">\[
-v_\text{app} = \left.\frac{\partial t}{\partial x}\right|^{-1} = \frac{f}{k} = \frac{1}{p}
+h[n] = \frac{1}{2}\left(1 - \cos\frac{2\pi n}{N_t^{(w)} - 1}\right), \qquad \tilde{y}_i^{(w)}[n] = y_i^{(w)}[n]\, h[n]
 \]</div>
-<p>where <span class="arithmatex">\(p = k/f\)</span> is the <strong>slowness</strong> (units: s/m or s/km).</p>
-<hr />
-<h2 id="f-k-analysis">F-K Analysis<a class="headerlink" href="#f-k-analysis" title="Permanent link">&para;</a></h2>
-<h3 id="the-2d-fourier-transform">The 2D Fourier Transform<a class="headerlink" href="#the-2d-fourier-transform" title="Permanent link">&para;</a></h3>
-<p>The 2D discrete Fourier transform of a multi-channel record <span class="arithmatex">\(d(x_i, t)\)</span> yields the <strong>frequency-wavenumber spectrum</strong>:</p>
+<p>After the discrete Fourier transform, the <strong>frequency band energy</strong> (FBE — the periodogram power summed over a band) is computed in two physically complementary bands:</p>
 <div class="arithmatex">\[
-D(k, f) = \sum_{i=1}^{N_x}\sum_{j=1}^{N_t} d(x_i, t_j)\, e^{-i 2\pi (k x_i + f t_j)}
+P_{i,k}^{(w)} = \sum_{\ell \in K_k} \left|\hat{y}_i^{(w)}[\ell]\right|^2
 \]</div>
 <ul>
-<li><span class="arithmatex">\(f\)</span> (Hz): temporal frequency — how fast the signal oscillates in time</li>
-<li><span class="arithmatex">\(k\)</span> (1/m): spatial wavenumber — how fast the signal oscillates across the array</li>
-<li>Apparent velocity: <span class="arithmatex">\(v_\text{app} = f/k\)</span>; apparent slowness: <span class="arithmatex">\(p = k/f\)</span></li>
+<li><strong>Low band</strong> <span class="arithmatex">\(B_1\)</span> (e.g., 0.01–10 Hz): persistent large-scale forcing — surface gravity waves, swell, tides — spatially smooth and temporally stable, providing a consistent background reference;</li>
+<li><strong>High band</strong> <span class="arithmatex">\(B_2\)</span> (e.g., 100–120 Hz): intermittent excitation (vessel harmonics, VIV strumming, flow-induced vibration) — strongly attenuated by sediment damping when buried, hence <strong>most sensitive to coupling state</strong>.</li>
 </ul>
-<p><strong>Key property</strong>: A plane wave propagating with apparent velocity <span class="arithmatex">\(v\)</span> along <span class="arithmatex">\(x\)</span>, i.e. <span class="arithmatex">\(d(x,t) = w(t - x/v)\)</span>, concentrates all its energy on the line <span class="arithmatex">\(k = f/v\)</span> in the F-K domain. Different wavefields — P-waves, S-waves, surface waves, noise — occupy distinct <strong>wedge-shaped bands</strong> in F-K space, enabling separation by a fan-shaped filter.</p>
-<h3 id="fan-filter">Fan Filter<a class="headerlink" href="#fan-filter" title="Permanent link">&para;</a></h3>
-<p>A fan (velocity) filter passes energy within an apparent velocity range <span class="arithmatex">\([v_\min, v_\max]\)</span>:</p>
+<p>The two band powers are normalised into a two-dimensional <strong>spectral fingerprint</strong>:</p>
 <div class="arithmatex">\[
-H(f, k) = \begin{cases}
-1, &amp; |f/k| \geq v_\min \text{ and } |f/k| \leq v_\max \\
-0, &amp; \text{otherwise (slow/fast noise zone)}
-\end{cases}
+\mathbf{f}_i^{(w)} = \frac{1}{P_{i,1}^{(w)} + P_{i,2}^{(w)} + \varepsilon_1} \begin{bmatrix} P_{i,1}^{(w)} \\ P_{i,2}^{(w)} \end{bmatrix}
 \]</div>
-<p>In practice, the passband boundaries must be <strong>tapered</strong> (cosine or Hanning taper) to suppress Gibbs-effect ringing in the <span class="arithmatex">\(t\)</span>-<span class="arithmatex">\(x\)</span> domain.</p>
 <div class="admonition note">
-<p class="admonition-title">F-K Filtering in VSP Wavefield Separation</p>
-<p>In VSP processing, downgoing waves (<span class="arithmatex">\(\partial t/\partial z &gt; 0\)</span>) and upgoing waves (<span class="arithmatex">\(\partial t/\partial z &lt; 0\)</span>) have opposite-sign apparent velocities. An F-K filter retaining only <span class="arithmatex">\(k &gt; 0\)</span> or <span class="arithmatex">\(k &lt; 0\)</span> separates them directly. See <a href="../vsp-en/">VSP Principles</a>.</p>
+<p class="admonition-title">Band selection is site-specific</p>
+<p>The optimal bands depend on environmental forcing, sediment properties, cable construction (armouring, stiffness, diameter) and acquisition parameters (gauge length, channel spacing); they are chosen empirically by systematically inspecting the DAS spectra at each site, aiming to maximise spatial contrast and temporal stability. The two-band framework itself is general — alternative bands can be substituted without modifying the methodology.</p>
 </div>
-<h3 id="spatial-aliasing">Spatial Aliasing<a class="headerlink" href="#spatial-aliasing" title="Permanent link">&para;</a></h3>
-<p>When the channel spacing <span class="arithmatex">\(\Delta x\)</span> is too large, steeply dipping events alias in the wavenumber domain:</p>
+<h3 id="stage-2-the-poincare-type-spatial-coherence-coefficient">Stage 2: The Poincaré-Type Spatial Coherence Coefficient<a class="headerlink" href="#stage-2-the-poincare-type-spatial-coherence-coefficient" title="Permanent link">&para;</a></h3>
+<p>The cable is divided into spatial blocks <span class="arithmatex">\(I_b\)</span> of <span class="arithmatex">\(M\)</span> channels. With the block-averaged fingerprint <span class="arithmatex">\(\bar{\mathbf{f}}^{(w,b)}\)</span>, two statistics are defined.</p>
+<p><strong>Spectral spread</strong> (L2 deviation of fingerprints from the block mean):</p>
 <div class="arithmatex">\[
-k_\text{Nyquist} = \frac{1}{2\Delta x}, \qquad
-f_\text{alias} = \frac{v_\text{app}}{2\Delta x}
+\mathrm{Spread}_{L2}^{(w,b)} = \sqrt{\frac{1}{M} \sum_{i \in I_b} \left\| \mathbf{f}_i^{(w)} - \bar{\mathbf{f}}^{(w,b)} \right\|_2^2}
 \]</div>
-<p>For surface waves (<span class="arithmatex">\(v_\text{app} = 500\)</span> m/s) and <span class="arithmatex">\(\Delta x = 25\)</span> m: <span class="arithmatex">\(f_\text{alias} = 10\)</span> Hz — surface waves alias above 10 Hz, contaminating the filter design. The spatial Nyquist condition is:</p>
+<p><strong>Spectral gradient</strong> (L2 norm of channel-to-channel fingerprint differences):</p>
 <div class="arithmatex">\[
-\boxed{\Delta x \leq \frac{v_\text{app,min}}{2 f_\text{max}}}
+\mathrm{Grad}_{L2}^{(w,b)} = \sqrt{\frac{1}{M-1} \sum_{i \in I_b \setminus \{\text{last}\}} \left\| \Delta \mathbf{f}_i^{(w)} \right\|_2^2}, \qquad \Delta\mathbf{f}_i^{(w)} = \mathbf{f}_{i+1}^{(w)} - \mathbf{f}_i^{(w)}
 \]</div>
-<p>DAS channel spacings (1–5 m) largely eliminate this problem, whereas conventional geophone arrays (25–50 m spacing) often violate it for slow coherent noise.</p>
-<h3 id="high-resolution-f-k-capon-adaptive-beamforming">High-Resolution F-K: Capon Adaptive Beamforming<a class="headerlink" href="#high-resolution-f-k-capon-adaptive-beamforming" title="Permanent link">&para;</a></h3>
-<p>Conventional F-K (delay-and-sum beamforming) applies equal weights <span class="arithmatex">\(1/N\)</span> to all channels, equivalent to a rectangular spatial window — leading to high <strong>sidelobes</strong> that contaminate the spectrum.</p>
-<p>Capon (1969) proposed the <strong>Minimum Variance Distortionless Response (MVDR)</strong>: maintain unit gain toward the look direction while minimising total output power, thereby maximally suppressing energy from all other directions.</p>
-<p>Using the <strong>spatial covariance matrix</strong> <span class="arithmatex">\(\hat{\mathbf{R}}(f)\)</span> estimated from multiple data segments, the Capon spectrum is:</p>
+<p>To prevent artificially inflated coherence in blocks where both spread and gradient are tiny, a <strong>gradient floor</strong> proportional to the block energy is introduced:</p>
 <div class="arithmatex">\[
-\boxed{P_\text{Capon}(f, k) = \frac{1}{\mathbf{a}^H(k)\,\hat{\mathbf{R}}^{-1}(f)\,\mathbf{a}(k)}}
+\mathrm{Grad}_\text{floor}^{(w,b)} = \alpha\, \mathrm{Scale}_{L2}^{(w,b)}, \quad \alpha = 0.05; \qquad \mathrm{Grad}_\text{eff} = \max\left(\mathrm{Grad}_{L2},\, \mathrm{Grad}_\text{floor}\right)
 \]</div>
-<p>where <span class="arithmatex">\(\mathbf{a}(k) = [1,\, e^{ik\Delta x},\, e^{i2k\Delta x},\, \ldots]^T\)</span> is the <strong>steering vector</strong> and <span class="arithmatex">\(\hat{\mathbf{R}}(f) = \frac{1}{N_\text{seg}}\sum_n \hat{\mathbf{d}}_n\hat{\mathbf{d}}_n^H\)</span> is estimated from <span class="arithmatex">\(N_\text{seg}\)</span> independent snapshots. The sidelobe level is typically 10–20 dB lower than conventional beamforming.</p>
+<p>Sensitivity tests show the result is stable for <span class="arithmatex">\(\alpha \in [0.01, 0.1]\)</span>. The final <strong>effective coherence coefficient</strong>:</p>
+<div class="arithmatex">\[
+\boxed{\; C_\text{eff}^{(w,b)} = \frac{\mathrm{Spread}_{L2}^{(w,b)}}{\mathrm{Grad}_\text{eff}^{(w,b)} + \varepsilon_2} \;}
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Why 'Poincaré'?</p>
+<p>The ratio is motivated by <strong>Poincaré-type inequalities</strong>, which relate the variability of a function over a domain to the magnitude of its spatial gradient. Here the spread quantifies within-block variability while the gradient measures the characteristic channel-to-channel change; their ratio gives a dimensionless measure of <strong>spatial irregularity</strong>: large <span class="arithmatex">\(C_\text{eff}\)</span> → dissimilar neighbouring fingerprints (exposed/suspended: free-span dynamics + spatially heterogeneous forcing); small <span class="arithmatex">\(C_\text{eff}\)</span> → smooth and coherent (buried: sediment confinement makes neighbouring channels share similar boundary conditions). Because it measures <strong>relative</strong> spatial variation rather than absolute energy, it is insensitive to global changes in forcing amplitude.</p>
+</div>
+<h3 id="stage-3-robust-logmadexp-normalisation">Stage 3: Robust log–MAD–exp Normalisation<a class="headerlink" href="#stage-3-robust-logmadexp-normalisation" title="Permanent link">&para;</a></h3>
+<p>The raw <span class="arithmatex">\(C_\text{eff}\)</span> is non-negative but has a large dynamic range and a heavy-tailed distribution (extremes come from strongly exposed/free-span segments). Three steps follow:</p>
+<ol>
+<li><strong>Log transform</strong> to compress large values: <span class="arithmatex">\(L[w,b] = \log(C_\text{raw}[w,b] + \varepsilon_3)\)</span>;</li>
+<li><strong>Median–MAD normalisation</strong> (removes large-scale temporal variations from tides, environmental forcing or interrogator drift):</li>
+</ol>
+<div class="arithmatex">\[
+Z_L[w,b] = \frac{L[w,b] - m_L}{1.4826\,\mathrm{MAD}_L + \varepsilon_3}, \qquad m_L = \mathrm{median}(L), \quad \mathrm{MAD}_L = \mathrm{median}\left(|L - m_L|\right)
+\]</div>
+<p>The factor 1.4826 is the consistency constant relating MAD to the standard deviation under Gaussian assumptions — here it serves only as a reference scale. <strong>No normality is assumed</strong>; the MAD is chosen precisely for robustness to outliers and non-Gaussian behaviour;</p>
+<ol>
+<li><strong>Exponential mapping</strong> back to a positive, energy-like index: <span class="arithmatex">\(C_\text{norm}[w,b] = \exp(Z_L[w,b])\)</span>.</li>
+</ol>
+<h3 id="stage-4-spatial-smoothing-and-the-burial-index-bi">Stage 4: Spatial Smoothing and the Burial Index (BI)<a class="headerlink" href="#stage-4-spatial-smoothing-and-the-burial-index-bi" title="Permanent link">&para;</a></h3>
+<p>A <strong>spatial Gaussian smoothing</strong> (<span class="arithmatex">\(\sigma = L_\text{smooth}/\Delta x\)</span>, reflective boundaries at cable ends) suppresses channel-scale artefacts and emphasises burial-scale structure:</p>
+<div class="arithmatex">\[
+C_\text{smooth}[w,b] = \sum_k g_\sigma(b - k)\, C_\text{norm}[w,k], \qquad g_\sigma(\ell) \propto e^{-\ell^2 / 2\sigma^2}
+\]</div>
+<p>Finally, the <strong>median over time windows</strong> yields the one-dimensional <strong>Burial Index (BI)</strong> profile:</p>
+<div class="arithmatex">\[
+\boxed{\; \mathrm{BI}(b) = \operatorname*{median}_{w}\, C_\text{smooth}[w, b] \;}
+\]</div>
 <div class="admonition warning">
-<p class="admonition-title">Practical Requirements for Capon MVDR</p>
-<p><span class="arithmatex">\(\hat{\mathbf{R}}\)</span> must be well-conditioned: requires <span class="arithmatex">\(N_\text{seg} \gg N_x\)</span> independent snapshots. When this condition is not met, use <strong>diagonal loading</strong>: <span class="arithmatex">\(\hat{\mathbf{R}}_\epsilon = \hat{\mathbf{R}} + \epsilon\mathbf{I}\)</span> with <span class="arithmatex">\(\epsilon \approx 1\)</span>–<span class="arithmatex">\(5\%\)</span> of the largest eigenvalue.</p>
+<p class="admonition-title">BI is a coupling indicator, not a burial depth</p>
+<p>The BI quantifies <strong>spatial irregularity of the cable–seabed coupling response</strong>. Burial is the dominant control, but sediment heterogeneity, water depth and bathymetric gradients, seabed rugosity (via turbulence and scattering), protective structures, local free spans and installation transitions all contribute to BI anomalies. Interpret the BI together with bathymetric and geological context, and always as a <strong>relative</strong> index.</p>
 </div>
-<h3 id="music-algorithm">MUSIC Algorithm<a class="headerlink" href="#music-algorithm" title="Permanent link">&para;</a></h3>
-<p><strong>Multiple Signal Classification (MUSIC)</strong> decomposes the covariance matrix into signal and noise subspaces:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{R}} = \mathbf{E}_s \boldsymbol{\Lambda}_s \mathbf{E}_s^H + \sigma_n^2 \mathbf{E}_n \mathbf{E}_n^H
-\]</div>
-<p>The MUSIC spectrum:</p>
-<div class="arithmatex">\[
-P_\text{MUSIC}(k) = \frac{1}{\|\mathbf{E}_n^H\,\mathbf{a}(k)\|^2}
-\]</div>
-<p>diverges when the steering vector is orthogonal to the noise subspace, giving theoretically unlimited resolution (SNR-limited in practice). The cost is the need to know the source count <span class="arithmatex">\(d\)</span> (number of eigenvectors to assign to the signal subspace).</p>
-<p><img alt="F-K analysis and fan filtering" src="../assets/images/fk_analysis.png" />
-<em>Figure 1: (top-left) Original CMP gather with surface-wave noise; (top-right) F-K spectrum (log amplitude) — white line at 2000 m/s marks P-waves, cyan at 350 m/s marks surface waves; (bottom-left) fan filter mask (white = pass, <span class="arithmatex">\(v_\text{app} &gt; 700\)</span> m/s); (bottom-right) filtered gather with surface-wave energy removed.</em></p>
-<hr />
-<h2 id="radon-transform-slant-stack">Radon Transform (Slant Stack)<a class="headerlink" href="#radon-transform-slant-stack" title="Permanent link">&para;</a></h2>
-<h3 id="linear-radon-p-transform">Linear Radon (τ-p Transform)<a class="headerlink" href="#linear-radon-p-transform" title="Permanent link">&para;</a></h3>
-<p>The linear Radon transform (also called the <strong>slant stack</strong> or <strong>τ-p transform</strong>) maps <span class="arithmatex">\(x\)</span>-<span class="arithmatex">\(t\)</span> data to intercept-time–slowness (τ-p) space:</p>
-<div class="arithmatex">\[
-m(\tau, p) = \int d(x,\, \tau + p\,x)\, \mathrm{d}x
-\]</div>
-<p><strong>Physical meaning</strong>: integrate <span class="arithmatex">\(d(x,t)\)</span> along a straight line with slope <span class="arithmatex">\(p\)</span> (= apparent slowness). A linear moveout event with apparent velocity <span class="arithmatex">\(v = 1/p\)</span> collapses to a single point at <span class="arithmatex">\((τ, p)\)</span> in the Radon domain.</p>
-<p><strong>Inverse transform</strong>:</p>
-<div class="arithmatex">\[
-d(x, t) = \int m(\tau,\, p)\big|_{\tau = t - px}\, \mathrm{d}p
-\]</div>
-<h3 id="discrete-implementation-phase-shift-summation">Discrete Implementation: Phase-Shift Summation<a class="headerlink" href="#discrete-implementation-phase-shift-summation" title="Permanent link">&para;</a></h3>
-<p>Efficient frequency-domain implementation: for each frequency <span class="arithmatex">\(f\)</span>,</p>
-<div class="arithmatex">\[
-M(p, f) = \sum_{i=1}^{N_x} D(x_i, f)\, e^{-i 2\pi f\, p\, x_i}
-\]</div>
-<p>This is a phase rotation for each slowness <span class="arithmatex">\(p\)</span>, with total cost <span class="arithmatex">\(O(N_p \cdot N_x \cdot N_f)\)</span> — much faster than time-domain interpolation.</p>
-<h3 id="parabolic-radon">Parabolic Radon<a class="headerlink" href="#parabolic-radon" title="Permanent link">&para;</a></h3>
-<p>Real reflection moveout is hyperbolic; the <strong>parabolic approximation</strong> is more accurate after NMO:</p>
-<div class="arithmatex">\[
-m(\tau, q) = \int d(x,\, \tau + q\,x^2)\, \mathrm{d}x
-\]</div>
-<p>where <span class="arithmatex">\(q\)</span> (s/m²) is the curvature parameter. After NMO correction, primary reflections map near <span class="arithmatex">\(q = 0\)</span>, while multiples with residual moveout map to finite <span class="arithmatex">\(q\)</span> — enabling <strong>multiple attenuation by muting</strong> in the Radon domain.</p>
+<h2 id="field-validation">Field Validation<a class="headerlink" href="#field-validation" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Radon type</th>
-<th>Integration path</th>
-<th>Focuses</th>
-<th>Primary application</th>
+<th>Parameter</th>
+<th>EMEC Eday (Orkney, UK)</th>
+<th>OBSEA (Barcelona, Spain)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Linear (τ-p)</td>
-<td><span class="arithmatex">\(t = \tau + px\)</span></td>
-<td>Linear events</td>
-<td>Surface-wave extraction, plane-wave decomposition</td>
+<td>Cable length</td>
+<td>~2.2 km (composite power cable)</td>
+<td>~5.8 km (telecom-power cable)</td>
 </tr>
 <tr>
-<td>Parabolic</td>
-<td><span class="arithmatex">\(t = \tau + qx^2\)</span></td>
-<td>Post-NMO hyperbolic events</td>
-<td>Multiple attenuation (OBC, towed streamer)</td>
+<td>Channels / spacing</td>
+<td>1083 / 2.04 m</td>
+<td>4560 / 1.275 m</td>
 </tr>
 <tr>
-<td>Hyperbolic</td>
-<td><span class="arithmatex">\(t = \sqrt{\tau^2 + x^2/v^2}\)</span></td>
-<td>Raw hyperbolic events</td>
-<td>Precise velocity analysis</td>
+<td>Sampling rate / gauge length</td>
+<td>1 kHz / 10 m</td>
+<td>2 kHz / 20 m</td>
+</tr>
+<tr>
+<td>Environment</td>
+<td>Strong tidal currents (up to 4 m/s), alternating bedrock–sand ripples–erosional scarps</td>
+<td>Sediment-dominated, smoother seabed</td>
+</tr>
+<tr>
+<td>Independent validation</td>
+<td>Mapped lithological boundaries (RF/LE/EF/ME) + aerial imagery</td>
+<td><strong>Diver/vessel-reported burial segments</strong></td>
 </tr>
 </tbody>
 </table>
-<h3 id="the-l2-smearing-problem">The L2 Smearing Problem<a class="headerlink" href="#the-l2-smearing-problem" title="Permanent link">&para;</a></h3>
-<p>In discrete form: <span class="arithmatex">\(\mathbf{d} = \mathbf{L}\mathbf{m}\)</span>. The <strong>minimum-norm L2 solution</strong>:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{m}}_{L2} = (\mathbf{L}^H\mathbf{L} + \varepsilon^2\mathbf{I})^{-1}\mathbf{L}^H\mathbf{d}
-\]</div>
-<p>Because <span class="arithmatex">\(\mathbf{L}^H\mathbf{L}\)</span> is not the identity (the operator is non-orthogonal for finite arrays), the L2 solution <strong>smears</strong> energy across neighbouring slownesses, degrading the contrast between primaries and multiples and reducing the effectiveness of subsequent muting.</p>
-<hr />
-<h2 id="sparse-high-resolution-radon-current-research">Sparse / High-Resolution Radon (Current Research)<a class="headerlink" href="#sparse-high-resolution-radon-current-research" title="Permanent link">&para;</a></h2>
-<h3 id="l1-regularisation-sparse-radon">L1 Regularisation (Sparse Radon)<a class="headerlink" href="#l1-regularisation-sparse-radon" title="Permanent link">&para;</a></h3>
-<p>Replacing the L2 penalty with an L1 term forces most Radon coefficients to zero, consistent with the sparse nature of seismic reflectivity:</p>
-<div class="arithmatex">\[
-\boxed{\hat{\mathbf{m}} = \arg\min_{\mathbf{m}} \left\{\|\mathbf{d} - \mathbf{L}\mathbf{m}\|_2^2 + \lambda\|\mathbf{m}\|_1\right\}}
-\]</div>
-<p>Common solvers: ADMM (Alternating Direction Method of Multipliers), ISTA/FISTA (iterative soft thresholding).</p>
-<h3 id="iteratively-reweighted-least-squares-irls">Iteratively Reweighted Least Squares (IRLS)<a class="headerlink" href="#iteratively-reweighted-least-squares-irls" title="Permanent link">&para;</a></h3>
-<p>IRLS solves a series of weighted L2 problems, updating the weight matrix from the previous solution's amplitude:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{m}}^{(k+1)} = \left(\mathbf{L}^H\mathbf{L} + \varepsilon\,[\mathbf{Q}^{(k)}]^{-1}\right)^{-1} \mathbf{L}^H\mathbf{d}
-\]</div>
-<div class="arithmatex">\[
-Q^{(k)}_{ii} = \left|m_i^{(k)}\right| + \delta, \quad \delta \ll 1
-\]</div>
-<p>Even 1–3 iterations produce dramatically sharper Radon panels compared with the L2 solution, at only a modest computational overhead.</p>
-<h3 id="sacchi-ulrych-high-resolution-radon">Sacchi-Ulrych High-Resolution Radon<a class="headerlink" href="#sacchi-ulrych-high-resolution-radon" title="Permanent link">&para;</a></h3>
-<p>Sacchi &amp; Ulrych (1995) perform frequency-by-frequency estimation in the frequency domain using <strong>adaptive weighting</strong> derived from the estimated model power spectrum:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{M}}(\omega) = \left(\mathbf{L}^H\mathbf{L} + \mu\,\mathbf{Q}^{-1}(\omega)\right)^{-1} \mathbf{L}^H\mathbf{D}(\omega), \quad \mathbf{Q}(\omega) = \mathrm{diag}(|\hat{M}_j(\omega)|^2)
-\]</div>
-<p>This <strong>frequency-adaptive regularisation</strong> applies strong constraint only where the model power is low (noise-dominated frequencies), achieving consistent focusing across the full bandwidth.</p>
-<h3 id="compressive-sensing-radon">Compressive Sensing Radon<a class="headerlink" href="#compressive-sensing-radon" title="Permanent link">&para;</a></h3>
-<p>When receiver spacing is non-uniform or traces are missing, the conventional regular-grid Radon assumption breaks down. The compressive sensing formulation directly recovers a sparse Radon panel from irregular observations:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{m}} = \arg\min_{\mathbf{m}} \|\mathbf{m}\|_1 \quad \text{s.t.} \quad \|\mathbf{d} - \mathbf{L}_\text{irr}\mathbf{m}\|_2 \leq \sigma
-\]</div>
-<p>where <span class="arithmatex">\(\mathbf{L}_\text{irr}\)</span> is the irregular-sampling Radon operator. No interpolation pre-processing is required.</p>
-<p><img alt="Radon transform comparison" src="../assets/images/radon_transform.png" />
-<em>Figure 2: (left) CMP gather with hyperbolic moveout events; (centre) conventional L2 Radon — events smear widely in slowness; (right) sparse/IRLS Radon — events focus into sharp stripes in the τ-p domain.</em></p>
-<hr />
-<h2 id="practical-requirements-and-guidelines">Practical Requirements and Guidelines<a class="headerlink" href="#practical-requirements-and-guidelines" title="Permanent link">&para;</a></h2>
-<h3 id="f-k-filtering">F-K Filtering<a class="headerlink" href="#f-k-filtering" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Issue</th>
-<th>Explanation</th>
-<th>Mitigation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Uniform channel spacing</td>
-<td>Non-uniform spacing distorts the F-K spectrum</td>
-<td>Interpolate to a regular grid, or use NUFFT</td>
-</tr>
-<tr>
-<td>Edge effects</td>
-<td>Finite aperture produces sidelobes</td>
-<td>Apply spatial/temporal tapers (Hanning, Tukey)</td>
-</tr>
-<tr>
-<td>Filter boundary</td>
-<td>Rectangular cut creates ringing</td>
-<td>Cosine-taper the boundary (≥ 5% of band width)</td>
-</tr>
-<tr>
-<td>Signal leakage</td>
-<td>Overly narrow passband clips useful signal</td>
-<td>Widen passband to acceptable residual noise level</td>
-</tr>
-<tr>
-<td>3D data</td>
-<td>2D F-K misses cross-line dips</td>
-<td>Extend to 3D F-K (<span class="arithmatex">\(k_x\)</span>, <span class="arithmatex">\(k_y\)</span>, <span class="arithmatex">\(f\)</span>)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="linear-radon">Linear Radon<a class="headerlink" href="#linear-radon" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Issue</th>
-<th>Explanation</th>
-<th>Mitigation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Slowness range</td>
-<td>Too narrow → energy overflow</td>
-<td>Cover all target apparent velocities including surface waves</td>
-</tr>
-<tr>
-<td>Slowness sampling</td>
-<td>Large <span class="arithmatex">\(\Delta p\)</span> → poor slowness resolution</td>
-<td><span class="arithmatex">\(\Delta p \leq 1/(N_x \cdot x_\max \cdot f_\max)\)</span></td>
-</tr>
-<tr>
-<td>NMO residual</td>
-<td>Linear Radon cannot focus hyperbolic events exactly</td>
-<td>Use parabolic Radon, or apply NMO before linear Radon</td>
-</tr>
-<tr>
-<td>Regularisation <span class="arithmatex">\(\varepsilon\)</span></td>
-<td>Too large → smearing; too small → instability</td>
-<td>L-curve or cross-validation for automatic selection</td>
-</tr>
-<tr>
-<td>Computational cost</td>
-<td>Time-domain: <span class="arithmatex">\(O(N_p N_x N_t)\)</span></td>
-<td>Frequency-domain: <span class="arithmatex">\(O(N_p N_x N_f)\)</span> per iteration</td>
-</tr>
-</tbody>
-</table>
-<h3 id="high-resolution-methods">High-Resolution Methods<a class="headerlink" href="#high-resolution-methods" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Key parameter</th>
-<th>Recommended range</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Capon MVDR</td>
-<td>Diagonal loading <span class="arithmatex">\(\epsilon\)</span></td>
-<td><span class="arithmatex">\(1\)</span>–<span class="arithmatex">\(5\%\)</span> of largest eigenvalue</td>
-</tr>
-<tr>
-<td>Capon MVDR</td>
-<td>Number of snapshots <span class="arithmatex">\(N_\text{seg}\)</span></td>
-<td><span class="arithmatex">\(N_\text{seg} &gt; 2 N_x\)</span> (otherwise singular)</td>
-</tr>
-<tr>
-<td>IRLS Radon</td>
-<td>Number of iterations</td>
-<td>3–10; more iterations risk over-sparsity and amplitude distortion</td>
-</tr>
-<tr>
-<td>IRLS Radon</td>
-<td>Stabilisation factor <span class="arithmatex">\(\delta\)</span></td>
-<td><span class="arithmatex">\(1\)</span>–<span class="arithmatex">\(5\%\)</span> of maximum amplitude</td>
-</tr>
-<tr>
-<td>Sparse Radon (ADMM)</td>
-<td>Regularisation <span class="arithmatex">\(\lambda\)</span></td>
-<td><span class="arithmatex">\(\lambda = \sigma_n\sqrt{2\ln N}\)</span> (BIC estimate)</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="summary-comparison">Summary Comparison<a class="headerlink" href="#summary-comparison" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Separation criterion</th>
-<th>Resolution</th>
-<th>Cost</th>
-<th>Current research</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>F-K fan filter</td>
-<td>Apparent velocity (linear)</td>
-<td>Aperture-limited</td>
-<td>Low (FFT)</td>
-<td>Adaptive weights, DAS non-uniform sampling</td>
-</tr>
-<tr>
-<td>Capon MVDR</td>
-<td>Apparent velocity (adaptive)</td>
-<td>High (SNR-limited)</td>
-<td>Medium (matrix inversion)</td>
-<td>Diagonal loading optimisation, recursive update</td>
-</tr>
-<tr>
-<td>MUSIC</td>
-<td>Apparent velocity (subspace)</td>
-<td>Super-resolution</td>
-<td>High (eigendecomposition)</td>
-<td>Source-count estimation, non-stationary covariance</td>
-</tr>
-<tr>
-<td>Linear Radon (L2)</td>
-<td>Apparent velocity (linear)</td>
-<td>Low (smeared)</td>
-<td>Medium</td>
-<td>Baseline reference; largely superseded</td>
-</tr>
-<tr>
-<td>High-res Radon (IRLS)</td>
-<td>Apparent velocity (linear)</td>
-<td>High</td>
-<td>Medium-high</td>
-<td>Compressive sensing, irregular sampling</td>
-</tr>
-<tr>
-<td>Parabolic Radon (L1)</td>
-<td>Curvature + velocity</td>
-<td>High</td>
-<td>High</td>
-<td>Deep-water multiple suppression</td>
-</tr>
-</tbody>
-</table>
-<hr />
+<p><strong>EMEC Eday</strong>: the BI profile aligns with mapped lithological boundaries — persistently low BI over the nearshore 200–350 m (buried/well-supported); elevated, fluctuating BI across the Eday Flagstones scarp zone at 450–900 m (weakly supported / free-span); elevated BI near the LE–RF and EF–LE lithological transitions (stiffness contrasts produce coupling contrasts), with a more gradual ME–EF transition. Consistent with the "partially buried" interval inferred by Harmon et al. from vessel-induced band-energy signatures.</p>
+<p><strong>OBSEA</strong>: the BI agrees strongly with diver-verified segments — high BI over the onshore section (0–1743.5 m); persistently low BI over the "suspected buried" interval (1743.5–3300 m); a gradual BI increase across the "unknown" interval (3242.9–4342.3 m); high, strongly fluctuating BI beyond 4442.5 m ("unburied"). Waveforms and spectrograms at four representative locations confirm the picture: in the buried segment the 100–140 Hz content nearly vanishes while low frequencies (&lt; 30 Hz) remain strong; in exposed segments high-frequency modulation is pronounced.</p>
+<p><strong>Computational performance</strong> (single vCPU, Google Colab Pro): complete coupling maps of multi-kilometre cables in &lt; 20 s, ≈ 50 s per km·hour of data, 1.3–2.0 CPU-hours per TB — orders of magnitude lighter than deep-learning pipelines.</p>
+<h2 id="artefacts-and-pitfalls">Artefacts and Pitfalls<a class="headerlink" href="#artefacts-and-pitfalls" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Do not mistake instrumental artefacts for coupling signals</p>
+<ul>
+<li><strong>Fresnel reflections</strong>: imperfect optical termination (especially the uncontrolled underwater distal end) produces persistent broadband high-energy bands visible in raw heatmaps, FBE maps and distance profiles — an acquisition boundary effect, never an environmental or coupling feature; both fibre ends can be affected (the near-end response depends on connector conditions and varies between campaigns);</li>
+<li><strong>Phase fading (Rayleigh fading)</strong>: destructive interference of the coherent Rayleigh backscatter causes localised signal dropouts and degraded SNR, most visible in the high band;</li>
+<li>Slack sections, stick–slip behaviour, gain variations and channel dropouts can likewise produce artificial coherence discontinuities mimicking coupling transitions.</li>
+</ul>
+</div>
+<ul>
+<li><strong>Raw time–distance plots are not directly readable</strong>: high-sampling-rate DAS data are non-stationary and noise-dominated; burial signatures are essentially invisible in raw t–x plots, so fingerprint- and coherence-based diagnostics are indispensable;</li>
+<li><strong>Bands must be tuned per site</strong> (environmental forcing, cable construction, gauge length and channel spacing all shift the optimal bands; longer gauge lengths reduce sensitivity to short-wavelength vibration);</li>
+<li><strong>Depth and rugosity confusion</strong>: water depth affects the BI both through burial persistence (sediment-transport pathways) and through the forcing environment (gravity-wave orbital motion decays with depth); a rough seabed can elevate the BI via heterogeneous turbulent forcing even without any true burial transition.</li>
+</ul>
+<h2 id="limitations-and-outlook">Limitations and Outlook<a class="headerlink" href="#limitations-and-outlook" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>From classification to quantification</strong>: the current framework yields relative coupling segments; future work can move towards <strong>quantitative burial-depth estimation</strong> using more general regularity diagnostics — spatial total variation, curvature (bending-energy) penalties, multi-band spectral ratios — combined with calibrated attenuation models and independent measurements (ROV/diver surveys);</li>
+<li><strong>Resonance-based proxies and wave-type-dependent coherence attributes</strong> offer independent constraints on coupling stiffness;</li>
+<li><strong>Closing the loop</strong>: BI maps feed back into DAS data quality control — selecting stable, well-coupled segments for geophysical monitoring, and flagging weakly coupled regions whose hydrodynamic/anthropogenic signals must be interpreted with caution.</li>
+</ul>
 <h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Capon, J. (1969). High-resolution frequency-wavenumber spectrum analysis. <em>Proceedings of the IEEE</em>, 57(8), 1408–1418.</li>
-<li>Schmidt, R. O. (1986). Multiple emitter location and signal parameter estimation. <em>IEEE Transactions on Antennas and Propagation</em>, 34(3), 276–280.</li>
-<li>Hampson, D. (1986). Inverse velocity stacking for multiple elimination. <em>SEG Technical Program Expanded Abstracts</em>, 422–424.</li>
-<li>Sacchi, M. D., &amp; Ulrych, T. J. (1995). High-resolution velocity gathers and offset space reconstruction. <em>Geophysics</em>, 60(4), 1169–1177.</li>
-<li>Trad, D., Ulrych, T., &amp; Sacchi, M. (2003). Latest views of the sparse Radon transform. <em>Geophysics</em>, 68(1), 386–399.</li>
-<li>Herrmann, F. J., &amp; Hennenfent, G. (2008). Non-parametric seismic data recovery with curvelet frames. <em>Geophysical Journal International</em>, 173(1), 233–248.</li>
-<li>Naghizadeh, M., &amp; Sacchi, M. D. (2010). Beyond alias hierarchical scale curvelet interpolation of regularly and irregularly sampled seismic data. <em>Geophysics</em>, 75(6), WB189–WB202.</li>
+<li>Shiri, H., &amp; Belal, M. (2026). A real-time framework for mapping subsea cable burial state using Poincaré spectral coherence of DAS measurements. <em>Scientific Reports</em>, 16, 23647.</li>
+<li>Harmon, M., et al. Coupling-dependent frequency-band-energy patterns in vessel signals on a shallow-water subsea cable (one of the source studies of the EMEC Eday dataset; as cited in Shiri &amp; Belal, 2026).</li>
+<li>Taweesintananon, K., et al. Influence of seafloor DAS coupling on near-surface shear-wave resonance frequencies (resonance behaviour as an independent burial proxy; as cited in Shiri &amp; Belal, 2026).</li>
+<li>Bakulin, A., et al. Frequency-dependent amplitude modulation by sub-wavelength seabed stiffness variations (coupling effects depend on the dominant wave type: Scholte/Rayleigh/body; as cited in Shiri &amp; Belal, 2026).</li>
+<li>Martin, E. R., et al. Distributed spring–mass model and low-pass transfer function for cable–medium coupling (see <a href="../das-en/">DAS fundamentals</a>).</li>
 </ul>
 
 

@@ -12,9 +12,13 @@
         <meta name="author" content="Jiang Yi">
       
       
-        <link rel="canonical" href="https://yjianggeo.github.io/seismic-notes/fk-radon-en/">
+        <link rel="canonical" href="https://yjianggeo.github.io/seismic-notes/cable-coupling/">
       
       
+        <link rel="prev" href="../das/">
+      
+      
+        <link rel="next" href="../glacier/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +26,7 @@
     
     
       
-        <title>F-K Analysis and Radon Transform - Seismic Notes</title>
+        <title>光缆耦合状态检测 - Seismic Notes</title>
       
     
     
@@ -62,13 +66,13 @@
   
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Seismic Notes">
-  <meta property="og:title" content="F-K Analysis and Radon Transform · Seismic Notes">
+  <meta property="og:title" content="光缆耦合状态检测 · Seismic Notes">
   <meta property="og:description" content="从震源到光纤，系统梳理地震学、DAS 与波场分析">
   <meta property="og:image" content="https://yjianggeo.github.io/seismic-notes/assets/images/og-seismic-notes.png">
   <meta property="og:image:width" content="1731">
   <meta property="og:image:height" content="909">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="F-K Analysis and Radon Transform · Seismic Notes">
+  <meta name="twitter:title" content="光缆耦合状态检测 · Seismic Notes">
   <meta name="twitter:description" content="从震源到光纤，系统梳理地震学、DAS 与波场分析">
   <meta name="twitter:image" content="https://yjianggeo.github.io/seismic-notes/assets/images/og-seismic-notes.png">
   <meta name="theme-color" content="#246f68">
@@ -92,7 +96,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#f-k-analysis-and-radon-transform" class="md-skip">
+        <a href="#das" class="md-skip">
           跳转至
         </a>
       
@@ -128,7 +132,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              F-K Analysis and Radon Transform
+              光缆耦合状态检测
             
           </span>
         </div>
@@ -389,10 +393,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../das/" class="md-tabs__link">
           
   
@@ -980,8 +986,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -993,21 +1001,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
-        
-          
-          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
             
   
   
@@ -1020,7 +1029,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_8">
             <span class="md-nav__icon md-icon"></span>
             DAS 分布式声学传感
@@ -1054,10 +1063,32 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../cable-coupling/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    光缆耦合状态检测
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -1068,6 +1099,140 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      引言
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      四种耦合状态及其物理效应
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      耦合状态检测方法概览
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poincare" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poincaré 谱相干框架
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Poincaré 谱相干框架">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 1：双频带谱指纹
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2poincare" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 2：Poincaré 型空间相干系数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3logmadexp" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 3：log–MAD–exp 稳健归一化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4bi" class="md-nav__link">
+    <span class="md-ellipsis">
+      阶段 4：空间平滑与埋设指数（BI）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      实例验证
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      假象与注意事项
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      局限与展望
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考文献
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1186,64 +1351,73 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#introduction" class="md-nav__link">
+  <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
-      Introduction
+      引言
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#f-k-analysis" class="md-nav__link">
+  <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      F-K Analysis
+      四种耦合状态及其物理效应
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="F-K Analysis">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      耦合状态检测方法概览
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#poincare" class="md-nav__link">
+    <span class="md-ellipsis">
+      Poincaré 谱相干框架
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Poincaré 谱相干框架">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-2d-fourier-transform" class="md-nav__link">
+  <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
-      The 2D Fourier Transform
+      阶段 1：双频带谱指纹
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#fan-filter" class="md-nav__link">
+  <a href="#2poincare" class="md-nav__link">
     <span class="md-ellipsis">
-      Fan Filter
+      阶段 2：Poincaré 型空间相干系数
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#spatial-aliasing" class="md-nav__link">
+  <a href="#3logmadexp" class="md-nav__link">
     <span class="md-ellipsis">
-      Spatial Aliasing
+      阶段 3：log–MAD–exp 稳健归一化
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#high-resolution-f-k-capon-adaptive-beamforming" class="md-nav__link">
+  <a href="#4bi" class="md-nav__link">
     <span class="md-ellipsis">
-      High-Resolution F-K: Capon Adaptive Beamforming
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#music-algorithm" class="md-nav__link">
-    <span class="md-ellipsis">
-      MUSIC Algorithm
+      阶段 4：空间平滑与埋设指数（BI）
     </span>
   </a>
   
@@ -1255,162 +1429,36 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#radon-transform-slant-stack" class="md-nav__link">
+  <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
-      Radon Transform (Slant Stack)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Radon Transform (Slant Stack)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#linear-radon-p-transform" class="md-nav__link">
-    <span class="md-ellipsis">
-      Linear Radon (τ-p Transform)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#discrete-implementation-phase-shift-summation" class="md-nav__link">
-    <span class="md-ellipsis">
-      Discrete Implementation: Phase-Shift Summation
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#parabolic-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Parabolic Radon
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#the-l2-smearing-problem" class="md-nav__link">
-    <span class="md-ellipsis">
-      The L2 Smearing Problem
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#sparse-high-resolution-radon-current-research" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sparse / High-Resolution Radon (Current Research)
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Sparse / High-Resolution Radon (Current Research)">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#l1-regularisation-sparse-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      L1 Regularisation (Sparse Radon)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#iteratively-reweighted-least-squares-irls" class="md-nav__link">
-    <span class="md-ellipsis">
-      Iteratively Reweighted Least Squares (IRLS)
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#sacchi-ulrych-high-resolution-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Sacchi-Ulrych High-Resolution Radon
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#compressive-sensing-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compressive Sensing Radon
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#practical-requirements-and-guidelines" class="md-nav__link">
-    <span class="md-ellipsis">
-      Practical Requirements and Guidelines
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Practical Requirements and Guidelines">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#f-k-filtering" class="md-nav__link">
-    <span class="md-ellipsis">
-      F-K Filtering
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#linear-radon" class="md-nav__link">
-    <span class="md-ellipsis">
-      Linear Radon
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#high-resolution-methods" class="md-nav__link">
-    <span class="md-ellipsis">
-      High-Resolution Methods
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary-comparison" class="md-nav__link">
-    <span class="md-ellipsis">
-      Summary Comparison
+      实例验证
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#references" class="md-nav__link">
+  <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
-      References
+      假象与注意事项
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      局限与展望
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      参考文献
     </span>
   </a>
   
@@ -1432,7 +1480,7 @@
 
 
   
-    <a href="https://github.com/yjianggeo/seismic-notes/edit/main/docs/fk-radon-en.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/yjianggeo/seismic-notes/edit/main/docs/cable-coupling.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
@@ -1441,389 +1489,240 @@
     
       
     
-    <a href="https://github.com/yjianggeo/seismic-notes/raw/main/docs/fk-radon-en.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/yjianggeo/seismic-notes/raw/main/docs/cable-coupling.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
     </a>
   
 
 
-<h1 id="f-k-analysis-and-radon-transform">F-K Analysis and Radon Transform<a class="headerlink" href="#f-k-analysis-and-radon-transform" title="Permanent link">&para;</a></h1>
-<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p><strong>Transform-domain methods</strong> in seismic data processing map data from the time-space (<span class="arithmatex">\(t\)</span>-<span class="arithmatex">\(x\)</span>) domain into a new domain where different wavefields, or signal and noise, become separable. An overview of the most commonly used transforms:</p>
+<h1 id="das">DAS 光缆耦合状态的检测与评估<a class="headerlink" href="#das" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>关键词：DAS、光缆耦合（cable coupling）、埋设状态（burial state）、Poincaré 谱相干、埋设指数（BI）、涡激振动（VIV）</p>
+</blockquote>
+<h2 id="_1">引言<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><a href="../das/">DAS 基本原理</a>一章从理论上建立了光缆耦合的传递函数模型（套-芯耦合 <span class="arithmatex">\(\eta_\text{fiber}\)</span>、介质耦合 <span class="arithmatex">\(C_\text{med}(f)\)</span> 与耦合刚度 <span class="arithmatex">\(k_s\)</span>）。但在实际部署中，<strong>耦合状态沿光缆是空间变化且未知的</strong>：海底光缆可能一段埋于沉积物、一段暴露于海床、一段悬空跨越海沟；陆地光缆可能一段浅埋、一段裸铺、一段穿管。同一物理激励在不同耦合段产生截然不同的响应，若不掌握耦合状态的空间分布，环境噪声解释、事件检测和结构成像都会被系统性地误导。</p>
+<p>本章关注的问题是：<strong>如何直接从 DAS 数据本身检测和评估光缆的耦合状态</strong>——无需人工震源、无需潜水员巡检、无需先验地质知识，实现近实时的自动化耦合制图。</p>
+<h2 id="_2">四种耦合状态及其物理效应<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>海底光缆的耦合状态通常分为四类，各自的力学约束与频率响应截然不同：</p>
 <table>
 <thead>
 <tr>
-<th>Transform</th>
-<th>Input → Output</th>
-<th>Separates</th>
-<th>Typical use</th>
+<th>耦合状态</th>
+<th>力学约束</th>
+<th>频率响应特征</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>F-K (2D FFT)</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(D(k,f)\)</span></td>
-<td>Frequency + wavenumber (apparent velocity)</td>
-<td>Dip noise removal, wavefield separation</td>
+<td><strong>埋设</strong>（buried）</td>
+<td>沉积物围限增加有效质量、刚度与阻尼</td>
+<td>低通型：中高频被沉积物阻尼压制，低频（重力波频段）保留且空间平滑</td>
 </tr>
 <tr>
-<td>Linear Radon (τ-p, slant stack)</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(m(\tau,p)\)</span></td>
-<td>Intercept time + slowness</td>
-<td>Multiple attenuation, surface-wave extraction</td>
+<td><strong>部分埋设</strong>（partially buried）</td>
+<td>约束介于埋设与暴露之间，可能存在间歇性接触</td>
+<td>过渡型，频响介于两者之间</td>
 </tr>
 <tr>
-<td>Parabolic Radon</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(m(\tau,q)\)</span></td>
-<td>Intercept time + curvature</td>
-<td>Accurate multiple attenuation</td>
+<td><strong>暴露</strong>（exposed）</td>
+<td>仅受水动力压力直接驱动</td>
+<td>宽频敏感，对波浪、海流、船只等激励响应强，但宽带噪声也大</td>
 </tr>
 <tr>
-<td>Beamforming</td>
-<td><span class="arithmatex">\(d(x,t)\)</span> → <span class="arithmatex">\(P(f,k)\)</span></td>
-<td>Azimuth + slowness</td>
-<td>Array steering, source location</td>
+<td><strong>悬空</strong>（suspended / free span）</td>
+<td>几乎无机械约束</td>
+<td>宽频 + 共振：海流诱发<strong>涡激振动</strong>（vortex-induced vibration，VIV），出现窄带共振峰</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Apparent velocity</strong> is the unifying concept across all these transforms:</p>
-<div class="arithmatex">\[
-v_\text{app} = \left.\frac{\partial t}{\partial x}\right|^{-1} = \frac{f}{k} = \frac{1}{p}
-\]</div>
-<p>where <span class="arithmatex">\(p = k/f\)</span> is the <strong>slowness</strong> (units: s/m or s/km).</p>
-<hr />
-<h2 id="f-k-analysis">F-K Analysis<a class="headerlink" href="#f-k-analysis" title="Permanent link">&para;</a></h2>
-<h3 id="the-2d-fourier-transform">The 2D Fourier Transform<a class="headerlink" href="#the-2d-fourier-transform" title="Permanent link">&para;</a></h3>
-<p>The 2D discrete Fourier transform of a multi-channel record <span class="arithmatex">\(d(x_i, t)\)</span> yields the <strong>frequency-wavenumber spectrum</strong>:</p>
-<div class="arithmatex">\[
-D(k, f) = \sum_{i=1}^{N_x}\sum_{j=1}^{N_t} d(x_i, t_j)\, e^{-i 2\pi (k x_i + f t_j)}
-\]</div>
-<ul>
-<li><span class="arithmatex">\(f\)</span> (Hz): temporal frequency — how fast the signal oscillates in time</li>
-<li><span class="arithmatex">\(k\)</span> (1/m): spatial wavenumber — how fast the signal oscillates across the array</li>
-<li>Apparent velocity: <span class="arithmatex">\(v_\text{app} = f/k\)</span>; apparent slowness: <span class="arithmatex">\(p = k/f\)</span></li>
-</ul>
-<p><strong>Key property</strong>: A plane wave propagating with apparent velocity <span class="arithmatex">\(v\)</span> along <span class="arithmatex">\(x\)</span>, i.e. <span class="arithmatex">\(d(x,t) = w(t - x/v)\)</span>, concentrates all its energy on the line <span class="arithmatex">\(k = f/v\)</span> in the F-K domain. Different wavefields — P-waves, S-waves, surface waves, noise — occupy distinct <strong>wedge-shaped bands</strong> in F-K space, enabling separation by a fan-shaped filter.</p>
-<h3 id="fan-filter">Fan Filter<a class="headerlink" href="#fan-filter" title="Permanent link">&para;</a></h3>
-<p>A fan (velocity) filter passes energy within an apparent velocity range <span class="arithmatex">\([v_\min, v_\max]\)</span>:</p>
-<div class="arithmatex">\[
-H(f, k) = \begin{cases}
-1, &amp; |f/k| \geq v_\min \text{ and } |f/k| \leq v_\max \\
-0, &amp; \text{otherwise (slow/fast noise zone)}
-\end{cases}
-\]</div>
-<p>In practice, the passband boundaries must be <strong>tapered</strong> (cosine or Hanning taper) to suppress Gibbs-effect ringing in the <span class="arithmatex">\(t\)</span>-<span class="arithmatex">\(x\)</span> domain.</p>
 <div class="admonition note">
-<p class="admonition-title">F-K Filtering in VSP Wavefield Separation</p>
-<p>In VSP processing, downgoing waves (<span class="arithmatex">\(\partial t/\partial z &gt; 0\)</span>) and upgoing waves (<span class="arithmatex">\(\partial t/\partial z &lt; 0\)</span>) have opposite-sign apparent velocities. An F-K filter retaining only <span class="arithmatex">\(k &gt; 0\)</span> or <span class="arithmatex">\(k &lt; 0\)</span> separates them directly. See <a href="../vsp-en/">VSP Principles</a>.</p>
+<p class="admonition-title">耦合对观测的双刃剑效应</p>
+<p>埋设抑制高频水体信号的同时，可能<strong>增强</strong>对固体地球波场（Scholte 波、Rayleigh 波、体波）的耦合——埋设段反而可能更适合区域与远震监测（Taweesintananon et al.）；暴露段对水动力与人为激励灵敏，但容易引入共振假象。因此耦合制图不仅是数据质量控制的工具，也是<strong>选配观测段</strong>的依据。</p>
 </div>
-<h3 id="spatial-aliasing">Spatial Aliasing<a class="headerlink" href="#spatial-aliasing" title="Permanent link">&para;</a></h3>
-<p>When the channel spacing <span class="arithmatex">\(\Delta x\)</span> is too large, steeply dipping events alias in the wavenumber domain:</p>
-<div class="arithmatex">\[
-k_\text{Nyquist} = \frac{1}{2\Delta x}, \qquad
-f_\text{alias} = \frac{v_\text{app}}{2\Delta x}
-\]</div>
-<p>For surface waves (<span class="arithmatex">\(v_\text{app} = 500\)</span> m/s) and <span class="arithmatex">\(\Delta x = 25\)</span> m: <span class="arithmatex">\(f_\text{alias} = 10\)</span> Hz — surface waves alias above 10 Hz, contaminating the filter design. The spatial Nyquist condition is:</p>
-<div class="arithmatex">\[
-\boxed{\Delta x \leq \frac{v_\text{app,min}}{2 f_\text{max}}}
-\]</div>
-<p>DAS channel spacings (1–5 m) largely eliminate this problem, whereas conventional geophone arrays (25–50 m spacing) often violate it for slow coherent noise.</p>
-<h3 id="high-resolution-f-k-capon-adaptive-beamforming">High-Resolution F-K: Capon Adaptive Beamforming<a class="headerlink" href="#high-resolution-f-k-capon-adaptive-beamforming" title="Permanent link">&para;</a></h3>
-<p>Conventional F-K (delay-and-sum beamforming) applies equal weights <span class="arithmatex">\(1/N\)</span> to all channels, equivalent to a rectangular spatial window — leading to high <strong>sidelobes</strong> that contaminate the spectrum.</p>
-<p>Capon (1969) proposed the <strong>Minimum Variance Distortionless Response (MVDR)</strong>: maintain unit gain toward the look direction while minimising total output power, thereby maximally suppressing energy from all other directions.</p>
-<p>Using the <strong>spatial covariance matrix</strong> <span class="arithmatex">\(\hat{\mathbf{R}}(f)\)</span> estimated from multiple data segments, the Capon spectrum is:</p>
-<div class="arithmatex">\[
-\boxed{P_\text{Capon}(f, k) = \frac{1}{\mathbf{a}^H(k)\,\hat{\mathbf{R}}^{-1}(f)\,\mathbf{a}(k)}}
-\]</div>
-<p>where <span class="arithmatex">\(\mathbf{a}(k) = [1,\, e^{ik\Delta x},\, e^{i2k\Delta x},\, \ldots]^T\)</span> is the <strong>steering vector</strong> and <span class="arithmatex">\(\hat{\mathbf{R}}(f) = \frac{1}{N_\text{seg}}\sum_n \hat{\mathbf{d}}_n\hat{\mathbf{d}}_n^H\)</span> is estimated from <span class="arithmatex">\(N_\text{seg}\)</span> independent snapshots. The sidelobe level is typically 10–20 dB lower than conventional beamforming.</p>
-<div class="admonition warning">
-<p class="admonition-title">Practical Requirements for Capon MVDR</p>
-<p><span class="arithmatex">\(\hat{\mathbf{R}}\)</span> must be well-conditioned: requires <span class="arithmatex">\(N_\text{seg} \gg N_x\)</span> independent snapshots. When this condition is not met, use <strong>diagonal loading</strong>: <span class="arithmatex">\(\hat{\mathbf{R}}_\epsilon = \hat{\mathbf{R}} + \epsilon\mathbf{I}\)</span> with <span class="arithmatex">\(\epsilon \approx 1\)</span>–<span class="arithmatex">\(5\%\)</span> of the largest eigenvalue.</p>
-</div>
-<h3 id="music-algorithm">MUSIC Algorithm<a class="headerlink" href="#music-algorithm" title="Permanent link">&para;</a></h3>
-<p><strong>Multiple Signal Classification (MUSIC)</strong> decomposes the covariance matrix into signal and noise subspaces:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{R}} = \mathbf{E}_s \boldsymbol{\Lambda}_s \mathbf{E}_s^H + \sigma_n^2 \mathbf{E}_n \mathbf{E}_n^H
-\]</div>
-<p>The MUSIC spectrum:</p>
-<div class="arithmatex">\[
-P_\text{MUSIC}(k) = \frac{1}{\|\mathbf{E}_n^H\,\mathbf{a}(k)\|^2}
-\]</div>
-<p>diverges when the steering vector is orthogonal to the noise subspace, giving theoretically unlimited resolution (SNR-limited in practice). The cost is the need to know the source count <span class="arithmatex">\(d\)</span> (number of eigenvectors to assign to the signal subspace).</p>
-<p><img alt="F-K analysis and fan filtering" src="../assets/images/fk_analysis.png" />
-<em>Figure 1: (top-left) Original CMP gather with surface-wave noise; (top-right) F-K spectrum (log amplitude) — white line at 2000 m/s marks P-waves, cyan at 350 m/s marks surface waves; (bottom-left) fan filter mask (white = pass, <span class="arithmatex">\(v_\text{app} &gt; 700\)</span> m/s); (bottom-right) filtered gather with surface-wave energy removed.</em></p>
-<hr />
-<h2 id="radon-transform-slant-stack">Radon Transform (Slant Stack)<a class="headerlink" href="#radon-transform-slant-stack" title="Permanent link">&para;</a></h2>
-<h3 id="linear-radon-p-transform">Linear Radon (τ-p Transform)<a class="headerlink" href="#linear-radon-p-transform" title="Permanent link">&para;</a></h3>
-<p>The linear Radon transform (also called the <strong>slant stack</strong> or <strong>τ-p transform</strong>) maps <span class="arithmatex">\(x\)</span>-<span class="arithmatex">\(t\)</span> data to intercept-time–slowness (τ-p) space:</p>
-<div class="arithmatex">\[
-m(\tau, p) = \int d(x,\, \tau + p\,x)\, \mathrm{d}x
-\]</div>
-<p><strong>Physical meaning</strong>: integrate <span class="arithmatex">\(d(x,t)\)</span> along a straight line with slope <span class="arithmatex">\(p\)</span> (= apparent slowness). A linear moveout event with apparent velocity <span class="arithmatex">\(v = 1/p\)</span> collapses to a single point at <span class="arithmatex">\((τ, p)\)</span> in the Radon domain.</p>
-<p><strong>Inverse transform</strong>:</p>
-<div class="arithmatex">\[
-d(x, t) = \int m(\tau,\, p)\big|_{\tau = t - px}\, \mathrm{d}p
-\]</div>
-<h3 id="discrete-implementation-phase-shift-summation">Discrete Implementation: Phase-Shift Summation<a class="headerlink" href="#discrete-implementation-phase-shift-summation" title="Permanent link">&para;</a></h3>
-<p>Efficient frequency-domain implementation: for each frequency <span class="arithmatex">\(f\)</span>,</p>
-<div class="arithmatex">\[
-M(p, f) = \sum_{i=1}^{N_x} D(x_i, f)\, e^{-i 2\pi f\, p\, x_i}
-\]</div>
-<p>This is a phase rotation for each slowness <span class="arithmatex">\(p\)</span>, with total cost <span class="arithmatex">\(O(N_p \cdot N_x \cdot N_f)\)</span> — much faster than time-domain interpolation.</p>
-<h3 id="parabolic-radon">Parabolic Radon<a class="headerlink" href="#parabolic-radon" title="Permanent link">&para;</a></h3>
-<p>Real reflection moveout is hyperbolic; the <strong>parabolic approximation</strong> is more accurate after NMO:</p>
-<div class="arithmatex">\[
-m(\tau, q) = \int d(x,\, \tau + q\,x^2)\, \mathrm{d}x
-\]</div>
-<p>where <span class="arithmatex">\(q\)</span> (s/m²) is the curvature parameter. After NMO correction, primary reflections map near <span class="arithmatex">\(q = 0\)</span>, while multiples with residual moveout map to finite <span class="arithmatex">\(q\)</span> — enabling <strong>multiple attenuation by muting</strong> in the Radon domain.</p>
+<p><img alt="光缆耦合状态与 Poincaré 谱相干检测原理" src="../assets/images/cable_coupling_poincare.png" />
+<em>图 1：(a) 三种典型耦合状态的场景与频率响应示意——埋设段呈低通特征（高频被沉积物阻尼压制）、暴露段宽频敏感、悬空段出现涡激振动共振峰（橙色条带为检测用高频带 100–120 Hz）；(b) 由 Poincaré 谱相干导出的埋设指数（BI）剖面示意：低 BI 对应邻道谱指纹平滑相干的埋设段，高 BI 对应空间不规则的暴露/悬空段，BI 突变标示耦合过渡带。（合成示意图，观测格局仿 OBSEA 数据集；据 Shiri &amp; Belal, 2026）</em></p>
+<h2 id="_3">耦合状态检测方法概览<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Radon type</th>
-<th>Integration path</th>
-<th>Focuses</th>
-<th>Primary application</th>
+<th>方法</th>
+<th>观测量</th>
+<th>优点</th>
+<th>局限</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Linear (τ-p)</td>
-<td><span class="arithmatex">\(t = \tau + px\)</span></td>
-<td>Linear events</td>
-<td>Surface-wave extraction, plane-wave decomposition</td>
+<td>船只激励频带能量（Harmon et al.）</td>
+<td>船只通过时各频带能量沿缆分布</td>
+<td>信号强、对比明显</td>
+<td>依赖船只通过；需人工解释；非连续监测</td>
 </tr>
 <tr>
-<td>Parabolic</td>
-<td><span class="arithmatex">\(t = \tau + qx^2\)</span></td>
-<td>Post-NMO hyperbolic events</td>
-<td>Multiple attenuation (OBC, towed streamer)</td>
+<td>共振频率偏移（Taweesintananon et al.）</td>
+<td>近地表剪切波共振频率随耦合的变化</td>
+<td>物理意义直接的独立代理</td>
+<td>需可识别的共振峰；对浅层结构敏感</td>
 </tr>
 <tr>
-<td>Hyperbolic</td>
-<td><span class="arithmatex">\(t = \sqrt{\tau^2 + x^2/v^2}\)</span></td>
-<td>Raw hyperbolic events</td>
-<td>Precise velocity analysis</td>
+<td>频率依赖振幅调制（Bakulin et al.）</td>
+<td>亚波长尺度海底刚度引起的振幅调制</td>
+<td>揭示耦合与波型（Scholte/Rayleigh/体波）的关系</td>
+<td>定性为主，未给出分段耦合图</td>
+</tr>
+<tr>
+<td>同址点式地震仪对比</td>
+<td>经验传递函数 <span class="arithmatex">\(T(f)\)</span></td>
+<td>可直接读出截止频率 <span class="arithmatex">\(f_c\)</span>（见 <a href="../das/">DAS：耦合质量的现场评估</a>）</td>
+<td>需要额外布设参考台站</td>
+</tr>
+<tr>
+<td><strong>Poincaré 谱相干</strong>（Shiri &amp; Belal, 2026）</td>
+<td>邻道谱指纹的空间不规则性</td>
+<td>无监督、近实时、轻量级、连续制图</td>
+<td>频带需按站点调节；BI 是相对指标而非埋深</td>
 </tr>
 </tbody>
 </table>
-<h3 id="the-l2-smearing-problem">The L2 Smearing Problem<a class="headerlink" href="#the-l2-smearing-problem" title="Permanent link">&para;</a></h3>
-<p>In discrete form: <span class="arithmatex">\(\mathbf{d} = \mathbf{L}\mathbf{m}\)</span>. The <strong>minimum-norm L2 solution</strong>:</p>
+<h2 id="poincare">Poincaré 谱相干框架<a class="headerlink" href="#poincare" title="Permanent link">&para;</a></h2>
+<p>Shiri &amp; Belal (2026) 提出的框架将 DAS 差分相位测量 <span class="arithmatex">\(Y(t, x)\)</span> 转化为沿缆的耦合状态指标，共四个阶段，全部只需短时 FFT 与块统计，<strong>无需训练、无迭代优化</strong>，可在单 CPU 核上近实时运行。</p>
+<h3 id="1">阶段 1：双频带谱指纹<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>将数据切分为 2–4 s 的重叠时窗（窗长 <span class="arithmatex">\(N_t^{(w)}\)</span>），加 Hanning 锥抑制谱泄漏：</p>
 <div class="arithmatex">\[
-\hat{\mathbf{m}}_{L2} = (\mathbf{L}^H\mathbf{L} + \varepsilon^2\mathbf{I})^{-1}\mathbf{L}^H\mathbf{d}
+h[n] = \frac{1}{2}\left(1 - \cos\frac{2\pi n}{N_t^{(w)} - 1}\right), \qquad \tilde{y}_i^{(w)}[n] = y_i^{(w)}[n]\, h[n]
 \]</div>
-<p>Because <span class="arithmatex">\(\mathbf{L}^H\mathbf{L}\)</span> is not the identity (the operator is non-orthogonal for finite arrays), the L2 solution <strong>smears</strong> energy across neighbouring slownesses, degrading the contrast between primaries and multiples and reducing the effectiveness of subsequent muting.</p>
-<hr />
-<h2 id="sparse-high-resolution-radon-current-research">Sparse / High-Resolution Radon (Current Research)<a class="headerlink" href="#sparse-high-resolution-radon-current-research" title="Permanent link">&para;</a></h2>
-<h3 id="l1-regularisation-sparse-radon">L1 Regularisation (Sparse Radon)<a class="headerlink" href="#l1-regularisation-sparse-radon" title="Permanent link">&para;</a></h3>
-<p>Replacing the L2 penalty with an L1 term forces most Radon coefficients to zero, consistent with the sparse nature of seismic reflectivity:</p>
+<p>离散傅里叶变换后，在两个物理意义互补的频带上计算<strong>频带能量</strong>（Frequency Band Energy，FBE，即带内周期图功率之和）：</p>
 <div class="arithmatex">\[
-\boxed{\hat{\mathbf{m}} = \arg\min_{\mathbf{m}} \left\{\|\mathbf{d} - \mathbf{L}\mathbf{m}\|_2^2 + \lambda\|\mathbf{m}\|_1\right\}}
+P_{i,k}^{(w)} = \sum_{\ell \in K_k} \left|\hat{y}_i^{(w)}[\ell]\right|^2
 \]</div>
-<p>Common solvers: ADMM (Alternating Direction Method of Multipliers), ISTA/FISTA (iterative soft thresholding).</p>
-<h3 id="iteratively-reweighted-least-squares-irls">Iteratively Reweighted Least Squares (IRLS)<a class="headerlink" href="#iteratively-reweighted-least-squares-irls" title="Permanent link">&para;</a></h3>
-<p>IRLS solves a series of weighted L2 problems, updating the weight matrix from the previous solution's amplitude:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{m}}^{(k+1)} = \left(\mathbf{L}^H\mathbf{L} + \varepsilon\,[\mathbf{Q}^{(k)}]^{-1}\right)^{-1} \mathbf{L}^H\mathbf{d}
-\]</div>
-<div class="arithmatex">\[
-Q^{(k)}_{ii} = \left|m_i^{(k)}\right| + \delta, \quad \delta \ll 1
-\]</div>
-<p>Even 1–3 iterations produce dramatically sharper Radon panels compared with the L2 solution, at only a modest computational overhead.</p>
-<h3 id="sacchi-ulrych-high-resolution-radon">Sacchi-Ulrych High-Resolution Radon<a class="headerlink" href="#sacchi-ulrych-high-resolution-radon" title="Permanent link">&para;</a></h3>
-<p>Sacchi &amp; Ulrych (1995) perform frequency-by-frequency estimation in the frequency domain using <strong>adaptive weighting</strong> derived from the estimated model power spectrum:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{M}}(\omega) = \left(\mathbf{L}^H\mathbf{L} + \mu\,\mathbf{Q}^{-1}(\omega)\right)^{-1} \mathbf{L}^H\mathbf{D}(\omega), \quad \mathbf{Q}(\omega) = \mathrm{diag}(|\hat{M}_j(\omega)|^2)
-\]</div>
-<p>This <strong>frequency-adaptive regularisation</strong> applies strong constraint only where the model power is low (noise-dominated frequencies), achieving consistent focusing across the full bandwidth.</p>
-<h3 id="compressive-sensing-radon">Compressive Sensing Radon<a class="headerlink" href="#compressive-sensing-radon" title="Permanent link">&para;</a></h3>
-<p>When receiver spacing is non-uniform or traces are missing, the conventional regular-grid Radon assumption breaks down. The compressive sensing formulation directly recovers a sparse Radon panel from irregular observations:</p>
-<div class="arithmatex">\[
-\hat{\mathbf{m}} = \arg\min_{\mathbf{m}} \|\mathbf{m}\|_1 \quad \text{s.t.} \quad \|\mathbf{d} - \mathbf{L}_\text{irr}\mathbf{m}\|_2 \leq \sigma
-\]</div>
-<p>where <span class="arithmatex">\(\mathbf{L}_\text{irr}\)</span> is the irregular-sampling Radon operator. No interpolation pre-processing is required.</p>
-<p><img alt="Radon transform comparison" src="../assets/images/radon_transform.png" />
-<em>Figure 2: (left) CMP gather with hyperbolic moveout events; (centre) conventional L2 Radon — events smear widely in slowness; (right) sparse/IRLS Radon — events focus into sharp stripes in the τ-p domain.</em></p>
-<hr />
-<h2 id="practical-requirements-and-guidelines">Practical Requirements and Guidelines<a class="headerlink" href="#practical-requirements-and-guidelines" title="Permanent link">&para;</a></h2>
-<h3 id="f-k-filtering">F-K Filtering<a class="headerlink" href="#f-k-filtering" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Issue</th>
-<th>Explanation</th>
-<th>Mitigation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Uniform channel spacing</td>
-<td>Non-uniform spacing distorts the F-K spectrum</td>
-<td>Interpolate to a regular grid, or use NUFFT</td>
-</tr>
-<tr>
-<td>Edge effects</td>
-<td>Finite aperture produces sidelobes</td>
-<td>Apply spatial/temporal tapers (Hanning, Tukey)</td>
-</tr>
-<tr>
-<td>Filter boundary</td>
-<td>Rectangular cut creates ringing</td>
-<td>Cosine-taper the boundary (≥ 5% of band width)</td>
-</tr>
-<tr>
-<td>Signal leakage</td>
-<td>Overly narrow passband clips useful signal</td>
-<td>Widen passband to acceptable residual noise level</td>
-</tr>
-<tr>
-<td>3D data</td>
-<td>2D F-K misses cross-line dips</td>
-<td>Extend to 3D F-K (<span class="arithmatex">\(k_x\)</span>, <span class="arithmatex">\(k_y\)</span>, <span class="arithmatex">\(f\)</span>)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="linear-radon">Linear Radon<a class="headerlink" href="#linear-radon" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Issue</th>
-<th>Explanation</th>
-<th>Mitigation</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Slowness range</td>
-<td>Too narrow → energy overflow</td>
-<td>Cover all target apparent velocities including surface waves</td>
-</tr>
-<tr>
-<td>Slowness sampling</td>
-<td>Large <span class="arithmatex">\(\Delta p\)</span> → poor slowness resolution</td>
-<td><span class="arithmatex">\(\Delta p \leq 1/(N_x \cdot x_\max \cdot f_\max)\)</span></td>
-</tr>
-<tr>
-<td>NMO residual</td>
-<td>Linear Radon cannot focus hyperbolic events exactly</td>
-<td>Use parabolic Radon, or apply NMO before linear Radon</td>
-</tr>
-<tr>
-<td>Regularisation <span class="arithmatex">\(\varepsilon\)</span></td>
-<td>Too large → smearing; too small → instability</td>
-<td>L-curve or cross-validation for automatic selection</td>
-</tr>
-<tr>
-<td>Computational cost</td>
-<td>Time-domain: <span class="arithmatex">\(O(N_p N_x N_t)\)</span></td>
-<td>Frequency-domain: <span class="arithmatex">\(O(N_p N_x N_f)\)</span> per iteration</td>
-</tr>
-</tbody>
-</table>
-<h3 id="high-resolution-methods">High-Resolution Methods<a class="headerlink" href="#high-resolution-methods" title="Permanent link">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Key parameter</th>
-<th>Recommended range</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Capon MVDR</td>
-<td>Diagonal loading <span class="arithmatex">\(\epsilon\)</span></td>
-<td><span class="arithmatex">\(1\)</span>–<span class="arithmatex">\(5\%\)</span> of largest eigenvalue</td>
-</tr>
-<tr>
-<td>Capon MVDR</td>
-<td>Number of snapshots <span class="arithmatex">\(N_\text{seg}\)</span></td>
-<td><span class="arithmatex">\(N_\text{seg} &gt; 2 N_x\)</span> (otherwise singular)</td>
-</tr>
-<tr>
-<td>IRLS Radon</td>
-<td>Number of iterations</td>
-<td>3–10; more iterations risk over-sparsity and amplitude distortion</td>
-</tr>
-<tr>
-<td>IRLS Radon</td>
-<td>Stabilisation factor <span class="arithmatex">\(\delta\)</span></td>
-<td><span class="arithmatex">\(1\)</span>–<span class="arithmatex">\(5\%\)</span> of maximum amplitude</td>
-</tr>
-<tr>
-<td>Sparse Radon (ADMM)</td>
-<td>Regularisation <span class="arithmatex">\(\lambda\)</span></td>
-<td><span class="arithmatex">\(\lambda = \sigma_n\sqrt{2\ln N}\)</span> (BIC estimate)</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="summary-comparison">Summary Comparison<a class="headerlink" href="#summary-comparison" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Method</th>
-<th>Separation criterion</th>
-<th>Resolution</th>
-<th>Cost</th>
-<th>Current research</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>F-K fan filter</td>
-<td>Apparent velocity (linear)</td>
-<td>Aperture-limited</td>
-<td>Low (FFT)</td>
-<td>Adaptive weights, DAS non-uniform sampling</td>
-</tr>
-<tr>
-<td>Capon MVDR</td>
-<td>Apparent velocity (adaptive)</td>
-<td>High (SNR-limited)</td>
-<td>Medium (matrix inversion)</td>
-<td>Diagonal loading optimisation, recursive update</td>
-</tr>
-<tr>
-<td>MUSIC</td>
-<td>Apparent velocity (subspace)</td>
-<td>Super-resolution</td>
-<td>High (eigendecomposition)</td>
-<td>Source-count estimation, non-stationary covariance</td>
-</tr>
-<tr>
-<td>Linear Radon (L2)</td>
-<td>Apparent velocity (linear)</td>
-<td>Low (smeared)</td>
-<td>Medium</td>
-<td>Baseline reference; largely superseded</td>
-</tr>
-<tr>
-<td>High-res Radon (IRLS)</td>
-<td>Apparent velocity (linear)</td>
-<td>High</td>
-<td>Medium-high</td>
-<td>Compressive sensing, irregular sampling</td>
-</tr>
-<tr>
-<td>Parabolic Radon (L1)</td>
-<td>Curvature + velocity</td>
-<td>High</td>
-<td>High</td>
-<td>Deep-water multiple suppression</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Capon, J. (1969). High-resolution frequency-wavenumber spectrum analysis. <em>Proceedings of the IEEE</em>, 57(8), 1408–1418.</li>
-<li>Schmidt, R. O. (1986). Multiple emitter location and signal parameter estimation. <em>IEEE Transactions on Antennas and Propagation</em>, 34(3), 276–280.</li>
-<li>Hampson, D. (1986). Inverse velocity stacking for multiple elimination. <em>SEG Technical Program Expanded Abstracts</em>, 422–424.</li>
-<li>Sacchi, M. D., &amp; Ulrych, T. J. (1995). High-resolution velocity gathers and offset space reconstruction. <em>Geophysics</em>, 60(4), 1169–1177.</li>
-<li>Trad, D., Ulrych, T., &amp; Sacchi, M. (2003). Latest views of the sparse Radon transform. <em>Geophysics</em>, 68(1), 386–399.</li>
-<li>Herrmann, F. J., &amp; Hennenfent, G. (2008). Non-parametric seismic data recovery with curvelet frames. <em>Geophysical Journal International</em>, 173(1), 233–248.</li>
-<li>Naghizadeh, M., &amp; Sacchi, M. D. (2010). Beyond alias hierarchical scale curvelet interpolation of regularly and irregularly sampled seismic data. <em>Geophysics</em>, 75(6), WB189–WB202.</li>
+<li><strong>低频带</strong> <span class="arithmatex">\(B_1\)</span>（如 0.01–10 Hz）：捕捉表面重力波、涌浪、潮汐等持续性大尺度强迫——空间平滑、时间稳定，提供一致的背景参考；</li>
+<li><strong>高频带</strong> <span class="arithmatex">\(B_2\)</span>（如 100–120 Hz）：捕捉间歇性激励（船只谐波、涡激振动、流致颤动）——埋设时被沉积物阻尼强烈衰减，<strong>对耦合状态最敏感</strong>。</li>
+</ul>
+<p>将两个带功率归一化为二维<strong>谱指纹</strong>：</p>
+<div class="arithmatex">\[
+\mathbf{f}_i^{(w)} = \frac{1}{P_{i,1}^{(w)} + P_{i,2}^{(w)} + \varepsilon_1} \begin{bmatrix} P_{i,1}^{(w)} \\ P_{i,2}^{(w)} \end{bmatrix}
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">频带选择是站点相关的</p>
+<p>最优频带取决于环境强迫、沉积物性质、光缆结构（铠装、刚度、直径）与采集参数（标距、道间距），需通过系统检视各站点的 DAS 频谱来经验选取——目标是最大化空间对比度与时间稳定性。但双频带框架本身是通用的，更换频带无需改动方法。</p>
+</div>
+<h3 id="2poincare">阶段 2：Poincaré 型空间相干系数<a class="headerlink" href="#2poincare" title="Permanent link">&para;</a></h3>
+<p>将光缆分为 <span class="arithmatex">\(M\)</span> 道的空间块 <span class="arithmatex">\(I_b\)</span>，计算块内指纹均值 <span class="arithmatex">\(\bar{\mathbf{f}}^{(w,b)}\)</span>，然后定义两个统计量：</p>
+<p><strong>谱散布</strong>（块内指纹对均值的 L2 偏差）：</p>
+<div class="arithmatex">\[
+\mathrm{Spread}_{L2}^{(w,b)} = \sqrt{\frac{1}{M} \sum_{i \in I_b} \left\| \mathbf{f}_i^{(w)} - \bar{\mathbf{f}}^{(w,b)} \right\|_2^2}
+\]</div>
+<p><strong>谱梯度</strong>（相邻道指纹差分的 L2 范数）：</p>
+<div class="arithmatex">\[
+\mathrm{Grad}_{L2}^{(w,b)} = \sqrt{\frac{1}{M-1} \sum_{i \in I_b \setminus \{\text{last}\}} \left\| \Delta \mathbf{f}_i^{(w)} \right\|_2^2}, \qquad \Delta\mathbf{f}_i^{(w)} = \mathbf{f}_{i+1}^{(w)} - \mathbf{f}_i^{(w)}
+\]</div>
+<p>为防止散布与梯度都极小的块产生虚高相干值，引入与块能量成比例的<strong>梯度地板</strong>：</p>
+<div class="arithmatex">\[
+\mathrm{Grad}_\text{floor}^{(w,b)} = \alpha\, \mathrm{Scale}_{L2}^{(w,b)}, \quad \alpha = 0.05; \qquad \mathrm{Grad}_\text{eff} = \max\left(\mathrm{Grad}_{L2},\, \mathrm{Grad}_\text{floor}\right)
+\]</div>
+<p>灵敏度测试表明结果在 <span class="arithmatex">\(\alpha \in [0.01, 0.1]\)</span> 内稳定。最终的<strong>有效相干系数</strong>：</p>
+<div class="arithmatex">\[
+\boxed{\; C_\text{eff}^{(w,b)} = \frac{\mathrm{Spread}_{L2}^{(w,b)}}{\mathrm{Grad}_\text{eff}^{(w,b)} + \varepsilon_2} \;}
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">为什么叫 Poincaré 型？</p>
+<p>该比值的构造受 <strong>Poincaré 型不等式</strong>启发——这类不等式把函数在域上的变差与其空间梯度的幅度联系起来。此处散布量化块内变异性，梯度量化邻道特征变化率，二者之比给出无量纲的<strong>空间不规则度</strong>：<span class="arithmatex">\(C_\text{eff}\)</span> 大 → 邻道指纹差异大（暴露/悬空，自由段动力学 + 空间非均匀激励）；<span class="arithmatex">\(C_\text{eff}\)</span> 小 → 平滑相干（埋设，沉积物约束使邻道共享相近的边界条件）。由于它度量的是<strong>相对</strong>空间变化而非绝对能量，对全局激励强度的起伏不敏感。</p>
+</div>
+<h3 id="3logmadexp">阶段 3：log–MAD–exp 稳健归一化<a class="headerlink" href="#3logmadexp" title="Permanent link">&para;</a></h3>
+<p>原始 <span class="arithmatex">\(C_\text{eff}\)</span> 非负但动态范围大、分布重尾（极端值来自强暴露/悬空段）。依次施加：</p>
+<ol>
+<li><strong>对数变换</strong>压缩大值：<span class="arithmatex">\(L[w,b] = \log(C_\text{raw}[w,b] + \varepsilon_3)\)</span>；</li>
+<li><strong>中位数–MAD 归一化</strong>（消除潮汐、环境强迫、询问器漂移等大尺度时间变化）：</li>
+</ol>
+<div class="arithmatex">\[
+Z_L[w,b] = \frac{L[w,b] - m_L}{1.4826\,\mathrm{MAD}_L + \varepsilon_3}, \qquad m_L = \mathrm{median}(L), \quad \mathrm{MAD}_L = \mathrm{median}\left(|L - m_L|\right)
+\]</div>
+<p>其中 1.4826 是高斯假设下 MAD 与标准差的一致性常数——此处仅作参考标度，<strong>不对数据施加正态假设</strong>，选用 MAD 正是为了抗离群值与非高斯性；</p>
+<ol>
+<li><strong>指数映射</strong>回正数域：<span class="arithmatex">\(C_\text{norm}[w,b] = \exp(Z_L[w,b])\)</span>。</li>
+</ol>
+<h3 id="4bi">阶段 4：空间平滑与埋设指数（BI）<a class="headerlink" href="#4bi" title="Permanent link">&para;</a></h3>
+<p>对归一化相干场做<strong>空间高斯平滑</strong>（<span class="arithmatex">\(\sigma = L_\text{smooth}/\Delta x\)</span>，缆端反射边界），抑制道尺度假象、突出埋设尺度结构：</p>
+<div class="arithmatex">\[
+C_\text{smooth}[w,b] = \sum_k g_\sigma(b - k)\, C_\text{norm}[w,k], \qquad g_\sigma(\ell) \propto e^{-\ell^2 / 2\sigma^2}
+\]</div>
+<p>最后对时间窗取<strong>中位数</strong>，得到一维<strong>埋设指数</strong>（Burial Index）剖面：</p>
+<div class="arithmatex">\[
+\boxed{\; \mathrm{BI}(b) = \operatorname*{median}_{w}\, C_\text{smooth}[w, b] \;}
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">BI 是耦合指标，不是埋深</p>
+<p>BI 量化的是光缆-海床耦合响应的<strong>空间不规则性</strong>。埋设是主控因素，但沉积物非均匀性、水深与地形坡度、海底粗糙度（通过湍流与散射影响激励场）、防护结构、局部悬空与安装过渡带都会贡献 BI 异常。解释时应结合测深与地质背景，且把 BI 视为<strong>相对</strong>指标。</p>
+</div>
+<h2 id="_4">实例验证<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>EMEC Eday（英国奥克尼）</th>
+<th>OBSEA（西班牙巴塞罗那）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>光缆长度</td>
+<td>~2.2 km（复合电力缆）</td>
+<td>~5.8 km（通信-电力缆）</td>
+</tr>
+<tr>
+<td>道数 / 道间距</td>
+<td>1083 / 2.04 m</td>
+<td>4560 / 1.275 m</td>
+</tr>
+<tr>
+<td>采样率 / 标距</td>
+<td>1 kHz / 10 m</td>
+<td>2 kHz / 20 m</td>
+</tr>
+<tr>
+<td>环境</td>
+<td>强潮流（至 4 m/s）、基岩-沙波纹-侵蚀崖交替</td>
+<td>沉积物为主、较平缓</td>
+</tr>
+<tr>
+<td>独立验证</td>
+<td>地质单元界线（RF/LE/EF/ME）+ 航拍</td>
+<td><strong>潜水员/船员报告的埋设分段</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>EMEC Eday</strong>：BI 剖面与地质单元界线高度对应——近岸 200–350 m 持续低 BI（埋设/良好支撑段）；450–900 m 的 Eday  Flagstones 岩崖区 BI 升高且波动大（弱支撑/悬空段）；LE–RF、EF–LE 等岩性过渡带附近 BI 升高（刚度突变产生耦合对比），而 ME–EF 过渡渐变。与 Harmon et al. 基于船只频带能量判读的"部分埋设"区间一致。</p>
+<p><strong>OBSEA</strong>：BI 与潜水员验证的分段强吻合——0–1743.5 m 陆上段高 BI；1743.5–3300 m "疑似埋设"段 BI 持续低值；3242.9–4342.3 m "未知"段 BI 缓升；4442.5 m 以远 "未埋设"段 BI 高且强波动。四个代表位置的波形与频谱图印证：埋设段高频（100–140 Hz）几乎消失、低频（&lt; 30 Hz）强；暴露段高频调制明显。</p>
+<p><strong>计算性能</strong>（单 vCPU，Google Colab Pro）：数公里光缆的完整耦合图 &lt; 20 s，约 50 s/km·h，1.3–2.0 CPU-hours/TB——比深度学习管线轻量几个量级。</p>
+<h2 id="_5">假象与注意事项<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">别把仪器假象当成耦合信号</p>
+<ul>
+<li><strong>Fresnel 反射</strong>：光纤末端（尤其水下未受控端接）的不良端接产生全频带持续高能量带，在原始热图、FBE 图与距离剖面上都可见——这是采集边界效应，切勿解释为环境或耦合特征；两端都可能出现（近端取决于连接器状态，随采集期次变化）；</li>
+<li><strong>相位衰落（phase fading / Rayleigh fading）</strong>：相干后向散射的相消干涉导致局部信号丢失、信噪比局部退化，在高频带尤为明显；</li>
+<li>松弛段（slack）、粘滑、增益变化、掉道等仪器问题也会产生类似耦合过渡的虚假相干间断。</li>
+</ul>
+</div>
+<ul>
+<li><strong>原始时距图无法直接判读</strong>：高采样率 DAS 数据是非平稳、噪声主导的，埋设特征在原始 t–x 图中基本不可见，必须借助谱指纹与相干类诊断；</li>
+<li><strong>频带需按站点调节</strong>（环境强迫、缆结构、标距、道间距都会移动最优频带；更长标距降低对短波长振动的灵敏度）；</li>
+<li><strong>水深与粗糙度的混淆</strong>：水深既通过埋设持续性（沉积物输运路径）也通过激励环境（重力波轨道运动随深度衰减）影响 BI，粗糙海底即使无埋设变化也可因湍流非均匀性抬升 BI。</li>
+</ul>
+<h2 id="_6">局限与展望<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>从分类走向定量</strong>：当前框架给出耦合状态的相对分段，未来可结合空间全变分（total variation）、曲率（弯曲能）罚、多频带谱比等更一般的正则性诊断，配合标定的衰减模型与独立测量（ROV/潜水员），走向<strong>定量埋深估计</strong>；</li>
+<li><strong>共振类代理与波型依赖相干属性</strong>可提供对耦合刚度的独立约束；</li>
+<li><strong>应用闭环</strong>：BI 图可反向用于 DAS 观测质量控制——筛选稳定、耦合良好的道段用于地球物理监测，标记弱耦合段以谨慎解释其水动力/人为信号。</li>
+</ul>
+<h2 id="_7">参考文献<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Shiri, H., &amp; Belal, M. (2026). A real-time framework for mapping subsea cable burial state using Poincaré spectral coherence of DAS measurements. <em>Scientific Reports</em>, 16, 23647.</li>
+<li>Harmon, M., et al. 浅水陆缆船只信号的频带能量耦合模式研究（EMEC Eday 数据集的来源研究之一；转引自 Shiri &amp; Belal, 2026）.</li>
+<li>Taweesintananon, K., et al. 海底 DAS 耦合对近地表剪切波共振频率的影响（共振行为作为埋设状态的独立代理；转引自 Shiri &amp; Belal, 2026）.</li>
+<li>Bakulin, A., et al. 亚波长尺度海底刚度变化引起的频率依赖振幅调制（耦合效应依赖主导波型：Scholte/Rayleigh/体波；转引自 Shiri &amp; Belal, 2026）.</li>
+<li>Martin, E. R., et al. 光缆-介质耦合的分布式弹簧-质量模型与低通传递函数（见 <a href="../das/">DAS 基本原理</a>）.</li>
 </ul>
 
 
@@ -1909,6 +1808,44 @@ Q^{(k)}_{ii} = \left|m_i^{(k)}\right| + \delta, \quad \delta \ll 1
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../das/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 基本原理与应用">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                基本原理与应用
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../glacier/" class="md-footer__link md-footer__link--next" aria-label="下一页: 仪器、阵列与 DAS 应用">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                仪器、阵列与 DAS 应用
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

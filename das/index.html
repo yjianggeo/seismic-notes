@@ -18,7 +18,7 @@
         <link rel="prev" href="../fk-radon/">
       
       
-        <link rel="next" href="../glacier/">
+        <link rel="next" href="../cable-coupling/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -995,6 +995,8 @@
       
         
       
+        
+      
     
     
     
@@ -1475,6 +1477,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cable-coupling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    光缆耦合状态检测
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2700,6 +2725,10 @@ d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
 T(f) = \frac{U_\text{DAS}(f)}{U_\text{ref}(f)}
 \]</div>
 <p>期望值为 <span class="arithmatex">\(T(f) \propto (i2\pi f)^m \cdot C_\text{med}(f) \cdot \eta_\text{fiber} \cdot v\cos^2\theta\)</span>（在校正方向性和标距后）。若 <span class="arithmatex">\(|T(f)|\)</span> 在某频段以 <span class="arithmatex">\(-20\)</span> dB/decade 衰减，可直接读取 <span class="arithmatex">\(f_c\)</span>，进而估算耦合刚度 <span class="arithmatex">\(k_s\)</span>。</p>
+<div class="admonition tip">
+<p class="admonition-title">没有参考台站？从数据本身检测耦合状态</p>
+<p>上述方法需要在同址布设点式地震仪。对于海底或长距离光缆这往往不可行——此时可以利用<strong>邻道谱指纹的空间不规则性</strong>直接从 DAS 数据反推耦合状态（埋设/暴露/悬空），例如 Poincaré 谱相干方法与埋设指数（BI），详见 <a href="../cable-coupling/">DAS 光缆耦合状态的检测与评估</a>。</p>
+</div>
 <hr />
 <h2 id="_30">环形光缆：曲率与标距的选取<a class="headerlink" href="#_30" title="Permanent link">&para;</a></h2>
 <p>前文的方向性响应和标距效应均假设光纤为<strong>直线</strong>。实际部署中光缆常常弯曲——环形阵列（ring array）、螺旋缠绕（helical winding）、道路拐角、绕障碍布线——此时<strong>单个标距 <span class="arithmatex">\(L\)</span> 跨越一段圆弧</strong>，弧内各点的光纤切向方向不同，方向响应和标距滤波都会发生改变。</p>
@@ -3052,13 +3081,13 @@ L_\text{chord} = 2R\sin\!\left(\frac{\Delta\varphi}{2}\right) &lt; L
         
         
           
-          <a href="../glacier/" class="md-footer__link md-footer__link--next" aria-label="下一页: 仪器、阵列与 DAS 应用">
+          <a href="../cable-coupling/" class="md-footer__link md-footer__link--next" aria-label="下一页: 光缆耦合状态检测">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                仪器、阵列与 DAS 应用
+                光缆耦合状态检测
               </div>
             </div>
             <div class="md-footer__button md-icon">
