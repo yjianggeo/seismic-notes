@@ -18,7 +18,7 @@ hide:
       <dl class="home-stats" aria-label="站点概览">
         <div><dt>8</dt><dd>学习主题</dd></div>
         <div><dt>中 / EN</dt><dd>双语阅读</dd></div>
-        <div><dt>26</dt><dd>专业图解</dd></div>
+        <div><dt>27</dt><dd>专业图解</dd></div>
       </dl>
     </div>
     <div class="home-signal reveal-item" aria-label="动态地震波形">

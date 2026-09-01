@@ -240,6 +240,38 @@ $$
 f_n = \frac{n}{2H\sqrt{1/\beta_1^2 - 1/\beta_2^2}}
 $$
 
+### Critical Modes: When the Phase Velocity Equals a Body-Wave Velocity
+
+The derivation above tacitly assumes a nonzero vertical wavenumber $\nu$ in every layer. When the phase velocity is **exactly equal to a body-wave velocity of a layer** ($c = \alpha$ or $\beta$), the vertical wavenumber there vanishes ($\nu = 0$) and the formulation hits a **singularity** — this defines the **critical mode**, corresponding to body waves at critical incidence (critical refraction) and marking the boundary between normal and leaky modes (the *cutoff mode* of each branch). Wang & Lu (2024) treated this problem systematically.
+
+The singularity comes from the degeneration of the general solution. The depth-wise wave equation $Z'' + k_z^2 Z = 0$ has three families of solutions:
+
+$$
+Z(z) = \begin{cases}
+C_1\cos k_z z + C_2\sin k_z z, & k_z \text{ real (propagating, normal modes)}\\[4pt]
+C_1 e^{|k_z| z} + C_2 e^{-|k_z| z}, & k_z \text{ imaginary (evanescent)}\\[4pt]
+C_1 + C_2 z, & k_z = 0 \text{ (linear — the critical case)}
+\end{cases}
+$$
+
+Classical transfer-matrix (Thomson–Haskell) and generalized R/T (Chen, 1993) frameworks contain only the first two families, so their matrix elements become singular at the critical phase velocity. Wang & Lu (2024) **embed the linear solution $C_1 + C_2 z$ into the generalized R/T framework**: the constant term $C_1$ and the linear term $C_2 z$ are defined as the "down-going" and "up-going" waves of that layer; together with the traction-free surface condition and the half-space radiation condition ($C_2 = 0$, boundedness at depth), the dispersion equation and eigenfunctions are computed with the original machinery.
+
+**Eigendisplacement characteristics of the critical mode** (markedly different from normal modes):
+
+- **$c$ = S-wave velocity of the bottom half-space**: the eigendisplacement stays **constant with depth** in the half-space (a normal mode would decay exponentially). Physically, the field in the half-space is a horizontally propagating, vertically non-decaying plane wave sharing the ray parameter of the critically refracted head wave — its eigendisplacement maps directly onto the head-wave energy distribution;
+- **$c$ = body-wave velocity of an intermediate layer**: the eigendisplacement varies **linearly with depth** in that layer (interference of up/down constant-amplitude plane waves), with exponential decay below;
+- **P-SV system**: the vertical component of the critical mode approaches a constant in the half-space while the horizontal component decays exponentially — consistent with the energy distribution of an SV critical-refraction head wave;
+- **Continuity**: as the phase velocity approaches the critical value from the normal-mode side, the half-space decay slows progressively until it becomes constant — the critical mode is the natural limit of the normal modes;
+- **SH critical mode in a homogeneous half-space**: classical theory admits no Love wave in a homogeneous half-space, but the critical analysis yields a meaningful non-dispersive solution — phase velocity equal to the half-space S velocity, constant eigendisplacement, and vanishing eigenstress. It is the SH analogue of the half-space Rayleigh mode: a "missing" Love mode of the half-space.
+
+![Critical modes](assets/images/sw_critical_mode.png)
+*Figure 5: Critical-mode analysis. Left — the three solution families of $Z'' + k_z^2 Z = 0$: real $k_z$ (oscillatory), imaginary $k_z$ (exponentially decaying), and $k_z = 0$ (constant/linear, the critical case); right — Love-wave eigendisplacements for a layer ($\beta_1$ = 1 km/s, $H$ = 5 km) over a half-space ($\beta_2$ = 3 km/s), computed from the exact dispersion relation: the normal modes at $c$ = 2 km/s (blue) decay exponentially in the half-space, while the critical modes at $c = \beta_2$ = 3 km/s (red) remain constant there — as predicted by Wang & Lu (2024).*
+
+!!! note "Why care about critical modes?"
+    1. **Completeness of forward modelling**: dispersion-picking-based inversion risks mode misidentification and missing roots, and critical modes are exactly the roots that conventional root-finding tends to lose (the secular function tends to zero near the critical phase velocity);
+    2. **Mode–ray correspondence**: critical modes tie surface-wave modes directly to head waves / critically refracted rays — a bridge between modal and ray pictures;
+    3. **New observables**: 3-D borehole arrays can measure the depth dependence of eigendisplacements, and the "non-decaying in the half-space" signature of critical modes is a distinctive observable.
+
 ### Eigenfunctions Control Depth Sensitivity
 
 The **sensitivity kernels** used in surface-wave inversion are built directly from the eigenfunctions. By Rayleigh's variational principle, a perturbation $\delta\beta(z)$ of the medium perturbs the phase velocity as:
@@ -490,6 +522,7 @@ The code below reproduces both figures in this note. See the full code in [the C
 - Aki, K., & Chouet, B. (1975). Origin of coda waves: Source, attenuation and scattering effects. *Journal of Geophysical Research*, 80(23), 3322–3342.
 - Aki, K., & Richards, P. G. (2002). *Quantitative Seismology* (2nd ed.). University Science Books. [Chapter 7: surface-wave eigenvalue problem and variational principle]
 - Haskell, N. A. (1953). The dispersion of surface waves on multilayered media. *Bulletin of the Seismological Society of America*, 43(1), 17–34.
+- Wang, S., & Lu, L. (2024). On the eigenvalues and eigendisplacement of the critical mode in horizontally layered media. *Earthquake Science*, 37(1), 13–35.
 - Takeuchi, H., & Saito, M. (1972). Seismic surface waves. *Methods in Computational Physics*, 11, 217–295.
 - Park, C. B., Miller, R. D., & Xia, J. (1999). Multichannel analysis of surface waves. *Geophysics*, 64(3), 800–808.
 - Bensen, G. D., Ritzwoller, M. H., Barmin, M. P., Levshin, A. L., Lin, F., Moschetti, M. P., … & Yang, Y. (2007). Processing seismic ambient noise data to obtain reliable broad-band surface wave dispersion measurements. *Geophysical Journal International*, 169(3), 1239–1260.

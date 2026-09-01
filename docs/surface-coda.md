@@ -242,6 +242,38 @@ $$
 f_n = \frac{n}{2H\sqrt{1/\beta_1^2 - 1/\beta_2^2}}
 $$
 
+### 临界模态：相速度恰好等于体波速度时
+
+上文 Love 波本征函数的推导隐含了一个前提：各层垂直波数 $\nu$ 非零。当相速度**恰好等于某层的体波速度**（$c = \alpha$ 或 $\beta$）时，该层垂直波数 $\nu = 0$，出现**奇异性**——这种模态称为**临界模态**（critical mode），对应体波以临界角入射（临界折射）的情形，也是正常模态与泄漏模态的分界（各模式的**截止模态**，cutoff mode）。Wang & Lu (2024) 系统研究了这一问题。
+
+**奇异的根源**在于通解的退化。深度方向的波动方程 $Z'' + k_z^2 Z = 0$ 有三类通解：
+
+$$
+Z(z) = \begin{cases}
+C_1\cos k_z z + C_2\sin k_z z, & k_z \text{ 实数（行波/驻波，正常模态）}\\[4pt]
+C_1 e^{|k_z| z} + C_2 e^{-|k_z| z}, & k_z \text{ 纯虚数（凋落波，能量封闭）}\\[4pt]
+C_1 + C_2 z, & k_z = 0 \text{（线性解，临界模态）}
+\end{cases}
+$$
+
+经典的传递矩阵（Thomson–Haskell）与广义反射透射系数（GRT, Chen 1993）框架只含前两类解，因此矩阵元素在临界相速度处奇异。Wang & Lu (2024) 的做法是**把线性解 $C_1 + C_2 z$ 嵌入广义 R/T 系数框架**：常数项 $C_1$ 与线性项 $C_2 z$ 分别定义为该层的"下行波"与"上行波"，再配合自由表面应力为零与半空间辐射条件（$C_2 = 0$，振幅在深部有界）求解，频散方程与本征函数的计算流程则完全沿用原框架。
+
+**临界模态的本征位移特征**（与正常模态截然不同）：
+
+- **$c$ = 半空间 S 波速度**：本征位移在半空间中**保持常数、不随深度衰减**（正常模态为指数衰减）。物理上，此时半空间中的波是沿水平方向传播、垂直方向不衰减的平面波，与临界折射首波共享同一射线参数，其本征位移直接反映首波的能量分布；
+- **$c$ = 中间某层的体波速度**：该层内本征位移**随深度线性变化**（上、下行常振幅平面波干涉的结果），更深部仍指数衰减；
+- **P-SV 系统**：临界模态的竖向分量在半空间趋于常数，水平分量仍指数衰减——与 SV 临界折射首波的能量分布一致；
+- **连续性**：相速度从正常模态区间逐渐逼近临界值时，半空间中的衰减逐渐变慢，直至临界处变为常数——临界模态是正常模态的自然极限；
+- **均匀半空间的 SH 临界模态**：经典理论认为均匀半空间不存在 Love 波，但临界分析给出一个非频散的有意义解——相速度等于半空间 S 波速度，本征位移为常数、本征应力处处为零。它与 P-SV 的半空间 Rayleigh 模态地位相当，是"被漏掉的半空间 Love 模态"。
+
+![临界模态本征位移](assets/images/sw_critical_mode.png)
+*图 5：临界模态分析。左——$Z'' + k_z^2 Z = 0$ 的三类通解形态：$k_z$ 实数（振荡）、纯虚数（指数衰减）与 $k_z = 0$（常数/线性，临界情形）；右——单层（$\beta_1$ = 1 km/s，$H$ = 5 km）覆盖半空间（$\beta_2$ = 3 km/s）模型的 Love 波本征位移（由精确频散方程数值求解）：$c$ = 2 km/s 的正常模态（蓝）在半空间中指数衰减，而 $c$ = 3 km/s = $\beta_2$ 的临界模态（红）在半空间中保持常数——与 Wang & Lu (2024) 的结论一致。*
+
+!!! note "为什么要关心临界模态？"
+    1. **正演完备性**：基于频散曲线拾取的反演存在模式误判与漏根风险，临界模态正是传统求根算法容易丢失或误删的根（secular function 在临界相速度附近趋近于零）；
+    2. **模态-射线对应**：临界模态把面波模态与首波/临界折射射线直接联系起来，是理解模态叠加与体波射线统一图景的桥梁；
+    3. **新型观测**：三维钻孔阵列可直接测量本征位移随深度的分布，临界模态"半空间不衰减"的特征提供了独特的可观测信号。
+
 ### 本征函数决定深度灵敏度
 
 面波反演中的**灵敏度核**直接由本征函数构造。由 Rayleigh 变分原理，介质扰动 $\delta\beta(z)$ 引起的相速度扰动为：
@@ -604,6 +636,7 @@ plt.show()
 - Aki, K., & Chouet, B. (1975). Origin of coda waves: Source, attenuation and scattering effects. *Journal of Geophysical Research*, 80(23), 3322–3342.
 - Aki, K., & Richards, P. G. (2002). *Quantitative Seismology* (2nd ed.). University Science Books. [第 7 章：面波本征值问题与变分原理]
 - Haskell, N. A. (1953). The dispersion of surface waves on multilayered media. *Bulletin of the Seismological Society of America*, 43(1), 17–34.
+- Wang, S., & Lu, L. (2024). On the eigenvalues and eigendisplacement of the critical mode in horizontally layered media. *Earthquake Science*, 37(1), 13–35.
 - Takeuchi, H., & Saito, M. (1972). Seismic surface waves. *Methods in Computational Physics*, 11, 217–295.
 - Park, C. B., Miller, R. D., & Xia, J. (1999). Multichannel analysis of surface waves. *Geophysics*, 64(3), 800–808.
 - Bensen, G. D., Ritzwoller, M. H., Barmin, M. P., Levshin, A. L., Lin, F., Moschetti, M. P., … & Yang, Y. (2007). Processing seismic ambient noise data to obtain reliable broad-band surface wave dispersion measurements. *Geophysical Journal International*, 169(3), 1239–1260.
