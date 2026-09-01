@@ -556,6 +556,9 @@ $$
 
 After correcting for directional sensitivity and gauge-length response, the expected value is $T(f) \propto C_\text{med}(f) \cdot \eta_\text{fiber}$. A −20 dB/decade roll-off in $|T(f)|$ above some frequency directly reveals $f_c$, from which the coupling stiffness $k_s$ can be estimated.
 
+!!! tip "No reference station? Detect coupling from the data itself"
+    The method above requires a co-located point seismometer, which is rarely feasible for subsea or long-range cables. In that case the **spatial irregularity of spectral fingerprints across neighbouring channels** can reveal the coupling state (buried / exposed / suspended) directly from DAS data — for example the Poincaré spectral-coherence method and the Burial Index (BI); see [Detecting and Assessing DAS Cable Coupling State](cable-coupling-en.md).
+
 ---
 
 ## Curved Cables: Curvature and Gauge-Length Selection

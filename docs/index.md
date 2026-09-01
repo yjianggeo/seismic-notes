@@ -16,9 +16,9 @@ hide:
         <a class="home-button home-button--ghost" href="#topics">浏览全部主题 <span aria-hidden="true">↓</span></a>
       </div>
       <dl class="home-stats" aria-label="站点概览">
-        <div><dt>8</dt><dd>学习主题</dd></div>
+        <div><dt>9</dt><dd>学习主题</dd></div>
         <div><dt>中 / EN</dt><dd>双语阅读</dd></div>
-        <div><dt>28</dt><dd>专业图解</dd></div>
+        <div><dt>29</dt><dd>专业图解</dd></div>
       </dl>
     </div>
     <div class="home-signal reveal-item" aria-label="动态地震波形">
@@ -51,7 +51,7 @@ hide:
         <p class="home-section-index">02 / 主题索引</p>
         <h2 id="topics-title">探索笔记</h2>
       </div>
-      <p>八个相互连接的入口，覆盖震源、传播、观测与处理。</p>
+      <p>九个相互连接的入口，覆盖震源、传播、观测与处理。</p>
     </div>
 
     <div class="topic-grid">
@@ -109,6 +109,13 @@ hide:
         <span class="topic-card__tag">GEOMETRY</span>
         <h3>几何地震学</h3>
         <p>双曲线时距、NMO、叠加/均方根速度与 CMP 道集的物理图景。</p>
+        <span class="topic-card__link">进入笔记 <span aria-hidden="true">↗</span></span>
+      </a>
+      <a class="topic-card reveal-item" href="cable-coupling/">
+        <span class="topic-card__number">09</span>
+        <span class="topic-card__tag">COUPLING</span>
+        <h3>DAS 光缆耦合检测</h3>
+        <p>埋设、暴露与悬空——用 Poincaré 谱相干从数据中读出耦合状态。</p>
         <span class="topic-card__link">进入笔记 <span aria-hidden="true">↗</span></span>
       </a>
     </div>

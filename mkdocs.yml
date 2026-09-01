@@ -198,6 +198,7 @@ not_in_nav: |
   fk-radon-en.md
   glacier-en.md
   geom-seismic-en.md
+  cable-coupling-en.md
 
 nav:
   - 首页: index.md
@@ -222,6 +223,7 @@ nav:
 
   - DAS 分布式声学传感:
       - 基本原理与应用: das.md
+      - 光缆耦合状态检测: cable-coupling.md
 
   - 冰川地震学:
       - 仪器、阵列与 DAS 应用: glacier.md
