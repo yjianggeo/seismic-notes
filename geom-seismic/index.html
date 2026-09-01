@@ -1744,6 +1744,10 @@ h = \frac{t_i \, v_1}{2\cos i_c}
 <p class="admonition-title">折射方法的前提与用途</p>
 <p>折射波存在的必要条件是<strong>速度随深度增加</strong>（<span class="arithmatex">\(v_2 &gt; v_1\)</span>）；低速夹层（如低速含气层）对折射方法"隐身"。折射分析是<strong>初至拾取、近地表速度建模与静校正</strong>的基础——陆地资料的低降速带校正正是依赖初至折射信息。</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">从射线到模态：临界折射的另一面</p>
+<p>临界折射（首波）是<strong>射线图景</strong>的描述；同一物理过程在<strong>模态图景</strong>中对应面波的<a href="../surface-coda/">临界模态</a>：相速度恰好等于体波速度时，本征位移在半空间中不再指数衰减而保持常数，与首波的能量分布直接对应。射线与模态在此交汇。</p>
+</div>
 <h3 id="nmo">动校正（NMO 校正）<a class="headerlink" href="#nmo" title="Permanent link">&para;</a></h3>
 <p>动校正的目的是把每个炮检距处的反射时间 <span class="arithmatex">\(t(x)\)</span> 拉回零炮检距时间 <span class="arithmatex">\(t_0\)</span>，使同一反射界面的同相轴<strong>校平</strong>，从而可以同相叠加：</p>
 <p><img alt="NMO 校正前后对比" src="../assets/images/geom_nmo.png" />
@@ -1887,6 +1891,10 @@ v_\text{stack} \;\approx\; v_\text{rms} \;\geq\; v_\text{avg}
 </tr>
 </tbody>
 </table>
+<div class="admonition tip">
+<p class="admonition-title">速度家族的另一支：面波相速度</p>
+<p>上表中的速度都来自<strong>反射走时</strong>拟合，本质是 P 波信息；而面波方法直接从频散曲线 <span class="arithmatex">\(c(f)\)</span> 反演 <strong>S 波速度结构</strong>，对浅部横波速度尤为敏感。二者结合可同时约束 <span class="arithmatex">\(V_P\)</span> 与 <span class="arithmatex">\(V_S\)</span>（进而估计泊松比等岩性参数），见<a href="../surface-coda/">面波与尾波：频散曲线的提取与反演</a>。</p>
+</div>
 <hr />
 <h2 id="_10">观测系统与道集<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <h3 id="_11">多次覆盖与道集分类<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
