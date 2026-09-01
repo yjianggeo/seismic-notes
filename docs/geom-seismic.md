@@ -85,10 +85,82 @@ $$
 动校正的目的是把每个炮检距处的反射时间 $t(x)$ 拉回零炮检距时间 $t_0$，使同一反射界面的同相轴**校平**，从而可以同相叠加：
 
 ![NMO 校正前后对比](assets/images/geom_nmo.png)
-*图 4：合成 CMP 道集的 NMO 校正。左——校正前，三条反射同相轴呈双曲线（红色虚线为理论时距曲线）；右——用正确的 $v_\text{rms}$ 动校正后，同相轴被拉平到各自的 $t_0$，可以同相叠加。*
+*图 5：合成 CMP 道集的 NMO 校正。左——校正前，三条反射同相轴呈双曲线（红色虚线为理论时距曲线）；右——用正确的 $v_\text{rms}$ 动校正后，同相轴被拉平到各自的 $t_0$，可以同相叠加。*
 
 !!! warning "动校正拉伸（NMO stretch）"
     动校正是时间轴的非线性压缩/拉伸：浅层、大炮检距处波形被明显拉长（频率降低），通常按拉伸百分比对这部分数据做**切除（mute）**，否则会污染叠加结果的浅层高频成分。
+
+---
+
+## 反射与透射系数（RT）
+
+时距曲线告诉我们波**何时**到达；反射/透射系数则回答波**携带多少能量**回来——这是振幅解释与储层预测的物理基础。
+
+### 法向入射：阻抗对比公式
+
+平面波垂直入射到两种介质的分界面时，由界面上**位移连续**与**应力连续**两个边界条件，可直接解出反射系数与透射系数：
+
+$$
+R = \frac{Z_2 - Z_1}{Z_2 + Z_1}, \qquad
+T = \frac{2 Z_1}{Z_1 + Z_2}
+$$
+
+其中 $Z = \rho v$ 为**波阻抗**（acoustic impedance）。注意：
+
+- **符号约定**：$Z_2 < Z_1$（如页岩→含气砂岩）时 $R < 0$，反射波形发生**极性反转**；$R>0$ 时极性不变；
+- $T$ 可以大于 1（振幅意义），不违反能量守恒——真正的约束是**能量系数**：
+
+$$
+E_R = R^2, \qquad E_T = \frac{Z_2}{Z_1} T^2, \qquad E_R + E_T = 1
+$$
+
+- 一般沉积界面的 $|R|$ 只有 $0.05$–$0.15$；含气砂岩顶面可达 $0.2$–$0.3$，这是"亮点"技术的物理来源。
+
+### 斜入射：波型转换与 Zoeppritz 方程
+
+P 波以角度 $i_1$ 斜入射弹性分界面时，会激发**四个波**：反射 P、转换反射 S（$R_{PS}$）、透射 P、转换透射 S（$T_{PS}$）。各波的角度由 **Snell 定律**（射线参数 $p$ 守恒）联系：
+
+$$
+\frac{\sin i_1}{v_{P1}} = \frac{\sin j_1}{v_{S1}} = \frac{\sin i_2}{v_{P2}} = \frac{\sin j_2}{v_{S2}} = p
+$$
+
+由于 $v_S < v_P$，转换波总是**更靠近法线**（$j_1 < i_1$）。
+
+振幅由四个边界条件确定——界面上法向/切向**位移**连续、法向/切向**应力**连续，构成关于 $[R_{PP}, R_{PS}, T_{PP}, T_{PS}]$ 的 4×4 线性方程组，即 **Zoeppritz 方程**（Zoeppritz, 1919）。用位函数写出各波的位移与应力并代入边界条件，方程组形如：
+
+$$
+\underbrace{\begin{bmatrix}
+p & \eta_{S1} & -p & \eta_{S2}\\
+-\eta_{P1} & p & -\eta_{P2} & -p\\
+2\mu_1 p\,\eta_{P1} & \mu_1(\eta_{S1}^2-p^2) & 2\mu_2 p\,\eta_{P2} & -\mu_2(\eta_{S2}^2-p^2)\\
+-\rho_1(1-2v_{S1}^2p^2) & 2\mu_1 p\,\eta_{S1} & \rho_2(1-2v_{S2}^2p^2) & 2\mu_2 p\,\eta_{S2}
+\end{bmatrix}}_{\text{Zoeppritz 矩阵}}
+\begin{bmatrix} R_{PP} \\ R_{PS} \\ T_{PP} \\ T_{PS} \end{bmatrix}
+=
+\begin{bmatrix} -p \\ -\eta_{P1} \\ 2\mu_1 p\,\eta_{P1} \\ \rho_1(1-2v_{S1}^2p^2) \end{bmatrix}
+$$
+
+其中 $\eta_{P} = \cos i / v_P$、$\eta_S = \cos j / v_S$ 为垂直慢度，$\mu = \rho v_S^2$ 为剪切模量。法向入射（$p = 0$）时方程组退化为对角形式，$R_{PS} = T_{PS} = 0$，并立即给出上文的阻抗公式——这是检验任何 Zoeppritz 数值实现的基准之一（另一基准是能量守恒 $E_R + E_T = 1$）。
+
+![反射透射系数](assets/images/geom_rt_coeff.png)
+*图 4：弹性分界面上的能量分配。左——入射 P 波分解为反射 P/S 与透射 P/S 四个波，转换波更靠近法线；右——页岩→Ⅲ类含气砂岩模型的精确 Zoeppritz 系数随入射角的变化：$R_{PP}$ 在法向为 $-0.14$（极性反转），并随角度变得更负（Ⅲ类 AVO 特征）；转换波能量在法向为零、随角度缓慢增长。*
+
+### 弱反差近似与 AVO
+
+Zoeppritz 方程没有简洁的解析解。对**弱反差**界面（$\Delta v / \bar{v}$、$\Delta \rho / \bar{\rho}$ 等小量），Aki & Richards（1980）给出线性化近似；其最常用的形式是 **Shuey 三项式**：
+
+$$
+R_{PP}(\theta) \approx \underbrace{A}_{\text{截距}} + \underbrace{B}_{\text{梯度}} \sin^2\theta + \underbrace{C}_{\text{曲率}} \sin^2\theta\tan^2\theta
+$$
+
+- $A = R_0$：法向反射系数，由**阻抗对比**决定；
+- $B$：主要由**泊松比差异** $\Delta\sigma$ 决定——含气砂岩泊松比显著低于围岩，使 $|R|$ 随炮检距增大（振幅随偏移距增强，AVO 亮点特征）；
+- $C$：与速度对比相关，大角度项，实际资料信噪比低时常被舍去。
+
+对 CMP 道集逐道拟合 $A$、$B$ 即**截距-梯度（intercept-gradient）分析**，是 AVO 储层预测的工业标准流程。这也是为什么共偏移距道集和保幅处理在储层研究中如此重要——角度信息必须通过采集几何保留下来。
+
+!!! note "与折射一节的呼应"
+    当 $v_{P2} > v_{P1}$ 且入射角达到临界角 $i_c$（$\sin i_c = v_{P1}/v_{P2}$）时，透射 P 波转为沿界面滑行的首波，$R_{PP}$ 变为复数（振幅趋于 1、附加相移）——Zoeppritz 系数在临界角附近的行为把反射与折射两个世界联系了起来。
 
 ---
 
@@ -149,7 +221,7 @@ $$
     Dix 公式对小误差非常敏感：$v_n$ 依赖于两个大数之差（$v_{\text{rms},n}^2 t_n$ 与 $v_{\text{rms},n-1}^2 t_{n-1}$），薄层（$t_n - t_{n-1}$ 小）时分母放大误差。层越薄、拾取噪声越大，层速度估计越不可靠。
 
 ![速度定义对比](assets/images/geom_velocity.png)
-*图 5：左——五层水平层状模型的层速度；右——对应的平均速度（绿）与均方根速度（红）随双程旅行时的变化，橙色圆点为速度谱拾取的叠加速度。可见 $v_\text{stack} \approx v_\text{rms} \geq v_\text{avg}$，且低速夹层（第 4 层 2400 m/s）处平均速度被明显拉低。*
+*图 6：左——五层水平层状模型的层速度；右——对应的平均速度（绿）与均方根速度（红）随双程旅行时的变化，橙色圆点为速度谱拾取的叠加速度。可见 $v_\text{stack} \approx v_\text{rms} \geq v_\text{avg}$，且低速夹层（第 4 层 2400 m/s）处平均速度被明显拉低。*
 
 ### 速度概念速查表
 
@@ -169,7 +241,7 @@ $$
 数字地震仪记录的是"炮 × 检波点"二维网格上的大量单道记录。**道集**（gather）就是按某种共同属性把道分组的切片方式。同一份野外数据可以重排成不同道集，各司其职：
 
 ![道集分类示意](assets/images/geom_gathers.png)
-*图 6：炮点-检波点网格上的道集选取。每个点代表一道记录；高亮道分别构成共炮点（竖线）、共接收点（横线）、共中心点（反对角线，$s + g$ 恒定）与共偏移距（正对角线，$g - s$ 恒定）道集。*
+*图 7：炮点-检波点网格上的道集选取。每个点代表一道记录；高亮道分别构成共炮点（竖线）、共接收点（横线）、共中心点（反对角线，$s + g$ 恒定）与共偏移距（正对角线，$g - s$ 恒定）道集。*
 
 | 道集 | 共同属性 | 同相轴形态（水平层） | 主要用途 |
 |------|---------|--------------------|---------|
@@ -221,6 +293,7 @@ CMP 道集 ──► 速度分析（semblance 扫描拾取 v_stack）
 
 - 水平界面反射时距曲线是双曲线 $t^2 = t_0^2 + x^2/v^2$，正常时差随炮检距平方增长；
 - 折射波要求 $v_2 > v_1$，时距曲线为直线 $t = x/v_2 + t_i$，超越距离后成为初至，由斜率和截距可反演近地表速度结构与界面深度；
+- 分界面上的反射/透射系数由 Zoeppritz 方程（位移与应力连续的 4×4 方程组）给出；法向入射退化为阻抗对比公式 $R = (Z_2 - Z_1)/(Z_2 + Z_1)$，Shuey 三项式近似把角度依赖性归结为截距-梯度，构成 AVO 分析的基础；
 - $v_\text{avg}$ 用于时深转换，$v_\text{rms}$ 是小炮检距双曲线的等效速度，$v_\text{stack}$ 由数据拟合得到，三者满足 $v_\text{stack} \approx v_\text{rms} \geq v_\text{avg}$；
 - Dix 公式把均方根速度转换为层速度，但对薄层和拾取误差敏感；
 - 道集是按采集几何属性对道的重组：共炮点用于监控，**共中心点道集**是速度分析与叠加的核心；
@@ -231,3 +304,6 @@ CMP 道集 ──► 速度分析（semblance 扫描拾取 v_stack）
 1. Dix, C. H. (1955). Seismic velocities from surface measurements. *Geophysics*, 20(1), 68–86.
 2. Yilmaz, Ö. (2001). *Seismic Data Analysis: Processing, Inversion, and Interpretation of Seismic Data*. SEG.
 3. Sheriff, R. E., & Geldart, L. P. (1995). *Exploration Seismology* (2nd ed.). Cambridge University Press.
+4. Zoeppritz, K. (1919). Erdbebenwellen VII B: Über Reflexion und Durchgang seismischer Wellen durch Unstetigkeitsflächen. *Nachr. Ges. Wiss. Göttingen*, 66–84.
+5. Aki, K., & Richards, P. G. (1980). *Quantitative Seismology: Theory and Methods*. W. H. Freeman.
+6. Shuey, R. T. (1985). A simplification of the Zoeppritz equations. *Geophysics*, 50(4), 609–614.
