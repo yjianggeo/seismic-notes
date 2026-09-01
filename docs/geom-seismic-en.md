@@ -235,6 +235,9 @@ where $t_n$ is the zero-offset two-way time of the $n$-th interface. The Dix for
 | RMS $v_\text{rms}$ | time-weighted RMS of $v_i$ | Equivalent hyperbola velocity? | Theory, input to Dix inversion |
 | Stacking $v_\text{stack}$ | hyperbola fit to data | What velocity flattens best? | NMO and stacking |
 
+!!! tip "The other branch of the velocity family: surface-wave phase velocity"
+    Every velocity in the table above comes from fitting **reflection travel times** — essentially P-wave information. Surface-wave methods instead invert the dispersion curve $c(f)$ directly for the **S-wave velocity structure**, with particular sensitivity to shallow shear velocities. Combining the two constrains $V_P$ and $V_S$ simultaneously (and hence Poisson's ratio and lithology); see [Extracting and Inverting Dispersion Curves](surface-coda-en.md).
+
 ---
 
 ## Acquisition Geometry and Gathers

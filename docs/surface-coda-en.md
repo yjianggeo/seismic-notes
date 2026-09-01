@@ -133,6 +133,9 @@ $$
     - **Normal dispersion** ($\mathrm{d}c/\mathrm{d}f < 0$): low frequencies travel faster; typical of a crust where velocity increases with depth (soft surface layer over hard half-space).
     - **Inverse dispersion** ($\mathrm{d}c/\mathrm{d}f > 0$): high frequencies travel faster; occurs when a low-velocity layer is present or velocity decreases with depth.
 
+!!! tip "Complementary to reflection-velocity estimation"
+    Surface-wave methods invert the dispersion curve $c(f)$ for the **S-wave velocity structure**, whereas reflection seismology fits hyperbolas on CMP gathers to obtain stacking velocities and then P-wave interval velocities via the Dix formula. The former is sensitive to shallow shear structure, the latter provides the deeper P-wave time-depth framework — two complementary routes to velocity modelling. See [The Many Velocities of Reflection Seismology](geom-seismic-en.md) for the reflection-side velocity family.
+
 ### Depth Sensitivity Rule
 
 The sensitivity of Rayleigh-wave phase velocity $c(f)$ to $V_S$ at depth $z$ peaks approximately at:
