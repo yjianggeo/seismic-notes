@@ -1291,6 +1291,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#critical-modes-when-the-phase-velocity-equals-a-body-wave-velocity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critical Modes: When the Phase Velocity Equals a Body-Wave Velocity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#eigenfunctions-control-depth-sensitivity" class="md-nav__link">
     <span class="md-ellipsis">
       Eigenfunctions Control Depth Sensitivity
@@ -1836,6 +1845,35 @@ l(z) = \begin{cases} \cos(\nu_1 z), &amp; z \le H \\[4pt] \cos(\nu_1 H)\, e^{-\n
 <div class="arithmatex">\[
 f_n = \frac{n}{2H\sqrt{1/\beta_1^2 - 1/\beta_2^2}}
 \]</div>
+<h3 id="critical-modes-when-the-phase-velocity-equals-a-body-wave-velocity">Critical Modes: When the Phase Velocity Equals a Body-Wave Velocity<a class="headerlink" href="#critical-modes-when-the-phase-velocity-equals-a-body-wave-velocity" title="Permanent link">&para;</a></h3>
+<p>The derivation above tacitly assumes a nonzero vertical wavenumber <span class="arithmatex">\(\nu\)</span> in every layer. When the phase velocity is <strong>exactly equal to a body-wave velocity of a layer</strong> (<span class="arithmatex">\(c = \alpha\)</span> or <span class="arithmatex">\(\beta\)</span>), the vertical wavenumber there vanishes (<span class="arithmatex">\(\nu = 0\)</span>) and the formulation hits a <strong>singularity</strong> — this defines the <strong>critical mode</strong>, corresponding to body waves at critical incidence (critical refraction) and marking the boundary between normal and leaky modes (the <em>cutoff mode</em> of each branch). Wang &amp; Lu (2024) treated this problem systematically.</p>
+<p>The singularity comes from the degeneration of the general solution. The depth-wise wave equation <span class="arithmatex">\(Z'' + k_z^2 Z = 0\)</span> has three families of solutions:</p>
+<div class="arithmatex">\[
+Z(z) = \begin{cases}
+C_1\cos k_z z + C_2\sin k_z z, &amp; k_z \text{ real (propagating, normal modes)}\\[4pt]
+C_1 e^{|k_z| z} + C_2 e^{-|k_z| z}, &amp; k_z \text{ imaginary (evanescent)}\\[4pt]
+C_1 + C_2 z, &amp; k_z = 0 \text{ (linear — the critical case)}
+\end{cases}
+\]</div>
+<p>Classical transfer-matrix (Thomson–Haskell) and generalized R/T (Chen, 1993) frameworks contain only the first two families, so their matrix elements become singular at the critical phase velocity. Wang &amp; Lu (2024) <strong>embed the linear solution <span class="arithmatex">\(C_1 + C_2 z\)</span> into the generalized R/T framework</strong>: the constant term <span class="arithmatex">\(C_1\)</span> and the linear term <span class="arithmatex">\(C_2 z\)</span> are defined as the "down-going" and "up-going" waves of that layer; together with the traction-free surface condition and the half-space radiation condition (<span class="arithmatex">\(C_2 = 0\)</span>, boundedness at depth), the dispersion equation and eigenfunctions are computed with the original machinery.</p>
+<p><strong>Eigendisplacement characteristics of the critical mode</strong> (markedly different from normal modes):</p>
+<ul>
+<li><strong><span class="arithmatex">\(c\)</span> = S-wave velocity of the bottom half-space</strong>: the eigendisplacement stays <strong>constant with depth</strong> in the half-space (a normal mode would decay exponentially). Physically, the field in the half-space is a horizontally propagating, vertically non-decaying plane wave sharing the ray parameter of the critically refracted head wave — its eigendisplacement maps directly onto the head-wave energy distribution;</li>
+<li><strong><span class="arithmatex">\(c\)</span> = body-wave velocity of an intermediate layer</strong>: the eigendisplacement varies <strong>linearly with depth</strong> in that layer (interference of up/down constant-amplitude plane waves), with exponential decay below;</li>
+<li><strong>P-SV system</strong>: the vertical component of the critical mode approaches a constant in the half-space while the horizontal component decays exponentially — consistent with the energy distribution of an SV critical-refraction head wave;</li>
+<li><strong>Continuity</strong>: as the phase velocity approaches the critical value from the normal-mode side, the half-space decay slows progressively until it becomes constant — the critical mode is the natural limit of the normal modes;</li>
+<li><strong>SH critical mode in a homogeneous half-space</strong>: classical theory admits no Love wave in a homogeneous half-space, but the critical analysis yields a meaningful non-dispersive solution — phase velocity equal to the half-space S velocity, constant eigendisplacement, and vanishing eigenstress. It is the SH analogue of the half-space Rayleigh mode: a "missing" Love mode of the half-space.</li>
+</ul>
+<p><img alt="Critical modes" src="../assets/images/sw_critical_mode.png" />
+<em>Figure 5: Critical-mode analysis. Left — the three solution families of <span class="arithmatex">\(Z'' + k_z^2 Z = 0\)</span>: real <span class="arithmatex">\(k_z\)</span> (oscillatory), imaginary <span class="arithmatex">\(k_z\)</span> (exponentially decaying), and <span class="arithmatex">\(k_z = 0\)</span> (constant/linear, the critical case); right — Love-wave eigendisplacements for a layer (<span class="arithmatex">\(\beta_1\)</span> = 1 km/s, <span class="arithmatex">\(H\)</span> = 5 km) over a half-space (<span class="arithmatex">\(\beta_2\)</span> = 3 km/s), computed from the exact dispersion relation: the normal modes at <span class="arithmatex">\(c\)</span> = 2 km/s (blue) decay exponentially in the half-space, while the critical modes at <span class="arithmatex">\(c = \beta_2\)</span> = 3 km/s (red) remain constant there — as predicted by Wang &amp; Lu (2024).</em></p>
+<div class="admonition note">
+<p class="admonition-title">Why care about critical modes?</p>
+<ol>
+<li><strong>Completeness of forward modelling</strong>: dispersion-picking-based inversion risks mode misidentification and missing roots, and critical modes are exactly the roots that conventional root-finding tends to lose (the secular function tends to zero near the critical phase velocity);</li>
+<li><strong>Mode–ray correspondence</strong>: critical modes tie surface-wave modes directly to head waves / critically refracted rays — a bridge between modal and ray pictures;</li>
+<li><strong>New observables</strong>: 3-D borehole arrays can measure the depth dependence of eigendisplacements, and the "non-decaying in the half-space" signature of critical modes is a distinctive observable.</li>
+</ol>
+</div>
 <h3 id="eigenfunctions-control-depth-sensitivity">Eigenfunctions Control Depth Sensitivity<a class="headerlink" href="#eigenfunctions-control-depth-sensitivity" title="Permanent link">&para;</a></h3>
 <p>The <strong>sensitivity kernels</strong> used in surface-wave inversion are built directly from the eigenfunctions. By Rayleigh's variational principle, a perturbation <span class="arithmatex">\(\delta\beta(z)\)</span> of the medium perturbs the phase velocity as:</p>
 <div class="arithmatex">\[
@@ -2070,6 +2108,7 @@ C(\tau) = \int_{t_a}^{t_b} u_1(t)\, u_2(t + \tau)\, \mathrm{d}t
 <li>Aki, K., &amp; Chouet, B. (1975). Origin of coda waves: Source, attenuation and scattering effects. <em>Journal of Geophysical Research</em>, 80(23), 3322–3342.</li>
 <li>Aki, K., &amp; Richards, P. G. (2002). <em>Quantitative Seismology</em> (2<sup>nd</sup> ed.). University Science Books. [Chapter 7: surface-wave eigenvalue problem and variational principle]</li>
 <li>Haskell, N. A. (1953). The dispersion of surface waves on multilayered media. <em>Bulletin of the Seismological Society of America</em>, 43(1), 17–34.</li>
+<li>Wang, S., &amp; Lu, L. (2024). On the eigenvalues and eigendisplacement of the critical mode in horizontally layered media. <em>Earthquake Science</em>, 37(1), 13–35.</li>
 <li>Takeuchi, H., &amp; Saito, M. (1972). Seismic surface waves. <em>Methods in Computational Physics</em>, 11, 217–295.</li>
 <li>Park, C. B., Miller, R. D., &amp; Xia, J. (1999). Multichannel analysis of surface waves. <em>Geophysics</em>, 64(3), 800–808.</li>
 <li>Bensen, G. D., Ritzwoller, M. H., Barmin, M. P., Levshin, A. L., Lin, F., Moschetti, M. P., … &amp; Yang, Y. (2007). Processing seismic ambient noise data to obtain reliable broad-band surface wave dispersion measurements. <em>Geophysical Journal International</em>, 169(3), 1239–1260.</li>
