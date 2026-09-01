@@ -323,6 +323,56 @@ $$
 
 The envelope of $C_{ij}(\tau)$ approximates the Green's function between the two stations, from which Rayleigh- and Love-wave phase and group velocities can be extracted. DAS arrays are ideal for this approach due to their high channel density and continuous recording.
 
+#### Single-Station Methods: HVSR and Rayleigh-Wave Ellipticity (RWE)
+
+When only one station is available (polar ice sheets, deserts, lunar/Martian landers), array methods fail — but a **single three-component record** still constrains the subsurface through the horizontal-to-vertical spectral ratio.
+
+**HVSR (Horizontal-to-Vertical Spectral Ratio)**
+
+The classical single-station method of Nakamura (1989) ratios the Fourier spectra of the three components:
+
+$$
+\frac{H}{V}(f) = \frac{\sqrt{|E(f)|^2 + |N(f)|^2}}{|V(f)|}
+$$
+
+The final curve is the **geometric mean** over many time windows. Processing details strongly affect the curve shape and must be fixed and interpreted with care (Anthony et al., 2020; Cox et al., 2020):
+
+- **Long windows** (500–1000 s) provide the frequency resolution needed at the low-frequency end (< 0.02 Hz, i.e., > 50 s period) — the key to pushing HVSR toward crustal depths;
+- a 5 % cosine taper before the FFT suppresses spectral leakage; after ratioing, **Konno–Ohmachi smoothing** (constant $b = 40$; Konno & Ohmachi, 1998) tames sharp peaks;
+- an **STA/LTA anti-trigger** (e.g., STA = 1 s, LTA = 30 s, thresholds 0.2–2.5) keeps only stationary noise and rejects transients.
+
+HVSR peaks correlate with the fundamental resonance frequency of the site, a workhorse of engineering site classification. Two schools interpret the physics behind the peak:
+
+1. **Rayleigh-wave dominance**: the peak mainly reflects the Rayleigh-wave ellipticity peak (Hobiger et al., 2013; Tanimoto et al., 2013), so HVSR approximates the fundamental-mode ellipticity;
+2. **Diffuse-field assumption (DFA)**: if all phases in the noise field are equipartitioned, the ratio is tied directly to the **imaginary part of the Green's function** (Sánchez-Sesma et al., 2011):
+
+$$
+\frac{H}{V}(\omega) = \sqrt{\frac{\langle|u_1|^2\rangle + \langle|u_2|^2\rangle}{\langle|u_3|^2\rangle}} = \sqrt{\frac{\mathrm{Im}\,G_{11} + \mathrm{Im}\,G_{22}}{\mathrm{Im}\,G_{33}}}
+$$
+
+The DFA is a game-changer: **the entire HVSR curve can be forward-modelled and inverted** (e.g., the HV-INV code), not just its peak frequency. Perton et al. (2020) showed that under the DFA, HVSR captures velocity contrasts deeper than 10 km, including the Moho signature — turning an "engineering tool" into a crustal-scale probe. Note that HVSR computed on teleseismic S-wave windows generally violates equipartitioning and should not be inverted under the DFA.
+
+**Rayleigh-Wave Ellipticity (RWE)**
+
+Rayleigh particle motion traces an ellipse (with a characteristic 90° phase shift between the radial and vertical components; see panel (c) of the figure below). The **ellipticity** $\xi = A_R/A_Z$ (radial-over-vertical amplitude ratio) is set directly by the eigenfunction ratio (see "Surface-Wave Eigenfunctions" above) and is highly sensitive to the **impedance contrast** between the surface layer and the underlying half-space; its peak frequency is linked to the S-wave resonance frequency. Tanimoto et al. (2013) showed that conventional HVSR differs **systematically by ~20 %** from true ellipticity extracted from Rayleigh waves — the noise field contains Love waves and body waves whose energy all lands in the horizontal components. Extracting genuine RWE therefore requires isolating the Rayleigh waves first:
+
+- **RayDec (random decrement; Hobiger et al., 2009, 2021)**: apply a narrow-band Chebyshev filter → index the "negative-to-positive" zero crossings of the vertical component → cut synchronised windows (at least ten cycles at that frequency) on all three components → shift the horizontals by **a quarter period** to compensate the Rayleigh 90° phase shift → rotate the two horizontals into the direction maximising correlation with the vertical → stack over all zero crossings and take the square root of the vertical/horizontal energy ratio. Love waves carry no vertical energy and cancel in the stack; body waves lack the 90° shift and are likewise suppressed. Because Love/SH energy (mostly horizontal) is removed, **RWE amplitudes are typically smaller than HVSR amplitudes**.
+- **HVTFA (time–frequency analysis; Fäh et al., 2009; Poggi et al., 2012)**: a **continuous wavelet transform** (modified Morlet wavelet, resolution parameter typically $m = 16$) projects the three components onto the time–frequency plane; the vertical component serves as a Rayleigh-wave indicator, and $H/V$ is computed from wave-selected time–frequency patches, giving time-resolved ellipticity estimates that can be averaged for stability.
+
+!!! tip "Complementarity of RWE/HVSR and dispersion curves"
+    Ellipticity / spectral-ratio curves carry **shape information only** (peak frequencies, relative amplitudes) — no absolute velocity scale — so standalone inversion is strongly non-unique. Dispersion curves provide absolute phase velocities, and different modes sample different depths. **Joint inversion of RWE/HVSR with multimode dispersion (fundamental + higher Rayleigh/Love modes)** is the standard remedy (Wathelet, 2008; neighbourhood algorithm with Monte-Carlo sampling, e.g. the Dinver module of geopsy; under the DFA, HV-INV). Also keep in mind that RWE sensitivity to $V_S$ decays with depth, so deep inversion results lean more heavily on priors and smoothing constraints.
+
+!!! example "Broadband single-station case study: Maitri station, Antarctica (Sivaram et al., 2025)"
+    Using 25 high-quality 1.5-hour ambient-noise records from 2013–2017 at the permanent Maitri station (MAI), RWE was extracted with both RayDec and HVTFA and HVSR computed with geopsy over 0.02–10 Hz. The geometric-mean curves show a **two-peak structure**: a low-frequency peak at ~0.03 Hz indicating a deep impedance contrast, and a peak near ~6 Hz whose amplitude varies between datasets — attributed to seasonal changes in ice thickness and permafrost. Joint inversion of RWE with theoretical Rayleigh/Love dispersion curves (up to the second higher mode) recovers a crustal model consistent with the receiver-function reference: **the Moho at 30–35 km** (shallower than the previously estimated 40 km; a ~7 km-thick lowermost crustal layer with $V_S \approx 4.1$ km/s may represent mafic underplating), **a shallow low-velocity layer at 150–800 m**, and **a densified high-velocity layer near 3 km**; $V_P/V_S \approx 1.88$ indicates an intermediate-to-mafic lower crust. RWE sensitivity kernels at 50 s period confirm resolving power for $V_S$ down to ~50 km.
+
+![HVSR and RWE schematic](assets/images/surface_hvsr_rwe.png)
+*Figure 6: (a) Schematic 1-D $V_S$ model beneath a station (logarithmic depth axis); (b) corresponding HVSR (red) and RWE (blue dashed) curves — the low-frequency peak reflects the deep (Moho) impedance contrast, the high-frequency peak the shallow low-velocity layer ($f_0 \approx V_S/4h$), and RWE is systematically lower because Love/body waves are suppressed; the red band shows scatter between measurement epochs (e.g., from changing ice thickness and permafrost); (c) Rayleigh-wave particle-motion ellipse, with ellipticity $\xi = A_R/A_Z$. (Schematic, drawn after the observed features in Sivaram et al., 2025.)*
+
+!!! warning "Practical lessons for broadband inversion"
+    - **Invert shallow and deep structure separately**: a single 0.02–10 Hz inversion requires too many layers and invites numerical instability; parameterise the crustal-scale and the hundred-metre-scale problems independently;
+    - **freeze the processing chain**: window length, smoothing coefficient and anti-trigger thresholds all shift the peaks;
+    - **tools**: geopsy (`gpdc` for dispersion forward modelling + `Dinver` for neighbourhood-algorithm inversion — typically faster than HV-INV) and HV-INV (DFA forward modelling with Monte-Carlo / simulated-annealing / simplex / interior-point solvers) are both open-access.
+
 #### Borehole DAS: Surface-Wave Depth Attenuation
 
 Installing a DAS fibre in a vertical borehole gives direct access to the evanescent depth decay of Rayleigh waves — a dimension unreachable by surface arrays.
@@ -533,3 +583,8 @@ The code below reproduces both figures in this note. See the full code in [the C
 - Sens-Schönfelder, C., & Wegler, U. (2006). Passive image interferometry and seasonal variations of seismic velocities at Merapi Volcano, Indonesia. *Geophysical Research Letters*, 33(21), L21302.
 - Shapiro, N. M., & Campillo, M. (2004). Emergence of broadband Rayleigh waves from correlations of the ambient seismic noise. *Geophysical Research Letters*, 31(7), L07614.
 - Lindsey, N. J., Martin, E. R., Dreger, D. S., Freifeld, B., White, S., Monga, S. K., … & Ajo-Franklin, J. B. (2017). Fiber-optic network observations of earthquake wavefields. *Geophysical Research Letters*, 44(23), 11–792.
+- Nakamura, Y. (1989). A method for dynamic characteristics estimation of subsurface using microtremor on the ground surface. *Railway Technical Research Institute, Quarterly Reports*, 30(1), 25–33.
+- Konno, K., & Ohmachi, T. (1998). Ground-motion characteristics estimated from spectral ratio between horizontal and vertical components of microtremor. *Bulletin of the Seismological Society of America*, 88(1), 228–241.
+- Sánchez-Sesma, F. J., et al. (2011). A theory for microtremor H/V spectral ratio: Application for a layered medium. *Geophysical Journal International*, 186(1), 221–225.
+- Hobiger, M., et al. (2013). Ground structure imaging by inversions of Rayleigh wave ellipticity: Sensitivity analysis and application to European strong-motion sites. *Geophysical Journal International*, 192(1), 207–229.
+- Sivaram, K., Shekar, M., & Saha, S. (2025). Shear wave velocity structure beneath Maitri station in Dronning Maud Land, East Antarctica from joint inversions of Rayleigh wave ellipticity, multimode surface waves and diffused wave horizontal-to-vertical spectral ratios. *Polar Science*, 44, 101208.

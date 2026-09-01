@@ -325,6 +325,56 @@ $$
 
 两台之间的 CCF 的包络近似于两台之间的格林函数（表面波响应），从中可提取 Rayleigh 波和 Love 波的群速度或相速度。DAS 阵列天然适合这一方法（高道密度 + 长连续记录）。
 
+#### 单台方法：HVSR 与 Rayleigh 波椭圆率（RWE）
+
+当只有一个台站可用时（极地冰原、沙漠、月面/火星着陆器等），多道方法失效，但**单台三分量记录**仍可通过水平-垂直谱比对地下结构施加约束。
+
+**HVSR（水平-垂直谱比）**
+
+Nakamura (1989) 提出的经典单台方法，对三个分量的傅里叶谱求比：
+
+$$
+\frac{H}{V}(f) = \frac{\sqrt{|E(f)|^2 + |N(f)|^2}}{|V(f)|}
+$$
+
+逐时窗计算后对所有时窗取**几何平均**得到平均曲线。处理细节对曲线形态影响显著，需固定参数并谨慎解释（Anthony et al., 2020; Cox et al., 2020）：
+
+- **长时窗**（500–1000 s）换取低频端（< 0.02 Hz，即 > 50 s 周期）的频率分辨率，这是把 HVSR 推向地壳深度探测的关键；
+- FFT 前加 5 % 余弦锥度抑制谱泄漏；谱比后做 **Konno–Ohmachi 平滑**（常数 $b = 40$，Konno & Ohmachi, 1998）压平尖峰；
+- **STA/LTA 反触发**（如 STA = 1 s，LTA = 30 s，阈值 0.2–2.5）只保留平稳噪声段，剔除瞬态事件。
+
+HVSR 峰与场地基阶共振频率相关，在工程地震中广泛用于场地分类；其峰值的物理解释分两大流派：
+
+1. **Rayleigh 波主导说**：谱比峰主要来自 Rayleigh 波椭圆率的峰值（Hobiger et al., 2013；Tanimoto et al., 2013），HVSR 近似反映基阶 Rayleigh 波椭圆率；
+2. **扩散场假设（DFA）说**：若噪声场中各波相能量均分（equipartition），谱比与**格林函数虚部**直接挂钩（Sánchez-Sesma et al., 2011）：
+
+$$
+\frac{H}{V}(\omega) = \sqrt{\frac{\langle|u_1|^2\rangle + \langle|u_2|^2\rangle}{\langle|u_3|^2\rangle}} = \sqrt{\frac{\mathrm{Im}\,G_{11} + \mathrm{Im}\,G_{22}}{\mathrm{Im}\,G_{33}}}
+$$
+
+DFA 的重大意义在于：**整条 HVSR 曲线都可以直接正演、进而反演**（如 HV-INV 软件），而不仅是拾取峰频。Perton et al. (2020) 证明 DFA 框架下 HVSR 能捕捉 10 km 以深、直至 Moho 的速度对比——使这一"工程方法"具备了地壳尺度成像能力。注意远震 S 波窗口的 HVSR 一般不满足能量均分，不宜在 DFA 下直接反演。
+
+**Rayleigh 波椭圆率（RWE）**
+
+Rayleigh 波质点沿椭圆轨迹运动（径向与垂直分量之间有典型的 90° 相移，见图 (c)），**椭圆率** $\xi = A_R/A_Z$（径向/垂直振幅比）由本征函数比值直接决定（见上文"面波本征函数"一节），对表层与下伏半空间的**阻抗对比**非常敏感，其峰值频率与 S 波共振频率相联系。Tanimoto et al. (2013) 指出：常规 HVSR 与真正从 Rayleigh 波提取的椭圆率之间存在约 **20 % 的系统偏差**——因为噪声中还包含 Love 波、体波等其他波相，全部被算进了水平分量能量。因此严格的 RWE 需要先把 Rayleigh 波从噪声中"筛"出来：
+
+- **RayDec（随机减量法，Hobiger et al., 2009, 2021）**：Chebyshev 窄带滤波 → 以垂直分量"负→正"过零点为索引 → 三分量同步截取时窗（该频率下至少 10 个周期）→ 水平分量**移相四分之一周期**以补偿 Rayleigh 波的 90° 相移 → 将两个水平分量旋转到与垂直分量相关最大的方向 → 对所有过零点叠加后取垂直/水平能量比的平方根。Love 波在垂直分量上无能量、叠加中被抵消；体波无 90° 相移、同样被抑制。由于 Love/SH 波能量（主要在水平分量上）被剔除，**RWE 振幅通常小于 HVSR**。
+- **HVTFA（时频分析法，Fäh et al., 2009; Poggi et al., 2012）**：对三分量做**连续小波变换**（改进 Morlet 小波，分辨率参数常取 $m = 16$），把信号投影到时间-频率平面，以垂直分量作为 Rayleigh 波的"指示器"，在时频域内选波后计算 $H/V$，可直接给出随时间变化的椭圆率并统计稳定值。
+
+!!! tip "RWE/HVSR 与频散曲线反演的互补性"
+    椭圆率/谱比曲线只含**形状信息**（峰频、相对幅值），不含绝对速度尺度，单独反演非唯一性很强；而频散曲线提供绝对相速度且不同模态具有不同的深度灵敏度。**RWE/HVSR + 多模态频散（基阶 + 高阶 Rayleigh/Love）联合反演**是降低非唯一性的标准策略（Wathelet, 2008；邻域算法 + 蒙特卡洛采样，如 geopsy 的 Dinver 模块；DFA 框架下可用 HV-INV）。另注意 RWE 对 $V_S$ 的灵敏度随深度衰减，深部反演结果会更多依赖先验模型与平滑约束。
+
+!!! example "宽频带单台反演实例：南极 Maitri 站（Sivaram et al., 2025）"
+    利用南极 Maitri 固定台站 2013–2017 年间 25 段 1.5 小时的高质量环境噪声，在 0.02–10 Hz 宽频带上分别用 RayDec 与 HVTFA 提取 RWE、用 geopsy 计算 HVSR，几何平均曲线呈现**双峰结构**：~0.03 Hz 低频峰指示深部阻抗对比，~6 Hz 附近的高频峰振幅逐年变化——被归因于冰厚与冻土的季节性改变。将 RWE 与 Rayleigh/Love 波（至二阶高模）理论频散曲线联合反演，得到与接收函数（RF）参考模型一致的地壳结构：**Moho 位于 30–35 km**（浅于此前估计的 40 km，最下地壳 ~7 km 厚 $V_S \approx 4.1$ km/s 镁铁质层可能为底侵物质）、**150–800 m 低速沉积/冰层**、**~3 km 深处致密高速层**；$V_P/V_S \approx 1.88$ 指示中性—镁铁质下地壳。50 s 周期的 RWE 灵敏度核证实其对 $V_S$ 的分辨能力可达 ~50 km 深度。
+
+![HVSR 与 RWE 原理示意](assets/images/surface_hvsr_rwe.png)
+*图 6：(a) 台站下方一维 $V_S$ 模型示意（对数深度轴）；(b) 对应的 HVSR（红）与 RWE（蓝虚线）示意曲线——低频峰对应 Moho 深度阻抗对比，高频峰对应浅部低速层（$f_0 \approx V_S/4h$），RWE 因抑制了 Love/体波而振幅系统性偏低；红色阴影为不同时间段量测的离散度（可源于冰厚、冻土变化）；(c) Rayleigh 波质点椭圆运动，椭圆率 $\xi = A_R/A_Z$。（示意图，据 Sivaram et al., 2025 的观测特征绘制）*
+
+!!! warning "宽频带反演的实用经验"
+    - **深浅分开反演**：0.02–10 Hz 全频带一次性反演需要过多层数，易引入数值不稳定；深部（地壳尺度）与浅部（百米级）宜分别参数化、分别反演；
+    - **处理参数必须全程固定**：时窗长度、平滑系数、反触发阈值都会影响峰的位置与形态；
+    - **反演工具**：geopsy（`gpdc` 正演频散 + `Dinver` 邻域算法反演，Dinver 计算速度通常快于 HV-INV）、HV-INV（DFA 正演，支持蒙特卡洛/模拟退火/单纯形/内点法）均为开源软件。
+
 #### 井下 DAS 面波监测与深度衰减分析
 
 将 DAS 光缆布设于竖直钻孔中，可直接观测 Rayleigh 波振幅随深度的倏逝（evanescent）衰减——这是地面阵列无法触及的深度维度。
@@ -648,3 +698,8 @@ plt.show()
 - Lobkis, O. I., & Weaver, R. L. (2003). Coda-wave interferometry in finite solids: Recovery of P-to-S conversion rates in an elastodynamic billiard. *Physical Review Letters*, 90(25), 254302.
 - Shapiro, N. M., & Campillo, M. (2004). Emergence of broadband Rayleigh waves from correlations of the ambient seismic noise. *Geophysical Research Letters*, 31(7), L07614.
 - Lindsey, N. J., Martin, E. R., Dreger, D. S., Freifeld, B., White, S., Monga, S. K., … & Ajo-Franklin, J. B. (2017). Fiber-optic network observations of earthquake wavefields. *Geophysical Research Letters*, 44(23), 11–792.
+- Nakamura, Y. (1989). A method for dynamic characteristics estimation of subsurface using microtremor on the ground surface. *Railway Technical Research Institute, Quarterly Reports*, 30(1), 25–33.
+- Konno, K., & Ohmachi, T. (1998). Ground-motion characteristics estimated from spectral ratio between horizontal and vertical components of microtremor. *Bulletin of the Seismological Society of America*, 88(1), 228–241.
+- Sánchez-Sesma, F. J., et al. (2011). A theory for microtremor H/V spectral ratio: Application for a layered medium. *Geophysical Journal International*, 186(1), 221–225.
+- Hobiger, M., et al. (2013). Ground structure imaging by inversions of Rayleigh wave ellipticity: Sensitivity analysis and application to European strong-motion sites. *Geophysical Journal International*, 192(1), 207–229.
+- Sivaram, K., Shekar, M., & Saha, S. (2025). Shear wave velocity structure beneath Maitri station in Dronning Maud Land, East Antarctica from joint inversions of Rayleigh wave ellipticity, multimode surface waves and diffused wave horizontal-to-vertical spectral ratios. *Polar Science*, 44, 101208.
