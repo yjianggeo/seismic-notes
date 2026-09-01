@@ -119,6 +119,9 @@ $$
 
 - Typical sedimentary interfaces have $|R|$ of only $0.05$–$0.15$; the top of a gas sand can reach $0.2$–$0.3$ — the physical origin of "bright spots".
 
+!!! tip "Impedance contrast controls more than reflection amplitudes"
+    The same impedance contrast $Z_2/Z_1$ also governs **single-station noise spectral ratios**: the peak frequency and amplitude of HVSR and Rayleigh-wave ellipticity (RWE) are set directly by the impedance contrast between the surface layer and the underlying half-space — reflection sounding "illuminates the interface from above", while spectral-ratio methods "listen while standing on it"; both constrain the same physical property. See [Single-Station Methods: HVSR and RWE](surface-coda-en.md).
+
 ### Oblique incidence: mode conversion and the Zoeppritz equations
 
 A P wave incident at angle $i_1$ on an elastic interface generates **four waves**: reflected P, converted reflected S ($R_{PS}$), transmitted P, and converted transmitted S ($T_{PS}$). Their angles are linked by **Snell's law** (conservation of the ray parameter $p$):
