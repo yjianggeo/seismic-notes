@@ -2292,7 +2292,7 @@ C_{ij}(\tau) = \int u_i(t)\, u_j(t+\tau)\, \mathrm{d}t
 \]</div>
 <p>DFA 的重大意义在于：<strong>整条 HVSR 曲线都可以直接正演、进而反演</strong>（如 HV-INV 软件），而不仅是拾取峰频。Perton et al. (2020) 证明 DFA 框架下 HVSR 能捕捉 10 km 以深、直至 Moho 的速度对比——使这一"工程方法"具备了地壳尺度成像能力。注意远震 S 波窗口的 HVSR 一般不满足能量均分，不宜在 DFA 下直接反演。</p>
 <p><strong>Rayleigh 波椭圆率（RWE）</strong></p>
-<p>Rayleigh 波质点沿椭圆轨迹运动（径向与垂直分量之间有典型的 90° 相移，见图 &copy;），<strong>椭圆率</strong> <span class="arithmatex">\(\xi = A_R/A_Z\)</span>（径向/垂直振幅比）由本征函数比值直接决定（见上文"面波本征函数"一节），对表层与下伏半空间的<strong>阻抗对比</strong>非常敏感，其峰值频率与 S 波共振频率相联系。Tanimoto et al. (2013) 指出：常规 HVSR 与真正从 Rayleigh 波提取的椭圆率之间存在约 <strong>20 % 的系统偏差</strong>——因为噪声中还包含 Love 波、体波等其他波相，全部被算进了水平分量能量。因此严格的 RWE 需要先把 Rayleigh 波从噪声中"筛"出来：</p>
+<p>Rayleigh 波质点沿椭圆轨迹运动（径向与垂直分量之间有典型的 90° 相移，见图 &copy;），<strong>椭圆率</strong> <span class="arithmatex">\(\xi = A_R/A_Z\)</span>（径向/垂直振幅比）由本征函数比值直接决定（见上文"面波本征函数"一节），对表层与下伏半空间的<a href="../geom-seismic/">阻抗对比</a>非常敏感，其峰值频率与 S 波共振频率相联系。Tanimoto et al. (2013) 指出：常规 HVSR 与真正从 Rayleigh 波提取的椭圆率之间存在约 <strong>20 % 的系统偏差</strong>——因为噪声中还包含 Love 波、体波等其他波相，全部被算进了水平分量能量。因此严格的 RWE 需要先把 Rayleigh 波从噪声中"筛"出来：</p>
 <ul>
 <li><strong>RayDec（随机减量法，Hobiger et al., 2009, 2021）</strong>：Chebyshev 窄带滤波 → 以垂直分量"负→正"过零点为索引 → 三分量同步截取时窗（该频率下至少 10 个周期）→ 水平分量<strong>移相四分之一周期</strong>以补偿 Rayleigh 波的 90° 相移 → 将两个水平分量旋转到与垂直分量相关最大的方向 → 对所有过零点叠加后取垂直/水平能量比的平方根。Love 波在垂直分量上无能量、叠加中被抵消；体波无 90° 相移、同样被抑制。由于 Love/SH 波能量（主要在水平分量上）被剔除，<strong>RWE 振幅通常小于 HVSR</strong>。</li>
 <li><strong>HVTFA（时频分析法，Fäh et al., 2009; Poggi et al., 2012）</strong>：对三分量做<strong>连续小波变换</strong>（改进 Morlet 小波，分辨率参数常取 <span class="arithmatex">\(m = 16\)</span>），把信号投影到时间-频率平面，以垂直分量作为 Rayleigh 波的"指示器"，在时频域内选波后计算 <span class="arithmatex">\(H/V\)</span>，可直接给出随时间变化的椭圆率并统计稳定值。</li>
