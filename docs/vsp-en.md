@@ -243,6 +243,12 @@ plt.show()
 
 ---
 
+## Regional earthquakes versus active-source VSP
+
+The direct-wave velocity formulas above assume zero offset, an identified phase and a relatively simple geometry. Regional earthquake records can mix upgoing incidence with downgoing free-surface reflections and conversions. A positive slope in a P window does not uniquely identify downgoing P, and reciprocal slowness is not automatically material velocity.
+
+For earthquake DAS, follow the [field workflow](field-workflow-en.md) to establish timing, in-well masks, frequency bands and signed slowness before separation. For surface-wave depth amplitude and phase, use the [borehole Rayleigh measurement operator](borehole-rayleigh-en.md) rather than body-wave moveout formulas.
+
 ## References
 
 - Aki, K., & Richards, P. G. (2002). *Quantitative Seismology* (2nd ed.). University Science Books.

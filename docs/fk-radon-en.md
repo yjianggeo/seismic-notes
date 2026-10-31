@@ -262,6 +262,12 @@ where $\mathbf{L}_\text{irr}$ is the irregular-sampling Radon operator. No inter
 
 ---
 
+## Slowness scans for weak borehole signals
+
+A finer trial grid samples an objective more densely; it does not add aperture or independent information. A conventional linear-array beam has a characteristic slowness width of order $1/(fA)$ for aperture $A$ and frequency $f$. High-resolution methods still depend on SNR, covariance estimation, wavefield models and regularization. Overlapping DAS gauges do not provide wholly independent snapshots.
+
+Retain both slowness signs and compare neighbouring bands, odd/even channels, subapertures and non-event controls. State coordinates and signs. A filtered packet can mix physical components: a peak is neither unique phase identification nor a significance test. See the [field workflow](field-workflow-en.md) and [borehole Rayleigh waves](borehole-rayleigh-en.md).
+
 ## References
 
 - Capon, J. (1969). High-resolution frequency-wavenumber spectrum analysis. *Proceedings of the IEEE*, 57(8), 1408–1418.

@@ -10,7 +10,7 @@ Compared with conventional seismometers, DAS offers three core advantages:
 |---------|----------------------|-----|
 | Deployment cost | Each sensor installed separately | Cable laid in one pass |
 | Spatial density | Limited stations (tens–hundreds) | Thousands to tens of thousands of channels |
-| Low-frequency limit | Constrained by natural frequency (e.g., 4.5 Hz) | Responds from DC to high frequency (flat response) |
+| Low-frequency limit | Sensor dependent | Set by interrogation, drift, filtering and noise; no universal DC guarantee |
 | Environment | Requires power, waterproofing | All-optical passive; can use submarine cables |
 
 DAS measures the **dynamic axial strain** (or strain rate) along the fiber, not particle velocity. This fundamental difference gives rise to its distinctive directional response pattern and gauge length effect.
@@ -196,10 +196,10 @@ This frequency independence gives DAS a **flat frequency response** — unlike t
 |------------|----------|-------------------|----------------------|
 | Short-period geophone | Particle velocity | Flat above $f_0$, rolls off below | 12 dB/octave roll-off below natural frequency |
 | Accelerometer | Particle acceleration | Flat below resonance | Requires integration for velocity |
-| **DAS (strain)** | **Axial strain** | **Flat from DC to $f_{\rm notch}$** | **No low-frequency cutoff** |
+| **DAS (strain)** | **Axial strain** | Frequency-independent strain/velocity factor for a fixed plane wave in the long-wavelength limit | Actual low-frequency capability depends on interrogation, drift, filtering and noise |
 
 !!! tip "Practical Significance"
-    DAS strain records can be converted to particle velocity with a single **frequency-independent** constant ($c_P/\cos^2\theta$) across the full band from 0 Hz to the gauge-length notch frequency. No frequency correction is needed. This makes DAS naturally suited for recording low-frequency seismic signals — surface waves, slow earthquakes, tidal deformation — that fall below the natural frequency of short-period geophones.
+    The constant conversion assumes known wave type, phase speed and incidence, a gauge much shorter than the along-cable wavelength, and controlled mechanical/instrument response. The gauge sinc is not exactly flat even below its first notch; surface-wave speed and polarization can vary with frequency. This does not imply universal DC response or a single conversion constant for arbitrary wavefields.
 
 !!! warning "Strain vs. Strain Rate"
     Many DAS systems output **strain rate** $\dot{\varepsilon}$ (time derivative of strain) rather than strain. Strain rate relates to particle velocity as $\dot{\varepsilon} = -(\cos^2\theta / c_P) \cdot \dot{v}_P$, i.e., proportional to **acceleration** — not flat in velocity. To recover the flat velocity response, integrate in time (divide by $i\omega$ in the frequency domain) to obtain strain first.
@@ -319,7 +319,7 @@ $$
     If apparent velocities range from 2900 to 5900 m/s over the full well, **apply different optimum gauge lengths at different depths** to maintain optimal SNR and resolution throughout.
 
 !!! warning "Hardware Lower Bound"
-    When $L$ approaches the laser pulse width (~8 m), the phase–strain relationship becomes nonlinear and the DAS measurement breaks down. Thus $L_\mathrm{min} \approx 8$ m is a hard lower limit regardless of the theoretical optimum.
+    Gauge length, optical pulse width, spatial response and phase noise must be considered together. An 8 m scale describes some configurations, not a universal physical lower bound. Use the instrument specification and measured response.
 
 ![Optimum gauge length](assets/images/das_gauge_opt.png)
 *Figure 3: Left — normalised $\Delta L$ (SNR proxy) vs $GL/\lambda_s$; the green region marks SNR > 90 % of the maximum, and the red region marks the wavelet-distortion zone. Right — normalised DAS wavelet output for five GL/$\lambda_s$ ratios ($f_p$ = 40 Hz, $v$ = 1000 m/s, $\lambda_s \approx$ 19.5 m). After Dean et al. (2017).*
@@ -328,236 +328,185 @@ $$
 
 ## Combined Instrument-Response Model
 
-In practice, the DAS-recorded displacement spectrum is the product of **source spectrum, path attenuation, site response, and instrument response**. Combining all effects — directional sensitivity ($\cos^2\theta$), gauge-length sinc filter, κ operator, and t\* path attenuation — the complete forward model for a P-wave DAS displacement spectrum is (Bakku 2015; Chang et al. 2026):
+Fix the input and output quantities first. Let $U(f)$ denote the local P-wave **particle-displacement complex spectrum** along propagation, using $e^{i(\mathbf k\cdot\mathbf x-\omega t)}$, $\omega=2\pi f$, phase speed $c_P$, and angle $\theta$ between propagation and a straight cable. The gauge-averaged strain-rate response is
 
 $$
-\boxed{
-d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
-\cdot \underbrace{v\cos^2\theta}_{\text{flat response}}
-\cdot \underbrace{\mathrm{sinc}\!\left(\frac{\pi f L}{v\cos\theta}\right)}_{\text{gauge length}}
-\cdot e^{-\pi f t^*}
-}
+\boxed{\dot E_{\rm GL}(f)=
+\frac{\omega^2\cos^2\theta}{c_P}
+\underbrace{\mathrm{sinc}\!\left(\frac{fL\cos\theta}{c_P}\right)}_{H_{\rm GL}(f,\theta)}
+U(f)}
 $$
 
-| Factor | Formula | Physical meaning |
-|--------|---------|-----------------|
-| $(2\pi f)^m$ | $m = 0, 1, 2$ for displacement, velocity, acceleration | DAS output integration order |
-| $\Omega_0$ | Low-frequency plateau | Source spectrum (seismic moment) |
-| $e^{-\pi f\kappa}$ | $\kappa = \int_\text{path} dt/Q_s$ | Near-surface integrated kappa |
-| $v\cos^2\theta$ | Directional factor | P-wave angular sensitivity along fiber |
-| sinc$(\pi fL/v\cos\theta)$ | Gauge-length transfer function | Spatial averaging low-pass filter |
-| $e^{-\pi f t^*}$ | $t^* = \int_\text{path} dt/Q$ | Anelastic path attenuation |
+Throughout this response model, $\mathrm{sinc}(x)=\sin(\pi x)/(\pi x)$. The corresponding strain is $E_{\rm GL}=i\omega\cos^2\theta\,H_{\rm GL}U/c_P$. With particle velocity $V=-i\omega U$, it becomes $E_{\rm GL}=-(\cos^2\theta/c_P)H_{\rm GL}V$. Thus a frequency-independent strain/velocity proportionality under fixed plane-wave conditions is consistent with frequency factors in the strain/displacement conversion.
 
-For S-waves: replace $v\cos^2\theta$ with $v\cos\theta\sin\theta$; the sinc argument is unchanged.
+| Quantity | Factor relative to displacement $U$ | Output units |
+|---|---|---|
+| Strain $E_{\rm GL}$ | $i\omega\cos^2\theta H_{\rm GL}/c_P$ | Dimensionless |
+| Strain rate $\dot E_{\rm GL}$ | $\omega^2\cos^2\theta H_{\rm GL}/c_P$ | $\mathrm{s}^{-1}$ |
+| Strain/velocity $E_{\rm GL}/V$ | $-\cos^2\theta H_{\rm GL}/c_P$ | $\mathrm{s/m}$ |
+
+For a plane S wave, replace $\cos^2\theta$ by $(\mathbf t\cdot\mathbf n)(\mathbf t\cdot\mathbf p)$ and $c_P$ by $c_S$, where $\mathbf t$, $\mathbf n$ and $\mathbf p$ are the cable tangent, propagation and polarization unit vectors. The absolute angular factor for two-dimensional SV geometry is $|\sin\theta\cos\theta|$. Surface waves, deviated wells and mixed modes require the full strain projection; see [borehole Rayleigh-wave observations](borehole-rayleigh-en.md).
+
+If $U$ is further decomposed into source, geometrical spreading, path attenuation and site terms, define each convention. Separate factors $e^{-\pi f\kappa}$ and $e^{-\pi f t^*}$ can be multiplied only if they represent **non-overlapping path contributions**; otherwise near-surface attenuation is counted twice.
 
 !!! note "Depth Differential in Borehole DAS"
-    In channel-wise borehole analysis, the differential travel time between two channels separated by depth $\mathrm{d}z$ is:
-    $$\mathrm{d}t_m = \frac{\mathrm{d}z}{v\cos\theta}$$
-    This relates depth increment to travel-time increment and depends on the incident angle.
+    The local plane-wave phase travel-time difference is the projection of slowness onto the cable:
+    $$\mathrm{d}t=\frac{\cos\theta}{c}\,\mathrm{d}s,\qquad c_{\rm app}=\frac{c}{|\cos\theta|}.$$
+    Only a vertical straight well permits $\mathrm{d}s=\mathrm{d}z$. For a deviated well use the three-dimensional trajectory. This is the arrival-time difference of one wavefront at two channels, not the time to travel a ray-path distance $\mathrm{d}z/\cos\theta$.
 
 ### Incident Angle Constraint on Response Corrections
 
-Before using DAS for Q inversion or source parameter estimation, the instrument response ($v\cos^2\theta \cdot \mathrm{sinc}(\cdots)$) must be removed. This correction becomes unreliable at large incident angles:
+Response correction must match the physical output quantity and retain mechanical-transfer uncertainty. Direct division is unstable near a directional zero or gauge notch.
 
-| Factor | Small angle $\theta \ll 45°$ | Large angle $\theta \to 90°$ |
-|--------|------------------------------|------------------------------|
-| Flat-response divisor $1/\cos^2\theta$ | Near 1, stable | Diverges, amplifies noise |
-| Gauge-length notch $v\cos\theta/L$ | Near $v/L$, high band preserved | Moves to low frequencies, narrows usable band |
-| Signal sensitivity $v\cos^2\theta$ | Near $v$, good SNR | Near 0, very poor SNR |
+| Factor | Small angle $\theta\ll45^\circ$ | Large angle $\theta\to90^\circ$ |
+|---|---|---|
+| Directional inverse $1/\cos^2\theta$ | Near 1 | Diverges and amplifies noise |
+| First gauge notch $c/(L|\cos\theta|)$ | Near $c/L$ | Moves to **higher** frequency |
+| Strain/velocity sensitivity $\cos^2\theta/c$ | Near $1/c$ | Approaches zero |
 
-**Practical threshold** (Chang et al. 2026):
-
-$$
-\boxed{\theta < 45°}
-$$
-
-Channels violating this criterion are excluded from spectral fitting.
+A conservative analysis might use $\theta<45^\circ$, but this is a study choice, not a universal threshold. Determine a usable range from SNR, angle uncertainty, transfer response and the target band.
 
 !!! tip "Geometry for Vertical Wells"
-    For a DAS channel at depth $z_\text{ch}$ and an event at horizontal offset $r_H$, depth $z_\text{src}$ ($z_\text{src} > z_\text{ch}$):
-    $$\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)$$
-    The condition $\theta < 45°$ requires $r_H < z_\text{src} - z_\text{ch}$: **horizontal offset less than the vertical separation**. Q inversion therefore works best with events located nearly below the well bottom.
+    For straight rays in a homogeneous medium, a channel at depth $z_{\rm ch}$ and an event at horizontal offset $r_H$ and depth $z_{\rm src}>z_{\rm ch}$ give
+    $$\theta=\arctan\!\left(\frac{r_H}{z_{\rm src}-z_{\rm ch}}\right).$$
+    The angular selection $\theta<45^\circ$ then requires $r_H<z_{\rm src}-z_{\rm ch}$. In layered media, ray tracing determines the **local** incidence; source-to-channel straight-line geometry is only an approximation.
 
 ---
 
 ## Cable Coupling
 
-Before a seismic ground-strain signal reaches the DAS interrogator, it must pass through two mechanical interfaces in series:
+The formation-to-fibre response involves at least two mechanical interfaces:
 
 $$
-\underbrace{\varepsilon_\text{formation}}_{\text{free-field strain}}
-\xrightarrow{C_\text{med}(f)}
-\underbrace{\varepsilon_\text{jacket}}_{\text{cable-jacket strain}}
-\xrightarrow{\eta_\text{fiber}}
-\underbrace{\varepsilon_\text{fiber}}_{\text{DAS measurement}}
+\varepsilon_{\rm formation}
+\xrightarrow{C_{\rm med}(f)}
+\varepsilon_{\rm jacket}
+\xrightarrow{\eta_{\rm fiber}(f)}
+\varepsilon_{\rm fiber}.
 $$
 
-Both factors are ≤ 1 and have independent frequency responses and engineering controls.
-
----
+These are generally complex transfer functions depending on frequency, wavelength and boundary conditions. Resonance, guided waves and differences between the reference and local field can produce apparent amplification; do not assume constant real coefficients below one. A single DAS record generally cannot separate both interfaces.
 
 ### Jacket-to-Fiber Coupling
 
 #### Cable Structure and Strain Transfer Efficiency
 
-The mechanical structure of the fiber-optic cable determines whether jacket strain is transferred to the fiber — the most fundamental hardware constraint on DAS sensing.
+**Loose-tube cable.** Excess fibre length and soft filling compounds alter transfer, but gel can transmit shear at small amplitudes. Loose-tube telecom cables can record earthquakes; they are not automatically unusable or zero-response sensors. Distinguish waveform detection, travel-time analysis and accurate amplitude measurement. [Reinsch et al. (2017)](https://doi.org/10.1088/1361-6501/aa8ba4), [Forbriger et al. (2025)](https://doi.org/10.1785/0220240308)
 
-**Loose-tube cable**
+**Tight-buffered cable.** Direct buffering usually favours transfer, but it does not guarantee unit response:
 
-The fiber(s) float inside a hollow tube filled with **filling compound (thixotropic gel)**. The fiber has a slight excess length (0.1–0.5%) so it experiences no axial tension from tube elongation.
+$$
+E_{\rm fiber}(f)=\eta_{\rm fiber}(f,k)\,E_{\rm jacket}(f).
+$$
 
-- No radial or axial mechanical constraint on the fiber → **dynamic strain transfer efficiency $\eta_\text{fiber} \approx 0$**
-- Designed for telecommunications: prevents thermal stress from straining the fiber, protecting transmission performance
-- **Unsuitable for DAS seismic sensing** — when a loose-tube cable is interrogated by DAS, every channel records near-zero seismic signal
+Material properties, wavelength, temperature, tension and installation can change amplitude and phase.
 
-**Tight-buffered cable**
+**Strain-sensing cables.** Reinforced buffering, bonded fibres or other sensing-oriented constructions are engineered for strain transfer. Performance still needs to be checked under the actual field conditions.
 
-A polymer buffer layer (typically 0.9 mm thick) is heat-extruded directly onto the fiber cladding, forming a rigid bond.
-
-$$\varepsilon_\text{fiber} = \eta_\text{fiber} \cdot \varepsilon_\text{jacket}, \qquad \eta_\text{fiber} \approx 0.7\text{–}0.9$$
-
-Under quasi-static loading $\eta \to 1$; at higher frequencies, viscoelastic lag of the buffer slightly reduces $\eta$.
-
-**Strain-sensing cables**
-
-Optimized for DAS / distributed strain sensing (DSS) through one or more structural features:
-- **Reinforced tight-buffer**: higher-stiffness polymer, $\eta \approx 0.9$–$1.0$
-- **Helically wound steel wires**: distribute strain uniformly to the fiber while providing mechanical protection
-- **Direct bonding**: fiber epoxy-bonded to the inner wall of a metallic sheath for maximum strain coupling
-
-| Cable type | Typical $\eta_\text{fiber}$ | DAS suitability | Common use |
-|------------|---------------------------|----------------|-----------|
-| Loose-tube | ≈ 0 | ❌ Unsuitable | Long-haul telecom, submarine |
-| Tight-buffered | 0.7–0.9 | ✓ Suitable | Premises, short-range sensing |
-| Strain-sensing | 0.9–1.0 | ✓ Optimal | DAS / DSS dedicated |
-| Armored† | 0.5–0.8 | △ Depends on core | Downhole / harsh environments |
-
-†If armored over a loose-tube core, the steel armour senses strain but the fiber inside does not.
+| Cable type | Relevant controls | Evaluation requirement |
+|---|---|---|
+| Loose-tube | Gel, excess length, wavelength | Verify detection and transfer; do not reject by name alone |
+| Tight-buffered | Buffer and bond properties | Calibrate within the target band |
+| Sensing-oriented | Manufacturer's specified conditions | Check compatibility with field loading |
+| Armoured | Internal structure and external contact | Evaluate both interfaces |
 
 !!! warning "The telecom cable reuse trap"
-    Many urban DAS studies repurpose existing telecom infrastructure. Most urban telecom cables are **loose-tube** designs: although the DAS interrogator operates normally, all channels carry essentially zero seismic signal. Only cables that include a **tight-buffered core** are suitable. Always obtain the cable datasheet from the network operator before deploying DAS on third-party infrastructure.
+    Obtain cable cross-sections, filling material, excess length and installation records. Cable labels alone cannot supply a universal transfer coefficient or determine suitability.
 
 #### Frequency-Domain Jacket-to-Fiber Coupling Model
 
-For a tight-buffered cable, the viscoelastic shear stiffness of the buffer layer governs the frequency-dependent strain transfer (Kuvshinov 2016):
+Define the transfer by its input and output:
 
 $$
-\eta_\text{fiber}(f) = \frac{k_b}{k_b + k_f \cdot (i 2\pi f \tau_b)}
+\eta_{\rm fiber}(f,k)=\frac{E_{\rm fiber}(f,k)}{E_{\rm jacket}(f,k)}.
 $$
 
-where $k_b = G_b / \ln(r_b/r_f)$ is the buffer shear stiffness ($G_b$ = buffer shear modulus, $r_f$ and $r_b$ = fiber and buffer radii), $\tau_b$ is the viscoelastic relaxation time of the buffer material (~$10^{-4}$–$10^{-3}$ s), and $k_f = E_f \pi r_f^2$ is the fiber axial stiffness.
-
-For typical tight-buffer materials (polyimide / ETFE, $G_b \sim 0.5$–$2$ GPa), the high-frequency roll-off of $\eta_\text{fiber}$ occurs at several kHz, well above the seismic band. In practice, $\eta_\text{fiber}$ can be treated as a frequency-independent constant within the seismic band.
-
----
+Layered shear-transfer models solve axial equilibrium and interface shear with specified moduli, radii, wavelength and boundary conditions. A single empirical time constant cannot replace the cable mechanics. Treat $\eta_{\rm fiber}$ as constant only after target-band validation. A field reference usually constrains the product of internal and external transfer, rather than the internal coefficient alone.
 
 ### Cable-to-Medium Coupling
 
 #### Physical Mechanism
 
-The **interface shear stiffness** $k_s$ (per unit cable length, N/m²) between the cable jacket and the surrounding medium determines how efficiently the free-field strain $\varepsilon_g$ enters the cable:
+Interface stiffness, damping, friction and contact geometry determine how ground motion enters the cable. Perfect bonding and free slip are ideal limits, not labels guaranteed by installation records.
 
-- $k_s \to \infty$ (fully bonded): $C_\text{med}(f) = 1$ — perfect coupling at all frequencies
-- $k_s = 0$ (frictionless): $C_\text{med}(f) = 0$ — zero coupling
-
-For finite $k_s$, the coupled cable–medium system is equivalent to a distributed spring-mass model, giving an approximately first-order low-pass transfer function (Martin et al. 2021):
+An **empirical first-order low-pass** may describe a measured smooth roll-off:
 
 $$
-\boxed{C_\text{med}(f) = \frac{1}{\sqrt{1 + \left(\dfrac{f}{f_c}\right)^2}}}
+C_{\rm med}^{\rm emp}(f)=\frac{C_0}{1-i f/f_c}.
 $$
 
-with cut-off frequency:
+Its high-frequency magnitude decreases at $-20$ dB/decade. This is not a universal coupling law. In contrast, a simple base-driven damped spring–mass displacement model gives
 
 $$
-\boxed{f_c = \frac{1}{2\pi}\sqrt{\frac{k_s}{m_c}}}
+\frac{X_c(\omega)}{X_g(\omega)}
+=\frac{k_s-i\omega b_s}{k_s-m_c\omega^2-i\omega b_s},
+\qquad f_n=\frac{1}{2\pi}\sqrt{\frac{k_s}{m_c}}.
 $$
 
-where $m_c$ is the cable mass per unit length (kg/m). **For $f \gg f_c$, cable inertia prevents it from following ground motion and coupling rolls off at −20 dB/decade.**
+Here $m_c$ is mass per unit length and $b_s$ is viscous damping per unit length. The natural frequency $f_n$ is not automatically the corner $f_c$ of a first-order low-pass. This model illustrates damping and resonance; strain transfer additionally needs spatial shear and internal structure. [Reinsch et al. (2017)](https://doi.org/10.1088/1361-6501/aa8ba4)
 
 #### Four Deployment Scenarios
 
 **Cemented borehole**
 
-The cable is placed in the annulus between casing and formation and fixed with cement or fast-set epoxy. Shear stiffness (Kuvshinov 2016):
-
-$$k_s \approx \frac{2\pi G_g}{\ln(r_\text{bh}/r_c)}$$
-
-where $G_g \sim 5$–$20$ GPa for cement grout, $r_\text{bh}$ = borehole radius, $r_c$ = cable radius. Typically $f_c \gg 1000$ Hz → **effectively perfect coupling across the entire seismic band**.
+Continuous grout can improve contact. A scale estimate for an ideal coaxial elastic annulus is $k_s\sim2\pi G_g/\ln(r_{\rm bh}/r_c)$, where $G_g$ is grout shear modulus and the radii describe the borehole and cable. Voids, debonding, casing and internal transfer remain relevant; cementing does not prove perfect response throughout the seismic band.
 
 **Frozen into ice or permafrost**
 
-Cable inserted into a hot-water-drilled hole and allowed to freeze in place. Ice shear modulus $G_\text{ice} \approx 3.5$ GPa → $f_c \sim 1000$–$3000$ Hz, comparable to cemented borehole. Effective coupling is essentially complete across the seismic band. Freeze–thaw cycles can degrade the bond and should be monitored.
+Refreezing around a cable can improve contact. Transfer still depends on freezing completeness, fractures, cable structure and frequency. Freeze–thaw cycles and local separation require monitoring.
 
 **Buried in soil**
 
-Interface shear stiffness scales with soil shear modulus $G_s$ and burial depth:
-
-$$k_s \approx \frac{2\pi G_s}{\ln(D_\infty / r_c)}, \qquad D_\infty \approx 10\, r_c$$
-
-| Soil type | $G_s$ | Burial 0.1 m | Burial 0.3 m | Burial 1.0 m |
-|-----------|--------|------------|------------|------------|
-| Soft clay | 5 MPa | ~30 Hz | ~80 Hz | ~200 Hz |
-| Sand | 50 MPa | ~120 Hz | ~300 Hz | ~800 Hz |
-| Hard soil / weathered rock | 200 MPa | ~400 Hz | ~1000 Hz | >2000 Hz |
-
-**Practical rule**: burial depth ≥ 0.3 m ensures $C > -1$ dB below 100 Hz in most soil conditions.
+An idealized stiffness scale $k_s\sim2\pi G_s/\ln(D_\infty/r_c)$ depends on soil shear modulus and an assumed influence radius. It does not determine a universal burial-depth/corner-frequency table. Compaction, water content, confining pressure and workmanship all matter. Fine- and coarse-sand sections commonly differ in depth and formation as well; their response difference alone cannot establish a grain-size effect.
 
 **Surface-laid cable**
 
-Coupling relies only on **self-weight friction** with the ground surface. Effective $k_s$ is set by cable weight and surface roughness, typically very low. $f_c$ may be as low as 20–100 Hz, severely attenuating signals above ~100 Hz.
+Self-weight, friction, tension, curvature and roughness determine contact. Pins, bags or burial can improve SNR or observation range, but their amplitude-transfer benefit must be tested.
 
 !!! warning "Submarine telecom cables for DAS"
-    Submarine cables are usually **laid on the seafloor** with no burial. Coupled with a loose-tube internal structure, they suffer two simultaneous penalties: $\eta_\text{fiber} \approx 0$ and $f_c \sim 50$ Hz. The usable band is typically < 20 Hz and amplitudes are far below standard seismometers. Yet over thousands of kilometres of cable and exploiting ultra-low-frequency surface waves, submarine cable DAS has still produced important global seismology results (Marra et al. 2018).
+    Subsea cables can be buried, exposed or suspended; there is no universal 20 Hz usable-band limit. Marra et al. (2018) used integrated laser interferometry, not channel-resolved Rayleigh-DAS amplitude calibration. Separate ground-strain transfer from hydrodynamic forcing and cable vibration.
 
-![DAS cable coupling: cross-sections and transfer functions](assets/images/das_coupling.png)
-*Figure 4: (Left) Loose-tube vs tight-buffered cable cross-sections — in the loose-tube design the fiber floats freely in gel ($\eta_\text{fiber} \approx 0$); in the tight-buffered design the polymer buffer is bonded directly to the fiber ($\eta_\text{fiber} \approx 0.8$–$1.0$). (Right) Cable-to-medium coupling transfer functions $C_\text{med}(f) = [1+(f/f_c)^2]^{-1/2}$ for four deployment scenarios: cemented borehole ($f_c \to \infty$) and frozen coupling ($f_c \approx 3000$ Hz) are transparent across the seismic band; burial 0.3 m ($f_c \approx 300$ Hz) is reliable below 1 kHz; surface-laid cable ($f_c \approx 30$ Hz) attenuates significantly above 100 Hz.*
-
----
+!!! note "Calibration is stronger evidence than a universal coefficient table"
+    Forbriger et al. (2025) measured total transfer rates of about 0.13–0.53 at 0.05–0.1 Hz using independent strainmeters, despite high waveform similarity. This is a site-specific result, not a universal range for cable types.
 
 ### Updated Combined Instrument Response
 
-Adding both coupling factors to the forward model from the previous section:
+For a locally linear, approximately separable P-wave response,
 
 $$
-\boxed{
-d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
-\cdot \underbrace{C_\text{med}(f)}_{\substack{\text{medium–cable}\\\text{coupling}}}
-\cdot \underbrace{\eta_\text{fiber}}_{\substack{\text{jacket–fiber}\\\text{coupling}}}
-\cdot \underbrace{v\cos^2\theta}_{\text{directional}}
-\cdot \underbrace{\mathrm{sinc}\!\left(\frac{\pi fL}{v\cos\theta}\right)}_{\text{gauge length}}
-\cdot e^{-\pi ft^*}
-}
+\boxed{\dot E_{\rm obs}(f)=H_{\rm IU}(f)\,C_{\rm med}(f)\,\eta_{\rm fiber}(f)
+\frac{\omega^2\cos^2\theta}{c_P}
+\mathrm{sinc}\!\left(\frac{fL\cos\theta}{c_P}\right)U(f)+N(f)}
 $$
 
-Each coupling factor is associated with a distinct physical interface and can be assessed or controlled independently:
+$H_{\rm IU}$ represents interrogation and processing response, and $N$ is additive noise. Unknown source, site and transfer contributions may compensate each other.
 
-| Factor | Engineering control | Residual uncertainty |
-|--------|---------------------|---------------------|
-| $C_\text{med}(f)$ | Cementing / burial depth | Grout porosity, cure quality |
-| $\eta_\text{fiber}$ | Select tight-buffered / sensing cable | Buffer ageing, temperature |
-| $v\cos^2\theta$ | Incidence-angle cut ($\theta < 45°$) | Velocity model error |
-| $\mathrm{sinc}(\cdots)$ | Gauge-length selection | See gauge-length section |
+| Factor | Control or constraint | Residual uncertainty |
+|---|---|---|
+| $C_{\rm med}$ | Installation and contact | Voids, local geology and friction |
+| $\eta_{\rm fiber}$ | Cable design | Materials, temperature and ageing |
+| $\cos^2\theta/c_P$ | Incidence and velocity | Geometry, polarization and model error |
+| $H_{\rm GL}$ | Gauge length | Spatial weighting and trajectory |
 
 !!! tip "Coupling correction order before inversion"
-    1. **Confirm cable type** (loose vs tight) — reject channels where $\eta_\text{fiber} \approx 0$
-    2. **Assess deployment state** — estimate $f_c$ and set the upper usable frequency limit
-    3. If broadband inversion is needed, compensate the spectrum by $1/C_\text{med}(f)$ (avoid over-amplifying noise above $f_c$)
-    4. Then proceed with joint inversion of gauge-length, directional, and $t^*$ effects
-
----
+    1. Confirm strain versus strain rate, units, filtering, gauge length and channel geometry.
+    2. Evaluate SNR, transfer, directional zeros and gauge notches in the target band.
+    3. Apply regularized correction only where supported, with reference and error sensitivity; mark near-zero response as poorly identifiable.
+    4. Do not interpret compensation between receiver gain, source spectrum and path attenuation as a unique solution.
 
 ### In-Situ Coupling Assessment
 
-Co-locate a standard seismometer with the DAS cable and compute the empirical transfer function:
+Convert DAS and reference records into the same quantity, direction and comparable spatial averaging before estimating a transfer. For reference axial strain $x$, DAS strain $y$, and cross-spectrum convention $S_{yx}=\langle YX^*\rangle$,
 
 $$
-T(f) = \frac{U_\text{DAS}(f)}{U_\text{ref}(f)}
+\hat T(f)=\frac{S_{yx}(f)}{S_{xx}(f)+\lambda(f)},\qquad
+\gamma^2(f)=\frac{|S_{yx}(f)|^2}{S_{xx}(f)S_{yy}(f)}.
 $$
 
-After correcting for directional sensitivity and gauge-length response, the expected value is $T(f) \propto C_\text{med}(f) \cdot \eta_\text{fiber}$. A −20 dB/decade roll-off in $|T(f)|$ above some frequency directly reveals $f_c$, from which the coupling stiffness $k_s$ can be estimated.
+The stabilizer $\lambda$ limits unstable division; noise in the reference still causes estimation bias. High coherence supports a linear waveform relation, not unit gain. If $y=0.2x$ without noise, $\gamma^2=1$ but transfer magnitude is 0.2. Seismometer velocity-to-strain conversion requires wave type, apparent slowness and polarization; independent multi-direction strainmeters provide a more direct strain reference. Roll-off can also arise from the instrument, gauge averaging and site response, so slope alone cannot identify contact stiffness. [Forbriger et al. (2025)](https://doi.org/10.1785/0220240308), [Muir and Zhan (2022)](https://doi.org/10.1093/gji/ggab439)
 
 !!! tip "No reference station? Detect coupling from the data itself"
-    The method above requires a co-located point seismometer, which is rarely feasible for subsea or long-range cables. In that case the **spatial irregularity of spectral fingerprints across neighbouring channels** can reveal the coupling state (buried / exposed / suspended) directly from DAS data — for example the Poincaré spectral-coherence method and the Burial Index (BI); see [Detecting and Assessing DAS Cable Coupling State](cable-coupling-en.md).
+    Neighbour coherence, spectral fingerprints and repeated-event stability support **relative screening and channel selection**, not automatic absolute mechanical-transfer calibration. See [coupling assessment and validation](cable-coupling-en.md) and [field workflow](field-workflow-en.md).
 
 ---
 
@@ -723,6 +672,10 @@ plt.show()
 ---
 
 ## References
+
+- Reinsch, T., Thurley, T., & Jousset, P. (2017). On the mechanical coupling of a fiber optic cable used for distributed acoustic/vibration sensing applications—a theoretical consideration. *Measurement Science and Technology*, 28, 127003. [DOI](https://doi.org/10.1088/1361-6501/aa8ba4).
+- Forbriger, T., et al. (2025). Calibration of the Strain Amplitude Recorded with DAS Using a Strainmeter Array. *Seismological Research Letters*, 96, 2356–2367. [DOI](https://doi.org/10.1785/0220240308); [author full text](https://arxiv.org/html/2408.01151v3).
+- Muir, J. B., & Zhan, Z. (2022). Wavefield-based evaluation of DAS instrument response and array design. *Geophysical Journal International*. [DOI](https://doi.org/10.1093/gji/ggab439).
 
 - Lindsey, N. J., Martin, E. R., Dreger, D. S., Freifeld, B., White, S., Monga, S. K., … & Ajo-Franklin, J. B. (2017). Fiber-optic network observations of earthquake wavefields. *Geophysical Research Letters*, 44(23), 11–792.
 - Mateeva, A., Lopez, J., Potters, H., Mestayer, J., Cox, B., Kiyashchenko, D., … & Berlang, W. (2014). Distributed acoustic sensing for reservoir monitoring with vertical seismic profiling. *Geophysical Prospecting*, 62(4), 679–692.

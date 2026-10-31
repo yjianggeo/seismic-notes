@@ -352,6 +352,12 @@ radon_hr = irfft(M_hr, n=nt, axis=1).real
 
 ---
 
+## 井中弱信号的慢度扫描
+
+扫描网格变密只是在更细地采样目标函数，不会增加孔径或独立信息。对孔径 $A$、频率 $f$ 的简单线阵，常规波束主瓣的慢度尺度约为 $1/(fA)$；高分辨率方法仍依赖信噪比、协方差估计、波数模型和正则化。标距重叠的相邻 DAS 道也不应视为完全独立快照。
+
+保留正、负慢度，分别检查相邻频带、奇偶道、子孔径与非事件控制窗。给出坐标和符号约定；滤波后同一波包可能包含多个物理分量。一个峰既不是震相的唯一身份，也不是显著性检验。统计与取窗见[现场检查流程](field-workflow.md)，弯井和多模态干涉见[井中瑞利波](borehole-rayleigh.md)。
+
 ## 参考文献
 
 - Capon, J. (1969). High-resolution frequency-wavenumber spectrum analysis. *Proceedings of the IEEE*, 57(8), 1408–1418.

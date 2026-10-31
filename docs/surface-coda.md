@@ -115,7 +115,7 @@ $$
 | 粒子运动 | 竖向 + 径向椭圆极化 | 水平横向（SH 方向） |
 | 存在条件 | 任何弹性半空间 | 需要低速表层（波导） |
 | 速度（半空间）| $V_R \approx 0.92\,V_S$ | 介于上层与半空间 $V_S$ 之间 |
-| 对 DAS 的灵敏度 | 沿缆方向分量：$\cos^2\theta$ | 垂直缆方向：DAS 不响应 |
+| 水平直缆 DAS 的理想平面波投影 | Rayleigh 径向项为 $\cos^2\theta$ | Love 横向项为 $\sin\theta\cos\theta$，平行或正交时为零 |
 
 ### 频散特性
 
@@ -126,7 +126,8 @@ $$
 **群速度** $U(f)$：能量包络的传播速度，由相速度对频率的导数决定：
 
 $$
-U(f) = c(f) + f\,\frac{\mathrm{d}c}{\mathrm{d}f}
+U(f)=\frac{\mathrm d\omega}{\mathrm dk}
+=\frac{c(f)}{1-\dfrac{f}{c(f)}\dfrac{\mathrm dc}{\mathrm df}}
 $$
 
 !!! note "正频散与逆频散"
@@ -144,7 +145,7 @@ $$
 \boxed{z_\mathrm{peak} \approx \frac{\lambda}{3} = \frac{c(f)}{3f}}
 $$
 
-即频率 $f$ 的 Rayleigh 波对深度约 $\lambda/3$ 处的 $V_S$ 最为敏感，$\lambda$ 为对应波长。
+这是用于快速规划的深度尺度估计，不是普适的敏感核峰值定律。峰值及正负瓣随模式、分层和所用观测量变化，正式解释应计算相应的敏感核；$\lambda$ 为对应波长。
 
 这一规则给出了**频率-深度对应关系**的快速估算：
 - 低频 → 长波长 → 深部结构
@@ -288,7 +289,7 @@ $$
 核函数 $K_\beta(z)$ 是本征函数及其导数的二次组合，按模式能量积分归一化。定性规律：
 
 - $K_\beta(z)$ 大 ⟺ 该深度上本征函数振幅大（波的能量"住在"那里）；
-- Rayleigh 基阶 $K_\beta$ 峰值位于 $z \approx \lambda/3$——这正是上文「深度灵敏度规则」中 $\lambda/3$ 经验公式的理论来源；
+- Rayleigh 基阶核通常在波长对应的浅部范围较强；$\lambda/3$ 只能作量级估计，核峰值和正负瓣仍需对具体模型计算；
 - 高阶模态本征函数穿透更深，其核函数峰值也更深，联合多模式反演可显著改善深部分辨率。
 
 !!! tip "本征函数的三个实用角色"
@@ -377,21 +378,21 @@ Rayleigh 波质点沿椭圆轨迹运动（径向与垂直分量之间有典型�
 
 #### 井下 DAS 面波监测与深度衰减分析
 
-将 DAS 光缆布设于竖直钻孔中，可直接观测 Rayleigh 波振幅随深度的倏逝（evanescent）衰减——这是地面阵列无法触及的深度维度。
+井中 DAS 提供面波的深度采样，但应将记录解释为轴向应变或应变率，而不是位移幅度本身。本节保留理想半空间的物理直觉；曲井、多模态、有限窗和反演检验见[井中 DAS 面波：从深度响应到结构约束](borehole-rayleigh.md)。
 
 **观测几何与测量量**
 
-竖直钻孔 DAS 的轴向即深度方向 $z$，测量量为轴向应变：
+充分耦合的竖直直井在短标距极限下测量轴向应变：
 
 $$\varepsilon_\text{DAS}(z,\,t) = \frac{\partial u_z}{\partial z}(z,\,t)$$
 
-对于沿水平方向传播的 Rayleigh 波，$u_z(z, t) = r_z(z)\cdot A(t)$，各深度上的波形**同时到达**（水平慢度 $p_z = 0$）。因此：
+若记录的是应变率，则 $\dot\varepsilon_{zz}=\partial_z v_z$。对于理想单模态、同一水平位置的 Rayleigh 波，各深度共享水平传播相位，没有可直接用于测速的垂直传播走时；本征函数变号、有限带宽和模态混合仍可改变波形与包络。因此：
 
 - **无法**从深度间的时差估算相速度；
-- **可以**从深度振幅剖面直接读出本征函数 $r_z(z)$。
+- **可以**拟合本征函数经轴向投影、标距平均和仪器响应后的深度形状；不能把应变剖面直接读成位移本征函数 $r_z(z)$。
 
 !!! note "与地面 DAS 的互补性"
-    地面 DAS 测量水平应变，对面波有 $\cos^2\theta$ 的方位角响应；竖直钻孔 DAS 测量竖向应变，对所有入射方位一视同仁，适合量化深度衰减。
+    理想一维各向同性介质中，竖直井的 Rayleigh 轴向应变不依赖水平来波方位。倾斜或弯曲光缆则混合径向、垂向与剪应变，且水平位移引入传播相位，应使用真实井轨迹正演。
 
 **Rayleigh 波深度本征函数**
 
@@ -419,13 +420,13 @@ $$r_z(z) \xrightarrow{\;kz \gg 1/\eta_\alpha\;} C_\beta \cdot e^{-\eta_\beta k z
 
 *第一步：独立估算 $V_R(f)$*
 
-由于钻孔内各深度同时到达，相速度须从外部获取：
+不能仅由竖直井内深度时差读取相速度；可利用独立的水平空间相位观测：
 - 地表 DAS/台站 f-v 变换拾取频散曲线；
-- 主动源：已知震源距除以到达时刻。
+- 主动源：采用多偏移相位/波数分析；偏移距除以波包到时通常给出群/走时速度，不能自动代替相速度。
 
 *第二步：对钻孔幅度剖面做半对数线性拟合*
 
-在 S 波主导区（$kz \in [3,\;6]$）拟合 $\ln|r_z(z, f)|$ 对 $z$ 的斜率 $-b(f)$：
+在已验证的单指数渐近区拟合实际应变或应变率的对数幅度。仅当慢衰减 S 项主导时，它与位移共享斜率 $-b(f)$：
 
 $$b(f) = \eta_\beta \cdot k = \frac{2\pi f}{V_R(f)}\sqrt{1 - \frac{V_R(f)^2}{V_S^2}}$$
 
@@ -433,15 +434,15 @@ $$b(f) = \eta_\beta \cdot k = \frac{2\pi f}{V_R(f)}\sqrt{1 - \frac{V_R(f)^2}{V_S
 
 $$\boxed{V_S = \frac{V_R(f)}{\sqrt{1 - \!\left(\dfrac{b(f)\,V_R(f)}{2\pi f}\right)^{\!2}}}}$$
 
-此式将地表测量的 $V_R$ 与钻孔测量的衰减斜率 $b$ 结合，直接给出 $V_S$ 估算，**无需水平台站阵列**——在海底、冰川钻孔等难以布设地面阵列的环境中具有独特价值。
+此式是均匀半空间、单模态与独立已知相速度下的条件估计，还须满足 $0\le bV_R/(2\pi f)<1$。它不能替代分层介质的本征函数反演。
 
 !!! tip "实用要点"
-    - **拟合区间**：$kz \in [3,\;6]$；过浅两指数叠加偏离线性，过深信噪比不足。残余 P 项使拟合斜率略缓、$V_S$ 低估约 2%，要求更高精度时可直接用双指数模型拟合；
-    - **标距校正**：若标距 $L$ 满足 $\eta_\beta kL > 0.1$，需将实测斜率乘以校正因子 $\mathrm{sinc}^{-1}(\eta_\beta kL/2)$；
-    - **分层介质**：各频率提取的 $V_S$ 对应不同有效深度（$\sim \lambda/4$），对多个频率重复上述步骤即可得到 $V_S(z)$ 剖面。
+    - **拟合区间**：由完整应变正演确认渐近性、节点和信噪比，不把固定 $kz$ 区间或固定百分比偏差当成通用规则。
+    - **标距平均**：对于 $U_z=C e^{-bz}$，应变为 $-bC e^{-bz}\operatorname{sinhc}(bL/2)$。常数 $b,L$ 只改变幅值，不改变深度斜率；不能用逆 sinc 修正斜率。
+    - **分层介质**：多频不能按 $\lambda/4$ 直接拼成 $V_S(z)$；需计算分层本征函数、实际测量算子及物性/几何敏感性。
 
 ![井下DAS面波深度衰减](assets/images/das_borehole_sw.png)
-*图 3：左图——Poisson 固体中 Rayleigh 波深度本征函数。蓝色实线：竖向位移 $r_z(z)$，在 $kz \approx 0.48$（$z \approx 0.08\lambda$）处略有增强后单调衰减；红色虚线：DAS 测量的轴向应变 $|\varepsilon_{zz}|$，在 $kz \approx 0.48$ 处有一节点；橙色/绿色水平虚线分别标注 P 波和 S 波的 $1/e$ 特征深度（以 $kz$ 为归一化深度坐标）。右图：对数幅度与归一化深度的关系，深部（绿色区域，$kz>3$）渐近为斜率 $-\eta_\beta$ 的直线；拟合该斜率并结合已知 $V_R(f)$ 即可提取 $V_S$。*
+*图 3：理想 Poisson 半空间示意。位移浅部极大值附近对应轴向应变的节点，两种深度曲线不能混用。深部单指数斜率仅在上述条件下可用于半空间参数估计；图示不构成实际分层剖面的反演结果。*
 
 ### 频散曲线反演
 
@@ -453,8 +454,10 @@ $$
 
 其中 $\mathbf{m}$ 为各层的 $V_S$（和厚度），$\mathbf{c}^\text{pred}$ 通过 Thomson-Haskell 矩阵法正演计算，正则化项 $\varepsilon^2\|\mathbf{D}\mathbf{m}\|^2$ 约束模型光滑性。
 
-![面波频散](assets/images/sw_dispersion.png)
-*图 1：左图——双层模型（软层覆硬半空间）的 Rayleigh 波频散曲线，蓝色为相速度 $c(f)$，红色为群速度 $U(f)$，低频对应深部高速，高频对应浅层低速；右图——不同频率对应的深度灵敏度核，峰值深度约为 $\lambda/3$，频率越低穿透越深。*
+![解析教学示意：给定相速度曲线及其正确导出的群速度；右侧为低频较深、高频较浅的人工深度权重](assets/images/sw_dispersion.png)
+*图 1：教学示意，不是分层弹性介质的数值解。左图给定 Lorentzian 形状的 $c(f)$，由 $k=2\pi f/c$ 正确求出 $U=\mathrm d\omega/\mathrm dk$；右图是峰值放在 $c/(3f)$ 的归一化高斯权重，不是真实敏感核。曲线与权重的形状、参数均在生成脚本中声明。*
+
+[频散曲线数值](assets/images/sw_dispersion_curves.csv) · [示意权重数值](assets/images/sw_dispersion_weightings.csv) · [生成脚本](https://github.com/yjianggeo/seismic-notes/blob/main/scripts/generate_surface_dispersion.py)
 
 ---
 
@@ -591,10 +594,11 @@ Vs1, Vs2 = 200.0, 600.0
 VR1, VR2 = Vs1 * 0.919, Vs2 * 0.919
 h = 20.0  # 第一层厚度 (m)
 f_trans = (VR1 + VR2) / 2 / (2 * h)
-# Lorentzian 过渡：U(f) = VR1 + (VR2-VR1)*(1-x²)/(1+x²)²，恒正
+# 示意相速度曲线；群速度由 U=c/[1-(f/c)dc/df] 计算
 x    = f / f_trans
 c_ph = VR1 + (VR2 - VR1) / (1 + x**2)
-U    = VR1 + (VR2 - VR1) * (1 - x**2) / (1 + x**2)**2
+dc_df = -2 * (VR2 - VR1) * x / (f_trans * (1 + x**2)**2)
+U    = c_ph / (1 - (f / c_ph) * dc_df)
 
 ax = axes[0]
 ax.fill_between(f, U, c_ph, where=(c_ph >= U), alpha=0.15, color='#3498db',
@@ -602,7 +606,7 @@ ax.fill_between(f, U, c_ph, where=(c_ph >= U), alpha=0.15, color='#3498db',
 ax.plot(f, c_ph, color='#3498db', lw=2.5, label='Phase velocity $c(f)$')
 ax.plot(f, U,    color='#e74c3c', lw=2.5, ls='--', label='Group velocity $U(f)$')
 ax.set(xlabel='Frequency (Hz)', ylabel='Velocity (m/s)',
-       title='Rayleigh Wave Dispersion Curve\n(2-layer: soft over hard)',
+       title='Prescribed dispersion schematic\n(not a layered elastic solution)',
        xlim=[0.5, 50], ylim=[0, VR2 * 1.12])
 ax.legend(fontsize=9); ax.grid(True, alpha=0.3)
 
@@ -613,8 +617,8 @@ for fi, col in zip([5, 15, 30, 50], ['#2ecc71', '#3498db', '#e67e22', '#e74c3c']
     z_pk = c_ph[idx] / (3 * fi)
     K = np.exp(-(z - z_pk)**2 / (2 * (max(z_pk * 0.55, 1.0))**2))
     ax.plot(K / K.max(), z, color=col, lw=2.2, label=f'{fi} Hz (peak ≈ {z_pk:.0f} m)')
-ax.set(xlabel='Normalised sensitivity $\\partial c/\\partial V_S(z)$', ylabel='Depth (m)',
-       title='Depth Sensitivity Kernels\n(Rayleigh, fundamental mode)',
+ax.set(xlabel='Normalised illustrative weighting', ylabel='Depth (m)',
+       title='Toy depth weighting\n(not a computed sensitivity kernel)',
        ylim=[120, 0])
 ax.legend(fontsize=9, loc='lower right'); ax.grid(True, alpha=0.3)
 

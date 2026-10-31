@@ -10,7 +10,7 @@
 |------|-----------|-----|
 | 部署成本 | 每个传感器单独安装 | 光缆一次性铺设 |
 | 空间密度 | 有限台站（tens–hundreds） | 数千至数万虚拟道 |
-| 频段下限 | 受自然频率限制（如 4.5 Hz） | 直流至高频均响应（平坦响应） |
+| 频段下限 | 因传感器而异 | 由解调、漂移、滤波与噪声决定，不能普遍保证直流响应 |
 | 环境适应 | 需电源、防水处理 | 全光无源，可用海底光缆 |
 
 DAS 测量的物理量是沿光纤轴向的**动态应变**（dynamic strain）或**应变率**（strain rate），而非粒子速度，这一根本差异决定了其独特的方向性响应特征与标距效应。
@@ -198,10 +198,10 @@ $$
 |----------|--------|----------|----------|
 | 短周期检波器 | 粒子速度 | 平坦（$f > f_0$），低频衰减 | 在自然频率 $f_0$ 以下滚降 |
 | 加速度计 | 粒子加速度 | 平坦（$f < f_\mathrm{res}$） | 低频端需积分才得速度 |
-| **DAS（应变）** | **轴向应变** | **从直流到 $f_\mathrm{notch}$ 均平坦** | **无低频截止** |
+| **DAS（应变）** | **轴向应变** | 长波长、固定平面波条件下，相对粒子速度的几何比例与频率无关 | 实际低频能力仍取决于解调、漂移、滤波与噪声 |
 
 !!! tip "平坦响应的实际意义"
-    DAS 记录的应变信号，可以在**全频段**（0 Hz 至标距陷波频率 $f_\mathrm{notch}$）用一个与频率无关的常数转换为粒子速度，无需任何频率补偿。这使 DAS 天然适合记录低频地震波（面波、慢地震、潮汐等），而不受传统短周期检波器自然频率的限制。
+    上述常数转换针对已知波型、相速度与入射方向的局部平面波，并要求标距远小于沿缆波长、机械传递和仪器响应已知。标距 sinc 在首陷波前也并非严格平坦，面波相速度和极化还可能随频率变化。不能由此推断所有 DAS 系统都具有直流响应或能用一个常数转换任意波场。
 
 !!! warning "注意：应变率 ≠ 应变"
     许多 DAS 系统直接输出**应变率** $\dot{\varepsilon}$（对时间的导数），而非应变。应变率与粒子速度的关系为 $\dot{\varepsilon} = -(\cos^2\theta / c_P) \cdot \dot{v}_P$，即正比于**加速度**，此时不具有平坦速度响应，需先对时间积分（等效于频域除以 $\omega$）还原成应变。
@@ -333,8 +333,8 @@ $$
     $$L_\mathrm{opt} \approx \frac{0.5 \times 3000}{50} = 30\text{ m}, \quad \lambda_s \approx \frac{3000\sqrt{6}}{\pi \times 50} \approx 46.8\text{ m}$$
     若视速度在全井范围内从 2900 m/s 变化到 5900 m/s（变化近 2 倍），**建议对不同深度段分别选取最优标距**，以保证 SNR 和分辨率在全深度范围内均处于最优状态。
 
-!!! warning "标距下限的物理约束"
-    当 $L$ 减小到接近激光脉冲宽度时（通常 $L < 8$ m），相位与应变的关系变为非线性，DAS 系统的基本假设失效。因此，尽管理论上更小的 $L$ 给出更好的分辨率，实际中 $L_\mathrm{min} \approx 8$ m 是硬性下限。
+!!! warning "标距下限由具体系统确定"
+    标距、光脉冲空间宽度、空间响应和相位噪声需共同考虑。8 m 只是某些采集配置的尺度，不能当作所有 DAS 系统的物理硬下限；应使用仪器说明和实测响应确定可选标距。
 
 ![最优标距分析](assets/images/das_gauge_opt.png)
 *图 3：左图——归一化 $\Delta L$（SNR 代理）随 $GL/\lambda_s$ 的变化，绿色区域为 SNR > 90% 最大值的区间，红色阴影区为波形畸变区；右图——不同 $GL/\lambda_s$ 比值下 DAS 输出的归一化子波形状（$f_p$ = 40 Hz，$v$ = 1000 m/s，$\lambda_s \approx 19.5$ m）。（基于 Dean et al. 2016）*
@@ -343,55 +343,54 @@ $$
 
 ## 综合仪器响应模型
 
-实际地震学应用中，DAS 记录到的位移谱是**震源谱、路径衰减、场地响应、仪器响应**四者的乘积。将前文各效应（方向性 $\cos^2\theta$、标距 sinc 滤波、κ 衰减、t\* 路径衰减）整合后，P 波 DAS 位移谱的完整前向模型为（Bakku 2015；Chang et al. 2026）：
+先固定输入输出的物理量：设 $U(f)$ 为局部 P 波沿传播方向的**粒子位移复谱**，时间约定为 $e^{i(\mathbf k\cdot\mathbf x-\omega t)}$，$\omega=2\pi f$，相速度为 $c_P$，$\theta$ 为传播方向与直光缆轴的夹角。单位长度标距平均后的应变率为：
 
 $$
 \boxed{
-d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
-\cdot \underbrace{v\cos^2\theta}_{\text{平坦响应}}
-\cdot \underbrace{\mathrm{sinc}\!\left(\frac{\pi f L}{v\cos\theta}\right)}_{\text{标距效应}}
-\cdot e^{-\pi f t^*}
+\dot E_{\rm GL}(f)=\underbrace{\frac{\omega^2}{c_P}\cos^2\theta}_{\text{位移到应变率}}
+\underbrace{\mathrm{sinc}\!\left(\frac{fL\cos\theta}{c_P}\right)}_{H_{\rm GL}(f,\theta)}\,U(f)
 }
 $$
 
-| 因子 | 公式 | 物理含义 |
-|------|------|----------|
-| $(2\pi f)^m$ | $m=0,1,2$ 分别对应位移、速度、加速度（应变率） | DAS 输出的积分阶次 |
-| $\Omega_0$ | 低频平台 | 震源谱（地震矩） |
-| $e^{-\pi f\kappa}$ | $\kappa = \int_\text{path} dt/Q_s$ | 近地表积分 kappa 衰减 |
-| $v\cos^2\theta$ | 角度响应 | P 波对光纤轴的方向性灵敏度 |
-| $\mathrm{sinc}(\pi fL / v\cos\theta)$ | 标距传递函数 | 空间积分低通滤波 |
-| $e^{-\pi f t^*}$ | $t^* = \int_\text{path} dt/Q$ | 路径非弹性衰减 |
+这里统一使用归一化 $\mathrm{sinc}(x)=\sin(\pi x)/(\pi x)$。对应的应变为 $E_{\rm GL}=i\omega\cos^2\theta\,H_{\rm GL}U/c_P$；若输入改为粒子速度 $V=-i\omega U$，则 $E_{\rm GL}=-(\cos^2\theta/c_P)H_{\rm GL}V$。因此，“相对粒子速度平坦”与“相对位移含频率因子”并不矛盾。
 
-S 波对应：用 $v\cos\theta\sin\theta$ 替换 $v\cos^2\theta$，sinc 参数中 $\cos\theta$ 保持不变。
+| 观测量 | 相对于位移 $U$ 的因子 | 单位 |
+|------|------|------|
+| 应变 $E_{\rm GL}$ | $i\omega\cos^2\theta H_{\rm GL}/c_P$ | 无量纲 |
+| 应变率 $\dot E_{\rm GL}$ | $\omega^2\cos^2\theta H_{\rm GL}/c_P$ | $\mathrm{s}^{-1}$ |
+| 应变相对速度 $E_{\rm GL}/V$ | $-\cos^2\theta H_{\rm GL}/c_P$ | $\mathrm{s/m}$ |
+
+对平面 S 波，用 $(\mathbf t\cdot\mathbf n)(\mathbf t\cdot\mathbf p)$ 替代 $\cos^2\theta$、用 $c_S$ 替代 $c_P$；$\mathbf t$ 为光缆切向量，$\mathbf n$ 为传播单位向量，$\mathbf p$ 为极化单位向量。二维 SV 情况的绝对方向因子为 $|\sin\theta\cos\theta|$。面波、弯井和混合模态应使用完整应变投影，见[井中瑞利波观测](borehole-rayleigh.md)。
+
+若将 $U(f)$ 再分解成震源、几何扩散、路径衰减与场地项，应明确每项约定。$e^{-\pi f\kappa}$ 和 $e^{-\pi f t^*}$ 只有代表**不重叠的路径贡献**时才能相乘，避免把近地表衰减重复计入总 $t^*$。
 
 !!! note "深度微分项"
-    在井中 DAS 的逐道分析中，两相邻道之间的时间差（用于谱比法）为：
-    $$\mathrm{d}t_m = \frac{\mathrm{d}z}{v\cos\theta}$$
-    其中 $\mathrm{d}z$ 是道间深度差。这一项将**深度差转化为传播时间差**，也是入射角的函数。
+    对局部平面波，沿光缆坐标 $s$ 的相位走时差是慢度向量的投影：
+    $$\mathrm{d}t=\frac{\cos\theta}{c}\,\mathrm{d}s,\qquad c_{\rm app}=\frac{c}{|\cos\theta|}.$$
+    直立井中才可取 $\mathrm{d}s=\mathrm{d}z$。倾斜井应使用三维轨迹，而非直接代入垂直深度差。这里是**同一波前到达两道的时差**，不是射线沿自身方向走过 $\mathrm{d}z/\cos\theta$ 的时间。
 
 ### 入射角对仪器响应校正的影响
 
-使用 DAS 进行震源参数反演或 Q 值反演时，需要先**从观测谱中去除仪器响应**，即除以 $v\cos^2\theta \cdot \mathrm{sinc}(\cdots)$。这一校正在入射角较大时会引入严重误差：
+进行震源或 Q 反演时，须按所用物理量处理上述响应，并保留机械传递的不确定度。接近方向零点或标距陷波时，不宜直接除法校正：
 
 | 影响因素 | 小角度 $\theta \ll 45°$ | 大角度 $\theta \to 90°$ |
 |----------|------------------------|------------------------|
 | 平坦响应校正系数 $1/\cos^2\theta$ | 接近 1，稳定 | 趋于 $\infty$，放大噪声 |
-| sinc 陷波频率 $v\cos\theta/L$ | 接近 $v/L$，高频段保留好 | 向低频移动，有效带宽收窄 |
-| 灵敏度 $v\cos^2\theta$ | 接近 $v$，信噪比高 | 趋于 0，信噪比极低 |
+| 首陷波 $c/(L|\cos\theta|)$ | 接近 $c/L$ | 向高频移动；但方向性衰减仍很强 |
+| 应变相对速度的灵敏度 $\cos^2\theta/c$ | 接近 $1/c$ | 趋于 0，校正易放大噪声 |
 
-**实践中的入射角阈值**：Chang et al.（2026）在使用垂直井 DAS 反演浅层 Q 和微地震源参数时，将入射角限制为：
+**条件性角度筛选**：例如可采用以下保守规则，再用合成试验检验适用性：
 
 $$
 \boxed{\theta < 45°}
 $$
 
-超过此阈值的台道（channel）在谱拟合时被排除，以防止响应校正误差主导结果。
+这不是普适物理阈值。可用范围应由 SNR、角度误差、机械传递和目标频带共同确定。
 
 !!! tip "垂直井的几何约束"
     对于深度为 $z_\text{ch}$ 的台道和位于震源 $(r_H,\, z_\text{src})$ 的事件（$r_H$ 为水平距离，$z_\text{src} > z_\text{ch}$ 即事件在台道下方），入射角为：
     $$\theta = \arctan\!\left(\frac{r_H}{z_\text{src} - z_\text{ch}}\right)$$
-    $\theta < 45°$ 要求 $r_H < z_\text{src} - z_\text{ch}$，即**事件的水平距离小于事件与台道的垂直距离差**。因此谱比法 Q 反演优先使用**井底正下方的事件**。
+    这是均匀介质直射线近似。$\theta < 45°$ 要求 $r_H < z_\text{src} - z_\text{ch}$；层状介质中应通过射线追踪确定台道附近的局部入射角，不能把震源连线角度直接当作局部传播角。
 
 ---
 
@@ -407,7 +406,7 @@ $$
 \underbrace{\varepsilon_\text{光纤}}_{\text{DAS 测量}}
 $$
 
-两个系数均小于 1，且各自有独立的频率响应和工程控制手段。
+两个量一般是频率、波长与边界条件相关的**复传递函数**。局部共振、缆体导波及参考场差异可能产生幅值放大，不能预设它们恒为小于 1 的实数。仅凭 DAS 单一观测通常也不能独立分离两级传递。
 
 ---
 
@@ -421,48 +420,48 @@ $$
 
 光纤悬浮在充满**油膏**（filling compound）的松套管内，管内光纤比管稍长（余量系数 0.1–0.5%）。
 
-- 径向和轴向均无机械约束 → **动态应变传递效率 $\eta_\text{fiber} \approx 0$**
-- 专为通信设计：防止温度变化产生的热应力传递到光纤，保护传输性能
-- **不适合 DAS 地震传感**——使用松套管电缆进行 DAS 测量时，记录到的是近乎纯噪声
+- 余长和柔软填充物会改变应变传递，但凝胶在小振幅下仍可能通过剪切传递应变，不能将其一律设为零。
+- 专为通信设计的应力隔离会影响幅值解释；是否适合地震检测、走时或幅值分析，应分别验证。
+- 已有松套通信光缆记录地震及应变标定实例；“松套不适合 DAS”不是通用结论。[Reinsch 等（2017）](https://doi.org/10.1088/1361-6501/aa8ba4)、[Forbriger 等（2025）](https://doi.org/10.1785/0220240308)
 
 **紧套管结构（Tight-buffered cable）**
 
 聚合物缓冲层（典型厚度 0.9 mm）直接热挤压到光纤包层（cladding）上，形成刚性键合。
 
-$$\varepsilon_\text{fiber} = \eta_\text{fiber} \cdot \varepsilon_\text{jacket}, \qquad \eta_\text{fiber} \approx 0.7\text{–}0.9$$
+$$\varepsilon_\text{fiber}(f) = \eta_\text{fiber}(f,k)\,\varepsilon_\text{jacket}(f)$$
 
-准静态下 $\eta \to 1$；在高频段，由于缓冲层的黏弹性滞后（viscoelastic lag），$\eta$ 略有下降。
+紧套结构通常有利于应变传递，但不保证 $\eta$ 接近 1。缓冲材料、应变波长、温度、预张力和实际安装都会影响幅相响应。
 
 **应变传感专用光缆（Strain-sensing cable）**
 
 为 DAS/分布式应变传感（DSS）优化设计，通常采用以下一种或几种结构：
-- **增强紧套管**：更高刚度的缓冲聚合物，$\eta \approx 0.9$–$1.0$
+- **增强紧套管**：选用适当刚度的缓冲聚合物
 - **绞合型加强件**（helically wound steel wires）：将应变均匀分配到光纤，兼顾保护与传感
 - **直接粘接**（direct bonding）：光纤用环氧树脂直接固定于金属护套内壁，应变传递最优
 
-| 光缆类型 | 典型 $\eta_\text{fiber}$ | 地震 DAS 适用性 | 典型用途 |
+| 光缆类型 | 传递特点 | 地震 DAS 评估要求 | 典型用途 |
 |---------|------------------------|---------------|---------|
-| 松套管（Loose-tube）| ≈ 0 | ❌ 不适用 | 长距离通信、海底光缆 |
-| 紧套管（Tight-buffered）| 0.7–0.9 | ✓ 适用 | 室内布线、短距离传感 |
-| 应变传感专用缆 | 0.9–1.0 | ✓ 最优 | DAS、DSS 传感专用 |
-| 铠装光缆（Armored）| 0.5–0.8† | △ 视结构而定 | 井下/恶劣环境 |
+| 松套管（Loose-tube）| 受凝胶、余长和波长影响 | 检查信号与幅值传递，不能仅凭缆型排除 | 长距离通信、海底光缆 |
+| 紧套管（Tight-buffered）| 直接缓冲通常有利于传递 | 仍需频带内标定 | 室内布线、短距离传感 |
+| 应变传感专用缆 | 针对应变传递优化 | 检查厂家条件与现场条件是否相符 | DAS、DSS 传感专用 |
+| 铠装光缆（Armored）| 取决于内部构造及外部接触 | 同时评估缆内传递和介质接触 | 井下/恶劣环境 |
 
-†铠装钢丝若与内部松套管组合，则外层铠甲感知应变而内部光纤不感知，η 取决于松/紧套内芯。
+缆型名称本身不能提供一个可直接代入所有频率和场地的传递系数。
 
 !!! warning "通信光缆复用的陷阱"
-    城市 DAS 研究中常将现有通信光缆直接用于地震传感。多数城市通信光缆为**松套管结构**，尽管 DAS 询问器可正常工作，但所有通道的应变信号极弱，信噪比极低。仅当光缆包含**紧套管芯**（tight-buffered core）时，相应通道方可用于地震传感。在选缆前须向运营商索取光缆截面结构说明书（cable datasheet）。
+    索取光缆截面、填充材料、余长与敷设信息，并区分“可以检测到波形”和“可以恢复真实地层应变幅值”。不能仅凭松套/紧套名称判断可用性；同一缆型在不同接触条件下也可能表现不同。
 
 #### 频率域的套-芯耦合模型
 
-对于紧套管结构，缓冲层的**黏弹性剪切刚度**决定了频率相关的应变传递率。考虑一段长度为 $l$、内外径分别为 $r_f$（光纤）和 $r_b$（缓冲外径）的缓冲层，其轴向剪切传递导纳（Kuvshinov 2016）：
+定义套–芯传递函数最稳妥的方式是明确输入输出：
 
 $$
-\eta_\text{fiber}(f) = \frac{k_b}{k_b + k_f \cdot (i 2\pi f \tau_b)}
+\eta_\text{fiber}(f,k)=\frac{E_\text{fiber}(f,k)}{E_\text{jacket}(f,k)}.
 $$
 
-其中 $k_b = G_b / \ln(r_b/r_f)$ 为缓冲层剪切刚度，$\tau_b$ 为缓冲材料的黏弹性松弛时间（通常 $\tau_b \sim 10^{-4}$–$10^{-3}$ s），$k_f = E_f \pi r_f^2$ 为光纤轴向刚度。
+多层剪滞模型通过界面剪切与轴向平衡求解该量，需给出材料模量、半径、波长与边界条件。单个经验时间常数不能替代完整的缆内力学模型。
 
-在地震频段（1–1000 Hz），对于典型紧套缓冲材料（聚酰亚胺/ETFE，$G_b \sim 0.5$–$2$ GPa），**高频截止频率** $f_\text{cut} = k_b/(2\pi m_f)$ 通常在数 kHz 以上，远高于地震信号频带，因此实践中可将 $\eta_\text{fiber}$ 近似为常数。
+只有经过目标频带内的验证后，才可将 $\eta_\text{fiber}$ 近似为常数。现场参考应变通常约束的是两级机械传递的乘积，不能仅由总幅比读出套–芯系数。
 
 ---
 
@@ -475,19 +474,19 @@ $$
 - $k_s \to \infty$（完全固结）：$C_\text{med}(f) = 1$，完美耦合
 - $k_s = 0$（自由滑动）：$C_\text{med}(f) = 0$，零耦合
 
-对于有限 $k_s$，耦合系统等效为分布式弹簧-质量模型（distributed spring-mass），其传递函数近似为一阶低通（Martin et al. 2021）：
+若只为描述一段已测得的平滑幅频滚降，可采用**经验一阶低通**：
 
 $$
-\boxed{C_\text{med}(f) = \frac{1}{\sqrt{1 + \left(\dfrac{f}{f_c}\right)^2}}}
+\boxed{C_\text{med}^{\rm emp}(f)=\frac{C_0}{1-i f/f_c}}
 $$
 
-截止频率：
+其高频幅值按 $-20$ dB/decade 滚降，但这不是所有接触状态的机械定律。与之不同，最简单的基底位移驱动、黏性阻尼弹簧–质量示意模型给出：
 
 $$
-\boxed{f_c = \frac{1}{2\pi}\sqrt{\frac{k_s}{m_c}}}
+\frac{X_c(\omega)}{X_g(\omega)}=\frac{k_s-i\omega b_s}{k_s-m_c\omega^2-i\omega b_s},\qquad f_n=\frac{1}{2\pi}\sqrt{\frac{k_s}{m_c}}.
 $$
 
-其中 $m_c$ 为光缆单位长度质量（kg/m）。**当 $f \gg f_c$ 时，光缆惯性阻止其跟随地层运动，耦合效率以 $-20$ dB/decade 下降。**
+其中 $m_c$ 是单位长度质量，$b_s$ 是单位长度黏性阻尼系数；$f_n$ 是固有频率，不可直接等同于经验一阶低通的 $f_c$。该位移模型仅示意共振与阻尼的作用，真实应变传递还需空间剪切、缆内结构及边界条件。参见 [Reinsch 等（2017）](https://doi.org/10.1088/1361-6501/aa8ba4)。
 
 #### 四类部署场景
 
@@ -501,11 +500,11 @@ $$
 k_s \approx \frac{2\pi G_g}{\ln\!\left(r_\text{bh}/r_c\right)}
 $$
 
-其中 $G_g \sim 5$–$20$ GPa 为水泥浆剪切模量，$r_\text{bh}$ 为孔径，$r_c$ 为光缆半径。典型结果 $f_c \gg 1000$ Hz，**在所有地震频段内视为完美耦合**。
+其中 $G_g$ 为灌浆剪切模量，$r_\text{bh}$ 和 $r_c$ 为孔与光缆半径。此式仅适用于理想同轴、连续弹性介质的尺度估算；灌浆孔隙、脱黏、套管和缆内传递仍需核查，不能由“已灌浆”推出全频段完美耦合。
 
 **（2）冻结于冰中（frozen-in ice / permafrost）**
 
-热钻孔后插入光缆，待孔隙水重新冻结（数小时至数天）。冰的剪切模量 $G_\text{ice} \approx 3.5$ GPa。耦合效率与灌浆固化接近，估计 $f_c \sim 1000\text{–}3000$ Hz，**实际地震频段完全耦合**。冻融循环会破坏固化，需重新评估。
+热钻孔后插入光缆，孔隙水重新冻结可改善机械接触。是否达到可靠幅值传递仍取决于冻结程度、缆型和频带；冻融循环、裂隙与局部脱离都需监测。
 
 **（3）浅埋于土壤（buried in soil）**
 
@@ -515,25 +514,19 @@ $$
 k_s \approx \frac{2\pi G_s}{\ln\!\left(D_\infty / r_c\right)}
 $$
 
-$G_s$ 为土体剪切模量（软土 5–50 MPa，硬土 50–500 MPa），$D_\infty \approx 10 r_c$ 为影响半径。截止频率随埋深和土体刚度变化：
+$G_s$ 为土体剪切模量，$D_\infty$ 为假定影响半径。该理想化尺度关系不能单独确定埋深到截止频率的映射。
 
-| 土体类型 | $G_s$ | 埋深 0.1 m | 埋深 0.3 m | 埋深 1.0 m |
-|---------|-------|-----------|-----------|-----------|
-| 软黏土 | 5 MPa | ~30 Hz | ~80 Hz | ~200 Hz |
-| 砂土 | 50 MPa | ~120 Hz | ~300 Hz | ~800 Hz |
-| 硬土/风化岩 | 200 MPa | ~400 Hz | ~1000 Hz | > 2000 Hz |
-
-**实践建议**：埋深 ≥ 0.3 m 可保证 100 Hz 以下地震信号的有效耦合（$C > -1$ dB）。
+压实、含水、围压、接触面积与施工条件均影响传递。细砂和粗砂通常还位于不同深度，观测差异不能直接归因于粒径；应结合局部边界、相似激励和独立参考检验。
 
 **（4）裸铺于地面（surface-laid cable）**
 
-光缆仅靠**自重摩擦**与地面接触，有效 $k_s$ 取决于光缆重量和地面粗糙度，通常极低（等效摩擦刚度 $k_s \sim 10^3$–$10^4$ N/m²）。$f_c$ 低至 20–100 Hz，高频信号严重衰减。
+接触由自重、摩擦、张力、弯曲及地面粗糙度共同控制。钉固、砂袋、埋设等措施的收益需现场比较；它们可能改善 SNR 或可见距离，但不自动保证幅值标定准确。
 
 !!! warning "裸铺光缆用于 DAS 的局限"
-    海底通信光缆通常**裸铺**于海床（铺设船直接放缆），其耦合效率受到双重限制：内部松套管结构（$\eta_\text{fiber} \approx 0$）与表面摩擦耦合（$f_c \sim 50$ Hz）叠加，实际可用频带通常 < 20 Hz，且信号振幅远低于标准地震仪。尽管如此，借助超长光缆（数千公里）与超低频信号（地震面波），海缆 DAS 依然在全球地震监测中取得了重要成果（Marra et al. 2018）。
+    海缆可能埋设、裸露或悬跨。可用频带依环境、缆体与仪器而变，不存在统一的 20 Hz 上限。Marra 等（2018）使用的是整缆激光干涉观测，不能作为逐道 Rayleigh-DAS 幅值标定的证据。应将地震应变传递与水动力/缆体振动分别解释。
 
-![光缆耦合截面与传递函数](assets/images/das_coupling.png)
-*图 4：（左）松套管与紧套管光缆截面对比——松套管中光纤自由漂浮于油膏中（$\eta_\text{fiber} \approx 0$），紧套管中聚合物缓冲层直接键合于光纤（$\eta_\text{fiber} \approx 0.8$–$1.0$）。（右）四种部署场景的介质–光缆耦合传递函数 $C_\text{med}(f) = [1+(f/f_c)^2]^{-1/2}$：灌浆固化井孔（$f_c \to \infty$，绿色实线）和冻结耦合（$f_c \approx 3000$ Hz）在地震频段完全透明；埋深 0.3 m（$f_c \approx 300$ Hz，橙色虚线）在 1 kHz 以下可靠；裸铺地面（$f_c \approx 30$ Hz，红色点线）在 100 Hz 以上已严重衰减。*
+!!! note "现场标定比通用系数表更可靠"
+    Forbriger 等（2025）在 0.05–0.1 Hz 使用独立应变仪得到约 0.13–0.53 的总传递率，且波形相似性可很高。这说明波形一致不等于幅值准确；该范围属于特定场地与布设，不能当作缆型的通用参数。
 
 ---
 
@@ -543,44 +536,42 @@ $G_s$ 为土体剪切模量（软土 5–50 MPa，硬土 50–500 MPa），$D_\i
 
 $$
 \boxed{
-d_m\Omega(f) = (2\pi f)^m \cdot \Omega_0 \cdot e^{-\pi f \kappa}
-\cdot \underbrace{C_\text{med}(f)}_{\substack{\text{介质}\\\text{耦合}}}
-\cdot \underbrace{\eta_\text{fiber}}_{\substack{\text{套-芯}\\\text{耦合}}}
-\cdot \underbrace{v\cos^2\theta}_{\text{方向性}}
-\cdot \underbrace{\mathrm{sinc}\!\left(\frac{\pi fL}{v\cos\theta}\right)}_{\text{标距效应}}
-\cdot e^{-\pi ft^*}
+\dot E_{\rm obs}(f)=H_{\rm IU}(f)\,C_\text{med}(f)\,\eta_\text{fiber}(f)
+\frac{\omega^2\cos^2\theta}{c_P}
+\mathrm{sinc}\!\left(\frac{fL\cos\theta}{c_P}\right)U(f)+N(f)
 }
 $$
 
-各耦合因子对应不同的物理环节，可独立评估与校正：
+$H_{\rm IU}$ 是解调与处理响应，$N$ 是加性噪声。该乘积是局部线性、近似可分离情况下的有效模型；未知波场与两级传递未必可由一份记录独立识别。
 
 | 因子 | 控制手段 | 残余不确定性 |
 |------|---------|------------|
 | $C_\text{med}(f)$ | 灌浆固化 / 埋深 | 孔隙率、泥浆固化质量 |
 | $\eta_\text{fiber}$ | 选用紧套管 / 传感专用缆 | 缓冲层老化、温度 |
-| $v\cos^2\theta$ | 入射角约束（$\theta < 45°$） | 速度模型误差 |
+| $\cos^2\theta/c_P$ | 入射方向与速度约束 | 几何、波型与模型误差 |
 | $\mathrm{sinc}(\cdots)$ | 标距选择 | 见标距效应章节 |
 
 !!! tip "反演前的耦合校正顺序"
-    1. **先确认光缆类型**（紧/松套），筛除 $\eta_\text{fiber} \approx 0$ 的通道
-    2. **评估部署状态**，估计 $f_c$，确定可用频带上限
-    3. 若需要宽频带反演，将 $C_\text{med}(f)$ 的倒数补偿到数据谱上（注意避免在截止频率以上过度放大噪声）
-    4. 再进行标距、方向性、$t^*$ 等的联合反演
+    1. 确认输出是应变还是应变率、物理单位、仪器滤波、标距和通道几何。
+    2. 评估目标频带内的 SNR、机械传递、方向性和标距零点。
+    3. 仅在传递函数得到支持的频带内做正则化校正，给出参考选择与误差敏感性；近零响应处标为不可辨识。
+    4. 反演中避免把接收增益、源谱和路径衰减相互补偿当成唯一解。
 
 ---
 
 ### 耦合质量的现场评估
 
-直接评估耦合效率的方法：将 DAS 与同位置**点式地震仪**（宽频或检波器）的记录进行比较，计算经验传递函数：
+先将 DAS 与参考记录转换成同一物理量、相同方向和相近空间平均，再估计有效传递。设 $x$ 为参考轴向应变、$y$ 为 DAS 应变，交叉谱约定为 $S_{yx}=\langle YX^*\rangle$：
 
 $$
-T(f) = \frac{U_\text{DAS}(f)}{U_\text{ref}(f)}
+\hat T(f)=\frac{S_{yx}(f)}{S_{xx}(f)+\lambda(f)},\qquad
+\gamma^2(f)=\frac{|S_{yx}(f)|^2}{S_{xx}(f)S_{yy}(f)}.
 $$
 
-期望值为 $T(f) \propto (i2\pi f)^m \cdot C_\text{med}(f) \cdot \eta_\text{fiber} \cdot v\cos^2\theta$（在校正方向性和标距后）。若 $|T(f)|$ 在某频段以 $-20$ dB/decade 衰减，可直接读取 $f_c$，进而估算耦合刚度 $k_s$。
+这里 $\lambda$ 为谱分母稳定项；参考有噪声时仍可能存在估计偏差。高相干只支持线性波形关系，不能证明 $|T|=1$。若 $y=0.2x$ 且无噪声，$\gamma^2=1$，但传递幅值只有 0.2。地震计速度转换为应变需要波型、视慢度与极化约束；独立多方向应变仪可以直接提供更接近所需的参考。滚降也可能来自仪器、标距和场地，不能仅凭斜率反算界面刚度。[Forbriger 等（2025）](https://doi.org/10.1785/0220240308)、[Muir 与 Zhan（2022）](https://doi.org/10.1093/gji/ggab439)
 
 !!! tip "没有参考台站？从数据本身检测耦合状态"
-    上述方法需要在同址布设点式地震仪。对于海底或长距离光缆这往往不可行——此时可以利用**邻道谱指纹的空间不规则性**直接从 DAS 数据反推耦合状态（埋设/暴露/悬空），例如 Poincaré 谱相干方法与埋设指数（BI），详见 [DAS 光缆耦合状态的检测与评估](cable-coupling.md)。
+    可以计算邻道相干、谱指纹、重复事件稳定性等**相对指标**，用于状态筛查与选道；这些量不能自动给出绝对机械传递率。见[耦合评估与验证](cable-coupling.md)和[观测工作流](field-workflow.md)。
 
 ---
 
@@ -816,6 +807,10 @@ plt.show()
 ---
 
 ## 参考文献
+
+- Reinsch, T., Thurley, T., & Jousset, P. (2017). On the mechanical coupling of a fiber optic cable used for distributed acoustic/vibration sensing applications—a theoretical consideration. *Measurement Science and Technology*, 28, 127003. [DOI](https://doi.org/10.1088/1361-6501/aa8ba4).
+- Forbriger, T., et al. (2025). Calibration of the Strain Amplitude Recorded with DAS Using a Strainmeter Array. *Seismological Research Letters*, 96, 2356–2367. [DOI](https://doi.org/10.1785/0220240308)；[作者全文](https://arxiv.org/html/2408.01151v3).
+- Muir, J. B., & Zhan, Z. (2022). Wavefield-based evaluation of DAS instrument response and array design. *Geophysical Journal International*. [DOI](https://doi.org/10.1093/gji/ggab439).
 
 - Lindsey, N. J., Martin, E. R., Dreger, D. S., Freifeld, B., White, S., Monga, S. K., … & Ajo-Franklin, J. B. (2017). Fiber-optic network observations of earthquake wavefields. *Geophysical Research Letters*, 44(23), 11–792.
 - Mateeva, A., Lopez, J., Potters, H., Mestayer, J., Cox, B., Kiyashchenko, D., … & Berlang, W. (2014). Distributed acoustic sensing for reservoir monitoring with vertical seismic profiling. *Geophysical Prospecting*, 62(4), 679–692.

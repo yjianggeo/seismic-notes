@@ -12,13 +12,13 @@ hide:
       <h1>读懂地球的<br><em>每一次脉动</em></h1>
       <p class="home-lead">从震源谱到分布式光纤传感，用清晰的推导、图解与双语笔记，建立可以反复查阅的地震学知识体系。</p>
       <div class="home-actions">
-        <a class="home-button home-button--primary" href="brune/">开始阅读 <span aria-hidden="true">↗</span></a>
+        <a class="home-button home-button--primary" href="reading-guide/">查看学习路线 <span aria-hidden="true">↗</span></a>
         <a class="home-button home-button--ghost" href="#topics">浏览全部主题 <span aria-hidden="true">↓</span></a>
       </div>
       <dl class="home-stats" aria-label="站点概览">
-        <div><dt>9</dt><dd>学习主题</dd></div>
+        <div><dt>12</dt><dd>主题入口</dd></div>
         <div><dt>中 / EN</dt><dd>双语阅读</dd></div>
-        <div><dt>29</dt><dd>专业图解</dd></div>
+        <div><dt>图 · 式</dt><dd>原理与推导</dd></div>
       </dl>
     </div>
     <div class="home-signal reveal-item" aria-label="动态地震波形">
@@ -41,7 +41,7 @@ hide:
     <p class="home-section-index">01 / 学习路径</p>
     <div>
       <h2 id="home-intro-title">从物理直觉出发，<br>走向可复现的方法。</h2>
-      <p>每篇笔记都围绕一个明确问题展开：先解释现象，再推导公式，最后落到数据与应用。你可以顺序阅读，也可以把它当作案头手册。</p>
+      <p>按“基础与传播 → 观测与耦合 → 处理与判读 → 结构与监测”循序阅读，或从当前数据问题出发。<a href="reading-guide/">学习路线与概念索引 ↗</a></p>
     </div>
   </section>
 
@@ -51,7 +51,7 @@ hide:
         <p class="home-section-index">02 / 主题索引</p>
         <h2 id="topics-title">探索笔记</h2>
       </div>
-      <p>九个相互连接的入口，覆盖震源、传播、观测与处理。</p>
+      <p>十二个相互连接的入口，覆盖物理基础、观测方法、数据判读与文献学习。</p>
     </div>
 
     <div class="topic-grid">
@@ -97,7 +97,7 @@ hide:
         <p>拆解 φ-OTDR、方向性响应、标距效应与实际观测设计。</p>
         <span class="topic-card__link">进入笔记 <span aria-hidden="true">↗</span></span>
       </a>
-      <a class="topic-card reveal-item topic-card--wide" href="glacier/">
+      <a class="topic-card reveal-item" href="glacier/">
         <span class="topic-card__number">07</span>
         <span class="topic-card__tag">CRYOSEISMOLOGY</span>
         <h3>冰川地震学</h3>
@@ -115,7 +115,28 @@ hide:
         <span class="topic-card__number">09</span>
         <span class="topic-card__tag">COUPLING</span>
         <h3>DAS 光缆耦合检测</h3>
-        <p>埋设、暴露与悬空——用 Poincaré 谱相干从数据中读出耦合状态。</p>
+        <p>从谱与空间结构诊断状态，辨别激励、归一化和机械耦合的影响。</p>
+        <span class="topic-card__link">进入笔记 <span aria-hidden="true">↗</span></span>
+      </a>
+      <a class="topic-card reveal-item" href="field-workflow/">
+        <span class="topic-card__number">10</span>
+        <span class="topic-card__tag">FIELD WORKFLOW</span>
+        <h3>井中 DAS 现场检查</h3>
+        <p>从时钟与道掩码到弱信号、震相和上下行波场，建立可追溯检查流程。</p>
+        <span class="topic-card__link">进入笔记 <span aria-hidden="true">↗</span></span>
+      </a>
+      <a class="topic-card reveal-item" href="borehole-rayleigh/">
+        <span class="topic-card__number">11</span>
+        <span class="topic-card__tag">DEPTH RESPONSE</span>
+        <h3>井中瑞利波</h3>
+        <p>以正确的应变算子解释深度响应、井向、多模态与速度参数的可辨识性。</p>
+        <span class="topic-card__link">进入笔记 <span aria-hidden="true">↗</span></span>
+      </a>
+      <a class="topic-card reveal-item" href="literature-notes/">
+        <span class="topic-card__number">12</span>
+        <span class="topic-card__tag">READING INDEX</span>
+        <h3>文献学习索引</h3>
+        <p>整理已读论文的方法贡献、适用范围与待验证问题，连接阅读和数据实践。</p>
         <span class="topic-card__link">进入笔记 <span aria-hidden="true">↗</span></span>
       </a>
     </div>

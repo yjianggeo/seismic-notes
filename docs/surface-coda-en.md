@@ -115,7 +115,7 @@ Beyond this the cross-correlation coefficient CC drops sharply, and measurement 
 | Particle motion | Vertical + radial elliptical polarisation | Horizontal transverse (SH direction) |
 | Existence | Any elastic half-space | Requires a low-velocity surface layer (waveguide) |
 | Velocity (half-space) | $V_R \approx 0.92\,V_S$ | Between $V_S$ of top layer and half-space |
-| DAS sensitivity | $\cos^2\theta$ (along-cable Rayleigh) | Zero for cable parallel to propagation (SH blind) |
+| Ideal plane-wave projection on a horizontal straight cable | Rayleigh radial term: $\cos^2\theta$ | Love transverse term: $\sin\theta\cos\theta$, zero when parallel or perpendicular |
 
 ### Dispersion
 
@@ -126,7 +126,8 @@ The most important feature of surface waves is **dispersion**: different frequen
 **Group velocity** $U(f)$: velocity of the energy envelope, related to phase velocity by:
 
 $$
-U(f) = c(f) + f\,\frac{\mathrm{d}c}{\mathrm{d}f}
+U(f)=\frac{\mathrm d\omega}{\mathrm dk}
+=\frac{c(f)}{1-\dfrac{f}{c(f)}\dfrac{\mathrm dc}{\mathrm df}}
 $$
 
 !!! note "Normal vs. Inverse Dispersion"
@@ -138,13 +139,13 @@ $$
 
 ### Depth Sensitivity Rule
 
-The sensitivity of Rayleigh-wave phase velocity $c(f)$ to $V_S$ at depth $z$ peaks approximately at:
+A quick planning estimate for the depth scale sampled by Rayleigh-wave phase velocity is:
 
 $$
 \boxed{z_\mathrm{peak} \approx \frac{\lambda}{3} = \frac{c(f)}{3f}}
 $$
 
-where $\lambda$ is the wavelength. This rule gives a rapid **frequency-to-depth mapping**:
+where $\lambda$ is the wavelength. This is a planning scale, not a universal kernel-peak law: actual peaks and signed lobes depend on mode, layering and observable, and require the corresponding computed kernels. It suggests the qualitative trend:
 - Low frequency → long wavelength → deep structure
 - High frequency → short wavelength → shallow structure
 
@@ -286,7 +287,7 @@ $$
 where the kernel $K_\beta(z)$ is a quadratic combination of the eigenfunctions and their derivatives, normalised by the modal energy integral. Qualitatively:
 
 - $K_\beta(z)$ is large ⟺ the eigenfunction amplitude is large at that depth (the wave "lives" there);
-- The fundamental-mode Rayleigh kernel peaks at $z \approx \lambda/3$ — this is the theoretical origin of the empirical $\lambda/3$ rule in the [Depth Sensitivity Rule](#depth-sensitivity-rule) above;
+- Fundamental Rayleigh kernels are often strongest within a shallow fraction of a wavelength; $\lambda/3$ is only a scale estimate, and actual peaks and signed lobes require model-specific computation;
 - Higher-mode eigenfunctions penetrate deeper, so their kernels peak deeper; joint multi-mode inversion markedly improves resolution at depth.
 
 !!! tip "Three practical roles of eigenfunctions"
@@ -375,21 +376,21 @@ Rayleigh particle motion traces an ellipse (with a characteristic 90° phase shi
 
 #### Borehole DAS: Surface-Wave Depth Attenuation
 
-Installing a DAS fibre in a vertical borehole gives direct access to the evanescent depth decay of Rayleigh waves — a dimension unreachable by surface arrays.
+Borehole DAS samples the depth dependence of axial strain or strain rate, not displacement amplitude directly. This section gives half-space intuition; see [Borehole DAS: From Depth Response to Structural Constraints](borehole-rayleigh-en.md) for curved geometry, finite windows, multimode responses and inversion tests.
 
 **Geometry and measurement**
 
-In a vertical borehole the fibre axis is the depth direction $z$, so DAS records the axial strain:
+For a perfectly coupled vertical straight fibre in the short-gauge limit, axial strain is
 
 $$\varepsilon_\text{DAS}(z,\,t) = \frac{\partial u_z}{\partial z}(z,\,t)$$
 
-For a horizontally propagating Rayleigh wave, $u_z(z,t) = r_z(z)\cdot A(t)$, meaning all depths share the **same arrival time** (zero vertical slowness $p_z = 0$). Consequently:
+Strain-rate output instead records $\dot\varepsilon_{zz}=\partial_z v_z$. An ideal single mode at one horizontal position shares its horizontal propagation phase across depths, rather than a vertical travel time usable for velocity estimation. Eigenfunction sign changes, bandwidth and mode mixtures can still alter waveforms and envelopes. Consequently:
 
 - Phase velocity **cannot** be read from inter-depth time shifts;
-- The **amplitude–depth profile** directly yields the eigenfunction $r_z(z)$.
+- Fit eigenfunctions after axial projection, gauge averaging and instrument response; a strain-depth profile is not the displacement eigenfunction $r_z(z)$.
 
 !!! note "Complementarity with surface DAS"
-    Surface DAS measures horizontal strain with a $\cos^2\theta$ azimuthal response. Vertical borehole DAS measures vertical strain and responds equally to Rayleigh waves arriving from any azimuth — making it ideal for quantifying depth decay.
+    In an ideal isotropic 1-D medium, vertical Rayleigh axial strain is independent of horizontal arrival azimuth. Inclined or curved fibres mix radial, vertical and shear strain, while horizontal offsets add propagation phase. Use the measured trajectory in forward modelling.
 
 **Rayleigh-wave depth eigenfunction**
 
@@ -417,13 +418,13 @@ $$r_z(z) \xrightarrow{\;kz \gg 1/\eta_\alpha\;} C_\beta\cdot e^{-\eta_\beta k z}
 
 *Step 1 — obtain $V_R(f)$ independently*
 
-Because all depths register the same arrival time, phase velocity must come from outside the borehole:
+Vertical inter-depth lags do not directly measure phase velocity. Independent horizontal spatial phase observations can provide it:
 - Surface DAS or seismometers via f-v transform;
-- Active source: known source offset divided by Rayleigh-wave arrival time.
+- Active source: use multi-offset phase/wavenumber analysis; offset divided by a wave-packet arrival generally measures group/travel-time velocity, not automatically phase velocity.
 
 *Step 2 — semi-log linear fit of the depth amplitude profile*
 
-In the S-wave-dominated zone ($kz \in [3,\;6]$) fit the slope $-b(f)$ of $\ln|r_z(z, f)|$ versus $z$:
+Fit the actual strain or strain-rate log amplitude in a verified single-exponential asymptotic interval. Only when the slow S-evanescent term dominates does it share the displacement slope $-b(f)$:
 
 $$b(f) = \eta_\beta \cdot k = \frac{2\pi f}{V_R(f)}\sqrt{1 - \frac{V_R(f)^2}{V_S^2}}$$
 
@@ -431,15 +432,15 @@ $$b(f) = \eta_\beta \cdot k = \frac{2\pi f}{V_R(f)}\sqrt{1 - \frac{V_R(f)^2}{V_S
 
 $$\boxed{V_S = \frac{V_R(f)}{\sqrt{1 - \!\left(\dfrac{b(f)\,V_R(f)}{2\pi f}\right)^{\!2}}}}$$
 
-Combining the surface-measured $V_R$ with the borehole-measured decay slope $b$ gives a direct $V_S$ estimate **without any surface receiver array** — particularly valuable in seafloor, glacier, or mine environments where surface arrays are impractical.
+This is conditional on a homogeneous half-space, one mode and independently known phase velocity, with $0\le bV_R/(2\pi f)<1$. It does not replace layered eigenfunction inversion.
 
 !!! tip "Practical notes"
-    - **Fitting range**: $kz \in [3,\;6]$; shallower levels are biased by the two-exponential superposition, deeper levels by low SNR. The residual P-term makes the fitted slope slightly gentler ($V_S$ underestimated by ~2%); fit a two-exponential model when higher accuracy is needed;
-    - **Gauge-length correction**: when $\eta_\beta kL > 0.1$, multiply the measured slope by the correction factor $\mathrm{sinc}^{-1}(\eta_\beta kL/2)$;
-    - **Layered media**: repeat for each frequency — the inferred $V_S$ corresponds to an effective depth $\approx \lambda/4$, assembling a $V_S(z)$ profile.
+    - **Fitting interval**: verify asymptotic behaviour, nodes and SNR with full strain modelling; neither a fixed $kz$ interval nor a fixed percentage bias is universal.
+    - **Gauge averaging**: for $U_z=C e^{-bz}$, strain is $-bC e^{-bz}\operatorname{sinhc}(bL/2)$. Constant $b,L$ change amplitude, not the depth slope; inverse sinc is not a slope correction.
+    - **Layered media**: multiple frequencies cannot be assigned depths $\lambda/4$ to directly assemble $V_S(z)$. Compute layered eigenfunctions, the actual operator and material/geometric sensitivities.
 
 ![Borehole DAS surface-wave depth eigenfunction](assets/images/das_borehole_sw.png)
-*Figure 3: Left — Rayleigh-wave depth eigenfunctions for a Poisson solid. Blue solid: vertical displacement $r_z(z)$, slightly amplified at $kz \approx 0.48$ ($z \approx 0.08\lambda$) before decaying monotonically; red dashed: DAS axial strain $|\varepsilon_{zz}|$, with a node at $kz \approx 0.48$; orange and green horizontal dotted lines mark the P- and S-wave 1/e characteristic depths (vertical axis: normalised depth $kz$). Right — Log-amplitude versus $kz$. In the green zone ($kz > 3$) the curve asymptotes to a straight line with slope $-\eta_\beta$; fitting that slope and combining with a known $V_R(f)$ directly yields $V_S$.*
+*Figure 3: Ideal Poisson half-space illustration. A shallow displacement maximum coincides with an axial-strain node; these curves are different observables. Deep exponential slopes support half-space parameter estimates only under the conditions above. The illustration is not an inversion of a real layered profile.*
 
 ### Dispersion Curve Inversion
 
@@ -451,8 +452,10 @@ $$
 
 where $\mathbf{m}$ contains the layer $V_S$ values and thicknesses, $\mathbf{c}^\text{pred}$ is computed via the Thomson-Haskell matrix method, and the regularisation term constrains model smoothness.
 
-![Surface wave dispersion](assets/images/sw_dispersion.png)
-*Figure 1: Left — Rayleigh wave dispersion for a two-layer model (soft over hard). Blue: phase velocity $c(f)$; red: group velocity $U(f)$. Low frequencies penetrate deeply (high velocity); high frequencies are confined to the shallow soft layer. Right — Depth sensitivity kernels for four frequencies; the peak depth scales as $\approx\lambda/3$.*
+![Analytical teaching schematic: prescribed phase velocity with correctly derived group velocity; artificial weightings place lower frequencies deeper](assets/images/sw_dispersion.png)
+*Figure 1: Teaching schematic, not a layered elastic solution. Left: prescribed Lorentzian-shaped $c(f)$ with $U=\mathrm d\omega/\mathrm dk$ derived from $k=2\pi f/c$. Right: peak-normalized Gaussian weightings placed at $c/(3f)$, not computed sensitivity kernels. The script declares the chosen shapes and parameters.*
+
+[Dispersion values](assets/images/sw_dispersion_curves.csv) · [Toy weighting values](assets/images/sw_dispersion_weightings.csv) · [Generation script](https://github.com/yjianggeo/seismic-notes/blob/main/scripts/generate_surface_dispersion.py)
 
 ---
 

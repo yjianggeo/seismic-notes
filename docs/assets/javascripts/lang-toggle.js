@@ -21,6 +21,11 @@
     "fk-radon": "fk-radon-en",
     "glacier": "glacier-en",
     "geom-seismic": "geom-seismic-en",
+    "cable-coupling": "cable-coupling-en",
+    "reading-guide": "reading-guide-en",
+    "field-workflow": "field-workflow-en",
+    "borehole-rayleigh": "borehole-rayleigh-en",
+    "literature-notes": "literature-notes-en",
   };
 
   // Build reverse map: English → Chinese

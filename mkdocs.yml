@@ -189,6 +189,9 @@ extra_javascript:
   # 首页动效与阅读进度
   - assets/javascripts/home.js
 
+exclude_docs: |
+  overrides/
+
 not_in_nav: |
   brune-en.md
   q-spectral-ratio-en.md
@@ -199,31 +202,28 @@ not_in_nav: |
   glacier-en.md
   geom-seismic-en.md
   cable-coupling-en.md
+  reading-guide-en.md
+  field-workflow-en.md
+  borehole-rayleigh-en.md
+  literature-notes-en.md
 
 nav:
   - 首页: index.md
-
-  - 几何地震学:
-      - 时距曲线、速度与道集: geom-seismic.md
-
-  - 震源理论:
-      - Brune模型: brune.md
-
-  - 地震波衰减:
+  - 学习导航:
+      - 学习路线与概念索引: reading-guide.md
+      - 文献学习索引: literature-notes.md
+  - 基础与传播:
+      - 几何地震学: geom-seismic.md
+      - Brune 震源模型: brune.md
       - 谱比法 Q 值反演: q-spectral-ratio.md
-
-  - 垂直地震剖面:
-      - VSP 原理与应用: vsp.md
-
-  - 面波与尾波:
-      - 波速提取与监测: surface-coda.md
-
-  - 地震数据处理:
-      - F-K 分析与 Radon 变换: fk-radon.md
-
-  - DAS 分布式声学传感:
-      - 基本原理与应用: das.md
+  - 观测与耦合:
+      - DAS 测量原理: das.md
       - 光缆耦合状态检测: cable-coupling.md
-
-  - 冰川地震学:
-      - 仪器、阵列与 DAS 应用: glacier.md
+  - 处理与判读:
+      - 井中 DAS 现场检查流程: field-workflow.md
+      - F-K 分析与 Radon 变换: fk-radon.md
+      - VSP 原理与应用: vsp.md
+  - 结构与监测:
+      - 面波与尾波: surface-coda.md
+      - 井中瑞利波与结构约束: borehole-rayleigh.md
+      - 冰川地震学: glacier.md

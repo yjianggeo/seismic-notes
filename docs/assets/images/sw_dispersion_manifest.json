@@ -1,0 +1,25 @@
+{
+  "purpose": "Web teaching figure; not observational data or a layered elastic solution",
+  "uncertainty": "None: deterministic analytical illustration",
+  "missing_data": "None",
+  "transformation": "Prescribed Lorentzian phase curve; U=d(2*pi*f)/d(2*pi*f/c); peak-normalized toy Gaussian weightings",
+  "group_derivative_max_relative_difference": 4.913686051605485e-05,
+  "matplotlib": "3.11.2",
+  "numpy": "2.3.5",
+  "pixels": [
+    1980,
+    900
+  ],
+  "dpi": [
+    180.00979999999998,
+    180.00979999999998
+  ],
+  "mode": "RGBA",
+  "background": "opaque white",
+  "figure_inches": [
+    11,
+    5
+  ],
+  "script_sha256": "4b2d72b00593519d6b56e8a1055fe4dcafcabd51a91ae76a3940ce984e6937ca",
+  "image_sha256": "a870ea5a2aafd4bf5d5cdc5072e0d1a35249a7b5e44428326e115f237416c799"
+}

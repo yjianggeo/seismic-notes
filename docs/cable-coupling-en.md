@@ -1,170 +1,210 @@
 # Detecting and Assessing DAS Cable Coupling State
 
-> Keywords: DAS, cable coupling, burial state, Poincaré spectral coherence, Burial Index (BI), vortex-induced vibration (VIV)
+> Keywords: DAS, cable coupling, installation state, Poincaré spectral coherence, Burial Index (BI), validation
 
 ## Introduction
 
-The [DAS fundamentals](das-en.md) chapter established the theoretical transfer-function model of cable coupling (jacket-to-fibre coupling $\eta_\text{fiber}$, medium coupling $C_\text{med}(f)$ and coupling stiffness $k_s$). In real deployments, however, **the coupling state varies along the cable and is unknown**: a subsea cable may be buried in sediment over one stretch, resting exposed on the seabed over another, and suspended across a scour depression elsewhere. The same physical forcing produces entirely different responses on differently coupled segments; without knowing the spatial distribution of coupling, ambient-noise interpretation, event detection and structural imaging can all be systematically biased.
+The [DAS fundamentals](das-en.md) chapter separates formation-to-jacket and jacket-to-fibre transfer. Installation, geometry, wavefield and optical response all affect a recorded trace. This chapter asks which data-derived indicators support which coupling interpretations and how those interpretations can be tested. Label-free calculation does not remove the need for independent validation.
 
-This chapter addresses the question: **how can the coupling state of a cable be detected and assessed directly from DAS data itself** — with no controlled sources, no diver inspections, and no prior geological knowledge — in an automated, near-real-time fashion.
+## Define the Evaluation Target First
+
+| Target | Example output | Matching validation |
+|---|---|---|
+| Task-specific channel quality | SNR, reliability, earthquake usability probability | Independent detection, picking or location performance |
+| Installation/contact-state proxy | Burial, exposure, suspension or change | Engineering records, diver surveys, controlled state changes |
+| Relative amplitude/phase response | Gain and phase relative to reference | Comparable wavefields, reference sensitivity and repeated events |
+| Band-limited strain transfer | Regression or complex transfer against reference strain | Calibrated strain reference with matched direction and scale |
+
+These outputs are not interchangeable. For noiseless $y=0.2x$, correlation and magnitude-squared coherence can both be one while the amplitude ratio is 0.2. Knowing an installation category such as fine/coarse backfill does not supply a mechanical-transfer ground truth. [Forbriger et al. (2025)](https://doi.org/10.1785/0220240308)
 
 ## Four Coupling States and Their Physical Effects
 
-Subsea cable coupling is commonly divided into four states with distinct mechanical constraints and frequency responses:
+| State | Mechanical constraint | Possible response |
+|---|---|---|
+| Buried | Sediment confinement changes mass, stiffness and damping | High-frequency water-driven motion may be suppressed; ground-strain transfer may improve |
+| Partially buried | Intermediate or intermittent contact | Spatially variable transition |
+| Exposed | Hydrodynamic forcing plus seabed contact | Potentially broadband response, depending on contact and forcing |
+| Suspended/free span | Endpoints, tension and bending stiffness constrain an unsupported span | VIV or cable resonance dependent on current, span and tension |
 
-| Coupling state | Mechanical constraint | Frequency-response signature |
-|----------------|----------------------|------------------------------|
-| **Buried** | Sediment confinement adds effective mass, stiffness and damping | Low-pass: mid-to-high frequencies suppressed by sediment damping; low frequencies (gravity-wave band) retained and spatially smooth |
-| **Partially buried** | Intermediate constraint, possibly intermittent contact | Transitional response between buried and exposed |
-| **Exposed** | Driven directly by hydrodynamic pressure | Broadband sensitivity to waves, currents and vessels, but also elevated broadband noise |
-| **Suspended (free span)** | Almost no mechanical constraint | Broadband + resonance: currents drive **vortex-induced vibration (VIV)**, producing narrowband resonant peaks |
+These are scenario-dependent interpretations, not universal spectral templates. Amplitude bands can also arise from seabed stiffness in a well-buried cable. Marine frequency bands and thresholds should not be transplanted directly into a backfilled borehole.
 
-!!! note "Coupling is a double-edged sword for observation"
-    While burial suppresses high-frequency water-column signals, it may **improve** coupling to solid-Earth wavefields (Scholte, Rayleigh and body waves) — buried segments can actually be better suited to regional and teleseismic monitoring (Taweesintananon et al.). Exposed segments are sensitive to hydrodynamic and anthropogenic forcing but prone to resonant artefacts. Coupling mapping is therefore not only a data-quality tool but also a basis for **selecting which cable segments to use** for a given observation goal.
-
-![Cable coupling states and Poincaré spectral coherence](assets/images/cable_coupling_poincare.png)
-*Figure 1: (a) Scenarios and frequency-response signatures of three typical coupling states — buried segments are low-pass (high frequencies damped by sediment), exposed segments are broadband-sensitive, and suspended segments show a VIV resonant peak (orange band: the 100–120 Hz high-frequency band used for detection); (b) Burial Index (BI) profile derived from Poincaré spectral coherence: low BI corresponds to buried segments with smooth, coherent spectral fingerprints across neighbouring channels, high BI to spatially irregular exposed/suspended segments, and sharp BI jumps mark coupling transitions. (Synthetic illustration, patterned after the OBSEA layout; following Shiri & Belal, 2026.)*
+!!! note "Quality depends on the observation goal"
+    Stable contact is generally desirable for ground-strain amplitudes. A suspended span may instead be useful for current sensing through vibration. “Well coupled” and “high quality” therefore need a target quantity and frequency band.
 
 ## Overview of Coupling-State Detection Methods
 
-| Method | Observable | Strengths | Limitations |
-|--------|-----------|-----------|-------------|
-| Vessel-induced band energy (Harmon et al.) | Along-cable band-energy distribution during vessel passages | Strong signals, clear contrast | Requires vessel transits; manual interpretation; not continuous |
-| Resonance-frequency shift (Taweesintananon et al.) | Changes in near-surface shear-wave resonance frequencies with coupling | Physically direct, independent proxy | Requires identifiable resonance peaks; sensitive to shallow structure |
-| Frequency-dependent amplitude modulation (Bakulin et al.) | Amplitude modulation by sub-wavelength seabed stiffness variations | Reveals coupling dependence on wave type (Scholte/Rayleigh/body) | Qualitative; no segment-resolved coupling map |
-| Co-located point seismometer | Empirical transfer function $T(f)$ | Direct readout of the corner frequency $f_c$ (see [DAS: field assessment of coupling quality](das-en.md)) | Requires an additional reference station |
-| **Poincaré spectral coherence** (Shiri & Belal, 2026) | Spatial irregularity of spectral fingerprints across neighbouring channels | Unsupervised, near-real-time, lightweight, continuous mapping | Bands must be tuned per site; BI is a relative index, not burial depth |
+| Method | Observable | Strength | Main limitation |
+|---|---|---|---|
+| Neighbour coherency, Hudson et al. (2025) | Relative coherency with reference calibration | Noise/event applications and amplitude examples | Comparable wavefields needed; geometry, common noise and heterogeneity interfere |
+| Spectral clustering/correlation, Yin et al. (2024) | Ringing and anomalous spectra | Automated borehole VSP screening | Shared ringing may evade detection; local thresholds |
+| Repeated excitation, Muñoz et al. (2023) | Same-location repeatability across events | Finds stable observation positions | Source type, speed and direction must be comparable |
+| Vessel band energy, Harmon et al. (2025) | Single/double envelope peaks and band energy | Physical response interpretation | Suitable source trajectory and SNR; some state labels inferred |
+| Resonance analysis | Spectral peaks and vibration modes | Mechanism-sensitive evidence | Depends on boundary conditions, forcing and structure |
+| Reference-wavefield comparison | Effective complex transfer | Amplitude and phase evaluation | Independent reference or adequate wavefield model |
+| Poincaré spectral coherence, Shiri and Belal (2026) | Spread/gradient of two-band fingerprints | Label-free, lightweight mapping | Site-specific bands; BI is a relative proxy |
+
+### Difference from Conventional Coherence and Reliability
+
+Standard **magnitude-squared coherence** uses averaged auto- and cross-spectra:
+
+$$
+\gamma^2_{ij}(f)=\frac{|S_{ij}(f)|^2}{S_{ii}(f)S_{jj}(f)},\qquad 0\leq\gamma^2\leq1.
+$$
+
+A single unaveraged Fourier realization degenerates to unit coherence at nonzero bins. State the Welch/multitaper averaging scheme. The Poincaré statistic discards phase, compresses band powers into fingerprints and evaluates a **spatial spread/gradient ratio**. It is neither MSC nor naturally bounded by one. Hudson's method has its own time-domain normalization and lag definitions; replacing it with Pearson correlation or MSC is not a faithful reproduction.
+
+PCCF reliability, CQI and ORION primarily validate channel selection and downstream tasks. They are useful baselines, but task quality does not automatically measure absolute mechanical transfer. [Muñoz and Soto (2022)](https://doi.org/10.1038/s41467-022-31681-x), [Rodriguez et al. (2025)](https://doi.org/10.1109/JSTARS.2025.3593330), [Bozzi et al. (2026)](https://doi.org/10.26443/seismica.v5i1.2251)
 
 ## The Poincaré Spectral-Coherence Framework
 
-The framework of Shiri & Belal (2026) converts DAS differential-phase measurements $Y(t, x)$ into an along-cable coupling indicator in four stages. Everything reduces to short-time FFTs and block statistics — **no training, no iterative optimisation** — and runs in near real time on a single CPU core.
+Shiri and Belal (2026) construct a coupling-state proxy using short-time FFTs and spatial block statistics, followed by robust normalization, smoothing and temporal aggregation.
 
 ### Stage 1: Two-Band Spectral Fingerprints
 
-The data are partitioned into overlapping 2–4 s windows (length $N_t^{(w)}$) and tapered with a Hanning window to suppress spectral leakage:
+Split traces into overlapping 2–4 s windows and apply a Hann taper:
 
 $$
-h[n] = \frac{1}{2}\left(1 - \cos\frac{2\pi n}{N_t^{(w)} - 1}\right), \qquad \tilde{y}_i^{(w)}[n] = y_i^{(w)}[n]\, h[n]
+h[n]=\tfrac12\left(1-\cos\frac{2\pi n}{N_t^{(w)}-1}\right),
+\qquad \tilde y_i^{(w)}[n]=y_i^{(w)}[n]h[n].
 $$
 
-After the discrete Fourier transform, the **frequency band energy** (FBE — the periodogram power summed over a band) is computed in two physically complementary bands:
+Sum Fourier power over the actual bins $K_k$ of each band:
 
 $$
-P_{i,k}^{(w)} = \sum_{\ell \in K_k} \left|\hat{y}_i^{(w)}[\ell]\right|^2
+P_{i,k}^{(w)}=\sum_{\ell\in K_k}|\hat y_i^{(w)}[\ell]|^2,\qquad
+\mathbf f_i^{(w)}=
+\frac{[P_{i,1}^{(w)},P_{i,2}^{(w)}]^{\mathsf T}}
+{P_{i,1}^{(w)}+P_{i,2}^{(w)}+\varepsilon_1}.
 $$
 
-- **Low band** $B_1$ (e.g., 0.01–10 Hz): persistent large-scale forcing — surface gravity waves, swell, tides — spatially smooth and temporally stable, providing a consistent background reference;
-- **High band** $B_2$ (e.g., 100–120 Hz): intermittent excitation (vessel harmonics, VIV strumming, flow-induced vibration) — strongly attenuated by sediment damping when buried, hence **most sensitive to coupling state**.
-
-The two band powers are normalised into a two-dimensional **spectral fingerprint**:
-
-$$
-\mathbf{f}_i^{(w)} = \frac{1}{P_{i,1}^{(w)} + P_{i,2}^{(w)} + \varepsilon_1} \begin{bmatrix} P_{i,1}^{(w)} \\ P_{i,2}^{(w)} \end{bmatrix}
-$$
+The paper's lower-band text says 0.01–10 Hz while equation (5) says 0.1–10 Hz; record the implemented choice. A 2–4 s window has approximately 0.5–0.25 Hz Fourier-bin spacing, so it does **not** independently resolve 0.01 Hz or tidal periods. Its higher example band, 100–120 Hz, targets intermittent vessel/hydrodynamic/cable vibration.
 
 !!! note "Band selection is site-specific"
-    The optimal bands depend on environmental forcing, sediment properties, cable construction (armouring, stiffness, diameter) and acquisition parameters (gauge length, channel spacing); they are chosen empirically by systematically inspecting the DAS spectra at each site, aiming to maximise spatial contrast and temporal stability. The two-band framework itself is general — alternative bands can be substituted without modifying the methodology.
+    Select bands on development data, then freeze them for independent dates/events. Respect Nyquist and anti-alias filtering. Retuning on the validation section boundaries does not demonstrate generalization.
 
 ### Stage 2: The Poincaré-Type Spatial Coherence Coefficient
 
-The cable is divided into spatial blocks $I_b$ of $M$ channels. With the block-averaged fingerprint $\bar{\mathbf{f}}^{(w,b)}$, two statistics are defined.
-
-**Spectral spread** (L2 deviation of fingerprints from the block mean):
+For a block $I_b$ of $M$ channels with mean fingerprint $\bar{\mathbf f}$,
 
 $$
-\mathrm{Spread}_{L2}^{(w,b)} = \sqrt{\frac{1}{M} \sum_{i \in I_b} \left\| \mathbf{f}_i^{(w)} - \bar{\mathbf{f}}^{(w,b)} \right\|_2^2}
+\mathrm{Spread}=
+\sqrt{\frac1M\sum_{i\in I_b}\|\mathbf f_i-\bar{\mathbf f}\|_2^2},
+\qquad
+\mathrm{Grad}=
+\sqrt{\frac1{M-1}\sum_{i\in I_b\setminus\{\mathrm{last}\}}
+\|\mathbf f_{i+1}-\mathbf f_i\|_2^2}.
 $$
 
-**Spectral gradient** (L2 norm of channel-to-channel fingerprint differences):
+The normalized fingerprint scale supplies a gradient floor:
 
 $$
-\mathrm{Grad}_{L2}^{(w,b)} = \sqrt{\frac{1}{M-1} \sum_{i \in I_b \setminus \{\text{last}\}} \left\| \Delta \mathbf{f}_i^{(w)} \right\|_2^2}, \qquad \Delta\mathbf{f}_i^{(w)} = \mathbf{f}_{i+1}^{(w)} - \mathbf{f}_i^{(w)}
+\mathrm{Scale}=\sqrt{\frac1M\sum_{i\in I_b}\|\mathbf f_i\|_2^2},
+\quad \mathrm{Grad}_{\rm eff}=\max(\mathrm{Grad},\alpha\,\mathrm{Scale}),
+\quad
+\boxed{C_{\rm eff}=\frac{\mathrm{Spread}}{\mathrm{Grad}_{\rm eff}+\varepsilon_2}}.
 $$
 
-To prevent artificially inflated coherence in blocks where both spread and gradient are tiny, a **gradient floor** proportional to the block energy is introduced:
-
-$$
-\mathrm{Grad}_\text{floor}^{(w,b)} = \alpha\, \mathrm{Scale}_{L2}^{(w,b)}, \quad \alpha = 0.05; \qquad \mathrm{Grad}_\text{eff} = \max\left(\mathrm{Grad}_{L2},\, \mathrm{Grad}_\text{floor}\right)
-$$
-
-Sensitivity tests show the result is stable for $\alpha \in [0.01, 0.1]$. The final **effective coherence coefficient**:
-
-$$
-\boxed{\; C_\text{eff}^{(w,b)} = \frac{\mathrm{Spread}_{L2}^{(w,b)}}{\mathrm{Grad}_\text{eff}^{(w,b)} + \varepsilon_2} \;}
-$$
+The paper uses $\alpha=0.05$ and reports stable results for 0.01–0.1 in its datasets. Other deployments need their own sensitivity checks.
 
 !!! tip "Why 'Poincaré'?"
-    The ratio is motivated by **Poincaré-type inequalities**, which relate the variability of a function over a domain to the magnitude of its spatial gradient. Here the spread quantifies within-block variability while the gradient measures the characteristic channel-to-channel change; their ratio gives a dimensionless measure of **spatial irregularity**: large $C_\text{eff}$ → dissimilar neighbouring fingerprints (exposed/suspended: free-span dynamics + spatially heterogeneous forcing); small $C_\text{eff}$ → smooth and coherent (buried: sediment confinement makes neighbouring channels share similar boundary conditions). Because it measures **relative** spatial variation rather than absolute energy, it is insensitive to global changes in forcing amplitude.
+    Poincaré inequalities relate variability to gradient magnitude. Here the ratio compares block-scale variation with neighbour-scale variation. A common multiplicative gain leaves normalized fingerprints nearly unchanged, but source spectral shape, additive noise and spatially heterogeneous forcing need not cancel.
+
+!!! warning "The high-value interpretation is empirical"
+    The paper associates high BI with exposed/weakly constrained sections at its sites. The printed spread/gradient ratio is not mathematically monotonic in every notion of spatial roughness. Ignoring the floor, an $M$-channel linear ramp gives $\sqrt{(M^2-1)/12}$ while a balanced alternating sequence gives $1/2$; for $M=10$, these are about 2.87 and 0.5. A smooth ramp can therefore score above rapid alternation. An exactly constant fingerprint has zero spread and zero index.
+
+    Preserve the reported high/low BI association as a **site observation**, not a universal proof of coupling. Do not silently invert the ratio and call that the original method.
 
 ### Stage 3: Robust log–MAD–exp Normalisation
 
-The raw $C_\text{eff}$ is non-negative but has a large dynamic range and a heavy-tailed distribution (extremes come from strongly exposed/free-span segments). Three steps follow:
-
-1. **Log transform** to compress large values: $L[w,b] = \log(C_\text{raw}[w,b] + \varepsilon_3)$;
-2. **Median–MAD normalisation** (removes large-scale temporal variations from tides, environmental forcing or interrogator drift):
+Let $C_{\rm raw}[w,b]=C_{\rm eff}^{(w,b)}$. Define
 
 $$
-Z_L[w,b] = \frac{L[w,b] - m_L}{1.4826\,\mathrm{MAD}_L + \varepsilon_3}, \qquad m_L = \mathrm{median}(L), \quad \mathrm{MAD}_L = \mathrm{median}\left(|L - m_L|\right)
+L=\log(C_{\rm raw}+\varepsilon_3),\qquad
+Z_L=\frac{L-m_L}{1.4826\,\mathrm{MAD}_L+\varepsilon_3},
+\qquad C_{\rm norm}=\exp(Z_L),
 $$
 
-The factor 1.4826 is the consistency constant relating MAD to the standard deviation under Gaussian assumptions — here it serves only as a reference scale. **No normality is assumed**; the MAD is chosen precisely for robustness to outliers and non-Gaussian behaviour;
-
-3. **Exponential mapping** back to a positive, energy-like index: $C_\text{norm}[w,b] = \exp(Z_L[w,b])$.
+with $m_L=\operatorname{median}(L)$ and $\mathrm{MAD}_L=\operatorname{median}|L-m_L|$. State which windows/blocks define these statistics. The factor 1.4826 supplies a conventional reference scale without imposing normality. Robust scaling does not physically eliminate environmental or instrument confounding.
 
 ### Stage 4: Spatial Smoothing and the Burial Index (BI)
 
-A **spatial Gaussian smoothing** ($\sigma = L_\text{smooth}/\Delta x$, reflective boundaries at cable ends) suppresses channel-scale artefacts and emphasises burial-scale structure:
+Smooth along the **block axis**, using block-centre spacing $\Delta x_b$:
 
 $$
-C_\text{smooth}[w,b] = \sum_k g_\sigma(b - k)\, C_\text{norm}[w,k], \qquad g_\sigma(\ell) \propto e^{-\ell^2 / 2\sigma^2}
+\sigma_b=L_{\rm smooth}/\Delta x_b,\qquad
+C_{\rm smooth}[w,b]=\sum_k g_{\sigma_b}(b-k)C_{\rm norm}[w,k],
+\qquad
+\boxed{\mathrm{BI}(b)=\operatorname{median}_w C_{\rm smooth}[w,b]}.
 $$
 
-Finally, the **median over time windows** yields the one-dimensional **Burial Index (BI)** profile:
+For non-overlapping $M$-channel blocks, $\Delta x_b=M\Delta x$; do not substitute single-channel spacing. Reflective end padding is a numerical boundary convention, not a physical reflection.
 
-$$
-\boxed{\; \mathrm{BI}(b) = \operatorname*{median}_{w}\, C_\text{smooth}[w, b] \;}
-$$
+!!! warning "BI is a proxy, not burial depth"
+    BI does not directly measure burial depth, contact stiffness or strain-transfer efficiency. Bathymetry, sediment, forcing, protective structures and free spans can all affect the pattern. Coherent common vibration can also coexist with poor ground-strain fidelity.
 
-!!! warning "BI is a coupling indicator, not a burial depth"
-    The BI quantifies **spatial irregularity of the cable–seabed coupling response**. Burial is the dominant control, but sediment heterogeneity, water depth and bathymetric gradients, seabed rugosity (via turbulence and scattering), protective structures, local free spans and installation transitions all contribute to BI anomalies. Interpret the BI together with bathymetric and geological context, and always as a **relative** index.
+### Cross-Period Comparison and Reproducibility
+
+- Preserve raw band powers, fingerprints, $C_{\rm eff}$, normalization median/MAD, masks and actual window times. BI values normalized independently per period cannot be directly compared; monitoring needs a fixed development-period reference and checks of unnormalized quantities.
+- Select actual FFT bins with explicit endpoint rules. Avoid duplicate bins or rounding during band scans. Zero padding refines plotted bins, not the true window-limited resolution.
+- Mask near-zero energy, missing-data padding, saturation and dropouts. Dimensionless fingerprints do not replace PSD/RMS calibration.
+- Overlapping gauges can inflate neighbour similarity. Gauge length, block width, block stride and smoothing jointly limit spatial resolution. Treat boundary-crossing blocks separately.
+- Track windows across file boundaries, gaps and clock conventions explicitly. Do not concatenate per-file edge-trimmed windows as if they formed a gapless uniform time series. See [field workflow](field-workflow-en.md).
 
 ## Field Validation
 
-| Parameter | EMEC Eday (Orkney, UK) | OBSEA (Barcelona, Spain) |
-|-----------|------------------------|--------------------------|
-| Cable length | ~2.2 km (composite power cable) | ~5.8 km (telecom-power cable) |
-| Channels / spacing | 1083 / 2.04 m | 4560 / 1.275 m |
-| Sampling rate / gauge length | 1 kHz / 10 m | 2 kHz / 20 m |
-| Environment | Strong tidal currents (up to 4 m/s), alternating bedrock–sand ripples–erosional scarps | Sediment-dominated, smoother seabed |
-| Independent validation | Mapped lithological boundaries (RF/LE/EF/ME) + aerial imagery | **Diver/vessel-reported burial segments** |
+The study applies the method to EMEC Eday and OBSEA.
 
-**EMEC Eday**: the BI profile aligns with mapped lithological boundaries — persistently low BI over the nearshore 200–350 m (buried/well-supported); elevated, fluctuating BI across the Eday Flagstones scarp zone at 450–900 m (weakly supported / free-span); elevated BI near the LE–RF and EF–LE lithological transitions (stiffness contrasts produce coupling contrasts), with a more gradual ME–EF transition. Consistent with the "partially buried" interval inferred by Harmon et al. from vessel-induced band-energy signatures.
+| Parameter | EMEC Eday | OBSEA |
+|---|---|---|
+| Cable length | About 2.2 km | About 5.8 km |
+| Channels/spacing | 1083 / 2.04 m | 4560 / 1.275 m |
+| Sampling/gauge length | 1 kHz / 10 m | 2 kHz / 20 m |
+| Context | Strong tidal currents, heterogeneous seabed | Sediment-dominated coastal setting |
+| Independent context | Geological units and aerial imagery | Some diver/vessel-reported states |
 
-**OBSEA**: the BI agrees strongly with diver-verified segments — high BI over the onshore section (0–1743.5 m); persistently low BI over the "suspected buried" interval (1743.5–3300 m); a gradual BI increase across the "unknown" interval (3242.9–4342.3 m); high, strongly fluctuating BI beyond 4442.5 m ("unburied"). Waveforms and spectrograms at four representative locations confirm the picture: in the buried segment the 100–140 Hz content nearly vanishes while low frequencies (< 30 Hz) remain strong; in exposed segments high-frequency modulation is pronounced.
+The EMEC response corresponds to mapped geological transitions, but geological context is not a channel-by-channel mechanical ground truth.
 
-**Computational performance** (single vCPU, Google Colab Pro): complete coupling maps of multi-kilometre cables in < 20 s, ≈ 50 s per km·hour of data, 1.3–2.0 CPU-hours per TB — orders of magnitude lighter than deep-learning pipelines.
+For OBSEA, the paper labels intervals as onshore, **suspected buried**, **unknown**, and unburied. The reported ranges overlap or leave gaps; retain that uncertainty rather than calling the whole profile diver-verified classification. The observed spectra support site-specific response differences, not a universal BI threshold.
+
+Reported runtime supports computational feasibility in the stated environment. It does not establish long-term alarm delay, false-alarm rate or transfer performance at a new site.
 
 ## Artefacts and Pitfalls
 
-!!! danger "Do not mistake instrumental artefacts for coupling signals"
-    - **Fresnel reflections**: imperfect optical termination (especially the uncontrolled underwater distal end) produces persistent broadband high-energy bands visible in raw heatmaps, FBE maps and distance profiles — an acquisition boundary effect, never an environmental or coupling feature; both fibre ends can be affected (the near-end response depends on connector conditions and varies between campaigns);
-    - **Phase fading (Rayleigh fading)**: destructive interference of the coherent Rayleigh backscatter causes localised signal dropouts and degraded SNR, most visible in the high band;
-    - Slack sections, stick–slip behaviour, gain variations and channel dropouts can likewise produce artificial coherence discontinuities mimicking coupling transitions.
+!!! danger "Check instrumental artefacts"
+    Optical-end reflections, phase fading, slack, gain changes, saturation and channel dropouts can create spectral or spatial anomalies. Inspect their acquisition context before assigning mechanical meaning.
 
-- **Raw time–distance plots are not directly readable**: high-sampling-rate DAS data are non-stationary and noise-dominated; burial signatures are essentially invisible in raw t–x plots, so fingerprint- and coherence-based diagnostics are indispensable;
-- **Bands must be tuned per site** (environmental forcing, cable construction, gauge length and channel spacing all shift the optimal bands; longer gauge lengths reduce sensitivity to short-wavelength vibration);
-- **Depth and rugosity confusion**: water depth affects the BI both through burial persistence (sediment-transport pathways) and through the forcing environment (gravity-wave orbital motion decays with depth); a rough seabed can elevate the BI via heterogeneous turbulent forcing even without any true burial transition.
+Raw time–distance plots remain useful for propagation and artefact checks, but do not alone determine contact state. Water depth and roughness alter forcing as well as contact, and coherent guided waves can resemble stable ground signals.
 
 ## Limitations and Outlook
 
-- **From classification to quantification**: the current framework yields relative coupling segments; future work can move towards **quantitative burial-depth estimation** using more general regularity diagnostics — spatial total variation, curvature (bending-energy) penalties, multi-band spectral ratios — combined with calibrated attenuation models and independent measurements (ROV/diver surveys);
-- **Resonance-based proxies and wave-type-dependent coherence attributes** offer independent constraints on coupling stiffness;
-- **Closing the loop**: BI maps feed back into DAS data quality control — selecting stable, well-coupled segments for geophysical monitoring, and flagging weakly coupled regions whose hydrodynamic/anthropogenic signals must be interpreted with caution.
+A relative state map can inform selection, but quantitative burial or stiffness inversion needs a calibrated model and matching independent measurements. Existing work already includes automatic screening, state labels, reference calibration and downstream-task validation; research gaps should concern specific unresolved confounders and generalization conditions, rather than claim that no quantitative methods exist.
+
+## Transfer to Borehole Observations
+
+Build a channel-to-cable-distance, measured-depth, true-vertical-depth and three-dimensional tangent mapping. DAS measures $\varepsilon_\parallel=\mathbf t^{\mathsf T}\boldsymbol\varepsilon\mathbf t$. Surface and borehole segments have different orientations; amplitude ordering alone cannot rank their coupling. Near a directional zero, reduce confidence instead of dividing by a near-zero factor.
+
+For a narrowband packet confined to one backfill interval, test consistent up/down moveout, stable spatial nodes, pre-event modes, boundary energy changes and reflection travel times. A single along-cable apparent phase speed around 1.4 km/s cannot distinguish water acoustics, formation P waves or tube waves. Water in porous backfill does not automatically supply an open liquid-column waveguide. Completion, water-level, pressure or operational records are needed. See [field interpretation](field-workflow-en.md).
+
+### Minimum Validation and Statistical Requirements
+
+1. **Synthetic isolation:** vary receiver gain, phase, source spectrum, incidence, noise and local structure independently; measure false attribution to coupling.
+2. **External state comparison:** installation categories support segmentation, not a forced “suspended < surface < fine sand < coarse sand” quality ordering. Depth and geology confound grain size.
+3. **Whole-event/whole-period holdout:** freeze bands, thresholds and normalization; split by event/date to avoid leakage through neighbouring channels and overlapping windows.
+4. **Independent task benefit:** select channels using noise metrics and evaluate unseen earthquakes using detection, blinded picks or arrival residuals, controlling channel count and aperture. Do not validate only with the same coherence used to construct the score.
+5. **Temporal confounders:** track configuration, source spectrum/direction, weather and coverage. Gaps are not observations. Use event/day or temporal-block uncertainty, not thousands of correlated channels as independent repeats.
+
+Without an independent reference, report relative receiver response or coupling-related anomalies. Absolute transfer, freeze–thaw causality or post-earthquake mechanical change needs matching evidence. Surface air temperature is not deep-borehole temperature; disconnected winter/spring and summer/autumn campaigns do not by themselves establish a repeatable annual cycle.
 
 ## References
 
-- Shiri, H., & Belal, M. (2026). A real-time framework for mapping subsea cable burial state using Poincaré spectral coherence of DAS measurements. *Scientific Reports*, 16, 23647.
-- Harmon, M., et al. Coupling-dependent frequency-band-energy patterns in vessel signals on a shallow-water subsea cable (one of the source studies of the EMEC Eday dataset; as cited in Shiri & Belal, 2026).
-- Taweesintananon, K., et al. Influence of seafloor DAS coupling on near-surface shear-wave resonance frequencies (resonance behaviour as an independent burial proxy; as cited in Shiri & Belal, 2026).
-- Bakulin, A., et al. Frequency-dependent amplitude modulation by sub-wavelength seabed stiffness variations (coupling effects depend on the dominant wave type: Scholte/Rayleigh/body; as cited in Shiri & Belal, 2026).
-- Martin, E. R., et al. Distributed spring–mass model and low-pass transfer function for cable–medium coupling (see [DAS fundamentals](das-en.md)).
+- Shiri, H., & Belal, M. (2026). A real-time framework for mapping subsea cable burial state using Poincaré spectral coherence of DAS measurements. *Scientific Reports*, 16, 23647. [DOI](https://doi.org/10.1038/s41598-026-59846-4). Framework checked against full-text equations (5), (11)–(26); reproduction caveats above.
+- Hudson, T., Stork, A., Muir, J., & Fichtner, A. (2025). Unlocking DAS amplitude information through coherency coupling quantification. *Seismica*, 4(1). [DOI](https://doi.org/10.26443/seismica.v4i1.1488).
+- Forbriger, T., et al. (2025). Calibration of the Strain Amplitude Recorded with DAS Using a Strainmeter Array. *Seismological Research Letters*, 96, 2356–2367. [DOI](https://doi.org/10.1785/0220240308); [author full text](https://arxiv.org/html/2408.01151v3).
+- Muir, J. B., & Zhan, Z. (2022). Wavefield-based evaluation of DAS instrument response and array design. *Geophysical Journal International*. [DOI](https://doi.org/10.1093/gji/ggab439).
+- Yin, J., Mizuno, T., & Le Calvez, J. (2024). Using the amplitude spectrum to characterize cable coupling of DAS traces. *IMAGE Expanded Abstracts*. [DOI](https://doi.org/10.1190/image2024-4094798.1).
+- Muñoz, F., et al. (2023). Finding Well-Coupled Optical Fiber Locations for Railway Monitoring Using Distributed Acoustic Sensing. *Sensors*, 23, 6599. [DOI](https://doi.org/10.3390/s23146599). Partial-text evidence in this review.
+- Harmon, N., et al. (2025). Distributed Acoustic Sensing Along a Shallow Water Energy Cable. *IEEE Journal of Oceanic Engineering*. [DOI](https://doi.org/10.1109/JOE.2024.3523363).
+- Muñoz, F., & Soto, M. A. (2022). Enhancing fibre-optic distributed acoustic sensing capabilities with blind near-field array signal processing. *Nature Communications*. [DOI](https://doi.org/10.1038/s41467-022-31681-x).
+- Rodriguez, T., et al. (2025). Automatic Identification of High-Quality Channels in Distributed Acoustic Sensing Through Implementation of a Channel Quality Index. *IEEE JSTARS*. [DOI](https://doi.org/10.1109/JSTARS.2025.3593330). Partial text and author implementation reviewed; entry point for task-quality assessment.
+- Bozzi, E., et al. (2026). Near real-time channel selection for Distributed Acoustic Sensing technology. *Seismica*. [DOI](https://doi.org/10.26443/seismica.v5i1.2251). Partial-text entry point for joint geometry/quality selection.
+- Gurevich, B., et al. (2023). The Effect of the Method of Downhole Deployment on Distributed Acoustic Sensor Measurements: Field Experiments and Numerical Simulations. *Sensors*, 23, 7501. [DOI](https://doi.org/10.3390/s23177501).
