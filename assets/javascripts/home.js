@@ -80,7 +80,10 @@
       ["das/", "一根普通光纤如何变成密集地震台阵？"],
       ["glacier/", "冰川的裂隙与滑动会发出怎样的信号？"],
       ["geom-seismic/", "叠加速度和均方根速度是一回事吗？"],
-      ["cable-coupling/", "如何从 DAS 数据看出光缆是埋着还是悬着？"]
+      ["cable-coupling/", "光缆能量更强，是否就意味着耦合更好？"],
+      ["field-workflow/", "叠加后看见弱波包，就能确认它是 P 波吗？"],
+      ["borehole-rayleigh/", "应变深度曲线的谷值一定是低速层吗？"],
+      ["literature-notes/", "波形高度相关，能否证明应变幅值准确？"]
     ];
     var index = 0;
 

@@ -2,78 +2,110 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
+    </url>
+    <url>
+         <loc>https://yjianggeo.github.io/seismic-notes/borehole-rayleigh-en/</loc>
+         <lastmod>2026-10-31</lastmod>
+    </url>
+    <url>
+         <loc>https://yjianggeo.github.io/seismic-notes/borehole-rayleigh/</loc>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/brune-en/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/brune/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/cable-coupling-en/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/cable-coupling/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/das-en/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/das/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
+    </url>
+    <url>
+         <loc>https://yjianggeo.github.io/seismic-notes/field-workflow-en/</loc>
+         <lastmod>2026-10-31</lastmod>
+    </url>
+    <url>
+         <loc>https://yjianggeo.github.io/seismic-notes/field-workflow/</loc>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/fk-radon-en/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/fk-radon/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/geom-seismic-en/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/geom-seismic/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/glacier-en/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/glacier/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
+    </url>
+    <url>
+         <loc>https://yjianggeo.github.io/seismic-notes/literature-notes-en/</loc>
+         <lastmod>2026-10-31</lastmod>
+    </url>
+    <url>
+         <loc>https://yjianggeo.github.io/seismic-notes/literature-notes/</loc>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/q-spectral-ratio-en/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/q-spectral-ratio/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
+    </url>
+    <url>
+         <loc>https://yjianggeo.github.io/seismic-notes/reading-guide-en/</loc>
+         <lastmod>2026-10-31</lastmod>
+    </url>
+    <url>
+         <loc>https://yjianggeo.github.io/seismic-notes/reading-guide/</loc>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/surface-coda-en/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/surface-coda/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/vsp-en/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
     <url>
          <loc>https://yjianggeo.github.io/seismic-notes/vsp/</loc>
-         <lastmod>2026-09-01</lastmod>
+         <lastmod>2026-10-31</lastmod>
     </url>
 </urlset>
